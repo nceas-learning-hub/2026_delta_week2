@@ -8,7 +8,7 @@ filters:
 - nceas-learning-hub/theme
 - quarto-ext/fontawesome
 exercises: ### for custom theme callouts
-  number: false ### see https://cambiotraining.github.io/quarto-course-template/materials/02-content_guidelines.html but does not work
+  number: true ### see https://cambiotraining.github.io/quarto-course-template/materials/02-content_guidelines.html
 editor: source
 execute:
   freeze: auto
@@ -22,7 +22,8 @@ website:
   reader-mode: false
   repo-url: https://github.com/nceas-learning-hub/2026_delta_week2
 
-  favicon: logo_lh_hex.png # learning hub logo on browser tab
+  ### learning hub logo on browser tab
+  favicon: _extensions/nceas-learning-hub/theme/banner/logo_lh_hex.png
 
   bread-crumbs: false
   navbar:
