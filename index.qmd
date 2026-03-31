@@ -31,7 +31,7 @@ _Table Color Legend:_ <span style="color:#6a994e">{{<fa screwdriver-wrench >}} T
 :::{.panel-tabset}
 ### Week Visual
 
-![](images/2026_delta_week1_schedule.png){fig-alt="Screenshot of visual version of schedule. All information is also included in the table version of the schedule" .lightbox}
+![](images/2026_delta_week2_schedule.png){fig-alt="Screenshot of visual version of schedule. All information is also included in the table version of the schedule" .lightbox}
 
 ### Day 1
 
