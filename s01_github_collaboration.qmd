@@ -16,7 +16,7 @@ After completing this session, you will be able to:
 
 Git is a powerful tool for both individual and collaborative work. The most common way to collaborate is through a **shared repository on [GitHub](https://github.com){target="_blank" .external}**, which acts as a central hub where teammates can exchange and merge changes. In this lesson, one person (the **Owner**) hosts the repository on GitHub and grants a colleague (the **Collaborator**) permission to push changes directly.
 
-![GitHub collaboration](images/github_collaboration/github-collaborators-diagram.png){width="70%" fig-align="center" .lightbox fig-alt="Diagram showing the relationship between the Owner, Collaborator, and GitHub repository. The Owner has a local repository and a remote repository on GitHub. The Collaborator has a local repository that is connected to the remote repository on GitHub. Both the Owner and Collaborator can pull changes from GitHub to their local repositories and push changes from their local repositories to GitHub."}
+![](images/github_collaboration/github-collaborators-diagram.png){width="70%" fig-align="center" .lightbox fig-alt="Diagram showing the relationship between the Owner, Collaborator, and GitHub repository. The Owner has a local repository and a remote repository on GitHub. The Collaborator has a local repository that is connected to the remote repository on GitHub. Both the Owner and Collaborator can pull changes from GitHub to their local repositories and push changes from their local repositories to GitHub."}
 
 Before diving into the exercise, keep these tips in mind - we'll return to them throughout:
 
@@ -85,18 +85,9 @@ Get into pairs; designate one person as [**Owner**]{style="color: orange;"} and 
 
 :::
 
-## A Note on Advanced Collaboration Techniques
+::: callout-exercise
 
-There are many Git and GitHub collaboration techniques, some more advanced than others. We won't be covering advanced strategies in this course. But here is a table for your reference on a few popular Git collaboration workflow strategies and tools. 
 
-| Collaboration Technique | Benefits | When to Use | When Not to Use |
-|-------------------------|----------|-------------|-----------------|
-| Branch Management Strategies | 1. Enables parallel development and experimentation<br>2. Facilitates isolation of features or bug fixes<br>3. Provides flexibility and control over project workflows | When working on larger projects with multiple features or bug fixes simultaneously.<br>When you want to maintain a stable main branch while developing new features or resolving issues on separate branches.<br>When collaborating with teammates on different aspects of a project and later integrating their changes. | When working on small projects with a single developer or limited codebase.<br>When the project scope is simple and doesn't require extensive branch management.<br>When there is no need to isolate features or bug fixes. |
-| Code Review Practices | 1. Enhances code quality and correctness through feedback<br>2. Promotes knowledge sharing and learning within the team<br>3. Helps identify bugs, improve performance, and ensure adherence to coding standards | When collaborating on a codebase with team members to ensure code quality and maintain best practices.<br>When you want to receive feedback and suggestions on your code to improve its readability, efficiency, or functionality.<br>When working on critical or complex code that requires an extra layer of scrutiny before merging it into the main branch. | When working on personal projects or small codebases with no collaboration involved.<br>When time constraints or project size make it impractical to conduct code reviews.<br>When the codebase is less critical or has low complexity. |
-| Forking                 | 1. Enables independent experimentation and development<br>2. Provides a way to contribute to a project without direct access<br>3. Allows for creating separate, standalone copies of a repository | When you want to contribute to a project without having direct write access to the original repository.<br>When you want to work on an independent variation or extension of an existing project.<br>When experimenting with changes or modifications to a project while keeping the original repository intact. | When collaborating on a project with direct write access to the original repository.<br>When the project does not allow external contributions or forking.<br>When the project size or complexity doesn't justify the need for independent variations. |
-| Pull Requests           | 1. Facilitates code review and discussion<br>2. Allows for collaboration and feedback from team members<br>3. Enables better organization and tracking of proposed changes | When working on a shared repository with a team and wanting to contribute changes in a controlled and collaborative manner.<br>When you want to propose changes to a project managed by others and seek review and approval before merging them into the main codebase. | When working on personal projects or individual coding tasks without the need for collaboration.<br>When immediate changes or fixes are required without review processes.<br>When working on projects with a small team or single developer with direct write access to the repository. |
-
-: {tbl-colwidths="[15,28,28,28]"}
 ### Instructions{.unnumbered}
 
 Complete two rounds, switching [**Owner**]{style="color: orange;"}/[**Collaborator**]{style="color: purple;"} roles between rounds.
@@ -299,3 +290,5 @@ It may take a bit of practice to get comfortable with navigating merge conflicts
 ## A Note on Advanced Collaboration Techniques
 
 There are many Git and GitHub collaboration techniques, some more advanced than others. We won't be covering advanced strategies in this course. If interested in exploring more advanced GitHub workflows, check out [GitHub's documentation on GitHub Flow](https://docs.github.com/en/get-started/using-github/github-flow){target="_blank" .external} or [Atlassian's documentation on Git Flow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow){target="_blank" .external}.
+
+
