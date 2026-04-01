@@ -1,13 +1,12 @@
 ---
-title: Blank placeholder
+title: The Message Box & Science Communication
 ---
 
-:::{.callout-tip}
-### Learning Objectives
+:::{.callout-learning}
+After completing this session, you will be able to:
 
 -   bullet pointed learning objectives
 :::
-
 
 ## Use level 2 headers for sections
 

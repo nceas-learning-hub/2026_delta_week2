@@ -58,7 +58,7 @@ website:
         contents:
         - s01_github_collaboration.qmd
         - s02_r_data_visualization.qmd
-        - s03_blank_placeholder.qmd
+        - s03_r_github_practice.qmd
       - section: "Day 2"
         contents:
         - s04_github_publishing.qmd
@@ -69,8 +69,8 @@ website:
         - s07_r_packages.qmd
       - section: "Day 4"
         contents:
-        - s08_blank_placeholder.qmd
-        - s09_blank_placeholder.qmd
+        - s08_project_doc_organization.qmd
+        - s09_message_box_sci_comm.qmd
       # END SESSIONS
 
   page-footer:
