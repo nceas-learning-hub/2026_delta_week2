@@ -11,6 +11,12 @@ After completing this session, you will be able to:
 
 :::
 
+::: {.callout-note}
+## Acknowledgments
+
+The project documentation/organization content in this page was adapted from the Long Term Ecological Research (LTER) Network's course "Synthesis Skills for Early Career Researchers" (SSECR). Those materials can be found at [lter.github.io/ssecr](https://lter.github.io/ssecr/).
+:::
+
 ## Project Documentation
 
 Much of the popular conversation around reproducibility centers on reproducibility as it pertains to code. That is definitely an important facet but before we write even a single line it is vital to consider project-wide reproducibility. "Perfect" code in a project that isn't structured thoughtfully can still result in a project that isn't reproducible. On the other hand, "bad" code can be made more intelligible when it is placed in a well-documented/organized project!
