@@ -502,7 +502,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#demonstration" id="toc-demonstration" class="nav-link" data-scroll-target="#demonstration"><span class="header-section-number">2.1</span> Demonstration</a></li>
   <li><a href="#exercise-collaborate-well" id="toc-exercise-collaborate-well" class="nav-link" data-scroll-target="#exercise-collaborate-well"><span class="header-section-number">2.2</span> Exercise: Collaborate Well!</a></li>
   </ul></li>
-  <li><a href="#merge-conflicts" id="toc-merge-conflicts" class="nav-link" data-scroll-target="#merge-conflicts"><span class="header-section-number">3</span> Merge conflicts</a>
+  <li><a href="#merge-conflicts" id="toc-merge-conflicts" class="nav-link" data-scroll-target="#merge-conflicts"><span class="header-section-number">3</span> Merge Conflicts</a>
   <ul class="collapse">
   <li><a href="#resolve-a-conflict-three-ways" id="toc-resolve-a-conflict-three-ways" class="nav-link" data-scroll-target="#resolve-a-conflict-three-ways"><span class="header-section-number">3.1</span> Resolve a Conflict, Three Ways!</a></li>
   </ul></li>
@@ -512,7 +512,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#exercise-collaborate-poorly" id="toc-exercise-collaborate-poorly" class="nav-link" data-scroll-target="#exercise-collaborate-poorly"><span class="header-section-number">4.2</span> Exercise: Collaborate Poorly!</a></li>
   <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion"><span class="header-section-number">4.3</span> Discussion</a></li>
   </ul></li>
-  <li><a href="#best-practices-to-avoid-merge-conflicts" id="toc-best-practices-to-avoid-merge-conflicts" class="nav-link" data-scroll-target="#best-practices-to-avoid-merge-conflicts"><span class="header-section-number">5</span> Best practices to avoid merge conflicts</a></li>
+  <li><a href="#best-practices-to-avoid-merge-conflicts" id="toc-best-practices-to-avoid-merge-conflicts" class="nav-link" data-scroll-target="#best-practices-to-avoid-merge-conflicts"><span class="header-section-number">5</span> Best Practices to Avoid Merge Conflicts</a></li>
   <li><a href="#a-note-on-advanced-collaboration-techniques" id="toc-a-note-on-advanced-collaboration-techniques" class="nav-link" data-scroll-target="#a-note-on-advanced-collaboration-techniques"><span class="header-section-number">6</span> A Note on Advanced Collaboration Techniques</a></li>
   </ul>
 </nav>
@@ -603,7 +603,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><span style="color: purple;"><strong>Collaborator</strong></span> clones the repository
 <ul>
 <li>The <span style="color: purple;"><strong>Collaborator</strong></span> navigates to the <span style="color: orange;"><strong>Owner’s</strong></span> GitHub repository, copies the clone URL, and creates a new RStudio project or Positron folder from version control using that URL.</li>
-<li>(Note: the cloned repo <strong>will not</strong> appear under the <span style="color: purple;"><strong>Collaborator’s</strong></span> own GitHub profile page.)</li>
+<li>Note: the cloned repo <strong>will not</strong> appear under the <span style="color: purple;"><strong>Collaborator’s</strong></span> own GitHub profile page.</li>
 </ul></li>
 <li><span style="color: purple;"><strong>Collaborator</strong></span> edits, commit-pull-push
 <ul>
@@ -711,7 +711,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 <section id="merge-conflicts" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="merge-conflicts"><span class="header-section-number">3</span> Merge conflicts</h2>
+<h2 data-number="3" class="anchored" data-anchor-id="merge-conflicts"><span class="header-section-number">3</span> Merge Conflicts</h2>
 <p>A <strong>merge conflict</strong> occurs when two collaborators edit the <em>same line(s) of the same file</em>. Git cannot automatically decide which version to keep, so it pauses the merge and asks you to resolve the conflict manually.</p>
 <p>When a conflict occurs, Git marks the affected section of the file like this:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span><span class="er">&lt;&lt;&lt;&lt;&lt;&lt;</span> HEAD</span>
@@ -759,23 +759,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="3.1" class="anchored" data-anchor-id="resolve-a-conflict-three-ways"><span class="header-section-number">3.1</span> Resolve a Conflict, Three Ways!</h3>
 <p>Depending on whether you want to keep none, part, or all of the changes made by the collaborator and owner, there are three common options for resolving a merge conflict.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Abort!</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Keep one version entirely</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false" href="">Manually edit</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Manually Edit</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Abort!</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false" href="">Keep One Version Entirely</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p>Open the file (or in Positron, use the Merge Editor), hand-edit the conflict blocks to produce the desired result (keeping some of each version if needed), making sure to remove the conflict marker lines. Then save your resolved file, stage, commit-pull-push. <strong>This is the most flexible approach.</strong></p>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <p>Abort - if you made a mistake and want to start fresh:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge <span class="at">--abort</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This returns the repo to a usable state, as it was just before you tried to pull - but you still haven’t integrated your collaborator’s changes. This basically just kicks the can down the line!</p>
 </div>
-<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
 <p>From the Terminal, choose whose version to keep (note, need to specify the file!). Note, you should DEFINITELY communicate with your collaborator before rejecting their changes wholesale.</p>
 <p>To keep your collaborator’s version:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">--theirs</span> <span class="op">&lt;</span>path/to/conflicted_file.qmd<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To keep your own version:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">--ours</span> <span class="op">&lt;</span>path/to/conflicted_file.qmd<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then stage, commit-pull-push as normal.</p>
-</div>
-<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
-<p>Open the file (or in Positron, use the Merge Editor), hand-edit the conflict blocks to produce the desired result (keeping some of each version if needed), making sure to remove the conflict marker lines. Then save your resolved file, stage, commit-pull-push. This is the most flexible approach.</p>
 </div>
 </div>
 </div>
@@ -872,7 +872,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 <section id="best-practices-to-avoid-merge-conflicts" class="level2 page-columns page-full" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="best-practices-to-avoid-merge-conflicts"><span class="header-section-number">5</span> Best practices to avoid merge conflicts</h2>
+<h2 data-number="5" class="anchored" data-anchor-id="best-practices-to-avoid-merge-conflicts"><span class="header-section-number">5</span> Best Practices to Avoid Merge Conflicts</h2>
 <p>Some basic rules of thumb can avoid the vast majority of merge conflicts, saving a lot of time and frustration. These are words our teams live by:</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
