@@ -48,6 +48,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-4a8faa7d711da9f94cdc4a19dd7fe409.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark-96aada786afedfbe5a3fa7005327c222.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="site_libs/bootstrap/bootstrap-4a8faa7d711da9f94cdc4a19dd7fe409.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -456,7 +458,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#use-level-2-headers-for-sections" id="toc-use-level-2-headers-for-sections" class="nav-link active" data-scroll-target="#use-level-2-headers-for-sections"><span class="header-section-number">1</span> Use level 2 headers for sections</a></li>
+  <li><a href="#project-documentation" id="toc-project-documentation" class="nav-link active" data-scroll-target="#project-documentation"><span class="header-section-number">1</span> Project Documentation</a>
+  <ul class="collapse">
+  <li><a href="#documentation" id="toc-documentation" class="nav-link" data-scroll-target="#documentation"><span class="header-section-number">1.1</span> Documentation</a></li>
+  </ul></li>
+  <li><a href="#project-organization" id="toc-project-organization" class="nav-link" data-scroll-target="#project-organization"><span class="header-section-number">2</span> Project Organization</a>
+  <ul class="collapse">
+  <li><a href="#fundamental-structure" id="toc-fundamental-structure" class="nav-link" data-scroll-target="#fundamental-structure"><span class="header-section-number">2.1</span> Fundamental Structure</a></li>
+  <li><a href="#organizing-example" id="toc-organizing-example" class="nav-link" data-scroll-target="#organizing-example"><span class="header-section-number">2.2</span> Organizing Example</a></li>
+  <li><a href="#organization-recommendations" id="toc-organization-recommendations" class="nav-link" data-scroll-target="#organization-recommendations"><span class="header-section-number">2.3</span> Organization Recommendations</a></li>
+  </ul></li>
+  <li><a href="#responsibly-using-generative-ai" id="toc-responsibly-using-generative-ai" class="nav-link" data-scroll-target="#responsibly-using-generative-ai"><span class="header-section-number">3</span> Responsibly Using Generative AI</a></li>
   </ul>
 </nav>
     </div>
@@ -483,15 +495,337 @@ ul.task-list li input[type="checkbox"] {
 <div class="callout-learning">
 <p>After completing this session, you will be able to:</p>
 <ul>
-<li>bullet pointed learning objectives</li>
+<li>Explain what information makes documentation more or less useful</li>
+<li>Create robust workflow documentation</li>
+<li>Implement reproducible project organization strategies</li>
 </ul>
 </div>
 </div>
 </div>
 </div>
-<section id="use-level-2-headers-for-sections" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="use-level-2-headers-for-sections"><span class="header-section-number">1</span> Use level 2 headers for sections</h2>
-<p>Visit https://nceas-learning-hub.github.io/lh_packages/ for information on contributing new lessons, content guidelines, and style guide.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Acknowledgments
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The project documentation/organization content in this page was adapted from the Long Term Ecological Research (LTER) Network’s course “Synthesis Skills for Early Career Researchers” (SSECR). Those materials can be found at <a href="https://lter.github.io/ssecr/">lter.github.io/ssecr</a>.</p>
+</div>
+</div>
+<section id="project-documentation" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="project-documentation"><span class="header-section-number">1</span> Project Documentation</h2>
+<p>Much of the popular conversation around reproducibility centers on reproducibility as it pertains to code. That is definitely an important facet but before we write even a single line it is vital to consider project-wide reproducibility. “Perfect” code in a project that isn’t structured thoughtfully can still result in a project that isn’t reproducible. On the other hand, “bad” code can be made more intelligible when it is placed in a well-documented/organized project!</p>
+<section id="documentation" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="documentation"><span class="header-section-number">1.1</span> Documentation</h3>
+<p>Documenting a project can feel daunting but it is often not as hard as one might imagine and always well worth the effort! One simple practice you can adopt to dramatically improve the reproducibility of your project is to create a “README” file in the top-level of your project’s folder system. This file can be formatted however you’d like but generally READMEs should include:</p>
+<ol type="1">
+<li>Project overview written in plain language</li>
+<li>Basic table of contents for the primary folders in your project folder</li>
+<li>Brief description of the file naming scheme you’ve adopted for this project.</li>
+</ol>
+<p>Your project’s README becomes the ‘landing page’ for those navigating your repository and makes it easy for team members to know where documentation should go (in the README!). You may also choose to create a README file for some of the sub-folders of your project. This can be particularly valuable for your “data” folder(s) as it is an easy place to store data source/provenance information that might be overwhelming to include in the project-level README file.</p>
+<p>Finally, you should choose a place to keep track of ideas, conversations, and decisions about the project. While you can take notes on these topics on a piece of paper, adopting a digital equivalent is often helpful because you can much more easily search a lengthy document when it is machine readable. We will discuss GitHub elsewhere in the course, but GitHub offers something called “issues” that can be a really effective place to record some of this information.</p>
+<div class="callout callout-style-default callout-exercise no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Exercise</span>Exercise  - Create a README
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="callout-exercise">
+<p>Create a draft README for one of your research projects. If all of your projects already have READMEs (very impressive!) revisit the one with the least detail.</p>
+<ul>
+<li>Include a 2-4 sentence description of the project objectives / hypotheses</li>
+<li>Identify and describe (in 1 sentence) the primary sub-folders in the project</li>
+<li>If your chosen project includes scripts, summarize each and indicate which script(s) they depend on and which depend on them</li>
+</ul>
+<p>Feel free to put your personal flair on the README! If there is other information you feel would be relevant to an outsider looking at your project, you can definitely add that.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="project-organization" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="project-organization"><span class="header-section-number">2</span> Project Organization</h2>
+<section id="fundamental-structure" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="fundamental-structure"><span class="header-section-number">2.1</span> Fundamental Structure</h3>
+<p><img src="images/project_doc_organization/comic_xkcd-folders.png" alt="One stick figure looks in despair at another's computer where many badly-named files are present. At the bottom text reads 'protip: never look in someone else's documents folder'" width="25%" align="right"></p>
+<p><u>The simplest way of beginning a reproducible project is adopting a good file organization system</u>. There is no single “best” way of organizing your projects’ files as long as you are <em>consistent</em>. Consistency will make your system–whatever that consists of–understandable to others.</p>
+<p>Here are some rules to keep in mind as you decide how to organize your project:</p>
+<ol type="1">
+<li><strong>Use one folder per project</strong></li>
+</ol>
+<p>Keeping all inputs, outputs, and documentation in a single folder makes it easier to collaborate and share all project materials. Also, most programming applications (RStudio, VS Code, etc.) work best when all needed files are in the same folder.</p>
+<p>Note that <u>how you define “project” may affect the number of folders you need</u>! Some synthesis projects may separate data harmonization into its own project while for others that same effort might not warrant being considered as a separate project. Similarly, you may want to make a separate folder for each manuscript your group plans on writing so that the code for each paper is kept separate.</p>
+<ol start="2" type="1">
+<li><strong>Organize content with sub-folders</strong></li>
+</ol>
+<p>Putting files that share a purpose or source into logical sub-folders is a great idea! This makes it easy to figure out where to put new content and reduces the effort of documenting project organization. Don’t feel like you need to use an intricate web of sub-folders either! Just one level of sub-folders is enough for many projects.</p>
+<ol start="3" type="1">
+<li><strong>Craft informative file names</strong></li>
+</ol>
+<p>An ideal file name should give some information about the file’s contents, purpose, and relation to other project files. Some of that may be reinforced by folder names, but the file name itself should <em>be inherently meaningful</em>. This lets you change folder names without fear that files would also need to be re-named.</p>
+<div class="callout callout-style-default callout-exercise no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Exercise</span>Exercise  - Discuss Project Structure
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="callout-exercise">
+<p>With a partner, discuss (some of) the following questions:</p>
+<ul>
+<li>How do you typically organize your projects’ files?</li>
+<li>What <em>benefits</em> do you see of your current approach?</li>
+<li>What–if any–<em>limitations</em> to your system have you experienced?</li>
+<li>Do you think your structure would work well in a team environment?
+<ul>
+<li>If not, what changes might you make to better fit that context?</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<section id="naming-tips" class="level4" data-number="2.1.1">
+<h4 data-number="2.1.1" class="anchored" data-anchor-id="naming-tips"><span class="header-section-number">2.1.1</span> Naming Tips</h4>
+<p>We’ve brought up the importance of naming several times already but haven’t actually discussed the specifics of what makes a “good” name for a file or folder. Consider the adopting some (or all!) of the file name tips we outline below.</p>
+<blockquote class="blockquote">
+<p>Names should be sorted by a computer and human in the same way</p>
+</blockquote>
+<p>Computers sort files/folders alphabetically and numerically. Sorting alphabetically rarely matches the order scripts in a workflow <em>should be</em> run. If you add step numbers to the start of each file name the computer will sort the files in an order that makes sense for the project. You may also want to “zero pad” numbers so that all numbers have the same number of digits (e.g., “01” and “10” vs.&nbsp;“1” and “10”).</p>
+<blockquote class="blockquote">
+<p>Names should avoid spaces and special characters</p>
+</blockquote>
+<p>Spaces and special characters (e.g., é, ü, etc.) cause errors in some computers (particularly Windows operating systems). You can replace spaces with underscores or hyphens to increase machine readability. Avoid using special characters as much as possible. You should also be consistent about casing (i.e., lower vs.&nbsp;uppercase).</p>
+<blockquote class="blockquote">
+<p>Names should use consistent delimiters</p>
+</blockquote>
+<p><strong>Delimiters</strong> are characters used to separate pieces of information in otherwise plain text. Underscores are a commonly used example of this. If a file/folder name has multiple pieces of information, you can separate these with a delimiter to make them more readable to people and machines. For example, you could name a folder “coral_reef_data” which would be more readable than “coralreefdata”.</p>
+<p>You may also want to use <em>multiple</em> delimiters to indicate different things. For instance, you could use underscores to differentiate categories and then use hyphens instead of spaces between words.</p>
+<blockquote class="blockquote">
+<p>Names should use “slugs” to connect inputs and outputs</p>
+</blockquote>
+<p><strong>Slugs</strong> are human-readable, unique pieces of file names that are shared between files and the outputs that they create. Maybe a script is named “02_tidy.R” and all of the data files it creates are named “02_…”. Weird or unlikely outputs are easily traced to the scripts that created them because of their shared slug.</p>
+</section>
+</section>
+<section id="organizing-example" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="organizing-example"><span class="header-section-number">2.2</span> Organizing Example</h3>
+<p>These tips are all worthwhile but they can feel a little abstract without a set of files firmly in mind. Let’s consider an example synthesis project where we incrementally change the project structure to follow increasing more of the guidelines we suggest above.</p>
+<p>Top-level sub-folders are colored <span style="color:#209ACA"><strong>blue</strong></span> so that the high-level structure is easier to quickly scan.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Version 1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Version 2</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Version 3</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false" href="">Version 4</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="columns">
+<div class="column" style="width:50%;">
+<div style="font-family: monospace;">
+<p><i class="fa-solid fa-folder" aria-label="folder"></i> <strong>synthesis-project</strong><br>
+|–&nbsp; <i class="fa-solid fa-file-csv" aria-label="file-csv"></i> clean-data.csv<br>
+|–&nbsp; <i class="fa-solid fa-file-csv" aria-label="file-csv"></i> community data.csv<br>
+|–&nbsp; <i class="fa-solid fa-file-code" aria-label="file-code"></i> graphing.r<br>
+|–&nbsp; <i class="fa-solid fa-file-image" aria-label="file-image"></i> ordination-plot.tiff<br>
+|–&nbsp; <i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i> results report V2.pdf<br>
+|–&nbsp; <i class="fa-solid fa-file-code" aria-label="file-code"></i> results report V2.qmd<br>
+|–&nbsp; <i class="fa-solid fa-file-code" aria-label="file-code"></i> results_DRAFT.qmd<br>
+|–&nbsp; <i class="fa-solid fa-file-image" aria-label="file-image"></i> scatterplot.jpg<br>
+|–&nbsp; <i class="fa-solid fa-file-image" aria-label="file-image"></i> spp-boxplot.png<br>
+|–&nbsp; <i class="fa-solid fa-file-code" aria-label="file-code"></i> stats-feb 2024.r<br>
+|–&nbsp; <i class="fa-solid fa-file-code" aria-label="file-code"></i> synthesis-project.Rproj<br>
+└ - <i class="fa-solid fa-file-code" aria-label="file-code"></i> Wrangle.r</p>
+</div>
+</div><div class="column" style="width:50%;">
+<section id="positives" class="level4" data-number="2.2.1">
+<h4 data-number="2.2.1" class="anchored" data-anchor-id="positives"><span class="header-section-number">2.2.1</span> Positives</h4>
+<ul>
+<li>All project files are in one folder</li>
+</ul>
+</section>
+<section id="areas-for-improvement" class="level4" data-number="2.2.2">
+<h4 data-number="2.2.2" class="anchored" data-anchor-id="areas-for-improvement"><span class="header-section-number">2.2.2</span> Areas for Improvement</h4>
+<ul>
+<li>No use of sub-folders to divide logically-linked content</li>
+<li>File names lack key context (e.g., workflow order, inputs vs.&nbsp;outputs, etc.)</li>
+<li>Inconsistent use of delimiters/casing</li>
+</ul>
+</section>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="columns">
+<div class="column" style="width:50%;">
+<div style="font-family: monospace;">
+<p><i class="fa-solid fa-folder" aria-label="folder"></i> <strong>synthesis-project</strong><br>
+|–&nbsp; <span style="color:#209ACA"><i class="fa-solid fa-folder" aria-label="folder"></i> <strong>data</strong></span><br>
+|&nbsp;&nbsp;&nbsp;|–&nbsp; <i class="fa-solid fa-file-csv" aria-label="file-csv"></i> clean-data.csv<br>
+|&nbsp;&nbsp;&nbsp;└ - <i class="fa-solid fa-file-csv" aria-label="file-csv"></i> community data.csv<br>
+|–&nbsp; <span style="color:#209ACA"><i class="fa-solid fa-folder" aria-label="folder"></i> <strong>graphs</strong></span><br>
+|&nbsp;&nbsp;&nbsp;|–&nbsp; <i class="fa-solid fa-file-image" aria-label="file-image"></i> ordination-plot.tiff<br>
+|&nbsp;&nbsp;&nbsp;|–&nbsp; <i class="fa-solid fa-file-image" aria-label="file-image"></i> scatterplot.jpg<br>
+|&nbsp;&nbsp;&nbsp;└ - <i class="fa-solid fa-file-image" aria-label="file-image"></i> spp-boxplot.png<br>
+|–&nbsp; <span style="color:#209ACA"><i class="fa-solid fa-folder" aria-label="folder"></i> <strong>reports</strong></span><br>
+|&nbsp;&nbsp;&nbsp;|–&nbsp; <i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i> results report V2.pdf<br>
+|&nbsp;&nbsp;&nbsp;|–&nbsp; <i class="fa-solid fa-file-code" aria-label="file-code"></i> results report V2.qmd<br>
+|&nbsp;&nbsp;&nbsp;└ - <i class="fa-solid fa-file-code" aria-label="file-code"></i> results_DRAFT.qmd<br>
+|–&nbsp; <span style="color:#209ACA"><i class="fa-solid fa-folder" aria-label="folder"></i> <strong>scripts</strong></span><br>
+|&nbsp;&nbsp;&nbsp;|–&nbsp; <i class="fa-solid fa-file-code" aria-label="file-code"></i> graphing.r<br>
+|&nbsp;&nbsp;&nbsp;|–&nbsp; <i class="fa-solid fa-file-code" aria-label="file-code"></i> stats-feb 2024.r<br>
+|&nbsp;&nbsp;&nbsp;└ - <i class="fa-solid fa-file-code" aria-label="file-code"></i> Wrangle.r<br>
+|–&nbsp; <i class="fa-solid fa-file-text" aria-label="file-text"></i> LICENSE<br>
+|–&nbsp; <i class="fa-solid fa-file-text" aria-label="file-text"></i> README.md<br>
+└ - <i class="fa-solid fa-file-code" aria-label="file-code"></i> synthesis-project.Rproj</p>
+</div>
+</div><div class="column" style="width:50%;">
+<section id="positives-1" class="level4" data-number="2.2.3">
+<h4 data-number="2.2.3" class="anchored" data-anchor-id="positives-1"><span class="header-section-number">2.2.3</span> Positives</h4>
+<ul>
+<li>Sub-folders used to divide content</li>
+<li>Project documentation included in top level (README and license files)</li>
+</ul>
+</section>
+<section id="areas-for-improvement-1" class="level4" data-number="2.2.4">
+<h4 data-number="2.2.4" class="anchored" data-anchor-id="areas-for-improvement-1"><span class="header-section-number">2.2.4</span> Areas for Improvement</h4>
+<ul>
+<li>File names still inconsistent
+<ul>
+<li>File names contain different information in different order</li>
+<li>Mixed use of delimiters</li>
+<li>Mixed use of upper/lowercase</li>
+<li>Many file names include spaces</li>
+</ul></li>
+<li>Code file order not clear from filenames</li>
+</ul>
+</section>
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="columns">
+<div class="column" style="width:50%;">
+<div style="font-family: monospace;">
+<p><i class="fa-solid fa-folder" aria-label="folder"></i> <strong>synthesis-project</strong><br>
+|–&nbsp; <span style="color:#209ACA"><i class="fa-solid fa-folder" aria-label="folder"></i> <strong>data</strong></span><br>
+|&nbsp;&nbsp;&nbsp;|–&nbsp; <i class="fa-solid fa-file-csv" aria-label="file-csv"></i> raw-community-comp.csv<br>
+|&nbsp;&nbsp;&nbsp;└ - <i class="fa-solid fa-file-csv" aria-label="file-csv"></i> tidy-community-comp.csv<br>
+|–&nbsp; <span style="color:#209ACA"><i class="fa-solid fa-folder" aria-label="folder"></i> <strong>graphs</strong></span><br>
+|&nbsp;&nbsp;&nbsp;|–&nbsp; <i class="fa-solid fa-file-image" aria-label="file-image"></i> abundance boxplot.png<br>
+|&nbsp;&nbsp;&nbsp;|–&nbsp; <i class="fa-solid fa-file-image" aria-label="file-image"></i> abundance scatter.jpg<br>
+|&nbsp;&nbsp;&nbsp;└ - <i class="fa-solid fa-file-image" aria-label="file-image"></i> comm ordination.tiff<br>
+|–&nbsp; <span style="color:#209ACA"><i class="fa-solid fa-folder" aria-label="folder"></i> <strong>reports</strong></span><br>
+|&nbsp;&nbsp;&nbsp;|–&nbsp; <i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i> results feb 14 2024.pdf<br>
+|&nbsp;&nbsp;&nbsp;|–&nbsp; <i class="fa-solid fa-file-code" aria-label="file-code"></i> results feb 14 2024.qmd<br>
+|&nbsp;&nbsp;&nbsp;└ - <i class="fa-solid fa-file-code" aria-label="file-code"></i> results may xx 2024.qmd<br>
+|–&nbsp; <span style="color:#209ACA"><i class="fa-solid fa-folder" aria-label="folder"></i> <strong>scripts</strong></span><br>
+|&nbsp;&nbsp;&nbsp;|–&nbsp; <i class="fa-solid fa-file-code" aria-label="file-code"></i> data analysis.r<br>
+|&nbsp;&nbsp;&nbsp;|–&nbsp; <i class="fa-solid fa-file-code" aria-label="file-code"></i> data tidying.r<br>
+|&nbsp;&nbsp;&nbsp;└ - <i class="fa-solid fa-file-code" aria-label="file-code"></i> graphing.r<br>
+|–&nbsp; <i class="fa-solid fa-file-text" aria-label="file-text"></i> LICENSE<br>
+|–&nbsp; <i class="fa-solid fa-file-text" aria-label="file-text"></i> README.md<br>
+└ - <i class="fa-solid fa-file-code" aria-label="file-code"></i> synthesis-project.Rproj</p>
+</div>
+</div><div class="column" style="width:50%;">
+<section id="positives-2" class="level4" data-number="2.2.5">
+<h4 data-number="2.2.5" class="anchored" data-anchor-id="positives-2"><span class="header-section-number">2.2.5</span> Positives</h4>
+<ul>
+<li>Most file names contain context</li>
+<li>Standardized use of casing and–within sub-folder–consistent delimiters used</li>
+</ul>
+</section>
+<section id="areas-for-improvement-2" class="level4" data-number="2.2.6">
+<h4 data-number="2.2.6" class="anchored" data-anchor-id="areas-for-improvement-2"><span class="header-section-number">2.2.6</span> Areas for Improvement</h4>
+<ul>
+<li>Workflow order “guessable” but not explicit</li>
+<li>Unclear which files are inputs / outputs (and of which scripts)</li>
+</ul>
+</section>
+</div>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div class="columns">
+<div class="column" style="width:50%;">
+<div style="font-family: monospace;">
+<p><i class="fa-solid fa-folder" aria-label="folder"></i> <strong>synthesis-project</strong><br>
+|–&nbsp; <span style="color:#209ACA"><i class="fa-solid fa-folder" aria-label="folder"></i> <strong>data</strong></span><br>
+|&nbsp;&nbsp;&nbsp;|–&nbsp; <i class="fa-solid fa-file-csv" aria-label="file-csv"></i> 00_raw-community.csv<br>
+|&nbsp;&nbsp;&nbsp;└ - <i class="fa-solid fa-file-csv" aria-label="file-csv"></i> 01_tidy-community.csv<br>
+|–&nbsp; <span style="color:#209ACA"><i class="fa-solid fa-folder" aria-label="folder"></i> <strong>graphs</strong></span><br>
+|&nbsp;&nbsp;&nbsp;|–&nbsp; <i class="fa-solid fa-file-image" aria-label="file-image"></i> 02_abundance boxplot.png<br>
+|&nbsp;&nbsp;&nbsp;|–&nbsp; <i class="fa-solid fa-file-image" aria-label="file-image"></i> 02_abundance scatter.jpg<br>
+|&nbsp;&nbsp;&nbsp;└ - <i class="fa-solid fa-file-image" aria-label="file-image"></i> 02_comm ordination.tiff<br>
+|–&nbsp; <span style="color:#209ACA"><i class="fa-solid fa-folder" aria-label="folder"></i> <strong>reports</strong></span><br>
+|&nbsp;&nbsp;&nbsp;|–&nbsp; <i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i> results_2024-02-14.pdf<br>
+|&nbsp;&nbsp;&nbsp;|–&nbsp; <i class="fa-solid fa-file-code" aria-label="file-code"></i> results_2024-02-14.qmd<br>
+|&nbsp;&nbsp;&nbsp;└ - <i class="fa-solid fa-file-code" aria-label="file-code"></i> results_2024-05-xx.qmd<br>
+|–&nbsp; <span style="color:#209ACA"><i class="fa-solid fa-folder" aria-label="folder"></i> <strong>scripts</strong></span><br>
+|&nbsp;&nbsp;&nbsp;|–&nbsp; <i class="fa-solid fa-file-code" aria-label="file-code"></i> 01_tidy.r<br>
+|&nbsp;&nbsp;&nbsp;|–&nbsp; <i class="fa-solid fa-file-code" aria-label="file-code"></i> 02_graph.r<br>
+|&nbsp;&nbsp;&nbsp;└ - <i class="fa-solid fa-file-code" aria-label="file-code"></i> 03_analyze.r<br>
+|–&nbsp; <i class="fa-solid fa-file-text" aria-label="file-text"></i> LICENSE<br>
+|–&nbsp; <i class="fa-solid fa-file-text" aria-label="file-text"></i> README.md<br>
+└ - <i class="fa-solid fa-file-code" aria-label="file-code"></i> synthesis-project.Rproj</p>
+</div>
+</div><div class="column" style="width:50%;">
+<section id="positives-3" class="level4" data-number="2.2.7">
+<h4 data-number="2.2.7" class="anchored" data-anchor-id="positives-3"><span class="header-section-number">2.2.7</span> Positives</h4>
+<ul>
+<li>Scripts include zero-padded numbers indicating order of operations</li>
+<li>Outputs share zero padded slug with source script</li>
+<li>Report file names machine sorted from least to most recent (top to bottom)</li>
+</ul>
+</section>
+<section id="areas-for-improvement-3" class="level4" data-number="2.2.8">
+<h4 data-number="2.2.8" class="anchored" data-anchor-id="areas-for-improvement-3"><span class="header-section-number">2.2.8</span> Areas for Improvement</h4>
+<ul>
+<li>Could add subfolder-specific README files
+<ul>
+<li>Depends on complexity of respective subfolder</li>
+</ul></li>
+<li>Graph file names still include spaces</li>
+</ul>
+</section>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="organization-recommendations" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="organization-recommendations"><span class="header-section-number">2.3</span> Organization Recommendations</h3>
+<p>If you integrate any of the concepts we’ve covered above you will find the reproducibility and transparency of your project will greatly increase. However, if you’d like additional recommendations we’ve assembled a non-exhaustive set of <em>additional</em> “best practices” that you may find helpful.</p>
+<section id="never-edit-raw-data" class="level4" data-number="2.3.1">
+<h4 data-number="2.3.1" class="anchored" data-anchor-id="never-edit-raw-data"><span class="header-section-number">2.3.1</span> Never Edit Raw Data</h4>
+<p>First and foremost, it is critical that you <u><strong><em>never</em></strong></u> edit the raw data directly. If you do need to edit the raw data, use a script to make all needed edits and save the output of that script as a <em>separate</em> file. Editing the raw data directly without a script or using a script but overwriting the raw data are both incredibly risky operations because your create a file that “looks” like the raw data (and is likely documented as such) but differs from what others would have if they downloaded the ‘real’ raw data personally.</p>
+</section>
+<section id="separate-raw-and-processed-data" class="level4" data-number="2.3.2">
+<h4 data-number="2.3.2" class="anchored" data-anchor-id="separate-raw-and-processed-data"><span class="header-section-number">2.3.2</span> Separate Raw and Processed Data</h4>
+<p>In the same vein as the previous best practice, we recommend that you separate the raw and processed data into separate folders. This will make it easier to avoid accidental edits to the raw data and will make it clear what data are created by your project’s scripts; even if you choose not to adopt a file naming convention that would make this clear.</p>
+</section>
+<section id="quarantine-external-outputs" class="level4" data-number="2.3.3">
+<h4 data-number="2.3.3" class="anchored" data-anchor-id="quarantine-external-outputs"><span class="header-section-number">2.3.3</span> Quarantine External Outputs</h4>
+<p>This can sound harsh, but it is often a good idea to “quarantine” outputs received from others until they can be carefully vetted. This is not at all to suggest that such contributions might be malicious! As you embrace more of the project organization recommendations we’ve described above outputs from others have more and more opportunities to diverge from the framework you establish. Quarantining inputs from others gives you a chance to rename files to be consistent with the rest of your project as well as make sure that the style and content of the code also match (e.g., use or exclusion of particular packages, comment frequency and content, etc.)</p>
+</section>
+</section>
+</section>
+<section id="responsibly-using-generative-ai" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="responsibly-using-generative-ai"><span class="header-section-number">3</span> Responsibly Using Generative AI</h2>
+<p><i class="fa-solid fa-person-digging" aria-label="person-digging"></i> Under construction; check back later!</p>
 
 
 </section>
