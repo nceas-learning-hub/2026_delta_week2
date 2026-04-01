@@ -45,7 +45,7 @@ Here, the instructors will demonstrate.  In the following exercise, the particip
     * The [**Collaborator**]{style="color: purple;"} accepts via email or GitHub notifications, gaining push access.
 2. [**Collaborator**]{style="color: purple;"} clones the repository
     * The [**Collaborator**]{style="color: purple;"} navigates to the [**Owner's**]{style="color: orange;"} GitHub repository, copies the clone URL, and creates a new RStudio project or Positron folder from version control using that URL.
-    * (Note: the cloned repo **will not** appear under the [**Collaborator's**]{style="color: purple;"} own GitHub profile page.)
+    * Note: the cloned repo **will not** appear under the [**Collaborator's**]{style="color: purple;"} own GitHub profile page.
 3. [**Collaborator**]{style="color: purple;"} edits, commit-pull-push
     * With the repo cloned, the [**Collaborator**]{style="color: purple;"} edits `README.md` - adding a line near the top with whatever text they like - then follows the standard workflow:
     * **Stage and commit** the edited file
@@ -112,7 +112,7 @@ Complete two rounds, switching [**Owner**]{style="color: orange;"}/[**Collaborat
 <!-- end exercise -->
 
 
-## Merge conflicts
+## Merge Conflicts
 
 A **merge conflict** occurs when two collaborators edit the *same line(s) of the same file*. Git cannot automatically decide which version to keep, so it pauses the merge and asks you to resolve the conflict manually.
 
@@ -161,6 +161,10 @@ After resolution and staging, the icon changes to a blue M (Modified).
 Depending on whether you want to keep none, part, or all of the changes made by the collaborator and owner, there are three common options for resolving a merge conflict.
 
 :::panel-tabset
+### Manually Edit
+
+Open the file (or in Positron, use the Merge Editor), hand-edit the conflict blocks to produce the desired result (keeping some of each version if needed), making sure to remove the conflict marker lines.  Then save your resolved file, stage, commit-pull-push. **This is the most flexible approach.**
+
 ### Abort!
 
 Abort - if you made a mistake and want to start fresh:
@@ -171,7 +175,7 @@ git merge --abort
 
 This returns the repo to a usable state, as it was just before you tried to pull - but you still haven't integrated your collaborator's changes.  This basically just kicks the can down the line!
 
-### Keep one version entirely
+### Keep One Version Entirely
 
 From the Terminal, choose whose version to keep (note, need to specify the file!).  Note, you should DEFINITELY communicate with your collaborator before rejecting their changes wholesale.
 
@@ -186,10 +190,6 @@ git checkout --ours <path/to/conflicted_file.qmd>
 ```
 
 Then stage, commit-pull-push as normal.
-
-### Manually edit
-
-Open the file (or in Positron, use the Merge Editor), hand-edit the conflict blocks to produce the desired result (keeping some of each version if needed), making sure to remove the conflict marker lines.  Then save your resolved file, stage, commit-pull-push. This is the most flexible approach.
 
 :::
 <!-- end panel-tabset -->
@@ -256,7 +256,7 @@ Switch roles, and repeat using the README in the NEW [**Owner's**]{style="color:
 What are some steps you could have taken to avoid merge conflicts in the first place? How would you communicate with your collaborator to prevent or resolve conflicts?
 
 
-## Best practices to avoid merge conflicts
+## Best Practices to Avoid Merge Conflicts
 
 Some basic rules of thumb can avoid the vast majority of merge conflicts, saving a lot of time and frustration. These are words our teams live by:
 
