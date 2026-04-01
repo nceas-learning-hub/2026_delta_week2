@@ -12,7 +12,7 @@ After completing this session, you will be able to:
 
 ## Introduction to Git and GitHub Tools for Collaboration
 
-![Artwork by @allison_horst](images/github_collaboration/allison_horst_jenny_bryan_quote.png){width="70%" fig-align="center" .lightbox}
+![Artwork by @allison_horst](images/github_collaboration/allison_horst_jenny_bryan_quote.png){width="100%" fig-align="center" .lightbox}
 
 Git is a powerful tool for both individual and collaborative work. The most common way to collaborate is through a **shared repository on [GitHub](https://github.com){target="_blank" .external}**, which acts as a central hub where teammates can exchange and merge changes. In this lesson, one person (the **Owner**) hosts the repository on GitHub and grants a colleague (the **Collaborator**) permission to push changes directly.
 
@@ -21,14 +21,14 @@ Git is a powerful tool for both individual and collaborative work. The most comm
 Before diving into the exercise, keep these tips in mind - we'll return to them throughout:
 
 * Start every work session with a Pull, and Pull occasionally throughout (to ensure you are up to date with your collaborator's changes!)
-* Save → Stage (Add) → Commit -> Pull -> Push (Sync) your work throughout the session, in small logical chunks (so your changes are available to your collaborator!)
+* Save {{<fa arrow-right>}} Stage (Add) {{<fa arrow-right>}} Commit {{<fa arrow-right>}} Sync (Pull {{<fa arrow-right>}} Push) your work throughout the session, in small logical chunks (so your changes are available to your collaborator!)
 
 And the single most effective conflict-prevention strategy: **communicate with your collaborators** before and after making changes. Knowing who is editing which files, and when, eliminates most problems before they start.
 
 :::callout-note
-## Pull --> push vs Sync
+## Pull {{<fa arrow-right>}} Push versus Sync
 
-The RStudio IDE uses the terms *Pull* and *Push* for Git operations, while the Positron IDE uses *Sync* to encompass both pulling and pushing changes. Because the underlying Git operation is *pull* --> *push*, we will use this terminology instead of *sync.*
+The RStudio IDE uses the terms *Pull* and *Push* for Git operations, while the Positron IDE uses *Sync* to encompass both pulling and pushing changes. Because the underlying Git operation is *pull* {{<fa arrow-right>}} *push*, we will use this terminology instead of *sync.*
 :::
 
 
