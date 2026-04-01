@@ -496,8 +496,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction-to-git-and-github-tools-for-collaboration" id="toc-introduction-to-git-and-github-tools-for-collaboration" class="nav-link active" data-scroll-target="#introduction-to-git-and-github-tools-for-collaboration"><span class="header-section-number">1</span> Introduction to Git and GitHub Tools for Collaboration</a></li>
-  <li><a href="#collaborating-without-conflicts" id="toc-collaborating-without-conflicts" class="nav-link" data-scroll-target="#collaborating-without-conflicts"><span class="header-section-number">2</span> Collaborating without conflicts</a>
+  <li><a href="#git-and-github-tools-for-collaboration" id="toc-git-and-github-tools-for-collaboration" class="nav-link active" data-scroll-target="#git-and-github-tools-for-collaboration"><span class="header-section-number">1</span> Git and GitHub Tools for Collaboration</a></li>
+  <li><a href="#collaborating-without-conflicts" id="toc-collaborating-without-conflicts" class="nav-link" data-scroll-target="#collaborating-without-conflicts"><span class="header-section-number">2</span> Collaborating Without Conflicts</a>
   <ul class="collapse">
   <li><a href="#demonstration" id="toc-demonstration" class="nav-link" data-scroll-target="#demonstration"><span class="header-section-number">2.1</span> Demonstration</a></li>
   <li><a href="#exercise-collaborate-well" id="toc-exercise-collaborate-well" class="nav-link" data-scroll-target="#exercise-collaborate-well"><span class="header-section-number">2.2</span> Exercise: Collaborate Well!</a></li>
@@ -548,13 +548,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<section id="introduction-to-git-and-github-tools-for-collaboration" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="introduction-to-git-and-github-tools-for-collaboration"><span class="header-section-number">1</span> Introduction to Git and GitHub Tools for Collaboration</h2>
+<section id="git-and-github-tools-for-collaboration" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="git-and-github-tools-for-collaboration"><span class="header-section-number">1</span> Git and GitHub Tools for Collaboration</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/github_collaboration/allison_horst_jenny_bryan_quote.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Artwork by @allison_horst"><img src="images/github_collaboration/allison_horst_jenny_bryan_quote.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Artwork by @allison_horst"></a></p>
+<p><a href="images/github_collaboration/allison_horst_jenny_bryan_quote.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Artwork by @allison_horst"><img src="images/github_collaboration/allison_horst_jenny_bryan_quote.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Artwork by @allison_horst"></a></p>
 </figure>
 </div>
 <figcaption>Artwork by <span class="citation" data-cites="allison_horst">@allison_horst</span></figcaption>
@@ -569,7 +569,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Before diving into the exercise, keep these tips in mind - we’ll return to them throughout:</p>
 <ul>
 <li>Start every work session with a Pull, and Pull occasionally throughout (to ensure you are up to date with your collaborator’s changes!)</li>
-<li>Save → Stage (Add) → Commit -&gt; Pull -&gt; Push (Sync) your work throughout the session, in small logical chunks (so your changes are available to your collaborator!)</li>
+<li>Save <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Stage (Add) <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Commit <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Sync (Pull <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Push) your work throughout the session, in small logical chunks (so your changes are available to your collaborator!)</li>
 </ul>
 <p>And the single most effective conflict-prevention strategy: <strong>communicate with your collaborators</strong> before and after making changes. Knowing who is editing which files, and when, eliminates most problems before they start.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -578,34 +578,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Pull –&gt; push vs Sync
+<span class="screen-reader-only">Note</span>Pull <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Push versus Sync
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The RStudio IDE uses the terms <em>Pull</em> and <em>Push</em> for Git operations, while the Positron IDE uses <em>Sync</em> to encompass both pulling and pushing changes. Because the underlying Git operation is <em>pull</em> –&gt; <em>push</em>, we will use this terminology instead of <em>sync.</em></p>
+<p>The RStudio IDE uses the terms <em>Pull</em> and <em>Push</em> for Git operations, while the Positron IDE uses <em>Sync</em> to encompass both pulling and pushing changes. Because the underlying Git operation is <em>pull</em> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> <em>push</em>, we will use this terminology instead of <em>sync.</em></p>
 </div>
 </div>
 </section>
 <section id="collaborating-without-conflicts" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="collaborating-without-conflicts"><span class="header-section-number">2</span> Collaborating without conflicts</h2>
+<h2 data-number="2" class="anchored" data-anchor-id="collaborating-without-conflicts"><span class="header-section-number">2</span> Collaborating Without Conflicts</h2>
 <section id="demonstration" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="demonstration"><span class="header-section-number">2.1</span> Demonstration</h3>
 <p>We start with the ideal scenario: two collaborators taking turns, working on the same repo without ever editing the same lines simultaneously.</p>
 <p>Here, the instructors will demonstrate. In the following exercise, the participants will pair up and try it themselves.</p>
 <ol type="1">
-<li><span style="color: orange;"><strong>Owner</strong></span> adds <span style="color: purple;"><strong>Collaborator</strong></span> on GitHub{.unnumbered}
+<li><span style="color: orange;"><strong>Owner</strong></span> adds <span style="color: purple;"><strong>Collaborator</strong></span> on GitHub
 <ul>
 <li><span style="color: orange;"><strong>Owner</strong></span> creates a new repository on GitHub, called “git_collab_<username>” (or similar), and includes a README.<br>
 </username></li>
-<li>Then, <span style="color: orange;"><strong>Owner</strong></span> navigates to the repository → <strong>Settings</strong> → <strong>Collaborators</strong> → <strong>Add people</strong>. Enter the <span style="color: purple;"><strong>Collaborator’s</strong></span> username and send the invitation.</li>
+<li>Then, <span style="color: orange;"><strong>Owner</strong></span> navigates to the repository <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> <strong>Settings</strong> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> <strong>Collaborators</strong> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> <strong>Add people</strong>. Enter the <span style="color: purple;"><strong>Collaborator’s</strong></span> username and send the invitation.</li>
 <li>The <span style="color: purple;"><strong>Collaborator</strong></span> accepts via email or GitHub notifications, gaining push access.</li>
 </ul></li>
-<li><span style="color: purple;"><strong>Collaborator</strong></span> clones the repository{.unnumbered}
+<li><span style="color: purple;"><strong>Collaborator</strong></span> clones the repository
 <ul>
 <li>The <span style="color: purple;"><strong>Collaborator</strong></span> navigates to the <span style="color: orange;"><strong>Owner’s</strong></span> GitHub repository, copies the clone URL, and creates a new RStudio project or Positron folder from version control using that URL.</li>
 <li>(Note: the cloned repo <strong>will not</strong> appear under the <span style="color: purple;"><strong>Collaborator’s</strong></span> own GitHub profile page.)</li>
 </ul></li>
-<li><span style="color: purple;"><strong>Collaborator</strong></span> edits, commit-pull-push{.unnumbered}
+<li><span style="color: purple;"><strong>Collaborator</strong></span> edits, commit-pull-push
 <ul>
 <li>With the repo cloned, the <span style="color: purple;"><strong>Collaborator</strong></span> edits <code>README.md</code> - adding a line near the top with whatever text they like - then follows the standard workflow:</li>
 <li><strong>Stage and commit</strong> the edited file</li>
@@ -631,7 +631,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>The <span style="color: orange;"><strong>Owner</strong></span> opens their local copy in RStudio and <strong>pulls</strong> the <span style="color: purple;"><strong>Collaborator’s</strong></span> changes.</li>
 <li>All three repositories - remote, <span style="color: orange;"><strong>Owner’s</strong></span> local, and <span style="color: purple;"><strong>Collaborator’s</strong></span> local - are now in sync.</li>
-<li>The <span style="color: orange;"><strong>Owner</strong></span> then makes their own edits as they see fit, following the same <strong>commit → pull → push</strong> workflow.</li>
+<li>The <span style="color: orange;"><strong>Owner</strong></span> then makes their own edits as they see fit, following the same <strong>commit <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> pull <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> push</strong> workflow.</li>
 </ul></li>
 <li>Wrapping up{.unnumbered}
 <ul>
@@ -649,7 +649,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-body-container callout-body">
 <p><code>git pull</code> includes a merge step. <strong>If you have uncommitted local changes, Git will refuse to merge</strong> - since it doesn’t know exactly where <em>you’ve</em> made changes, it doesn’t know where it can safely merge in your <em>collaborator’s</em> changes. Always:</p>
-<p>commit → pull → push (RStudio or Terminal) or commit -&gt; sync (Positron)</p>
+<p>commit <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> pull <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> push (RStudio or Terminal) or commit <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> sync (Positron)</p>
 </div>
 </div>
 </section>
@@ -667,7 +667,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li><span style="color: orange;"><strong>Owner</strong></span>: Create a new repository “git_collab_<username>” then go to <strong>Settings</strong> → <strong>Collaborators</strong> → <strong>Add people</strong> → add your partner’s username</username></li>
+<li><span style="color: orange;"><strong>Owner</strong></span>: Create a new repository “git_collab_<username>” then go to <strong>Settings</strong> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> <strong>Collaborators</strong> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> <strong>Add people</strong> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> add your partner’s username</username></li>
 <li><span style="color: purple;"><strong>Collaborator</strong></span>: accept the invitation from your email or GitHub notifications</li>
 </ul>
 </div>
@@ -848,8 +848,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><strong>GitHub now reflects the <span style="color: purple;">Collaborator</span>’s version.</strong> The <span style="color: orange;"><strong>Owner</strong></span> is one commit behind.</li>
 </ul></li>
-<li><span style="color: orange;"><strong>Owner</strong></span> tries to push → gets an error</li>
-<li><span style="color: orange;"><strong>Owner</strong></span> pulls → sees merge conflict</li>
+<li><span style="color: orange;"><strong>Owner</strong></span> tries to push <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> gets an error</li>
+<li><span style="color: orange;"><strong>Owner</strong></span> pulls <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> sees merge conflict</li>
 <li><span style="color: orange;"><strong>Owner</strong></span> edits the file to resolve the conflict
 <ul>
 <li><span style="color: orange;"><strong>Owner</strong></span> communicates with <span style="color: purple;"><strong>Collaborator</strong></span>!</li>
@@ -900,7 +900,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<pre><code>Pull -&gt; Edit -&gt; Save -&gt; Add (stage) -&gt; Commit -&gt; Pull* -&gt; Push
+<pre><code>Pull  Edit  Save  Add (stage)  Commit  Pull*  Push
 
 * Resolve any merge conflicts if necessary!</code></pre>
 </div>
