@@ -10,7 +10,7 @@ After completing this session, you will be able to:
 - Apply workflows and best practices that minimize conflicts on collaborative repositories
 :::
 
-## Introduction to Git and GitHub Tools for Collaboration
+## Git and GitHub Tools for Collaboration
 
 ![Artwork by @allison_horst](images/github_collaboration/allison_horst_jenny_bryan_quote.png){width="100%" fig-align="center" .lightbox}
 
@@ -31,8 +31,7 @@ And the single most effective conflict-prevention strategy: **communicate with y
 The RStudio IDE uses the terms *Pull* and *Push* for Git operations, while the Positron IDE uses *Sync* to encompass both pulling and pushing changes. Because the underlying Git operation is *pull* {{<fa arrow-right>}} *push*, we will use this terminology instead of *sync.*
 :::
 
-
-## Collaborating without conflicts
+## Collaborating Without Conflicts
 
 ### Demonstration
 
@@ -40,14 +39,14 @@ We start with the ideal scenario: two collaborators taking turns, working on the
 
 Here, the instructors will demonstrate.  In the following exercise, the participants will pair up and try it themselves.
 
-1. [**Owner**]{style="color: orange;"} adds [**Collaborator**]{style="color: purple;"} on GitHub{.unnumbered}
+1. [**Owner**]{style="color: orange;"} adds [**Collaborator**]{style="color: purple;"} on GitHub
     * [**Owner**]{style="color: orange;"} creates a new repository on GitHub, called "git_collab_<username>" (or similar), and includes a README.  
-    * Then, [**Owner**]{style="color: orange;"} navigates to the repository → **Settings** → **Collaborators** → **Add people**. Enter the [**Collaborator's**]{style="color: purple;"} username and send the invitation. 
+    * Then, [**Owner**]{style="color: orange;"} navigates to the repository {{<fa arrow-right>}} **Settings** {{<fa arrow-right>}} **Collaborators** {{<fa arrow-right>}} **Add people**. Enter the [**Collaborator's**]{style="color: purple;"} username and send the invitation. 
     * The [**Collaborator**]{style="color: purple;"} accepts via email or GitHub notifications, gaining push access.
-2. [**Collaborator**]{style="color: purple;"} clones the repository{.unnumbered}
+2. [**Collaborator**]{style="color: purple;"} clones the repository
     * The [**Collaborator**]{style="color: purple;"} navigates to the [**Owner's**]{style="color: orange;"} GitHub repository, copies the clone URL, and creates a new RStudio project or Positron folder from version control using that URL.
     * (Note: the cloned repo **will not** appear under the [**Collaborator's**]{style="color: purple;"} own GitHub profile page.)
-3. [**Collaborator**]{style="color: purple;"} edits, commit-pull-push{.unnumbered}
+3. [**Collaborator**]{style="color: purple;"} edits, commit-pull-push
     * With the repo cloned, the [**Collaborator**]{style="color: purple;"} edits `README.md` - adding a line near the top with whatever text they like - then follows the standard workflow:
     * **Stage and commit** the edited file
     * **Pull** (to fetch any changes made since cloning)
@@ -61,7 +60,7 @@ Let the [**Owner**]{style="color: orange;"} know you've pushed your changes so t
 4. [**Owner**]{style="color: orange;"} pulls, edits, commit-pull-push{.unnumbered}
     * The [**Owner**]{style="color: orange;"} opens their local copy in RStudio and **pulls** the [**Collaborator's**]{style="color: purple;"} changes. 
     * All three repositories - remote, [**Owner's**]{style="color: orange;"} local, and [**Collaborator's**]{style="color: purple;"} local - are now in sync.
-    * The [**Owner**]{style="color: orange;"} then makes their own edits as they see fit, following the same **commit → pull → push** workflow. 
+    * The [**Owner**]{style="color: orange;"} then makes their own edits as they see fit, following the same **commit {{<fa arrow-right>}} pull {{<fa arrow-right>}} push** workflow. 
 5. Wrapping up{.unnumbered}
     * After pushing, the [**Owner**]{style="color: orange;"} lets the [**Collaborator**]{style="color: purple;"} know, and the [**Collaborator**]{style="color: purple;"} **pulls** to sync up. **You've just successfully collaborated!** {{< fa champagne-glasses >}}
 
@@ -70,7 +69,7 @@ Let the [**Owner**]{style="color: orange;"} know you've pushed your changes so t
 
 `git pull` includes a merge step. **If you have uncommitted local changes, Git will refuse to merge** - since it doesn't know exactly where *you've* made changes, it doesn't know where it can safely merge in your *collaborator's* changes. Always:
 
-commit → pull → push (RStudio or Terminal) or commit -> sync (Positron)
+commit {{<fa arrow-right>}} pull {{<fa arrow-right>}} push (RStudio or Terminal) or commit {{<fa arrow-right>}} sync (Positron)
 :::
 
 ### Exercise: Collaborate Well!
@@ -80,7 +79,7 @@ Get into pairs; designate one person as [**Owner**]{style="color: orange;"} and 
 ::::callout-note 
 ## Setup
 
-* [**Owner**]{style="color: orange;"}: Create a new repository "git_collab_<username>" then go to **Settings** → **Collaborators** → **Add people** → add your partner's username
+* [**Owner**]{style="color: orange;"}: Create a new repository "git_collab_<username>" then go to **Settings** {{<fa arrow-right>}} **Collaborators** {{<fa arrow-right>}} **Add people** {{<fa arrow-right>}} add your partner's username
 * [**Collaborator**]{style="color: purple;"}: accept the invitation from your email or GitHub notifications
 
 :::
@@ -236,8 +235,8 @@ Work with the same partner as the previous exercise (since you've already both i
     * **Both people now have local commits that conflict with each other!**
 4. [**Collaborator**]{style="color: purple;"} pushes
     * **GitHub now reflects the [Collaborator]{style="color: purple;"}'s version.** The [**Owner**]{style="color: orange;"} is one commit behind.
-5. [**Owner**]{style="color: orange;"} tries to push → gets an error
-6. [**Owner**]{style="color: orange;"} pulls → sees merge conflict
+5. [**Owner**]{style="color: orange;"} tries to push {{<fa arrow-right>}} gets an error
+6. [**Owner**]{style="color: orange;"} pulls {{<fa arrow-right>}} sees merge conflict
 7. [**Owner**]{style="color: orange;"} edits the file to resolve the conflict
     * [**Owner**]{style="color: orange;"} communicates with [**Collaborator**]{style="color: purple;"}!
 8. [**Owner**]{style="color: orange;"} stages, then commit-pull-push the resolved file
@@ -277,7 +276,7 @@ Some basic rules of thumb can avoid the vast majority of merge conflicts, saving
 ### Internalize this workflow!
 
 ```
-Pull -> Edit -> Save -> Add (stage) -> Commit -> Pull* -> Push
+Pull {{<fa arrow-right>}} Edit {{<fa arrow-right>}} Save {{<fa arrow-right>}} Add (stage) {{<fa arrow-right>}} Commit {{<fa arrow-right>}} Pull* {{<fa arrow-right>}} Push
 
 * Resolve any merge conflicts if necessary!
 ```
