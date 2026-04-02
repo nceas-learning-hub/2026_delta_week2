@@ -2,12 +2,18 @@
 title: Data Visualization
 ---
 
-:::{.callout-tip}
-## Learning Objectives
+<!--
+Possible prerequisites
+- Quarto intro
+- R data wrangling
+-->
 
+:::{.callout-learning}
+After completing this session, you will be able to:
 
-- Understand the fundamentals of how the `ggplot2` package works
-- Use `ggplot2`'s `theme` and other customization functions create publication-grade graphics
+- Describe the four essential components of a `ggplot2::ggplot()` call
+- Use `theme` and other functions to customize appealing data visualizations
+- Use `facet_wrap()` to create multiple related plots in one figure
 - Introduce the `leaflet` and `DT` package to create interactive maps and tables respectively
 :::
 
@@ -18,70 +24,78 @@ From the [home page](http://ggplot2.tidyverse.org/):
 
 > `ggplot2` is a system for declaratively creating graphics, based on The Grammar of Graphics. You provide the data, tell `ggplot2` how to map variables to aesthetics, what graphical primitives to use, and it takes care of the details.
 
-
-It's been around for years and has pretty good documentation and tons of example code around the web (like on [StackOverflow](https://stackoverflow.com/questions/tagged/ggplot2)). The goal of this lesson is to explain the fundamentals of how `ggplot2` work, introduce useful functions for customizing your plots and inspire you to go and explore this awesome resource for visualizing your data.
+The goal of this lesson is to explain the fundamentals of how `ggplot2` work, introduce useful functions for customizing your plots, and inspire you to go and explore this awesome resource for visualizing your data.
 
 ::: callout-note
 
 ## `ggplot2` vs base graphics in R vs others
-There are many different ways to plot your data in R. All of them work! However, `ggplot2` excels at making complicated plots easy and easy plots simple enough
+There are many different ways to plot your data in R.  All of them can be used to make functional plots! However, `ggplot2` uses a reasonably intuitive syntax to build up a plot in layers and customize it in many different ways. It also has a lot of built in themes and color palettes that can make your plots look nice with just a few lines of code.
 
-Base R graphics  (`plot()`, `hist()`, etc) can be helpful for simple, quick and dirty plots. `ggplot2` can be used for almost everything else.
+Base R graphics  (`plot()`, `hist()`, etc) can be helpful for simple, quick-and-dirty plots, e.g., for data exploration, but it can be hard to decipher and customize. `ggplot2` can be used for almost everything else, including publication-ready graphics.
 
 :::
 
-Let's dive into creating and customizing plots with `ggplot2`.
-
-::: callout-tip
 ## Setup
 
-0. Make sure you’re in the right project (`training_{USERNAME}`) and use the `Git` workflow by `Pull`ing to check for any changes. Then, create a new Quarto document, delete the default text, and save this document.
+Make sure you’re in the right project (`training_{USERNAME}`). Use Git Pull to check for any changes. Then, create a new Quarto document, delete the default text below the YAML header, and save this document.  
 
-1. Load the packages we'll need:
+:::{.callout-tip collapse=true}
+## Quarto header options?
+
+Consider adding Quarto options to the YAML header to control the output:
+```yaml
+format:
+  html:
+    code-fold: true
+    code-summary: "Show code"
+    embed-resources: true
+execute:
+  warning: false
+  message: false
+```
+:::
+
+### Load Packages
+
+Load the packages we'll need. They're grouped by purpose to make it easier to remember what each one does.
 
 ```{r load_packages}
 #| message: false
 #| warning: false
 
+### Data wrangling
 library(readr)
 library(dplyr)
 library(tidyr)
-library(forcats) # makes working with factors easier
+library(forcats)   ### tools for working with factors (e.g., reordering)
+library(janitor)   ### clean column names
+
+### Visualization
 library(ggplot2)
-library(leaflet) # interactive maps
-library(DT) # interactive tables
-library(scales) # scale functions for visualization
-library(janitor) # expedite cleaning and exploring data
-library(viridis) # colorblind friendly color palette
+library(scales)    ### axis formatting helpers
+library(viridis)   ### colorblind-friendly palettes
+
+### Interactive output
+library(leaflet)
+library(DT)
 ```
 
+### Load the Data
 
-
-2. Load the data directly from the [EDI Data Repository: Sacramento-San Joaquin Delta Socioecological Monitoring ](https://portal.edirepository.org/nis/mapbrowse?packageid=edi.587.1). Navigate to the link above, scroll down and under *Resources*, hover over the "Download" button for the "Socioecological monitoring data", right click, and save to your data folder.
-
-```{r}
-#| message: false
-#| warning: false
-#| echo: false
-#| eval: false
-
-### THIS LINK NO LONGER WORKS
-
-delta_visits_raw <- read_csv("https://portal.edirepository.org/nis/dataviewer?packageid=edi.587.1&entityid=cda8c1384af0089b506d51ad8507641f")
-
-```
+Download the data from the [EDI Data Repository](https://portal.edirepository.org/nis/mapbrowse?packageid=edi.587.1): scroll to *Resources*, click the "Socioecological monitoring data" download button, and save to your `data/` folder. Then read it in:
 
 ```{r}
 #| echo: false
 #| eval: true
 
 ### NOTE THIS CHUNK IS HIDDEN (echo: false) AND EVALUATED (eval: true)
-### FOR THE PURPOSES OF RENDERING THE LESSON, WITH EXTRA FOLDER IN PATH.
+### FOR THE PURPOSES OF RENDERING THE LESSON, WITH THE EXTRA FOLDER IN PATH.
 ### THE FOLLOWING CHUNK (echo: true and eval: false) IS FOR WHERE USERS SHOULD
 ### SAVE FILES.
 
-delta_visits_raw <- read_csv(here::here("data/r_data_visualization/Socioecological_monitoring_data.csv"))
-
+delta_visits_raw <- read_csv(file.path("data", "r_data_visualization", 
+                                       "Socioecological_monitoring_data.csv"),
+                             show_col_types = FALSE)
 ```
 
 ```{r}
@@ -89,160 +103,161 @@ delta_visits_raw <- read_csv(here::here("data/r_data_visualization/Socioecologic
 #| eval: false
 
 # read in data from the data directory after manually downloading data 
-delta_visits_raw <- read_csv(here::here("data/Socioecological_monitoring_data.csv"))
+delta_visits_raw <- read_csv("data/Socioecological_monitoring_data.csv")
 
 ```
 
-3. Learn about the data. For this session we are going to be working with data on **Socioecological Monitoring on the Sacramento-San Joaquin Delta**. Check out [the documentation](https://portal.edirepository.org/nis/mapbrowse?packageid=edi.587.1).
+### Learn About the Data
 
-4. Finally, let's explore the data we just read into our working environment. 
+For this session we are going to be working with data on **Socioecological Monitoring on the Sacramento-San Joaquin Delta**. Check out [the documentation](https://portal.edirepository.org/nis/mapbrowse?packageid=edi.587.1): read the abstract, explore the metadata, check the intellectual rights, etc. 
+
+### Explore the Data
+
+Finally, let's explore the data we just read into our working environment. 
 
 ```r
-## Check out column names
-
+### Check out column names
 colnames(delta_visits_raw)
 
-## Peak at each column and class
+### Peek at each column and class
 glimpse(delta_visits_raw)
 
-## From when to when
+### From when to when
 range(delta_visits_raw$Date)
 
-## Which time of day?
+### Which time of day?
 unique(delta_visits_raw$Time_of_Day)
 ```
 
-:::
 
+## Prepare the Data
 
+We nearly always need to do some wrangling before we can analyze and plot our data.  Here we will wrangle our data into a tidy format that is `ggplot2`-friendly.
 
-## Getting the data ready
+### Clean Column Names
 
-It is more frequent than not, that we need to do some wrangling before we can plot our data the way we want to. After reading and exploring our data, we'll put our data wrangling skills to practice to get our data in the desired format.
-
-
-::: callout-important
-## Side note on clean column names
-`janitor::clean_names()` is an awesome function to transform all column names into the same format. The default format for this function is snake_case_format. We highly recommend having clear well formatted column names. It makes your life easier down the line.
-
-How it works?
+`janitor::clean_names()` converts all column names to consistent `snake_case` in a single line:
 
 ```{r}
-delta_visits <- delta_visits_raw %>% 
-    janitor::clean_names()
+colnames(delta_visits_raw)[1:6]
+
+delta_visits <- delta_visits_raw %>%
+  janitor::clean_names()
+
+colnames(delta_visits)[1:6]
 ```
 
-And that's it! If we look to the column names of the object `delta_visits` we can see all the columns are in a lowercase, snake format.
+### Reshape to Long (Tidy) Format
+
+Recall the [tidy data principles](https://r4ds.hadley.nz/data-tidy.html#fig-tidy-structure){.external target="_blank"}.
+
+1. Each variable is a column; each column is a variable.
+2. Each observation is a row; each row is an observation.
+3. Each value is a cell; each cell is a single value.
+
+Which (if any) of these principles are violated in our data frame `delta_visits`?
+
+`ggplot2` works best with **tidy data** — one row per observation. Our visitor-type counts are spread across multiple columns, so we pivot them (using `tidyr::pivot_longer()`) into a single `visitor_type` column:
 
 ```{r}
-colnames(delta_visits)
-```
+visits_long <- delta_visits %>%
+  tidyr::pivot_longer(
+    cols = c(sm_boat, med_boat, lrg_boat, bank_angler, scientist, cars),
+    names_to = "visitor_type",
+    values_to = "quantity"
+  ) %>%
+  ### shorten the long name:
+  dplyr::rename(restore_loc = eco_restore_approximate_location) %>%
+  ### drop the notes column:
+  dplyr::select(-notes)
 
-:::
-
-
-With the [tidy data principles](https://learning.nceas.ucsb.edu/2024-06-delta/session_06.html) in mind. Is this data tidy?
-
-1. Every column is a variable.
-2. Every row is an observation.
-3. Every cell is a single value.
-
-`ggplot2` for the most part likes data input to be in a long format (aka "tidy"). So let go ahead and make this data frame long instead of wide. Do you remember the name of the function we can use?
-
-Let's refresh our memory on how this function works by accessing the `help` page. Type `?pivot_long()` in the console to see the documentation for this function.
-
-```{r}
-
-visits_long <- delta_visits %>% 
-    pivot_longer(cols = c(sm_boat, med_boat, lrg_boat, bank_angler, scientist, cars),
-                 names_to = "visitor_type",
-                 values_to = "quantity") %>%
-    rename(restore_loc = eco_restore_approximate_location) %>% 
-    select(-notes)
-
-## Checking the outcome
 head(visits_long)
-
 ```
 
 
 
 ::: callout-exercise
 
-- Calculate the daily visits by `restore_loc`, `date`, and `visitor_type`.
+Using the `visits_long` dataframe, calculate the daily visits by `restore_loc`, `date`, and `visitor_type`.  Assign the result to a new object called `daily_visits_loc`.  Then inspect the result.
 
-:::{.callout-answer}
+::::{.callout-answer}
  
 ```{r mean_esc}
-#| message: false
 daily_visits_loc <- visits_long %>%
-    group_by(restore_loc, date, visitor_type) %>% 
-    summarise(daily_visits = sum(quantity))
+    dplyr::group_by(restore_loc, date, visitor_type) %>% 
+    dplyr::summarize(daily_visits = sum(quantity), .groups = 'drop')
     
 head(daily_visits_loc)
-
 ```
 
-The chunk above uses some of the dplyr functions that we've used in the past. We use `group_by()` to indicate that we want to calculate our results for the unique combinations of type of visit, restoration location proximity, and day.  We next use `summarise()` to calculate an daily visit value for each of these groups. Note we use the `%in%` operator to pipe in the result of one command as an argument to the next one.
+Refresher:
 
-:::
+* `group_by()` to calculate our results for the unique combinations of type of visit, restoration location proximity, and day.  
+* `summarise()` to sum up the daily visit value for each of these groups. 
+* `%>%` operator to pipe in the result of one command as an argument to the next one.
+
+::::
 
 :::
 
 ## Plotting with `ggplot2`
 
 ### Essential components
-First, we’ll cover some `ggplot2` basics to create the foundation of our plot. Then, we’ll add on to make our great customized data visualization.
+Every `ggplot2` call needs:
 
-::: {.callout-tip}
+1. **`ggplot()`** — opens the plot (note, the **package** is called `ggplot2` but the function is just `ggplot()`.)
+2. **`data =`** — defines the data frame to use
+3. **`aes()`** — maps variables to visual properties (axes, color, fill, etc.)
+4. **`geom_*()`** — defines the plot type (bar, point, line, box, etc.)
 
-### The basics
+Layers are added with `+`.
 
-1. Indicate we are using `ggplot()` (call the `ggplot2::ggplot()` function)
-2. What data do we want to plot? (`data = my_data`)
-3. What are the mapping aesthetics? What variables do we want to plot? (define using`aes()` function)
-4. Define the geometry of our plot. This specifies the type of plot we're making (use `geom_*()` to indicate the type of plot e.g: point, bar, etc.)
+```{r}
+ggplot(data = daily_visits_loc,
+       aes(x = restore_loc, y = daily_visits)) +
+  geom_col()
+```
 
-**Note**
-To add layers to our plot, for example, additional geometries/aesthetics and theme elements or any `ggplot` object we use `+`.
+::: callout-tip
+`data =` and `aes()` can also live inside the `geom_*()` call — useful when layering multiple data sources!  But for simple plots, a good practice is to keep them in `ggplot()` for clarity.
 
-:::
+**Variations on `data=` and `aes()`**
 
+The following all produce the same output.
 
-Now, let's plot total daily visits by restoration location. We will show this by creating the same plot in 3 slightly different ways. Each of the options below have the 4 essential pieces of a `ggplot`.
+:::: panel-tabset
+## Option 1 (original)
 
-
+Data and mapping defined in `ggplot()` function:
 ```r
-## Option 1 - data and mapping called in the ggplot() function
 ggplot(data = daily_visits_loc,
        aes(x = restore_loc, y = daily_visits)) +
     geom_col()
+```
 
+## Option 2
 
-## Option 2 - data called in ggplot function; mapping called in geom
+Data defined in `ggplot()` function; mapping defined in `geom_*()`:
+```r
 ggplot(data = daily_visits_loc) +
     geom_col(aes(x = restore_loc, y = daily_visits))
+```
 
+## Option 3
 
-## Option 3 - data and mapping called in geom
+Data and mapping both defined in `geom_*()`
+```r
 ggplot() +
     geom_col(data = daily_visits_loc,
              aes(x = restore_loc, y = daily_visits))
-
 ```
-
-They all will create the same plot:
-
-(Apologies for the jumbled text on the x-axis, we will learn how to make this look better soon)
-
-```r
-ggplot(data = daily_visits_loc,
-       aes(x = restore_loc, y = daily_visits)) +
-    geom_col()
-```
+:::: 
+<!-- end tabset -->
+:::
+<!-- end tip -->
 
 
-### Looking at different `geoms_*`
+### Different `geom_*` Types
 
 Having the basic structure with the essential components in mind, we can easily change the type of graph by updating the `geom_*()`.
 
