@@ -225,9 +225,7 @@ ggplot(data = daily_visits_loc,
 ::: callout-tip
 `data =` and `aes()` can also live inside the `geom_*()` call — useful when layering multiple data sources!  But for simple plots, a good practice is to keep them in `ggplot()` for clarity.
 
-**Variations on `data=` and `aes()`**
-
-Options 1 - 3 produce the same output as above.  Option 4 flips the axes.  Examine the code and the outputs.
+**Variations on `data=` and `aes()`**:  Options 1 - 3 produce the same output as above.  Option 4 flips the axes.  Examine the code and the outputs.
 
 :::: panel-tabset
 ## Option 1 (original)
@@ -269,7 +267,7 @@ ggplot() +
 
 ## Option 4 (axes flipped)
 
-Data and mapping both defined in `geom_*()`, but with x and y flipped.  Note the difference!
+Data and mapping both defined in `geom_*()`, but with x and y flipped.  Why might you prefer this?
 ```{r}
 #| out-width: "80%"
 #| fig-align: "center"
@@ -287,46 +285,65 @@ ggplot() +
 
 ### Different `geom_*` Types
 
-Having the basic structure with the essential components in mind, we can easily change the type of graph by updating the `geom_*()`.  First we will add a few lines to further process the data.
+Having the basic structure with the essential components in mind, we can easily change the type of graph by updating the `geom_*()`.  First we will filter the data to remove some extreme values, and to focus on boat users specifically.
+
+```{r}
+daily_boats_filtered <- daily_visits_loc %>%
+    filter(daily_visits < 30,
+           visitor_type %in% c("sm_boat", "med_boat", "lrg_boat"))
+```
 
 :::panel-tabset
 
 ## Boxplot
 
 ```{r boxplot_ex}
-daily_visits_loc %>%
-    separate(date, c("year", "month", "day"), sep = "-") %>%
-    filter(daily_visits < 30,
-           visitor_type %in% c("sm_boat", "med_boat", "lrg_boat")) %>%
-    ggplot(aes(x = visitor_type, y = daily_visits)) +
+#| out-width: "80%"
+#| fig-align: "center"
+#| fig-height: 3.5
+ggplot(data = daily_boats_filtered, aes(x = visitor_type, y = daily_visits)) +
     geom_boxplot()
 ```
 
 
-**Violin plot**
+## Violin Plot
 
+Note, axes flipped to make it easier to read the labels.
 ```{r violin_plot}
-daily_visits_loc %>%
-    separate(date, c("year", "month", "day"), sep = "-") %>%
-    filter(daily_visits < 30,
-           visitor_type %in% c("sm_boat", "med_boat", "lrg_boat")) %>%
-    ggplot(aes(x = visitor_type, y = daily_visits)) +
+#| out-width: "80%"
+#| fig-align: "center"
+#| fig-height: 3.5
+ggplot(data = daily_boats_filtered, aes(x = daily_visits, y = visitor_type)) +
     geom_violin()
 ```
 
 
-**Line and point**
 
-```{r line_poin_plot}
+## Boxplot With Jitter
 
-daily_visits_loc %>%
-    filter(restore_loc == "Decker Island",
-           visitor_type == "med_boat") %>%
-    ggplot(aes(x = date, y = daily_visits)) +
-    geom_line() +
-    geom_point()
+Axes flipped, and all observations now plotted using `geom_jitter()`, which adds a small amount of random variation to the location of each point, to prevent overplotting.  Note the `geom_*()` functions have additional parameters to control appearance.
+```{r boxplot_w_jitter}
+#| out-width: "80%"
+#| fig-align: "center"
+#| fig-height: 3.5
+ggplot(data = daily_boats_filtered, aes(x = daily_visits, y = visitor_type)) +
+    geom_boxplot() +
+    geom_jitter(height = .1)
 ```
 
+
+## Scatterplot
+
+Note, new aesthetics: `color` is now mapped to `visitor_type`.  Note the legend!
+```{r line_poin_plot}
+#| out-width: "80%"
+#| fig-align: "center"
+#| fig-height: 3.5
+ggplot(data = daily_boats_filtered, aes(x = date, y = daily_visits)) +
+    geom_point(aes(color = visitor_type))
+```
+:::
+<!-- end tabset -->
 
 ### Customizing our plot
 
