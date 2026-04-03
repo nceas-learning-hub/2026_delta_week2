@@ -200,19 +200,23 @@ Refresher:
 
 :::
 
-## Plotting with `ggplot2`
+## Plot With `ggplot2`
 
-### Essential components
-Every `ggplot2` call needs:
+### Essential Components
 
-1. **`ggplot()`** — opens the plot (note, the **package** is called `ggplot2` but the function is just `ggplot()`.)
-2. **`data =`** — defines the data frame to use
-3. **`aes()`** — maps variables to visual properties (axes, color, fill, etc.)
-4. **`geom_*()`** — defines the plot type (bar, point, line, box, etc.)
+Every `ggplot2` call requires four essential components:
+
+1. **`ggplot()`** opens the plot (note, the **package** is called `ggplot2` but the function is just `ggplot()`.)
+2. **`data =`** defines the data frame to use
+3. **`aes()`** maps variables to visual properties (axes, color, fill, etc.)
+4. **`geom_*()`** defines the plot type (bar, point, line, box, etc.)
 
 Layers are added with `+`.
 
 ```{r}
+#| fig-align: "center"
+#| fig-height: 3.5
+
 ggplot(data = daily_visits_loc,
        aes(x = restore_loc, y = daily_visits)) +
   geom_col()
@@ -223,13 +227,17 @@ ggplot(data = daily_visits_loc,
 
 **Variations on `data=` and `aes()`**
 
-The following all produce the same output.
+Options 1 - 3 produce the same output as above.  Option 4 flips the axes.  Examine the code and the outputs.
 
 :::: panel-tabset
 ## Option 1 (original)
 
 Data and mapping defined in `ggplot()` function:
-```r
+```{r}
+#| out-width: "80%"
+#| fig-align: "center"
+#| fig-height: 3.5
+
 ggplot(data = daily_visits_loc,
        aes(x = restore_loc, y = daily_visits)) +
     geom_col()
@@ -238,19 +246,39 @@ ggplot(data = daily_visits_loc,
 ## Option 2
 
 Data defined in `ggplot()` function; mapping defined in `geom_*()`:
-```r
+```{r}
+#| out-width: "80%"
+#| fig-align: "center"
+#| fig-height: 3.5
 ggplot(data = daily_visits_loc) +
-    geom_col(aes(x = restore_loc, y = daily_visits))
+    geom_col(aes(x = restore_loc, 
+                 y = daily_visits))
 ```
 
 ## Option 3
 
 Data and mapping both defined in `geom_*()`
-```r
+```{r}
+#| out-width: "80%"
+#| fig-align: "center"
+#| fig-height: 3.5
 ggplot() +
     geom_col(data = daily_visits_loc,
              aes(x = restore_loc, y = daily_visits))
 ```
+
+## Option 4 (axes flipped)
+
+Data and mapping both defined in `geom_*()`, but with x and y flipped.  Note the difference!
+```{r}
+#| out-width: "80%"
+#| fig-align: "center"
+#| fig-height: 3.5
+ggplot() +
+    geom_col(data = daily_visits_loc,
+             aes(y = restore_loc, x = daily_visits))
+```
+
 :::: 
 <!-- end tabset -->
 :::
@@ -259,22 +287,11 @@ ggplot() +
 
 ### Different `geom_*` Types
 
-Having the basic structure with the essential components in mind, we can easily change the type of graph by updating the `geom_*()`.
+Having the basic structure with the essential components in mind, we can easily change the type of graph by updating the `geom_*()`.  First we will add a few lines to further process the data.
 
+:::panel-tabset
 
-::: callout-warning
-### `ggplot2` and the pipe operator
-
-Just like in `dplyr` and `tidyr`, we can also pipe a `data.frame` directly into the first argument of the `ggplot` function using the `%>%` operator.
-
-This can certainly be convenient, but use it carefully! Combining too many data-tidying or subsetting operations with your `ggplot` call can make your code more difficult to debug and understand.
-:::
-
-We will use the pipe operator to pass into `ggplot()` a filtered version of `daily_visits_loc`, and make a plot with different geometries.
-
-
-**Boxplot**
-_Note: These examples are to demonstrate case uses of wrangling function prior to plotting. They are not necessarily plotting best practices._
+## Boxplot
 
 ```{r boxplot_ex}
 daily_visits_loc %>%
