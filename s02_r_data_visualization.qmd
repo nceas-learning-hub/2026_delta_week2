@@ -345,239 +345,134 @@ ggplot(data = daily_boats_filtered, aes(x = date, y = daily_visits)) +
 :::
 <!-- end tabset -->
 
-### Customizing our plot
+## Customize the Plot
 
-Let's go back to our base bar graph. What if we want our bars to be blue instead of gray? You might think we could run this:
+We'll build our final bar chart in two focused steps: **labels & theme**, then **color & ordering**.
 
-```{r fill_blue}
-
-ggplot(data = daily_visits_loc,
-       aes(x = restore_loc, y = daily_visits,
-           fill = "blue")) +
-    geom_col()
-```
-
-Why did that happen?
-
-Notice that we tried to set the fill color of the plot inside the mapping aesthetic call. What we have done, behind the scenes, is create a column filled with the word "blue" in our data frame, and then mapped it to the `fill` aesthetic, which then chose the default fill color, salmon. 
-
-What we really wanted to do was just change the color of the bars. If we want do do that, we can call the color option in the `geom_col()` function, **outside** of the mapping aesthetics function call.
-
-```{r fill_blue_geom}
-
-ggplot(data = daily_visits_loc,
-       aes(x = restore_loc, y = daily_visits)) +
-    geom_col(fill = "blue")
-
-```
-
-What if we did want to map the color of the bars to a variable, such as `visitor_type`. `ggplot()` is really powerful because we can easily get this plot to visualize more aspects of our data. 
-
-```{r}
-
-ggplot(data = daily_visits_loc,
-       aes(x = restore_loc, y = daily_visits,
-           fill = visitor_type)) +
-    geom_col()
-
-```
+### Labels, Axes, and Tthemes
 
 ::: {.callout-tip}
+## Inside vs. outside `aes()`
 
-### Keep in mind
+- **Inside `aes()`**: maps a *variable* to an aesthetic:  color tracks the data.  
+- **Outside `aes()`**: sets a *constant*: all elements get the same color.
 
-- If you want to map a variable onto a graph aesthetic (e.g., point color should be based on a specific region), put it within `aes()`.
+::::panel-tabset
+## Right: Set Fixed Color
 
-- If you want to update your plot base with a constant  (e.g. “Make ALL the points BLUE”), you can add the information directly to the relevant `geom_` layer outside the `aes()` call.
+Set `fill` to a specific, valid color outside `aes()`.  All bars are the same color!
+```{r}
+#| out-width: "80%"
+#| fig-align: "center"
+#| fig-height: 3.5
+ggplot(data = daily_visits_loc,
+       aes(x = restore_loc, y = daily_visits)) +
+  geom_col(fill = "steelblue")
+```
+
+## Right: Map Color to Variable
+
+Set `fill` to map to a single variable, inside `aes()` (whether the result makes sense, that's on you)
+```{r}
+#| out-width: "80%"
+#| fig-align: "center"
+#| fig-height: 3.5
+ggplot(data = daily_visits_loc,
+       aes(x = restore_loc, y = daily_visits)) +
+  geom_col(aes(fill = visitor_type))
+```
+
+## Wrong! Set `fill` to a specific color *inside* `aes()`
+
+This doesn't throw an error, but clearly does not reflect what you might be hoping for!
+```{r}
+#| out-width: "80%"
+#| fig-align: "center"
+#| fig-height: 3.5
+ggplot(data = daily_visits_loc,
+       aes(x = restore_loc, y = daily_visits, fill = "blue")) +
+  geom_col()
+```
 
 :::
 
+To our basic bar chart, let's clean it up using some of the above ideas, and some new ones:
 
-#### Setting `ggplot` themes
-
-
-We have successfully plotted our data. But, this is clearly not a nice plot. Let's work on making this plot look a bit nicer. We are going to:
-
-- Add a title, subtitle and adjust labels using `labs()`
-- Flip the x and y axis to make it a sideways column plot and make the labels easier to read
-- Include a built in theme using `theme_bw()`
-
-
-```{r theme_bw_plot}
-
-ggplot(data = daily_visits_loc,
-       aes(y = restore_loc, x = daily_visits, fill = visitor_type)) +
-    geom_col() +
-    labs(x = "Number of Visits",
-         y = "Restoration Location",
-         fill = "Type of Visitor",
-         title = "Total Number of Visits to Delta Restoration Areas by visitor type",
-         subtitle = "Sum of all visits during July 2017 and March 2018") +
-    theme_bw()
-    
-    
-```
-
-You can see that the `theme_bw()` function changed a lot of the aspects of our plot! The background is white, the grid is a different color, etc. There are lots of other built in themes like this that come with the `ggplot2` package that help quickly set the look of the plot. Use the RStudio auto-complete `theme_` `<TAB>` to view a list of theme functions.
-
+* Map `visitor_type` to `fill`
+* flip the axes so location labels are readable
+* add informative labels
+* apply a clean theme
 
 ```{r}
-#| code-summary: "Themes"
+#| out-width: "80%"
+#| fig-align: "center"
+#| fig-height: 3.5
+ggplot(data = daily_visits_loc,
+       aes(y = restore_loc, x = daily_visits, fill = visitor_type)) +
+  geom_col() +
+  labs(x     = "Number of Visits",                                        # <1>
+       y     = "Restoration Location",                                    # <1>
+       fill  = "Visitor Type",                                            # <1>
+       title = "Total Visits to Delta Restoration Areas by Visitor Type", # <1>
+       subtitle = "Sum of all visits July 2017 - March 2018") +           # <1>
+  scale_x_continuous(breaks = seq(0, 120, 20), expand = c(0, 0)) +        # <2>
+  theme_bw() +                                                            # <3>
+  theme(
+    legend.position = "bottom",                                           # <4>
+    axis.ticks.y    = element_blank()                                     # <5>
+  )
+```
+1. `labs()` to rename axes, legend, title, subtitle, etc.
+
+:::callout-tip
+## Built-in and custom themes
+
+Always put `theme()` *after* built-in themes like `theme_bw()`, or the built-in will override your tweaks. 
+
+You can also create your own custom theme object to reuse it across plots, just as you would a built-in theme:
+```r
+my_theme <- theme_bw(base_size = 14) +
+    theme(legend.position = "bottom", axis.ticks.y = element_blank())
+```
+:::
+
+### 3.2 Ordering bars and adding color
+
+`ggplot2` defaults to alphabetical order. Use `fct_reorder()` from `forcats` to sort by a meaningful variable instead. Add a colorblind-friendly palette with `scale_fill_viridis_d()`:
+
+```{r}
+daily_visits_totals <- daily_visits_loc %>%
+  group_by(restore_loc) %>%
+  mutate(total = sum(daily_visits)) %>%
+  ungroup() %>%
+  mutate(restore_loc = fct_reorder(restore_loc, total))  # ascending; use desc(total) to flip
+
+my_theme <- theme_bw(base_size = 14) +
+  theme(legend.position = "bottom", axis.ticks.y = element_blank())
+
+ggplot(data = daily_visits_totals,
+       aes(y = restore_loc, x = daily_visits, fill = visitor_type)) +
+  geom_col() +
+  scale_fill_viridis_d() +
+  scale_x_continuous(breaks = seq(0, 120, 20), expand = c(0, 0)) +
+  labs(
+    x     = "Number of Visits",
+    y     = "Restoration Location",
+    fill  = "Visitor Type",
+    title = "Total Visits to Delta Restoration Areas by Visitor Type",
+    subtitle = "Sum of all visits during the study period"
+  ) +
+  my_theme
+```
+
+### 3.3 Saving your plot
+
+```{r}
 #| eval: false
-
-## Useful baseline themes are
-theme_minimal()
-theme_light()
-theme_classic()
+ggsave("figures/visit_restore_site_delta.jpg", width = 12, height = 6, units = "in")
 ```
 
-
-
-The built in theme functions (`theme_*()`) change the default settings for many elements that can also be changed individually using the`theme()` function. The `theme()` function is a way to further fine-tune the look of your plot. This function takes MANY arguments (just have a look at `?theme`). Luckily there are many great `ggplot` resources online so we don't have to remember all of these, just Google ["ggplot cheat sheet"](https://www.google.com/search?q=ggplot+cheat+sheet&rlz=1C5CHFA_enUS989US989&oq=ggplot+chea&aqs=chrome.0.0i433i512j69i57j0i512l2j0i22i30i395l2.1681j1j7&sourceid=chrome&ie=UTF-8) and find one you like.
-
-Let's look at an example of a `theme()` call, where we change the position of the legend from the right side to the bottom, and remove the ticks of our Locations axis.
-
-```{r}
-ggplot(data = daily_visits_loc,
-       aes(y = restore_loc, x = daily_visits, fill = visitor_type)) +
-    geom_col() +
-    labs(x = "Number of Visits",
-         y = "Restoration Location",
-         fill = "Type of Visitor",
-         title = "Total Number of Visits to Delta Restoration Areas by visitor type",
-         subtitle = "Sum of all visits during study period") +
-    theme_bw() +
-    theme(legend.position = "bottom",
-          axis.ticks.y = element_blank()) 
-    
-```
-
-
-Note that the `theme()` call needs to come after any built-in themes like `theme_bw()` are used. Otherwise, `theme_bw()` will likely override any theme elements that you changed using `theme()`.
-
-
-You can also save the result of a series of `theme()` function calls to an object to use on multiple plots. This prevents needing to copy paste the same lines over and over again!
-
-```{r save_theme}
-my_theme <- theme_bw(base_size = 16) +
-    theme(legend.position = "bottom",
-          axis.ticks.y = element_blank())
-```
-
-So now our code will look like this:
-
-
-```{r}
-ggplot(data = daily_visits_loc,
-       aes(y = restore_loc, x = daily_visits, fill = visitor_type)) +
-    geom_col() +
-    labs(x = "Number of Visits",
-         y = "Restoration Location",
-         fill = "Type of Visitor",
-         title = "Total Number of Visits to Delta Restoration Areas by visitor type",
-         subtitle = "Sum of all visits during study period") +
-    my_theme
-
-```
-
-
-::: {.callout-exercise}
-
-What changes do you expect to see in your plot by adding the following line of code? Discuss with your neighbor and then try it out!
-
-`scale_x_continuous(breaks = seq(0,120, 20))`
-
-::: {.callout-answer}
-```{r}
-ggplot(data = daily_visits_loc,
-       aes(y = restore_loc, x = daily_visits, fill = visitor_type)) +
-    geom_col() +
-    labs(x = "Number of Visits",
-         y = "Restoration Location",
-         fill = "Type of Visitor",
-         title = "Total Number of Visits to Delta Restoration Areas by visitor type",
-         subtitle = "Sum of all visits during study period") +
-    scale_x_continuous(breaks = seq(0,120, 20)) +
-    my_theme
-```
-:::
-
-
-
-
-Finally we are going to expand the bars all the way to the axis line. In other words, remove the gap between the bars and the vertical "x-axis" line.
-
-```{r}
-ggplot(data = daily_visits_loc,
-       aes(y = restore_loc, x = daily_visits, fill = visitor_type)) +
-    geom_col() +
-    labs(x = "Number of Visits",
-         y = "Restoration Location",
-         fill = "Type of Visitor",
-         title = "Total Number of Visits to Delta Restoration Areas by visitor type",
-         subtitle = "Sum of all visits during study period") +
-    scale_x_continuous(breaks = seq(0,120, 20), expand = c(0,0)) +
-    my_theme
-
-```
-
-
-
-#### Reordering things
-
-`ggplot()` loves putting things in alphabetical order. But more frequently than not, that's not the order you actually want things to be plotted. One way to do this is to use the `fct_reorder()` function from the `forcats` package. `forcats` provides tools for working with categorical variables. In this case, we want to reorder our categorical variable of `restore_loc` based on the total number of visits.
-
-The first thing we need to do is to add a column to our data with the _total number of visits_ by location. This will be our "sorting" variable.  Then we use `fct_reorder()` to reorder the `restore_loc` variable according to our sorting variable.
-
-```{r}
-daily_visits_totals <- daily_visits_loc %>% 
-    group_by(restore_loc) %>%
-    mutate(n = sum(daily_visits)) %>% 
-    ungroup() %>%
-    mutate(restore_loc = fct_reorder(restore_loc, n))
-
-head(daily_visits_totals)
-levels(daily_visits_totals$restore_loc) ### not alphabetical any more!
-```
-
-Next, we will run the code for our plot adding the `fct_reorder()` function.
-
-```{r}
-ggplot(data = daily_visits_totals,
-       aes(x = daily_visits, y = restore_loc,
-           fill = visitor_type)) +
-    geom_col() +
-    labs(x = "Number of Visits",
-         y = "Restoration Location",
-         fill = "Type of Visitor",
-         title = "Total Number of Visits to Delta Restoration Areas by visitor type",
-         subtitle = "Sum of all visits during study period") +
-    scale_x_continuous(breaks = seq(0,120, 20), expand = c(0,0)) +
-    my_theme
-
-```
-
-What if you want to plot the other way around? In this case from least to greater? We add the `desc()` to the variable we are sorting by.
-
-```{r}
-daily_visits_totals <- daily_visits_loc %>% 
-    group_by(restore_loc) %>%
-    mutate(n = sum(daily_visits)) %>% 
-    ungroup() %>%
-    mutate(restore_loc = fct_reorder(restore_loc, desc(n)))
-
-ggplot(data = daily_visits_totals,
-       aes(x = daily_visits, y = restore_loc,
-           fill = visitor_type)) +
-    geom_col() +
-    labs(x = "Number of Visits",
-         y = "Restoration Location",
-         fill = "Type of Visitor",
-         title = "Total Number of Visits to Delta Restoration Areas by visitor type",
-         subtitle = "Sum of all visits during study period") +
-    scale_x_continuous(breaks = seq(0,120, 20), expand = c(0,0)) +
-    my_theme
-```
+`ggsave()` automatically saves the last plot displayed, or pass `plot = my_object` to save a specific one.
 
 
 #### Colors
