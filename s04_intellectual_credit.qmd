@@ -1,0 +1,15 @@
+---
+title: Blank placeholder
+---
+
+:::{.callout-tip}
+### Learning Objectives
+
+-   bullet pointed learning objectives
+:::
+
+
+## Use level 2 headers for sections
+
+Visit https://nceas-learning-hub.github.io/lh_packages/ for information on contributing new lessons, content guidelines, and style guide.
+

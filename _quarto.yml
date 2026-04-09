@@ -67,7 +67,7 @@ website:
         - s03_r_github_practice.qmd
       - section: "Day 2"
         contents:
-        - s04_github_publishing.qmd
+        - s04_intellectual_credit.qmd
         - s05_r_geospatial_vector_analysis.qmd
       - section: "Day 3"
         contents:
@@ -76,7 +76,7 @@ website:
       - section: "Day 4"
         contents:
         - s08_project_doc_organization.qmd
-        - s09_message_box_sci_comm.qmd
+        - s09_github_publishing.qmd
       # END SESSIONS
 
   page-footer:
