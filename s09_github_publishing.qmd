@@ -2,8 +2,8 @@
 title: Publishing to the Web
 ---
 
-:::{.callout-tip}
-## Learning Objectives
+:::{.callout-learning}
+After completing this session, you will be able to:
 
 - How to use Git, GitHub (+Pages), and Quarto to publish an analysis to the web
 :::

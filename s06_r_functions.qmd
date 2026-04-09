@@ -2,8 +2,8 @@
 title: Writing Functions
 ---
 
-:::{.callout-tip}
-## Learning Objectives
+:::{.callout-learning}
+After completing this session, you will be able to:
 
 -   Explain the importance of using and developing functions
 -   Create custom functions using R code

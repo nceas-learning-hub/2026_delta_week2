@@ -2,8 +2,8 @@
 title: Working with Spatial Data
 ---
 
-:::{.callout-tip}
-## Learning Objectives
+:::{.callout-learning}
+After completing this session, you will be able to:
 
 -   How to use the `sf` package to wrangle spatial data
 -   Static mapping with ggplot
@@ -428,6 +428,7 @@ pop_3857_sf <- st_transform(pop_3338_sf,
 ```
 
 ```{r}
+#| eval: false
 #| message: false
 
 ggplot(data = pop_3857_sf) +
