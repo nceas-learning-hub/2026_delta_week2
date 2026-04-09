@@ -1,5 +1,5 @@
 ---
-title: Blank placeholder
+title: Intellectual Credit
 ---
 
 :::{.callout-learning}
