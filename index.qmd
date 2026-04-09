@@ -50,9 +50,9 @@ _Table Color Legend:_ <span style="color:#6a994e">{{<fa screwdriver-wrench >}} T
 
 | Day | Time | Module Name | Primary Instructor |
 |:--:|:-------:|:-------------------|:------------|
-| 2 | 8:30 - 10a | <span style="color:#6a994e">{{<fa screwdriver-wrench >}} **Publishing to the Web**</span> | TBD |
+| 2 | 8:30 - 10a | <span style="color:#118ab2">{{<fa people-group >}} **Authorship & Intellectual Credit**</span> | TBD |
 | 2 | 10 - 10:30a | _Break_ | - |
-| 2 | 10:30 - 12p |  <span style="color:#6a994e">{{<fa screwdriver-wrench >}} **Working with Spatial Data**</span> | TBD |
+| 2 | 10:30 - 12p | <span style="color:#6a994e">{{<fa screwdriver-wrench >}} **Working with Spatial Data**</span> | TBD |
 | 2 | 12 - 1p | _Lunch_ | - |
 | 2 | 1 - 2:30p | <span style="color:#ef476f">{{<fa rocket >}} **Free Synthesis Work**</span> | - |
 | 2 | 2:30 - 3p | _Break_ | - |
@@ -74,9 +74,9 @@ _Table Color Legend:_ <span style="color:#6a994e">{{<fa screwdriver-wrench >}} T
 
 | Day | Time | Module Name | Primary Instructor |
 |:--:|:-------:|:-------------------|:------------|
-| 4 | 8:30 - 10a | <span style="color:#6a994e">{{<fa screwdriver-wrench >}} **Project Documentation <br> & Organization**</span> | TBD |
+| 4 | 8:30 - 10a | <span style="color:#118ab2">{{<fa people-group >}} **Project Documentation <br> & Organization**</span> | TBD |
 | 4 | 10 - 10:30a | _Break_ | - |
-| 4 | 10:30 - 12p | <span style="color:#118ab2">{{<fa people-group >}} **The Message Box <br> (Science Communication)**</span> | TBD |
+| 4 | 10:30 - 12p | <span style="color:#6a994e">{{<fa screwdriver-wrench >}} **Publishing to the Web**</span> | TBD |
 | 4 | 12 - 1p | _Lunch_ | - |
 | 4 | 1 - 2:30p | <span style="color:#ef476f">{{<fa rocket >}} **Free Synthesis Work**</span> | - |
 | 4 | 2:30 - 3p | _Break_ | - |
@@ -86,7 +86,7 @@ _Table Color Legend:_ <span style="color:#6a994e">{{<fa screwdriver-wrench >}} T
 
 | Day | Time | Module Name | Primary Instructor |
 |:--:|:-----:|:----------------------|:---------|
-| 5 | 8:30 - 10a | <span style="color:#ef476f">{{<fa rocket >}} **Message Box Presentation <br> & Group Synthesis Work**</span> | TBD |
+| 5 | 8:30 - 10a | <span style="color:#ef476f">{{<fa rocket >}} **Free Synthesis Work**</span> | - |
 | 5 | 10 - 10:30a | _Break_ | - |
 | 5 | 10:30 - 12p | <span style="color:#ef476f">{{<fa rocket >}} **Free Synthesis Work**</span> | - |
 | 5 | 12 - 1p | _Lunch_ | - |
