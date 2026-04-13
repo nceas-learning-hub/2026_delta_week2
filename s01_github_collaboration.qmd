@@ -40,7 +40,7 @@ We start with the ideal scenario: two collaborators taking turns, working on the
 Here, the instructors will demonstrate.  In the following exercise, the participants will pair up and try it themselves.
 
 1. [**Owner**]{style="color: orange;"} adds [**Collaborator**]{style="color: purple;"} on GitHub
-    * [**Owner**]{style="color: orange;"} creates a new repository on GitHub, called "git_collab_<username>" (or similar), and includes a README.  
+    * [**Owner**]{style="color: orange;"} creates a new repository on GitHub, called `git_collab_<username>` (or similar), and includes a README.  
     * Then, [**Owner**]{style="color: orange;"} navigates to the repository {{<fa arrow-right>}} **Settings** {{<fa arrow-right>}} **Collaborators** {{<fa arrow-right>}} **Add people**. Enter the [**Collaborator's**]{style="color: purple;"} username and send the invitation. 
     * The [**Collaborator**]{style="color: purple;"} accepts via email or GitHub notifications, gaining push access.
 2. [**Collaborator**]{style="color: purple;"} clones the repository
@@ -79,7 +79,7 @@ Get into pairs; designate one person as [**Owner**]{style="color: orange;"} and 
 ::::callout-note 
 ## Setup
 
-* [**Owner**]{style="color: orange;"}: Create a new repository "git_collab_<username>" then go to **Settings** {{<fa arrow-right>}} **Collaborators** {{<fa arrow-right>}} **Add people** {{<fa arrow-right>}} add your partner's username
+* [**Owner**]{style="color: orange;"}: Create a new repository `git_collab_<username>` then go to **Settings** {{<fa arrow-right>}} **Collaborators** {{<fa arrow-right>}} **Add people** {{<fa arrow-right>}} add your partner's username
 * [**Collaborator**]{style="color: purple;"}: accept the invitation from your email or GitHub notifications
 
 :::
@@ -93,7 +93,7 @@ Complete two rounds, switching [**Owner**]{style="color: orange;"}/[**Collaborat
 
 **Round One:**
 
-* [**Owner**]{style="color: orange;"} adds [**Collaborator**]{style="color: purple;"} to "git_collab_<username>" (see Setup above)
+* [**Owner**]{style="color: orange;"} adds [**Collaborator**]{style="color: purple;"} to `git_collab_<username>` (see Setup above)
 * [**Collaborator**]{style="color: purple;"} clones the [**Owner**]{style="color: orange;"}'s repository
 * [**Collaborator**]{style="color: purple;"} adds a new level-2 heading "Git Workflow" to README.md, then applies commit-pull-push workflow
 * [**Owner**]{style="color: orange;"} pulls those changes
@@ -102,7 +102,7 @@ Complete two rounds, switching [**Owner**]{style="color: orange;"}/[**Collaborat
 
 **Round Two (switch roles!):**
 
-* NEW [**Owner**]{style="color: orange;"} creates a new "git_collab_<username>" repository and adds NEW [**Collaborator**]{style="color: purple;"} (see Setup above)
+* NEW [**Owner**]{style="color: orange;"} creates a new `git_collab_<username>` repository and adds NEW [**Collaborator**]{style="color: purple;"} (see Setup above)
 * [**Collaborator**]{style="color: purple;"} clones
 * [**Collaborator**]{style="color: purple;"} adds a level 3 heading "How to Create a Git Repository" with high-level steps, then commit-pull-push
 * [**Owner**]{style="color: orange;"} pulls, adds detail under the heading, then commit-pull-push
@@ -201,7 +201,7 @@ Then stage, commit-pull-push as normal.
 
 As before, the instructors will first demonstrate this sequence. Then participants will pair off and work through this in the exercise that follows.
 
-1. **Both** pull to sync to the [**Owner's**]{style="color: orange;"} "git_collab_<username>" repository
+1. **Both** pull to sync to the [**Owner's**]{style="color: orange;"} `git_collab_<username>` repository
     * Ensure both [**Owner**]{style="color: orange;"} and [**Collaborator**]{style="color: purple;"} have all the latest changes locally (Git pane shows no pending commits).
 2. [**Owner**]{style="color: orange;"} edits line 1 of README and commits - but **does not pull or push**
 3. [**Collaborator**]{style="color: purple;"} edits the same line and commits - but **does not pull or push**
@@ -229,7 +229,7 @@ Work with the same partner as the previous exercise (since you've already both i
 
 **Round One:**
 
-1.  **Both** pull to sync to the [**Owner's**]{style="color: orange;"} "git_collab_<username>" repository
+1.  **Both** pull to sync to the [**Owner's**]{style="color: orange;"} `git_collab_<username>` repository
 2. [**Owner**]{style="color: orange;"} edits the README title on line 1 and commits but **does not pull or push**
 3. [**Collaborator**]{style="color: purple;"} edits the same line differently and commits but **does not pull or push**
     * **Both people now have local commits that conflict with each other!**
