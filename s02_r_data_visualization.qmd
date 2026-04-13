@@ -37,7 +37,7 @@ Base R graphics  (`plot()`, `hist()`, etc) can be helpful for simple, quick-and-
 
 ## Setup
 
-Make sure you’re in the right project (`training_{USERNAME}`). Use Git Pull to check for any changes. Then, create a new Quarto document, delete the default text below the YAML header, and save this document.  
+Make sure you’re in the right project (`training_<username>`). Use Git Pull to check for any changes. Then, create a new Quarto document, delete the default text below the YAML header, and save this document.  
 
 :::{.callout-tip collapse=true}
 ## Quarto header options?
@@ -349,7 +349,7 @@ ggplot(data = daily_boats_filtered, aes(x = date, y = daily_visits)) +
 
 We'll build our final bar chart in two focused steps: **labels & theme**, then **color & ordering**.
 
-### Labels, Axes, and Tthemes
+### Set Labels, Axes, and Themes
 
 ::: {.callout-tip}
 ## Inside vs. outside `aes()`
@@ -358,6 +358,7 @@ We'll build our final bar chart in two focused steps: **labels & theme**, then *
 - **Outside `aes()`**: sets a *constant*: all elements get the same color.
 
 ::::panel-tabset
+
 ## Right: Set Fixed Color
 
 Set `fill` to a specific, valid color outside `aes()`.  All bars are the same color!
@@ -382,9 +383,9 @@ ggplot(data = daily_visits_loc,
   geom_col(aes(fill = visitor_type))
 ```
 
-## Wrong! Set `fill` to a specific color *inside* `aes()`
+## Wrong! `aes(fill="blue")`
 
-This doesn't throw an error, but clearly does not reflect what you might be hoping for!
+Setting to a specific color **inside** the `aes()` function is incorrect.  This doesn't throw an error, but clearly does not reflect what you might be hoping for!
 ```{r}
 #| out-width: "80%"
 #| fig-align: "center"
@@ -394,7 +395,12 @@ ggplot(data = daily_visits_loc,
   geom_col()
 ```
 
+::::
+<!-- end tabset -->
+
 :::
+<!-- end callout -->
+
 
 To our basic bar chart, let's clean it up using some of the above ideas, and some new ones:
 
@@ -416,39 +422,84 @@ ggplot(data = daily_visits_loc,
        title = "Total Visits to Delta Restoration Areas by Visitor Type", # <1>
        subtitle = "Sum of all visits July 2017 - March 2018") +           # <1>
   scale_x_continuous(breaks = seq(0, 120, 20), expand = c(0, 0)) +        # <2>
-  theme_bw() +                                                            # <3>
+  theme_minimal() +                                                            # <3>
   theme(
     legend.position = "bottom",                                           # <4>
     axis.ticks.y    = element_blank()                                     # <5>
   )
 ```
 1. `labs()` to rename axes, legend, title, subtitle, etc.
+2. `scale_x_continuous()` to set x-axis breaks & labels, and remove padding (expand)
+3. `theme_minimal()`, `theme_bw()`, and other built-in themes for a clean, publication-ready plot
+4. `theme()` to customize specific theme elements (e.g., legend position)
+5. `element_blank()` to effectively turn off any theme element
 
 :::callout-tip
+
 ## Built-in and custom themes
 
-Always put `theme()` *after* built-in themes like `theme_bw()`, or the built-in will override your tweaks. 
+Always put `theme()` *after* built-in themes like `theme_minimal()`, or the built-in theme will override your tweaks. 
 
-You can also create your own custom theme object to reuse it across plots, just as you would a built-in theme:
+You can also create your own custom theme object to reuse it across plots, just as you would a built-in theme - just wrap it in a function!
 ```r
-my_theme <- theme_bw(base_size = 14) +
-    theme(legend.position = "bottom", axis.ticks.y = element_blank())
+my_theme <- function(size = 14) {
+    theme_minimal(base_size = size) +
+    theme(legend.position = "bottom", 
+          axis.ticks.y = element_line(color = "red", size = 0.5))
+}
 ```
 :::
 
-### 3.2 Ordering bars and adding color
+### Order categorical values and add color
 
-`ggplot2` defaults to alphabetical order. Use `fct_reorder()` from `forcats` to sort by a meaningful variable instead. Add a colorblind-friendly palette with `scale_fill_viridis_d()`:
+For categorical variables (e.g., text), `ggplot2` defaults to displaying values in alphabetical order (see the plots above). We can use factors (ordered vectors of categorical values) to force a particular display order.  One easy approach is to use `forcats::fct_reorder()` from `forcats` to sort by a meaningful variable instead.
 
 ```{r}
 daily_visits_totals <- daily_visits_loc %>%
   group_by(restore_loc) %>%
   mutate(total = sum(daily_visits)) %>%
   ungroup() %>%
-  mutate(restore_loc = fct_reorder(restore_loc, total))  # ascending; use desc(total) to flip
+  mutate(restore_loc = fct_reorder(restore_loc, desc(total)))
 
-my_theme <- theme_bw(base_size = 14) +
-  theme(legend.position = "bottom", axis.ticks.y = element_blank())
+head(daily_visits_totals$restore_loc)
+```
+
+Note that `fct_reorder()` defaults to sorting in ascending order, so the location with the lowest total visits will be at the bottom of the plot.  To reverse this, add `desc()` around the variable you are sorting by: `fct_reorder(restore_loc, desc(total))`.  Note how `Prospect` is the first level of the factor, and has the highest total visits.
+
+Default colors in `ggplot2` are not the most appealing, and not ideal for accessibility.  There are many options available, and colors in ggplot could be an entire topic in itself.  Here are some quick tips:
+
+::: panel-tabset
+## Color scales
+
+Use `scale_color_*()` or `scale_fill_*()` to select or modify color palettes.  Good choices:
+
+* `scale_color_viridis_c/d()`: {{< fa thumbs-up >}} {{< fa thumbs-up >}} Colorblind-friendly, perceptually uniform (`c`ontinuous or `d`iscrete)
+* `scale_color_brewer()`: [ColorBrewer](https://colorbrewer2.org/){.external target="_blank"} palettes (categorical, sequential, diverging)
+* `scale_color_gradient()`: Custom two-color gradient
+* `scale_color_gradient2()`: Diverging gradient with midpoint
+* `scale_color_manual()`: Fully custom discrete colors
+
+## Color name vs code
+
+You can use either color names (e.g., "steelblue", "salmon", "orchid") or hex codes (e.g., "#4682B4", "#FA8072", "#DA70D6") to specify colors in R.  Hex codes are more precise and allow for a wider range of colors, but color names can be easier to remember and read in code. 
+
+Use `colors()` to see all available color names in R, or [check out this cheat sheet](https://www.nceas.ucsb.edu/sites/default/files/2020-04/colorPaletteCheatsheet.pdf){.external target="_blank"}.
+
+## Alpha
+
+Use the `alpha` argument to set transparency, which can help with overplotting.  For example, `geom_point(alpha = 0.5)` will make points semi-transparent.
+
+:::
+
+
+Let's plot our daily visits data, with the locations ordered by total visits (from `fct_reorder()` above), and colored by visitor type.  We'll add a colorblind-friendly palette with `scale_fill_viridis_d()`.
+
+```{r}
+my_theme <- function(base_size = 14) {
+    theme_minimal(base_size = base_size) +
+    theme(legend.position = "bottom", 
+          panel.grid.major = element_line(color = 'slateblue1'))
+}
 
 ggplot(data = daily_visits_totals,
        aes(y = restore_loc, x = daily_visits, fill = visitor_type)) +
@@ -462,57 +513,29 @@ ggplot(data = daily_visits_totals,
     title = "Total Visits to Delta Restoration Areas by Visitor Type",
     subtitle = "Sum of all visits during the study period"
   ) +
-  my_theme
+  my_theme()
 ```
 
-### 3.3 Saving your plot
+:::callout-exercise
+Why is the longest bar at the bottom? It might make more sense to put the longest bar on top - how could we do that?
+
+::::{.callout-answer}
+The y axis starts with the lowest value on the bottom, and here the "lowest" value is the first factor level (which corresponds to the *highest* total visits as we defined it in an earlier code block). To put the longest bar on top, we can reverse the order of the factor levels in `restore_loc` using `forcats::fct_reorder()` and removing the `desc()` wrapper we included earlier.
+::::
+:::
+
+### Save your plot
 
 ```{r}
 #| eval: false
 ggsave("figures/visit_restore_site_delta.jpg", width = 12, height = 6, units = "in")
 ```
 
-`ggsave()` automatically saves the last plot displayed, or pass `plot = my_object` to save a specific one.
-
-
-#### Colors
-
-The last thing we will do to our plot is change the color. To do this we are going to use a function from the `viridis` package. This package provides different color palettes that are designed to improve graph readability for readers with common forms of color blindness and/or color vision deficiency. With `viridis`, there are multiple other color palette packages or color palettes out there that you can use to customize your graphs. We could spend a whole session talking about colors in R! For the purpose of this lesson we are just going to keep it brief and show one function of the `viridis` package that will make our plot colors look better.
-
-```{r}
-
-ggplot(data = daily_visits_totals,
-       aes(x = daily_visits, y = restore_loc,
-           fill = visitor_type)) +
-    geom_col() +
-    scale_fill_viridis_d() +
-    labs(x = "Number of Visits",
-         y = "Restoration Location",
-         fill = "Type of Visitor",
-         title = "Total Number of Visits to Delta Restoration Areas by visitor type",
-         subtitle = "Sum of all visits during study period") +
-    scale_x_continuous(breaks = seq(0,120, 20), expand = c(0,0)) +
-    my_theme
-
-
-```
-
-Things to keep in mind when choosing a color palette are the number of variables you have and how many colors your palette has. And if you need a discrete or a continuous color palette. Find more information about colors in this [R color cheatsheet](https://www.nceas.ucsb.edu/sites/default/files/2020-04/colorPaletteCheatsheet.pdf). 
-
-
-#### Saving plots
-
-Saving plots using `ggplot` is easy! The `ggsave()` function will save either the last plot you created, or any plot that you have saved to an object. You can specify what output format you want, size, resolution, etc. See `?ggsave()` for documentation.
-
-For example, if we want to save our current plot to an existing folder named "figures", we can do this:
-
-```r
-ggsave("figures/visit_restore_site_delta.jpg", width = 12, height = 6, units = "in")
-```
+`ggsave()` automatically saves the last plot displayed, or pass `plot = my_object` to save a specific one.  Set `width`, `height`, and `units` to control the size of the output file.  By default, `ggsave()` guesses the output format from the file extension (e.g., `.jpg`, `.png`, `.pdf`).  See `?ggsave()` for more options.
 
 
 
-#### Creating multiple plots
+## Creating multiple plots
 
 An easy way to plot another aspect of your data is using the function `facet_wrap()`. This function takes a mapping to a variable using the syntax `~{variable_name}`. The `~` (tilde) is a model operator which tells `facet_wrap()` to model each unique value within `variable_name` to a facet in the plot.
 
