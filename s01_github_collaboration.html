@@ -613,8 +613,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li><span style="color: orange;"><strong>Owner</strong></span> adds <span style="color: purple;"><strong>Collaborator</strong></span> on GitHub
 <ul>
-<li><span style="color: orange;"><strong>Owner</strong></span> creates a new repository on GitHub, called “git_collab_<username>” (or similar), and includes a README.<br>
-</username></li>
+<li><span style="color: orange;"><strong>Owner</strong></span> creates a new repository on GitHub, called <code>git_collab_&lt;username&gt;</code> (or similar), and includes a README.<br>
+</li>
 <li>Then, <span style="color: orange;"><strong>Owner</strong></span> navigates to the repository <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> <strong>Settings</strong> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> <strong>Collaborators</strong> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> <strong>Add people</strong>. Enter the <span style="color: purple;"><strong>Collaborator’s</strong></span> username and send the invitation.</li>
 <li>The <span style="color: purple;"><strong>Collaborator</strong></span> accepts via email or GitHub notifications, gaining push access.</li>
 </ul></li>
@@ -685,7 +685,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li><span style="color: orange;"><strong>Owner</strong></span>: Create a new repository “git_collab_<username>” then go to <strong>Settings</strong> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> <strong>Collaborators</strong> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> <strong>Add people</strong> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> add your partner’s username</username></li>
+<li><span style="color: orange;"><strong>Owner</strong></span>: Create a new repository <code>git_collab_&lt;username&gt;</code> then go to <strong>Settings</strong> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> <strong>Collaborators</strong> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> <strong>Add people</strong> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> add your partner’s username</li>
 <li><span style="color: purple;"><strong>Collaborator</strong></span>: accept the invitation from your email or GitHub notifications</li>
 </ul>
 </div>
@@ -706,7 +706,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Complete two rounds, switching <span style="color: orange;"><strong>Owner</strong></span>/<span style="color: purple;"><strong>Collaborator</strong></span> roles between rounds.</p>
 <p><strong>Round One:</strong></p>
 <ul>
-<li><span style="color: orange;"><strong>Owner</strong></span> adds <span style="color: purple;"><strong>Collaborator</strong></span> to “git_collab_<username>” (see Setup above)</username></li>
+<li><span style="color: orange;"><strong>Owner</strong></span> adds <span style="color: purple;"><strong>Collaborator</strong></span> to <code>git_collab_&lt;username&gt;</code> (see Setup above)</li>
 <li><span style="color: purple;"><strong>Collaborator</strong></span> clones the <span style="color: orange;"><strong>Owner</strong></span>’s repository</li>
 <li><span style="color: purple;"><strong>Collaborator</strong></span> adds a new level-2 heading “Git Workflow” to README.md, then applies commit-pull-push workflow</li>
 <li><span style="color: orange;"><strong>Owner</strong></span> pulls those changes</li>
@@ -715,7 +715,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p><strong>Round Two (switch roles!):</strong></p>
 <ul>
-<li>NEW <span style="color: orange;"><strong>Owner</strong></span> creates a new “git_collab_<username>” repository and adds NEW <span style="color: purple;"><strong>Collaborator</strong></span> (see Setup above)</username></li>
+<li>NEW <span style="color: orange;"><strong>Owner</strong></span> creates a new <code>git_collab_&lt;username&gt;</code> repository and adds NEW <span style="color: purple;"><strong>Collaborator</strong></span> (see Setup above)</li>
 <li><span style="color: purple;"><strong>Collaborator</strong></span> clones</li>
 <li><span style="color: purple;"><strong>Collaborator</strong></span> adds a level 3 heading “How to Create a Git Repository” with high-level steps, then commit-pull-push</li>
 <li><span style="color: orange;"><strong>Owner</strong></span> pulls, adds detail under the heading, then commit-pull-push</li>
@@ -806,10 +806,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="4.1" class="anchored" data-anchor-id="demonstration-1"><span class="header-section-number">4.1</span> Demonstration</h3>
 <p>As before, the instructors will first demonstrate this sequence. Then participants will pair off and work through this in the exercise that follows.</p>
 <ol type="1">
-<li><strong>Both</strong> pull to sync to the <span style="color: orange;"><strong>Owner’s</strong></span> “git_collab_<username>” repository
+<li><strong>Both</strong> pull to sync to the <span style="color: orange;"><strong>Owner’s</strong></span> <code>git_collab_&lt;username&gt;</code> repository
 <ul>
 <li>Ensure both <span style="color: orange;"><strong>Owner</strong></span> and <span style="color: purple;"><strong>Collaborator</strong></span> have all the latest changes locally (Git pane shows no pending commits).</li>
-</ul></username></li>
+</ul></li>
 <li><span style="color: orange;"><strong>Owner</strong></span> edits line 1 of README and commits - but <strong>does not pull or push</strong></li>
 <li><span style="color: purple;"><strong>Collaborator</strong></span> edits the same line and commits - but <strong>does not pull or push</strong>
 <ul>
@@ -856,7 +856,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Work with the same partner as the previous exercise (since you’ve already both invited one another as collaborators!). Complete two rounds, switching roles between them.</p>
 <p><strong>Round One:</strong></p>
 <ol type="1">
-<li><strong>Both</strong> pull to sync to the <span style="color: orange;"><strong>Owner’s</strong></span> “git_collab_<username>” repository</username></li>
+<li><strong>Both</strong> pull to sync to the <span style="color: orange;"><strong>Owner’s</strong></span> <code>git_collab_&lt;username&gt;</code> repository</li>
 <li><span style="color: orange;"><strong>Owner</strong></span> edits the README title on line 1 and commits but <strong>does not pull or push</strong></li>
 <li><span style="color: purple;"><strong>Collaborator</strong></span> edits the same line differently and commits but <strong>does not pull or push</strong>
 <ul>
