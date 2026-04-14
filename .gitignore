@@ -51,4 +51,4 @@ vignettes/*.pdf
 docs/
 
 # Files
-## TBD
+**/*.quarto_ipynb
