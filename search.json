@@ -307,21 +307,30 @@
     "href": "s00_benchmarks.html",
     "title": "Working Group Project Milestones",
     "section": "",
-    "text": "There are no universal benchmarks for how quickly a synthesis working group will proceed through the phases of a project’s lifecycle. That said, the milestones below may prove helpful as a general ‘how are we doing?’ temperature check. If your group does not accomplish all of these–or proceeds beyond them–don’t worry too much!"
+    "text": "There are no universal benchmarks for how quickly a synthesis working group will proceed through the phases of a project’s lifecycle. That said, the milestones below may prove helpful as a general ‘how are we doing?’ temperature check. If your group does not accomplish all of these–or proceeds beyond them–don’t worry too much!",
+    "crumbs": [
+      "Working Group Project Milestones"
+    ]
   },
   {
     "objectID": "s00_benchmarks.html#overview",
     "href": "s00_benchmarks.html#overview",
     "title": "Working Group Project Milestones",
     "section": "",
-    "text": "There are no universal benchmarks for how quickly a synthesis working group will proceed through the phases of a project’s lifecycle. That said, the milestones below may prove helpful as a general ‘how are we doing?’ temperature check. If your group does not accomplish all of these–or proceeds beyond them–don’t worry too much!"
+    "text": "There are no universal benchmarks for how quickly a synthesis working group will proceed through the phases of a project’s lifecycle. That said, the milestones below may prove helpful as a general ‘how are we doing?’ temperature check. If your group does not accomplish all of these–or proceeds beyond them–don’t worry too much!",
+    "crumbs": [
+      "Working Group Project Milestones"
+    ]
   },
   {
     "objectID": "s00_benchmarks.html#week-2-benchmarks",
     "href": "s00_benchmarks.html#week-2-benchmarks",
     "title": "Working Group Project Milestones",
     "section": "2 Week 2 Benchmarks",
-    "text": "2 Week 2 Benchmarks\n\nBefore Week 2At the End of Week 2Before Week 3\n\n\nBefore this week of the workshop, your group should have done (at least some of) the following:\n\nWritten code (version-controlled and stored in GitHub) to:\n\nHarmonize at least 5 datasets\nPerform quality control on the harmonized dataset\nPerform preliminary visualization of individual or synthesized datasets\n\nDocumented scientific judgment calls made up to this point in a clear, human-readable manner\n\nE.g., data in/exclusion criteria, data transformation(s), project question or scope changes\n\nUpdated your project management system with specific, actionable tasks that have not yet been done but need to be completed in the near future\nIdentified areas of confusion (e.g., scientific, code-related) to discuss with workshop instructors and/or project mentors during week 2\n\n\n\nAfter this week, your group should have done (at least some of) the following:\n\nWritten code (version-controlled and stored in GitHub) to:\n\nPerform more advanced, higher-quality visualization of your data\nMore thoroughly quality control your data\n\nDrafted an authorship/intellectual property policy for your group\nMade a plan for organizing your project and documenting that organization\n\nNote this may include distinct rules for GitHub, SharePoint, and other platforms your group has chosen to engage with\n\n\n\n\nBetween this workshop week and the next, your group should have done (at least some of) the following:\n\nWritten code (version-controlled and stored in GitHub) to:\n\nHarmonize/standardize your chosen datasets (can be a draft workflow at this point but should be pretty solid)\nPerform preliminary analysis\nMake publication-quality figures\n\nFinalized your group’s authorship/intellectual credit policy\nMade a reasonably complete set of documentation explaining your project organization schema\nConsidered whether custom R functions (or an R package) might make sense for your group’s goals and interests\nDecided whether to make a group website (published via GitHub)"
+    "text": "2 Week 2 Benchmarks\n\nBefore Week 2At the End of Week 2Before Week 3\n\n\nBefore this week of the workshop, your group should have done (at least some of) the following:\n\nWritten code (version-controlled and stored in GitHub) to:\n\nHarmonize at least 5 datasets\nPerform quality control on the harmonized dataset\nPerform preliminary visualization of individual or synthesized datasets\n\nDocumented scientific judgment calls made up to this point in a clear, human-readable manner\n\nE.g., data in/exclusion criteria, data transformation(s), project question or scope changes\n\nUpdated your project management system with specific, actionable tasks that have not yet been done but need to be completed in the near future\nIdentified areas of confusion (e.g., scientific, code-related) to discuss with workshop instructors and/or project mentors during week 2\n\n\n\nAfter this week, your group should have done (at least some of) the following:\n\nWritten code (version-controlled and stored in GitHub) to:\n\nPerform more advanced, higher-quality visualization of your data\nMore thoroughly quality control your data\n\nDrafted an authorship/intellectual property policy for your group\nMade a plan for organizing your project and documenting that organization\n\nNote this may include distinct rules for GitHub, SharePoint, and other platforms your group has chosen to engage with\n\n\n\n\nBetween this workshop week and the next, your group should have done (at least some of) the following:\n\nWritten code (version-controlled and stored in GitHub) to:\n\nHarmonize/standardize your chosen datasets (can be a draft workflow at this point but should be pretty solid)\nPerform preliminary analysis\nMake publication-quality figures\n\nFinalized your group’s authorship/intellectual credit policy\nMade a reasonably complete set of documentation explaining your project organization schema\nConsidered whether custom R functions (or an R package) might make sense for your group’s goals and interests\nDecided whether to make a group website (published via GitHub)",
+    "crumbs": [
+      "Working Group Project Milestones"
+    ]
   },
   {
     "objectID": "s02_r_data_visualization.html",
