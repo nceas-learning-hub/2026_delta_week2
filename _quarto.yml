@@ -58,8 +58,7 @@ website:
         href: https://github.com/nceas-learning-hub/2026_delta_week2
     contents:
       - index.qmd # preface
-      - text: "Project Milestones"
-        href: s00_groups.qmd ### additional preface page
+      - s00_benchmarks.qmd
       # START SESSIONS
       - section: "Day 1"
         contents:
