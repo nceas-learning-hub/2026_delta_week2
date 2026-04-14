@@ -19,14 +19,36 @@ Parts of the content in this page was adapted from the Long Term Ecological Rese
 
 ## Intellectual Credit Context
 
-Navigating issues of intellectual property and credit can be a challenge, particularly for early career researchers. Open communication is critical to avoiding misunderstandings and conflicts. Talk to your collaborators about credit and authorship early and often. This is particularly important when working with new collaborators and across lab groups or disciplines which may have divergent views on authorship and data sharing. If you feel uncomfortable talking about issues surrounding credit or intellectual property, seek the advice or assistance of a mentor to support you in having these important conversations.
+Navigating issues of intellectual property and credit can be a challenge, particularly for early career researchers. Open communication is critical to avoiding misunderstandings and conflicts. Talk to your collaborators about credit early and often to avoid hurt feelings and keep your team functioning smoothly. This is particularly important when working with new collaborators and across lab groups or disciplines which may have divergent views on what constitutes appropriate credit for a given product. If you feel uncomfortable talking about issues surrounding credit or intellectual property, seek the advice or assistance of a mentor to support you in having these important conversations.
 
-![](images/intellectual_credit/phdcomics-author-credit.jpg){fig-alt="Comic showing an author by-line on a peer-reviewed paper and sarcastically highlighting how author order often does not correlate with contributions to the paper"}
+### Credit & Authorship
+
+For those with an academic background, it can be easiest to think about intellectual credit in terms of inclusion as a co-author on a peer-reviewed paper. Author order can also be hugely significant--though the prestige of particular positions in the author order can differ wildly between disciplines. **For the purposes of this training, we'll use authorship as a framing device for a larger conversation about intellectual credit.** That _does not_ mean that intellectual credit begins and ends at an authorship policy but it is a useful lens through which we can examine some common examples and issues with intellectual credit more broadly.
+
+Regardless of the context, <u>if your team builds a shared understanding of intellectual credit early in your process and navigates those conversations with empathy and intentionality, things will likely turn out all right!</u>
+
+:::{.callout-exercise}
+### Exercise: Discuss Different Forms of Intellectual Credit
+
+In pairs, discuss (some of) the following:
+
+- What types of non-paper products do you think warrant formal credit?
+    - How--in your opinion--should that credit be granted?
+- What type of credit is the most impactful for your career right now?
+    - Has that changed over time?
+    - If so, how?
+- Other than degree of contribution, what other factors affect how much credit you feel someone deserves on a given project?
+
+:::
+
+![](images/intellectual_credit/phdcomics-author-credit.jpg){fig-alt="Comic showing an author by-line on a peer-reviewed paper and sarcastically highlighting how author order often does not correlate with contributions to the paper" .lightbox}
+
+### Authorship Policy Examples
 
 It can be hlpeful to start by considering some examples of intellectual credit frameworks. Click through the tabs below for some highlights of a few examples.
 
 :::{.panel-tabset}
-### ESA
+### Ecology
 
 The Ecological Society of America (ESA) created a [Code of Ethics](https://esa.org/about/code-of-ethics/) with some guidance for publication co-authorship as part of it. ESA suggests that reserachers claim authorship only if they have made a "substantial contribution" to the work. 
 
@@ -39,7 +61,7 @@ This must at least include **one** of the following:
 
 ESA's authorship policy also prevents researchers from adding/deleting authors without those individuals' consent--both in terms of their inclusion as authors and their agreement with the final version of the manuscript.
 
-### ICMJE
+### Medicine
 
 The International Committee of Medical Journal Editors (ICMJE) also has some guidelines for conduct, reporting, editing, and publishing scholarly work which includes some facets of intellectual credit/authorship. The ICMJE actually provides a slightly stricter framework for intellectual credit than ESA's guidelines.
 
@@ -48,80 +70,74 @@ Collaborators must do **all** of the following to warrant authorship:
 1. Substantial contributions to the conception or design of the work; or the acquisition, analysis, or interpretation of data for the work
 2. Drafting the work or reviewing it critically for important intellectual content
 3. Final approval of the version to be published
-4. _Agreement to be accountable for all aspects of the work in ensuring that questions related to the accuracy or integrity of any part of the work are appropriately investigated and resolved_
+4. Agreement to be accountable for all aspects of the work in ensuring that questions related to the accuracy or integrity of any part of the work are appropriately investigated and resolved 
+
+### CRediT Framework
+
+The [Contributor Role Taxonomy](https://credit.niso.org/) (CRediT) separates research roles into [14 categories](https://zenodo.org/records/18421449) though doesn't necessarily identify how performing those duties relates to authorship. Many teams that adopt this framework decide on some critical number of categories that a team member must fulfill in order to warrant authorship.
+
+The CRediT roles are defined in the table below.
+
+| Category | Definition |
+|:-:|:--------------------|
+| Conceptualization | Ideas; formulation or evolution of overarching research goals and aims |
+| Data Curation | Management activities to annotate (produce metadata), scrub data and maintain research data (including software code, where it is necessary for interpreting the data itself) for initial use and later re-use |
+| Formal Analysis | Application of formal statistical, mathematical, computational, or other formal techniques to analyze or synthesize study data |
+| Funding Acquisition | Acquisition of the financial support for the project leading to this publication |
+| Investigation | Conducting a research and investigation process, specifically performing the experiments, or data/evidence collection |
+| Methodology | Development or design of methodology; creation of models |
+| Project Administration | Management and coordination responsibility for the research activity planning and execution. |
+| Resources | Provision of study materials, reagents, materials, patients, laboratory samples, animals, instrumentation, computing resources, or other analysis tools |
+| Software | Programming, software development; designing computer programs; implementation of the computer code and supporting algorithms; testing of existing code components |
+| Supervision | Oversight and leadership responsibility for the research activity planning and execution, including mentorship external to the core team |
+| Validation | Verification, whether as a part of the activity or separate, of the overall replication/reproducibility of results/experiments and other research outputs |
+| Visualization | Preparation, creation and/or presentation of the published work, specifically visualization/data presentation |
+| Writing - Original Draft | Preparation, creation and/or presentation of the published work, specifically writing the initial draft (including substantive translation) |
+| Writing - Review & Editing | Preparation, creation and/or presentation of the published work by those from the original research group, specifically critical review, commentary or revision--including pre- or post-publication stages |
 
 :::
 
+## Credit & Perception of Contribution
 
-You should also check guidelines published by the journal(s) to which you anticipate submitting your work.
+Keep in mind that intellectual credit is both grounded in tangible contributions to a project and our _perception_ of those efforts. It is quite common for individuals to overestimate their own contribution to the work of a team, especially when the outcome is positive.
 
+A research team formally examined the phenomenon in the context of scientific publishing and found that authors almost universally over-estimated their own contribution to a project, at least with respect to how their team members perceived it ([Herz _et al._ 2020](https://www.pnas.org/doi/full/10.1073/pnas.2003500117)).
 
-For collaborative research projects, develop an authorship agreement for your group early in the project and refer to it for each product. [This example authorship agreement](https://learning.nceas.ucsb.edu/2023-08-delta/files/template-authorship-policy-ADC-training.docx) from the Arctic Data Center provides a useful template. It builds from information contained within [Weltzin _et al._ (2006)](https://esajournals.onlinelibrary.wiley.com/doi/abs/10.1890/1540-9295(2006)4%5B435:AIEAAA%5D2.0.CO%3B2) and provides a rubric for inclusion of individuals as authors. Your collaborative team may not choose to adopt the agreement in the current form, however it will prompt thought and discussion in advance of developing a consensus. Some key questions to consider as you are working with your team to develop the agreement:
+![](images/intellectual_credit/credit-by-author-count.jpeg){fig-alt="Column graph with the sum of authors' self-reported contributions exceeding 100% by 17 to 158%" .lightbox}
+<figcaption> Figure taken from Herz _et al._ 2020. The sum of coauthors percent contribution to 10 published manuscripts is shown in (A). The red dash-dotted line represents the sum of coauthors' contributions after they were given the opportunity to adjust their own percent contribution. In (B) we show the mean percent contribution assigned by coauthors to themselves in Step 1 ("Self"), percent contribution coauthors assigned to themselves after given the opportunity to adjust their contribution not to exceed 100% in Step 2 ("Self-Corrected"), and mean percent contribution assigned to authors by their coauthors ("Other"). Error bars represent standard errors of the means. \*\*p\<.01, \*\*\*p\<.0001. </figcaption>
 
-:::{.callout-exercise}
-### Exercise: Draft Your Intellectual Credit Policy
+<br>
 
-- Check the International Committee of Medical Journal Editors [guidelines for authorship and contribution](https://www.icmje.org/recommendations/browse/roles-and-responsibilities/defining-the-role-of-authors-and-contributors.html)
-- Revise the NISO [Contributor Roles Taxonomy](https://credit.niso.org/) (CRediT)
-- As a group answer the following questions relevant questions to your project: What are our criteria for authorship? (See the ICMJE guidelines for potential criteria)
-- Will we extend the opportunity for authorship to all group members on every paper or product?
-- Do we want to have an opt in or opt out policy?
-    - In an opt out policy, all group members are considered authors from the outset and must request removal from the paper if they don’t think they meet the criteria for authorship
-- Who has the authority to make decisions about authorship? Lead author? PI? Group?
-- How will we decide authorship order?
-- In what other ways will we acknowledge contributions and extend credit to collaborators?
-- How will we resolve conflicts if they arise?
-
-:::
-
-
-But what are we to do in the context of a multidisciplinary group project, where the study design design often results from multiple overlapping and free-wheeling conversations and trials? Each contributor may have very limited knowledge of the others' fields or expertise. Fairly judging authorship, let alone "being accountable for all aspects of the work" becomes much more complicated. But readers and journal editors have a right to expect that authors can stand behind their work.
-
-In such cases, the potential for misunderstanding and conflict becomes obvious. And, of course, academia's traditionally hierarchical structures can make it especially difficult for early career researchers to advocate for themselves in the moment. Proactively developing an authorship policy can help head off intra-group conflict, which can be especially destructive for early career researchers. It also helps the group to clarify expectations, maintain accountability, and allows researchers to rehearse potentially difficult conversations before they become personal.
-
-Of course, it's useful to bear in mind that human psychology also has a role to play in authorship conflicts. It is quite common for individuals to overestimate their own contribution to the work of a team, especially when the outcome is positive. Nelson et al. (2020) examined the phenomenon in the context of scientific publishing and found that authors almost universally over-estimated their own contribution to a project, at least with respect to how their team members perceived it.
-
-<p align="center">
-<img src="images/intellectual_credit/credit-by-author-count.jpeg" alt="Column graph with the sum of authors' self-reported contributions exceeding 100% by 17 to 158%" width="100%"/>
-<figcaption> Figure taken from Nelson _et al._ 2020. The sum of coauthors percent contribution to 10 published manuscripts is shown in (A). The red dash-dotted line represents the sum of coauthors' contributions after they were given the opportunity to adjust their own percent contribution. In (B) we show the mean percent contribution assigned by coauthors to themselves in Step 1 ("Self"), percent contribution coauthors assigned to themselves after given the opportunity to adjust their contribution not to exceed 100% in Step 2 ("Self-Corrected"), and mean percent contribution assigned to authors by their coauthors ("Other"). Error bars represent standard errors of the means. \*\*p\<.01, \*\*\*p\<.0001. </figcaption>
-</p>
-
-At each stage of a project, different factors may work to distort, conceal, or amplify the contributions of some authors or potential authors. Take a few minutes to consider each project stage and how misperceptions might arise.
-
-::::{.callout-warning icon="false"}
-### {{<fa rocket >}} Activity: Discuss Your Experiences with Intellectual Credit
-
-Take a few minutes to reflect on your own experiences in each of these areas before expanding each of the below panels. **In each area, what types of contributions have you noticed get under- or over-valued?**
+**At each stage of a project, different factors may work to distort, conceal, or amplify the contributions of some authors or potential authors.** Let's take a few minutes to consider some project stages and how misperceptions might arise.
 
 :::{.panel-tabset}
 ### Hypothesis Development
 
--   In group discussions, the contributions of asynchronous or virtual participants can easily be discounted, because they seem less immediate.
--   Similarly, when an idea is first contributed by an early career-stage participant, it can be overlooked until echoed by a senior participant.
--   Often, a seemingly naive question ignites the process that leads to a new way of seeing the problem. In these cases, the conclusion is often remembered, but the question (and the questioner) rarely is.
+- In group discussions, the contributions of asynchronous or virtual participants can easily be discounted, because they seem less immediate.
+- Similarly, when an idea is first contributed by an early career-stage participant, it can be overlooked until echoed by a senior participant.
+- Often, a seemingly naive question ignites the process that leads to a new way of seeing the problem. In these cases, the conclusion is often remembered, but the question (and the questioner) rarely is
 
 ### Data Gathering
 
--   Data that are easily accessed and downloaded can receive less credit than when the synthesis team needs to make direct contact with the original researcher to get access or permission to use. Data should always be cited, even when they are already publicly available.
--   Significant labor goes into finding, downloading, and cleaning datasets, but it is not glamorous work and often happens in isolation. That does not make it any less essential.
+- Data that are easily accessed and downloaded can receive less credit than when the synthesis team needs to make direct contact with the original researcher to get access or permission to use. Data should always be cited, even when they are already publicly available
+- Significant labor goes into finding, downloading, and cleaning datasets, but it is not glamorous work and often happens in isolation. That does not make it any less essential
 
 ### Data Analysis
 
--   Data analysis is the "meat" of synthesis, but even here there are pitfalls. Consider the originality of the approach and the labor involved when valuing analytical contributions.
--   While the work of doing the analysis may fall to the more quantitatively skilled team members, key insights at this stage often come from careful review by, and discussion with, field ecologists and savvy communicators. Just because someone didn't write the R code doesn't mean they didn't contribute to analysis.
+- Data analysis is the "meat" of synthesis, but even here there are pitfalls. Consider the originality of the approach and the labor involved when valuing analytical contributions
+- While the work of doing the analysis may fall to the more quantitatively skilled team members, key insights at this stage often come from careful review by, and discussion with, field ecologists and savvy communicators. Just because someone didn't write the R code doesn't mean they didn't contribute to analysis
 
 ### Writing
 
 -   Like framing a house, framing the "story" of a paper provides essential structure and stability -- even when covered by the walls and trim (or words and figures) of the built-out product.
--   Getting the first few paragraphs on the page is a valuable contribution -- even if not a single one of those words makes it to the final draft. Editing and expanding others' work is far easier than writing de novo.
+- Getting the first few paragraphs on the page is a valuable contribution -- even if not a single one of those words makes it to the final draft. Editing and expanding others' work is far easier than writing _de novo_
 
 ### Editing
 
--   Even when all contributors are fluent writers, the job of merging disparate sections into a single voice is challenging and deserves credit.
--   Resolving versions, checking references, and formatting are thankless, but essential tasks in getting to a publishable product.
+- Even when all contributors are fluent writers, the job of merging disparate sections into a single voice is challenging and deserves credit
+- Resolving versions, checking references, and formatting are thankless, but essential tasks in getting to a publishable product
 
 :::
-::::
 
 ## Opt-In v. Opt-Out Authorship
 
@@ -227,3 +243,19 @@ Gather in your project teams and begin to build out your own authorship approach
 
 :::
 ::::
+
+
+
+:::{.callout-exercise}
+### Exercise: Draft Your Intellectual Credit Policy
+
+- As a group answer the following questions relevant questions to your project: What are our criteria for authorship? (See the ICMJE guidelines for potential criteria)
+- Will we extend the opportunity for authorship to all group members on every paper or product?
+- Do we want to have an opt in or opt out policy?
+    - In an opt out policy, all group members are considered authors from the outset and must request removal from the paper if they don’t think they meet the criteria for authorship
+- Who has the authority to make decisions about authorship? Lead author? PI? Group?
+- How will we decide authorship order?
+- In what other ways will we acknowledge contributions and extend credit to collaborators?
+- How will we resolve conflicts if they arise?
+
+:::
