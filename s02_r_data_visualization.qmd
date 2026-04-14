@@ -19,7 +19,7 @@ After completing this session, you will be able to:
 
 ## Overview
 
-`ggplot2` is a popular package for visualizing data in R.
+`ggplot2` is a popular package for visualizing data in R, designed to work seamlessly with the `tidyverse` ecosystem of packages.
 From the [home page](http://ggplot2.tidyverse.org/):
 
 > `ggplot2` is a system for declaratively creating graphics, based on The Grammar of Graphics. You provide the data, tell `ggplot2` how to map variables to aesthetics, what graphical primitives to use, and it takes care of the details.
@@ -72,11 +72,11 @@ library(janitor)   ### clean column names
 
 ### Visualization
 library(ggplot2)
-library(scales)    ### axis formatting helpers
-library(viridis)   ### colorblind-friendly palettes
+# library(scales)    ### axis formatting helpers
+# library(viridis)   ### colorblind-friendly palettes
 
 ### Interactive output
-library(leaflet)
+# library(leaflet)
 library(DT)
 ```
 
@@ -526,28 +526,29 @@ The y axis starts with the lowest value on the bottom, and here the "lowest" val
 
 ### Save your plot
 
-```{r}
-#| eval: false
+```r
 ggsave("figures/visit_restore_site_delta.jpg", width = 12, height = 6, units = "in")
 ```
 
-`ggsave()` automatically saves the last plot displayed, or pass `plot = my_object` to save a specific one.  Set `width`, `height`, and `units` to control the size of the output file.  By default, `ggsave()` guesses the output format from the file extension (e.g., `.jpg`, `.png`, `.pdf`).  See `?ggsave()` for more options.
+* By default, `ggsave()` saves the last plot displayed, or you can pass `plot = my_object` to save a specific plot object.  
+* Set `width`, `height`, and `units` to control the size of the output file.  
+* By default, `ggsave()` guesses the output format from the file extension (e.g., `.jpg`, `.png`, `.pdf`).  See `?ggsave()` for more options.
 
 
+## Create "small multiple" plots
 
-## Creating multiple plots
+Plotting multiple lines or bars on a plot can convey a lot of information, but can also appear rather cluttered.  Alternately, you can plot subsets or closely related variables using `facet_wrap()` in "small multiples".  Each unique value of a (usually categorical) variable is mapped to its own mini panel using the syntax `facet_wrap(~ <variable_name>)`.
 
-An easy way to plot another aspect of your data is using the function `facet_wrap()`. This function takes a mapping to a variable using the syntax `~{variable_name}`. The `~` (tilde) is a model operator which tells `facet_wrap()` to model each unique value within `variable_name` to a facet in the plot.
+The default behavior puts all facets on the same x and y scale. Use the `scales` argument to allow different scales between facet plots (e.g. `scales = "free_y"` to let the y axis scale vary from facet to facet). Specify the number of columns using the `ncol = ` argument or number of rows using `nrow =`.
 
-The default behavior of facet wrap is to put all facets on the same x and y scale. You can use the `scales` argument to specify whether to allow different scales between facet plots (e.g `scales = "free_y"` to free the y axis scale). You can also specify the number of columns using the `ncol = ` argument or number of rows using `nrow =`.
-
+See also `facet_grid()` for faceting by two variables.
 
 ```{r}
 facet_plot <- ggplot(data = daily_visits_totals,
        aes(x = visitor_type, y = daily_visits,
            fill = visitor_type)) +
     geom_col() +
-    facet_wrap(~restore_loc,
+    facet_wrap(~ restore_loc,
                scales = "free_y",
                ncol = 5,
                nrow = 2) +
@@ -564,10 +565,12 @@ facet_plot <- ggplot(data = daily_visits_totals,
 facet_plot
 ```
 
-We can save this plot to our figures folder too. Note that this time we are specifically mentioning the object we want to save.
+Save this plot to your figures folder.  
 
 ```r
-ggsave("figures/visit_restore_site_facet.jpg", plot = facet_plot, width = 12, height = 8, units = "in")
+ggsave("figures/visit_restore_site_facet.jpg", 
+       plot = facet_plot, 
+       width = 12, height = 8, units = "in")
 
 ```
 
@@ -579,33 +582,17 @@ Fixing tick labels in `ggplot` can be super annoying. The y-axis labels in the p
 The `scales` package provides some nice helper functions to easily rescale and relabel your plots. Here, we use `scale_y_continuous()` from `ggplot2`, with the argument `labels`, which is assigned to the function name `comma`, from the `scales` package. This will format all of the labels on the y-axis of our plot with comma-formatted numbers.-->
 
 
-## Interactive visualization
+## Aside: Interactive Tables with `DT`
 
-### Tables with `DT`
+Most of the time, we will render our Quarto documents as .html files, which means we can include interactive elements in our documents.  The `DT` package provides a simple way (using `DT::datatable()`) to create interactive tables in R, which a user can search, filter, reorder, etc.
 
-Now that we know how to make great static visualizations, let's introduce two other packages that allow us to display our data in interactive ways. These packages really shine when used with GitHub Pages, so at the end of this lesson we will publish our figures to the website we created earlier.
-
-First let's show an interactive table of unique sampling locations using `DT`.
-We will start by creating a `data.frame` containing unique sampling locations.
-
-```{r uniq_locations}
-locations <- visits_long %>%
-    distinct(restore_loc, .keep_all = T) %>%
-    select(restore_loc, latitude, longitude)
-
-head(locations)
-```
-
-The `dplyr::distinct()` function comes pretty handy when you want to filter unique values in a column. In this case we use the `.keep_all = T` argument to keep all the columns of our data frame so we can have the `latitude` and `longitude` of each of the locations. If we don't add this argument, we would end up with a data frame with only one column: `restore_loc` and 10 rows, one for each of the unique locations.
-
-
-Now we can display this table as an interactive table using `datatable()` from the `DT` package.
+Search the following table for only specific locations or visitor types, and sort by date or number of visits. 
 
 ```{r display_locations}
-datatable(locations)
+DT::datatable(visits_long)
 ```
 
-### Maps with `leaflet`
+<!-- ### Maps with `leaflet`
 
 The `leaflet()` package allows you to make basic interactive maps using just a couple lines of code. Note that unlike `ggplot2`, the `leaflet` package uses pipe operators (`%>%`) and not the additive operator (`+`).
 
@@ -613,6 +600,8 @@ The `addTiles()` function without arguments will add base tiles to your map from
 
 
 ```{r simple_map}
+#| include: false
+#| eval: false
 
 leaflet(locations) %>%
     addTiles() %>%
@@ -629,7 +618,8 @@ You can also use `leaflet` to import Web Map Service (WMS) tiles. For example, w
 
 
 ```{r}
-
+#| include: false
+#| eval: false
 leaflet(locations) %>%
     addWMSTiles(
         "https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WmsServer",
@@ -644,7 +634,7 @@ leaflet(locations) %>%
         fillColor = "salmon",
         fillOpacity = 1,
         # set stroke properties
-        stroke = T,
+        stroke = TRUE,
         weight = 0.5,
         color = "white",
         opacity = 1)
@@ -656,6 +646,8 @@ leaflet(locations) %>%
 We can also layer base maps. In this case the USGSImageryTopo base map with the USGSHydroCached base map. Note that the url where the map is retrieved is very similar for each USGS base map.
  
 ```{r}
+#| include: false
+#| eval: false
 
 leaflet(locations) %>%
     addWMSTiles(
@@ -675,7 +667,7 @@ leaflet(locations) %>%
         fillColor = "salmon",
         fillOpacity = 1,
         # set stroke properties
-        stroke = T,
+        stroke = TRUE,
         weight = 0.5,
         color = "white",
         opacity = 1)
@@ -686,10 +678,10 @@ leaflet(locations) %>%
 
 <br>
 
-Leaflet has a ton of functionality that can enable you to create some beautiful, functional maps with relative ease. [Here](https://pages.github.nceas.ucsb.edu/NCEAS/sasap-data/language_vis.html) is an example of some we created as part of the [State of Alaskan Salmon and People (SASAP) project](https://www.nceas.ucsb.edu/workinggroups/state-alaskan-salmon-and-people-sasap), created using the same tools we showed you here. This map hopefully gives you an idea of how powerful the combination of Quarto or RMarkdown and GitHub Pages can be. 
+Leaflet has a ton of functionality that can enable you to create some beautiful, functional maps with relative ease. [Here](https://pages.github.nceas.ucsb.edu/NCEAS/sasap-data/language_vis.html) is an example of some we created as part of the [State of Alaskan Salmon and People (SASAP) project](https://www.nceas.ucsb.edu/workinggroups/state-alaskan-salmon-and-people-sasap), created using the same tools we showed you here. This map hopefully gives you an idea of how powerful the combination of Quarto or RMarkdown and GitHub Pages can be.  -->
 
 
-## Publish the Data Visualization lesson to your webpage
+<!-- ## Publish the Data Visualization lesson to your webpage
 
 ::: callout-tip
 ### Steps
@@ -700,11 +692,12 @@ Leaflet has a ton of functionality that can enable you to create some beautiful,
 4. Save and render `index.qmd` to an `html`.
 5. Use the `Git` workflow: ```Stage > Commit > Pull > Push```
 
-:::
+::: -->
 
 ## `ggplot2` Resources
 
-- [Why not to use two axes, and what to use instead: The case against dual axis charts](https://blog.datawrapper.de/dualaxis/) by Lisa Charlotte Rost.
-- [Customized Data Visualization in `ggplot2`](https://allisonhorst.github.io/eds221-day8-comp/data_viz.html#3_ggplot2_Basics_Review) by Allison Horst.
-- [A `ggplot2` tutorial for beautiful plotting in R](https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/#legends) by Cedric Scherer.
+- [R Graph Gallery](https://www.r-graph-gallery.com/){.external target="_blank"} by Yan Holtz - a gallery of beautiful plots for inspiration, with code examples.
+- [A `ggplot2` tutorial for beautiful plotting in R](https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/#legends){.external target="_blank"} by Cedric Scherer - a comprehensive tutorial on `ggplot2` with lots of examples and tips for customizing your plots.
+- [Modify components of a theme](https://ggplot2.tidyverse.org/reference/theme.html){.external target="_blank"} in `ggplot2` documentation - an excellent resource for all the theme items you can customize.
+- [Why not to use two axes, and what to use instead: The case against dual axis charts](https://blog.datawrapper.de/dualaxis/){.external target="_blank"} by Lisa Charlotte Rost - a thoughtful post about how to think about displaying multiple datasets simultaneously.
 
