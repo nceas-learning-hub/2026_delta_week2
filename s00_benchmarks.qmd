@@ -1,18 +1,12 @@
 ---
 title: "Working Group Project Milestones"
-format:
-  theme-html:
-    toc: false
 ---
-
-::: column-margin
-:::
 
 ## Overview
 
 There are no universal benchmarks for how quickly a synthesis working group will proceed through the phases of a project's lifecycle. That said, the milestones below may prove helpful as a general 'how are we doing?' temperature check. If your group does not accomplish all of these--or proceeds beyond them--don't worry too much!
 
-## Week 1 Benchmarks
+## Week 2 Benchmarks
 
 :::{.panel-tabset}
 ### Before <u>Week 2</u>
@@ -32,12 +26,24 @@ Before this week of the workshop, <u>your group</u> should have done (at least s
 
 After this week, <u>your group</u> should have done (at least some of) the following:
 
-- {{< fa person-digging >}} Under construction; check back later
+- Written code (version-controlled and stored in GitHub) to:
+    - Perform more advanced, higher-quality visualization of your data
+    - More thoroughly quality control your data
+- Drafted an authorship/intellectual property policy for your group
+- Made a plan for organizing your project and documenting that organization
+    - Note this may include distinct rules for GitHub, SharePoint, and other platforms your group has chosen to engage with
 
 ### Before <u>Week 3</u>
 
 Between this workshop week and the next, <u>your group</u> should have done (at least some of) the following:
 
-- {{< fa person-digging >}} Under construction; check back later
+- Written code (version-controlled and stored in GitHub) to:
+    - Harmonize/standardize your chosen datasets (can be a draft workflow at this point but should be pretty solid)
+    - Perform preliminary analysis
+    - Make publication-quality figures
+- Finalized your group's authorship/intellectual credit policy
+- Made a reasonably complete set of documentation explaining your project organization schema
+- Considered whether custom R functions (or an R package) might make sense for your group's goals and interests
+- Decided whether to make a group website (published via GitHub)
 
 :::
