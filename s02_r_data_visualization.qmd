@@ -450,7 +450,7 @@ my_theme <- function(size = 14) {
 ```
 :::
 
-### Order categorical values and add color
+### Order Categorical Values and Add Color
 
 For categorical variables (e.g., text), `ggplot2` defaults to displaying values in alphabetical order (see the plots above). We can use factors (ordered vectors of categorical values) to force a particular display order.  One easy approach is to use `forcats::fct_reorder()` from `forcats` to sort by a meaningful variable instead.
 
@@ -469,7 +469,7 @@ Note that `fct_reorder()` defaults to sorting in ascending order, so the locatio
 Default colors in `ggplot2` are not the most appealing, and not ideal for accessibility.  There are many options available, and colors in ggplot could be an entire topic in itself.  Here are some quick tips:
 
 ::: panel-tabset
-## Color scales
+## Color Scales
 
 Use `scale_color_*()` or `scale_fill_*()` to select or modify color palettes.  Good choices:
 
@@ -479,7 +479,7 @@ Use `scale_color_*()` or `scale_fill_*()` to select or modify color palettes.  G
 * `scale_color_gradient2()`: Diverging gradient with midpoint
 * `scale_color_manual()`: Fully custom discrete colors
 
-## Color name vs code
+## Color Name vs Code
 
 You can use either color names (e.g., "steelblue", "salmon", "orchid") or hex codes (e.g., "#4682B4", "#FA8072", "#DA70D6") to specify colors in R.  Hex codes are more precise and allow for a wider range of colors, but color names can be easier to remember and read in code. 
 
@@ -524,7 +524,7 @@ The y axis starts with the lowest value on the bottom, and here the "lowest" val
 ::::
 :::
 
-### Save your plot
+### Save Your Plot
 
 ```r
 ggsave("figures/visit_restore_site_delta.jpg", width = 12, height = 6, units = "in")
@@ -535,9 +535,9 @@ ggsave("figures/visit_restore_site_delta.jpg", width = 12, height = 6, units = "
 * By default, `ggsave()` guesses the output format from the file extension (e.g., `.jpg`, `.png`, `.pdf`).  See `?ggsave()` for more options.
 
 
-## Create "small multiple" plots
+## Create "Small Multiple" Plots
 
-Plotting multiple lines or bars on a plot can convey a lot of information, but can also appear rather cluttered.  Alternately, you can plot subsets or closely related variables using `facet_wrap()` in "small multiples".  Each unique value of a (usually categorical) variable is mapped to its own mini panel using the syntax `facet_wrap(~ <variable_name>)`.
+Plotting multiple lines or bars on a plot can convey a lot of information, but can also appear rather cluttered.  Alternately, you can plot subsets or closely related variables using `facet_wrap()` in ["small multiples"](https://www.juiceanalytics.com/writing/better-know-visualization-small-multiples){.external target="_blank"}.  Each unique value of a (usually categorical) variable is mapped to its own mini panel using the syntax `facet_wrap(~ <variable_name>)`.
 
 The default behavior puts all facets on the same x and y scale. Use the `scales` argument to allow different scales between facet plots (e.g. `scales = "free_y"` to let the y axis scale vary from facet to facet). Specify the number of columns using the `ncol = ` argument or number of rows using `nrow =`.
 
