@@ -9,7 +9,9 @@ After completing this session, you will be able to:
 :::
 
 
-## Use level 2 headers for sections
-
-Visit https://nceas-learning-hub.github.io/lh_packages/ for information on contributing new lessons, content guidelines, and style guide.
-
+* set up group repo(s) in Delta org
+* Set up Teams for github and add to group repo(s)
+* create issues reflecting tasks to be completed
+* assign issues to team members
+* add tags to issues to track progress
+* set up a project board to visualize workflow
