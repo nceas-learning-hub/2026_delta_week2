@@ -6,8 +6,11 @@ title: Intellectual Credit
 After completing this session, you will be able to:
 
 - Articulate some of the main challenges around equitable intellectual credit
-- Identify some ways in which intellectual credit conversations may differ from the norm for synthesis projects
+- Identify some ways in which synthesis-focused intellectual credit conversations may differ from non-synthesis projects
+- Describe some common frameworks for equitable authorship decisions
 - Define some advantages and disadvantages of "opt-in" and "opt-out" approaches to authorship
+- Explain benefits (or avoided costs) of making authorship decisions both collaboratively and transparently
+- Discuss the shifting context around modern authorship conversations
 
 :::
 
@@ -141,16 +144,10 @@ A research team formally examined the phenomenon in the context of scientific pu
 
 ## Opt-In v. Opt-Out Authorship
 
-:::{.callout-tip icon="false" collapse="false"}
-### {{< fa brain >}} Learning Objectives
+There are two major ways to approach authorship, whether you're talking about papers, derived data, or software: the default position can be that no one is an author unless they opt-in, or everyone is an author unless they opt-out. 
 
-After completing this topic you will be able to: 
-
-- <u>Describe</u> the benefits and drawbacks of "opt-in" versus "opt-out" credit policies
-
-:::
- 
-There are two major ways to approach authorship, whether you're talking about papers, derived data, or software. Opt-in approaches require individuals to be invited to or request involvement in a product and set basic criteria for authorship. Opt-out approaches assume that anyone contributing data, or making contributions to, say, the GitHub repository behind a package, will be credited as an author.
+- Opt-in approaches require individuals to be invited to or request involvement in a product and set basic criteria for authorship.
+- Opt-out approaches assume that anyone contributing data, or making contributions to, say, the GitHub repository behind a package, will be credited as an author.
 
 Some collaboration efforts use a hybrid system, where the primary paper issuing from a data assembly effort is expected to use an opt-out model (and therefore includes all the data contributors), while subsequent papers require potential authors to opt-in and participate in developing the analysis and writing the paper.
 
@@ -159,33 +156,35 @@ Some collaboration efforts use a hybrid system, where the primary paper issuing 
 Authorship is also not the only way to recognize contributors. When funding is the only contribution to the research, funders should appear in the acknowledgments section. Other contributions, such as translation, line editing, acquisition of permits, or other logistical support are also appropriate for the acknowledgments section, when the relevant individuals have not also contributed to developing the study and writing the paper. Data providers who have not contributed to study design should be credited by [citing their data](https://edirepository.org/resources/citing-data), in the references using a DOI and appropriate bibliographic information.
 
 ## How to Develop and Use an Authorship Policy
-
-:::{.callout-tip icon="false" collapse="false"}
-### {{< fa brain >}} Learning Objectives
-
-After completing this topic you will be able to: 
-
-- <u>Describe</u> some common frameworks for equitable authorship decisions
-- <u>Explain</u> benefits (or avoided costs) of making authorship decisions both collaboratively and transparently
-
-:::
  
-An authorship policy will be most helpful if it if it reflects shared values of the research team and is developed *before* conflicts arise.
+An authorship policy will be most helpful if it if it reflects shared values of the research team and is developed _before_ conflicts arise.
 
-[Oliver et al. (2018)](https://doi.org/10.1002/ecs2.2206 "Strategies for effective collaborative manuscript development in interdisciplinary science teams") described six principles that they aimed for their authorship process to support:
+[Oliver _et al._ (2018)](https://doi.org/10.1002/ecs2.2206) described six principles that they aimed for their authorship process to support:
 
-<p align="center">
-<img src="images/intellectual_credit/credit-process-diagram.jpg" alt="Image summarizing guiding principles and authorship management process" width="100%"/>
-<figcaption>Figure taken from Oliver _et al._ 2018 A conceptual diagram that shows the strategies for effective collaborative manuscript (MS) development being firmly embedded within and balancing the guiding principles, and the relative order that the practices occur (numbers). Strategies that are on the same row are strongly related, can occur in any order, and are in fact iterative. All strategies should feed back into the team coauthorship policy for evaluation and reflection about whether the practices are fulfilling the guiding principles</figcaption>
-</p>
+1. Transparency
+2. Inclusion & Fairness
+3. Protection & Promotion
+4. Accountability
+5. Efficiency & Productivity
+6. Creativity
 
-Their approach considers the entire life of a project and aims to balance efficiency, creativity, and inclusion – which can seem to be in conflict. It would, for example, be very inefficient to solicit many authors for a student's dissertation paper, which is likely to only involve a small number of authors in the end.
+Oliver _et al._ then identified a set of ordered, but inter-related best practices that fit within their six guiding principles. Their approach considers the entire life of a project and aims to balance efficiency, creativity, and inclusion--which can seem to be in conflict. It would, for example, be very inefficient to solicit many authors for a student's dissertation paper, which is likely to only involve a small number of authors in the end. Consider the tabs below for more details.
+
+:::{.panel-tabset}
+
+### Step 1: Team Composition
 
 Their starting point is to **understand the makeup of the group** involved. What are each member's assumptions about authorship credit and order? These can differ based on their field of study, their country of origin, their seniority, and their role in the group and what they hope to get out of involvement with the group. Articulating these assumptions at the start can avoid later conflicts.
 
+### Step 2: Draft Policy
+
 Then **develop a draft authorship policy**–either from scratch or starting with one the many frameworks available. Recognize that this policy is a living document that the team can adjust as issues arise.
 
+### Step 3: Announce Foci
+
 **Announcing ideas that may lead to manuscripts** is also critical in their view. It allows the whole team to contribute to developing the idea (creativity) and allows interested parties to opt-in to further development (transparency) and work on the project.
+
+### Step 4: Identify Product Type
 
 **Determine the manuscript type**. They outline a taxonomy of manuscript types, which will often determine how large the co-author list can or should be and what kinds of co-author management strategies will work best.
 
@@ -199,63 +198,78 @@ Then **develop a draft authorship policy**–either from scratch or starting wit
 
 -   **Graduate student dissertation manuscripts.** Depending on the student's institution and committee, this may require the involvement of fewer authors.
 
+### Step 5: Author Strategy
+
 The **decision on an authorship management strategy** will flow from the type of paper and the individuals involved. Here, the value of flexibility and communication within the team is key.
 
-## An Evolving Landscape
+### Visual Diagram
 
-:::{.callout-tip icon="false" collapse="false"}
-### {{< fa brain >}} Learning Objectives
-
-After completing this topic you will be able to: 
-
-- <u>Discuss</u> the shifting context around modern authorship conversations
+![](images/intellectual_credit/credit-process-diagram.jpg){fig-alt="Image summarizing guiding principles and authorship management process" .lightbox}
+<figcaption>Figure taken from Oliver _et al._ 2018 A conceptual diagram that shows the strategies for effective collaborative manuscript (MS) development being firmly embedded within and balancing the guiding principles, and the relative order that the practices occur (numbers). Strategies that are on the same row are strongly related, can occur in any order, and are in fact iterative. All strategies should feed back into the team coauthorship policy for evaluation and reflection about whether the practices are fulfilling the guiding principles</figcaption>
 
 :::
 
-Community science and knowledge co-production with non-academics, particularly Indigenous knowledge and rights-holders, have been growing rapidly in the last few years. The academic community is still struggling to come to terms with how best to honor and credit such research partners. Authorship is an academic currency that may or may not have value for community partners. Indigenous Peoples can be understandably wary about sharing data related to their land, resources, history, culture, and bodies. The [CARE Principles](https://doi.org/10.5334/dsj-2020-043) (Collective Benefit, Authority to Control, Responsibility, and Ethics) were published in 2020 help researchers focus on the values most important to Indigenous data stewards, rather than focusing solely on the open-data [FAIR Principles](https://doi.org/10.1038/sdata.2016.18) (Findable Accessible, Interoperable, and Reproducible) and [concrete guidance](https://doi.org/10.1038/s41467-024-53480-2) is gradually being developed to guide researchers. Community science and Indigenous data found in repositories should include guidance on how they can ethically be reused.
+## An Evolving Landscape
 
-Another emerging issue in intellectual credit is how to deal with the growing role of AI in research and publishing. Understanding how AI has been used in a research effort is critical to evaluating the reliability of results. Providing figures and asking AI to write a paper yields a very different result than providing bullet points along with the figures, or asking AI to clean up your first draft. In addition, almost every AI system currently available provides results by drawing on millions of public data sources, without any thought of crediting the originators. Journal publishers are starting to [provide guidance](https://doi.org/10.1002/leap.1582) about how to acknowledge researchers' use of AI.
+There are a number of ways in which the academic norms of intellectual credit either do not seem to apply or have been--rightly--challenged. Shifting these kinds of norms is rarely a quick process but is something that teams developing credit policies should consider from the outset of their respective projects; particularly when the project's members, audience, or methdologies intersect with one of these novel frontiers.
+
+:::{.panel-tabset}
+### Knowledge Co-Creation
+
+Community science and knowledge co-production with non-academics, particularly Indigenous knowledge and rights-holders, have been growing rapidly in the last few years. The academic community is still struggling to come to terms with how best to honor and credit such research partners. Authorship is an academic currency that may or may not have value for community partners. Indigenous Peoples can be understandably wary about sharing data related to their land, resources, history, culture, and bodies. 
+
+The [CARE Principles](https://doi.org/10.5334/dsj-2020-043) (Collective Benefit, Authority to Control, Responsibility, and Ethics) were published in 2020 help researchers focus on the values most important to Indigenous data stewards, rather than focusing solely on the open-data [FAIR Principles](https://doi.org/10.1038/sdata.2016.18) (Findable Accessible, Interoperable, and Reproducible) and [concrete guidance](https://doi.org/10.1038/s41467-024-53480-2) is gradually being developed to guide researchers. Community science and Indigenous data found in repositories should include guidance on how they can ethically be reused.
+
+### Generative AI
+
+Another emerging issue in intellectual credit is how to deal with the growing role of AI in research and publishing. Understanding how AI has been used in a research effort is critical to evaluating the reliability of results and the intellectual contributions of each author. Providing figures and asking AI to write a paper yields a very different result than providing bullet points along with the figures, or asking AI to clean up your first draft.
+
+In addition, almost every AI system currently available provides results by drawing on millions of public data sources, without any thought of crediting the originators. Journal publishers are starting to [provide guidance](https://doi.org/10.1002/leap.1582) about how to acknowledge researchers' use of AI but this guidance is still somewhat fluid and can vary between journals.
+
+:::
 
 **We contend that there is no single "right" authorship policy. _But_ each policy we've covered has advantages in certain situations.** What matters most is that the research team discusses their approach and records it in an accessible location where it can be revisited and updated as needed.
 
-::::{.callout-warning icon="false"}
-### {{<fa rocket >}} Activity: Draft Your Own Authorship Policy
+::::{.callout-exercise}
+### Draft Your Own Authorship Policy
+
+Let's take a closer look at some approaches to authorship policies from teams of varying sizes. Each breakout group will focus on one policy and report back on their approach's strengths and weaknesses.
+
+1. [Nutrient Network Authorship Policy](https://nutnet.org/authorship)
+2. [Expanded Authorship Guidelines](https://doi.org/10.1002/2688-8319.12060) (Cooke _et al._ 2021)
+3. [CReDiT Framework](https://doi.org/10.1087/20150211) (Brand _et al._ 2015)
+4. [Arctic Data Center (ADC) Template](https://docs.google.com/document/d/16wNpk9vJiWqQQStmaEG66YgawU39hGC8x9KnbUqbyO4/edit#heading=h.gnbwiz3v0o8z)
 
 :::{.panel-tabset}
-### Part 1 - Review Examples
+### Part 1 - Solo
 
-Let's take a closer look at three approaches to authorship policies from teams of varying sizes. Three breakout groups will focus on one policy each and report back on the approaches strengths and weaknesses. Please take 10 minutes to scan the assigned authorship policy and another 15 minutes to discuss it's implications, what it might miss, how it might distort or align incentives for collaboration, data sharing, and freeloading.
+On your own:
 
-1.  [Nutrient Network Authorship Policy](https://nutnet.org/authorship)
-2.  [Expanded Authorship Guidelines](https://doi.org/10.1002/2688-8319.12060) (Cooke _et al._ 2021)
-3.  [CReDiT Framework](https://doi.org/10.1087/20150211) (Brand _et al._ 2015)
+- Scan the assigned authorship policy
+- Pay particular attention to:
+    - What kinds of contributions it effectively captures and credits
+    - Whether it misses certain kinds of intellectual contributions
+    - How it might distort or align incentives for collaboration, data sharing, and "freeloading"
+    - What elements feel like a particularly good (or bad) fit for your project team
 
-### Part 2 - Discuss as a Group
-Gather in your project teams and begin to build out your own authorship approach, if you have not already. Here are a few key questions to get you started:
+### Part 2 - Breakout Groups
+
+With others who reviewed the same authorship policy, discuss your main take-aways from your solo review of the policy.
+
+### Part 3 - Project Groups
+
+In your <u>project teams</u> (_not your breakout groups_), begin to build out your own authorship approach. **Remember that even if you "finish" this today, the document should be a living one that you feel confident that you could revisit and revise should circumstances change!** Here are a few key questions to get you started:
 
 - How will you let participants know about papers and products?
-- Beyond your core group, have others been involved in ways that might warrant authorship?
-    - How will they learn about upcoming products.
+- Beyond your core group, have others been involved or are likely to become involved in ways that might warrant intellectual credit?
+    - How will they learn about upcoming products?
 - Do you want to operate on an opt-in or an opt-out basis?
 - What kinds of products do you expect to produce?
 - What kinds of contributions do you think are most important?
 - What is the minimum requirement for being a paper author? A dataset author? A package creator?
+- How will you decide authorship order?
+- In what other ways will you acknowledge contributions and extend credit to collaborators?
+- How will you resolve conflicts if (when) they arise?
 
 :::
 ::::
-
-
-
-:::{.callout-exercise}
-### Exercise: Draft Your Intellectual Credit Policy
-
-- As a group answer the following questions relevant questions to your project: What are our criteria for authorship? (See the ICMJE guidelines for potential criteria)
-- Will we extend the opportunity for authorship to all group members on every paper or product?
-- Do we want to have an opt in or opt out policy?
-    - In an opt out policy, all group members are considered authors from the outset and must request removal from the paper if they don’t think they meet the criteria for authorship
-- Who has the authority to make decisions about authorship? Lead author? PI? Group?
-- How will we decide authorship order?
-- In what other ways will we acknowledge contributions and extend credit to collaborators?
-- How will we resolve conflicts if they arise?
-
-:::
