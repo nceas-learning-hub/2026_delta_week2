@@ -581,7 +581,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <figcaption>Artwork by <span class="citation" data-cites="allison_horst">@allison_horst</span></figcaption>
 </figure>
 </div>
-<p>Git is a powerful tool for both individual and collaborative work. The most common way to collaborate is through a <strong>shared repository on <a href="https://github.com" class="external" target="_blank">GitHub</a></strong>, which acts as a central hub where teammates can exchange and merge changes. In this lesson, one person (the <strong>Owner</strong>) hosts the repository on GitHub and grants a colleague (the <strong>Collaborator</strong>) permission to push changes directly.</p>
+<p>Git is a powerful tool for both individual and collaborative work. The most common way to collaborate is through a <strong>shared repository on <a href="https://github.com">GitHub</a></strong>, which acts as a central hub where teammates can exchange and merge changes. In this lesson, one person (the <strong>Owner</strong>) hosts the repository on GitHub and grants a colleague (the <strong>Collaborator</strong>) permission to push changes directly.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><a href="images/github_collaboration/github-collaborators-diagram.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="images/github_collaboration/github-collaborators-diagram.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Diagram showing the relationship between the Owner, Collaborator, and GitHub repository. The Owner has a local repository and a remote repository on GitHub. The Collaborator has a local repository that is connected to the remote repository on GitHub. Both the Owner and Collaborator can pull changes from GitHub to their local repositories and push changes from their local repositories to GitHub."></a></p>
@@ -930,7 +930,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="a-note-on-advanced-collaboration-techniques" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="a-note-on-advanced-collaboration-techniques"><span class="header-section-number">6</span> A Note on Advanced Collaboration Techniques</h2>
-<p>There are many Git and GitHub collaboration techniques, some more advanced than others. We won’t be covering advanced strategies in this course. If interested in exploring more advanced GitHub workflows, check out <a href="https://docs.github.com/en/get-started/using-github/github-flow" class="external" target="_blank">GitHub’s documentation on GitHub Flow</a> or <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow" class="external" target="_blank">Atlassian’s documentation on Git Flow</a>.</p>
+<p>There are many Git and GitHub collaboration techniques, some more advanced than others. We won’t be covering advanced strategies in this course. If interested in exploring more advanced GitHub workflows, check out <a href="https://docs.github.com/en/get-started/using-github/github-flow">GitHub’s documentation on GitHub Flow</a> or <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow">Atlassian’s documentation on Git Flow</a>.</p>
 
 
 </section>
@@ -1041,6 +1041,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             if (link.getAttribute("rel") === null) {
               link.setAttribute("rel", "noopener");
             }
+            // default icon
+            link.classList.add("external");
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
