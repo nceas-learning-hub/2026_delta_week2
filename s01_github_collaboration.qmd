@@ -14,7 +14,7 @@ After completing this session, you will be able to:
 
 ![Artwork by @allison_horst](images/github_collaboration/allison_horst_jenny_bryan_quote.png){width="100%" fig-align="center" .lightbox}
 
-Git is a powerful tool for both individual and collaborative work. The most common way to collaborate is through a **shared repository on [GitHub](https://github.com){target="_blank" .external}**, which acts as a central hub where teammates can exchange and merge changes. In this lesson, one person (the **Owner**) hosts the repository on GitHub and grants a colleague (the **Collaborator**) permission to push changes directly.
+Git is a powerful tool for both individual and collaborative work. The most common way to collaborate is through a **shared repository on [GitHub](https://github.com)**, which acts as a central hub where teammates can exchange and merge changes. In this lesson, one person (the **Owner**) hosts the repository on GitHub and grants a colleague (the **Collaborator**) permission to push changes directly.
 
 ![](images/github_collaboration/github-collaborators-diagram.png){width="70%" fig-align="center" .lightbox fig-alt="Diagram showing the relationship between the Owner, Collaborator, and GitHub repository. The Owner has a local repository and a remote repository on GitHub. The Collaborator has a local repository that is connected to the remote repository on GitHub. Both the Owner and Collaborator can pull changes from GitHub to their local repositories and push changes from their local repositories to GitHub."}
 
@@ -288,6 +288,6 @@ It may take a bit of practice to get comfortable with navigating merge conflicts
 
 ## A Note on Advanced Collaboration Techniques
 
-There are many Git and GitHub collaboration techniques, some more advanced than others. We won't be covering advanced strategies in this course. If interested in exploring more advanced GitHub workflows, check out [GitHub's documentation on GitHub Flow](https://docs.github.com/en/get-started/using-github/github-flow){target="_blank" .external} or [Atlassian's documentation on Git Flow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow){target="_blank" .external}.
+There are many Git and GitHub collaboration techniques, some more advanced than others. We won't be covering advanced strategies in this course. If interested in exploring more advanced GitHub workflows, check out [GitHub's documentation on GitHub Flow](https://docs.github.com/en/get-started/using-github/github-flow) or [Atlassian's documentation on Git Flow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow).
 
 

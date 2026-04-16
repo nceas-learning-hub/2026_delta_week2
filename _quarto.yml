@@ -16,6 +16,9 @@ execute:
 format:
   theme-html:
     code-annotations: hover ### tool tip style footnotes for code
+    link-external-newwindow: true
+    link-external-icon: true
+
 
 website:
   title: "2026 Delta Synthesis Working Groups week 2 (April 2026)"

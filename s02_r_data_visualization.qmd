@@ -147,7 +147,7 @@ colnames(delta_visits)[1:6]
 
 ### Reshape to Long (Tidy) Format
 
-Recall the [tidy data principles](https://r4ds.hadley.nz/data-tidy.html#fig-tidy-structure){.external target="_blank"}.
+Recall the [tidy data principles](https://r4ds.hadley.nz/data-tidy.html#fig-tidy-structure).
 
 1. Each variable is a column; each column is a variable.
 2. Each observation is a row; each row is an observation.
@@ -204,7 +204,7 @@ Refresher:
 
 Every `ggplot2` call requires four essential components:
 
-1. **`ggplot()`** opens the plot (note, the **package** is called `ggplot2` but the function is just `ggplot()`.  What happened to the original `ggplot`? [it is still out there](https://github.com/hadley/ggplot1){.external target="_blank"}, but really only for historical interest!)
+1. **`ggplot()`** opens the plot (note, the **package** is called `ggplot2` but the function is just `ggplot()`.  What happened to the original `ggplot`? [it is still out there](https://github.com/hadley/ggplot1), but really only for historical interest!)
 2. **`data = <dataframe>`** defines the **data**frame to use
 3. **`mapping = aes(<args>)`** maps variables to **aes**thetic visual properties (x axis, y axis, size, color, fill, etc.)
 4. **`geom_*()`** defines the plot type, aka **geom**etry (bar, column, point, line, box, etc.)
@@ -479,7 +479,7 @@ Default colors in `ggplot2` are not the most appealing, and not ideal for access
 Use `scale_color_*()` or `scale_fill_*()` to select or modify color palettes.  Good choices:
 
 * `scale_color_viridis_c/d()`: {{< fa thumbs-up >}} {{< fa thumbs-up >}} Colorblind-friendly, perceptually uniform (`c`ontinuous or `d`iscrete)
-* `scale_color_brewer()`: [ColorBrewer](https://colorbrewer2.org/){.external target="_blank"} palettes (categorical, sequential, diverging)
+* `scale_color_brewer()`: [ColorBrewer](https://colorbrewer2.org/) palettes (categorical, sequential, diverging)
 * `scale_color_gradient()`: Custom two-color gradient
 * `scale_color_gradient2()`: Diverging gradient with midpoint
 * `scale_color_manual()`: Fully custom discrete colors
@@ -488,7 +488,7 @@ Use `scale_color_*()` or `scale_fill_*()` to select or modify color palettes.  G
 
 You can use either color names (e.g., "steelblue", "salmon", "orchid") or hex codes (e.g., "#4682B4", "#FA8072", "#DA70D6") to specify colors in R.  Hex codes are more precise and allow for a wider range of colors, but color names can be easier to remember and read in code. 
 
-Use `colors()` to see all available color names in R, or [check out this cheat sheet](https://www.nceas.ucsb.edu/sites/default/files/2020-04/colorPaletteCheatsheet.pdf){.external target="_blank"}.
+Use `colors()` to see all available color names in R, or [check out this cheat sheet](https://www.nceas.ucsb.edu/sites/default/files/2020-04/colorPaletteCheatsheet.pdf).
 
 ## Alpha
 
@@ -543,7 +543,7 @@ ggsave("figures/visit_restore_site_delta.jpg", width = 12, height = 6, units = "
 
 ## Create "Small Multiple" Plots
 
-Plotting multiple lines or bars on a plot can convey a lot of information, but can also appear rather cluttered.  Alternately, you can plot subsets or closely related variables using `facet_wrap()` in ["small multiples"](https://www.juiceanalytics.com/writing/better-know-visualization-small-multiples){.external target="_blank"}.  Each unique value of a (usually categorical) variable is mapped to its own mini panel using the syntax `facet_wrap(~ <variable_name>)`.
+Plotting multiple lines or bars on a plot can convey a lot of information, but can also appear rather cluttered.  Alternately, you can plot subsets or closely related variables using `facet_wrap()` in ["small multiples"](https://www.juiceanalytics.com/writing/better-know-visualization-small-multiples).  Each unique value of a (usually categorical) variable is mapped to its own mini panel using the syntax `facet_wrap(~ <variable_name>)`.
 
 The default behavior puts all facets on the same x and y scale. Use the `scales` argument to allow different scales between facet plots (e.g. `scales = "free_y"` to let the y axis scale vary from facet to facet). Specify the number of columns using the `ncol = ` argument or number of rows using `nrow =`.
 
@@ -708,8 +708,8 @@ Leaflet has a ton of functionality that can enable you to create some beautiful,
 
 ## `ggplot2` Resources
 
-- [R Graph Gallery](https://www.r-graph-gallery.com/){.external target="_blank"} by Yan Holtz - a gallery of beautiful plots for inspiration, with code examples.
-- [A `ggplot2` tutorial for beautiful plotting in R](https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/#legends){.external target="_blank"} by Cedric Scherer - a comprehensive tutorial on `ggplot2` with lots of examples and tips for customizing your plots.
-- [Modify components of a theme](https://ggplot2.tidyverse.org/reference/theme.html){.external target="_blank"} in `ggplot2` documentation - an excellent resource for all the theme items you can customize.
-- [Why not to use two axes, and what to use instead: The case against dual axis charts](https://blog.datawrapper.de/dualaxis/){.external target="_blank"} by Lisa Charlotte Rost - a thoughtful post about how to think about displaying multiple datasets simultaneously.
+- [R Graph Gallery](https://www.r-graph-gallery.com/) by Yan Holtz - a gallery of beautiful plots for inspiration, with code examples.
+- [A `ggplot2` tutorial for beautiful plotting in R](https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/#legends) by Cedric Scherer - a comprehensive tutorial on `ggplot2` with lots of examples and tips for customizing your plots.
+- [Modify components of a theme](https://ggplot2.tidyverse.org/reference/theme.html) in `ggplot2` documentation - an excellent resource for all the theme items you can customize.
+- [Why not to use two axes, and what to use instead: The case against dual axis charts](https://blog.datawrapper.de/dualaxis/) by Lisa Charlotte Rost - a thoughtful post about how to think about displaying multiple datasets simultaneously.
 

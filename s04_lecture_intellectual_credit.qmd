@@ -18,7 +18,7 @@ After completing this session, you will be able to:
 ::: {.callout-note}
 ## Acknowledgments
 
-Parts of the content in this page was adapted from the Long Term Ecological Research (LTER) Network's course "Synthesis Skills for Early Career Researchers" (SSECR). Those materials can be found at [lter.github.io/ssecr](https://lter.github.io/ssecr/){.external target="_blank"}
+Parts of the content in this page was adapted from the Long Term Ecological Research (LTER) Network's course "Synthesis Skills for Early Career Researchers" (SSECR). Those materials can be found at [lter.github.io/ssecr](https://lter.github.io/ssecr/)
 :::
 
 ## Intellectual Credit Context
@@ -54,7 +54,7 @@ It can be hlpeful to start by considering some examples of intellectual credit f
 :::{.panel-tabset}
 ### Ecology
 
-The Ecological Society of America (ESA) created a [Code of Ethics](https://esa.org/about/code-of-ethics/){.external target="_blank"} with some guidance for publication co-authorship as part of it. ESA suggests that reserachers claim authorship only if they have made a "substantial contribution" to the work. 
+The Ecological Society of America (ESA) created a [Code of Ethics](https://esa.org/about/code-of-ethics/) with some guidance for publication co-authorship as part of it. ESA suggests that reserachers claim authorship only if they have made a "substantial contribution" to the work. 
 
 This must at least include **one** of the following:
 
@@ -78,7 +78,7 @@ Collaborators must do **all** of the following to warrant authorship:
 
 ### CRediT Framework
 
-The [Contributor Role Taxonomy](https://credit.niso.org/){.external target="_blank"} (CRediT) separates research roles into [14 categories](https://zenodo.org/records/18421449){.external target="_blank"} though doesn't necessarily identify how performing those duties relates to authorship. Many teams that adopt this framework decide on some critical number of categories that a team member must fulfill in order to warrant authorship.
+The [Contributor Role Taxonomy](https://credit.niso.org/) (CRediT) separates research roles into [14 categories](https://zenodo.org/records/18421449) though doesn't necessarily identify how performing those duties relates to authorship. Many teams that adopt this framework decide on some critical number of categories that a team member must fulfill in order to warrant authorship.
 
 The CRediT roles are defined in the table below.
 
@@ -158,7 +158,7 @@ Some collaboration efforts use a hybrid system, where the primary paper issuing 
 As researchers, we can be reluctant to opt-out of a paper for many reasons. We "should" have time. We need the paper for our CV. Or we are just embarrassed to have misjudged our own capacity to contribute. If you find that you can't contribute at a level that warrants authorship, **the kindest thing you can do for your co-authors is to opt out**.
 :::
 
-Authorship is also not the only way to recognize contributors. When funding is the only contribution to the research, funders should appear in the acknowledgments section. Other contributions, such as translation, line editing, acquisition of permits, or other logistical support are also appropriate for the acknowledgments section, when the relevant individuals have not also contributed to developing the study and writing the paper. Data providers who have not contributed to study design should be credited by [citing their data](https://edirepository.org/resources/citing-data){.external target="_blank"}, in the references using a DOI and appropriate bibliographic information.
+Authorship is also not the only way to recognize contributors. When funding is the only contribution to the research, funders should appear in the acknowledgments section. Other contributions, such as translation, line editing, acquisition of permits, or other logistical support are also appropriate for the acknowledgments section, when the relevant individuals have not also contributed to developing the study and writing the paper. Data providers who have not contributed to study design should be credited by [citing their data](https://edirepository.org/resources/citing-data), in the references using a DOI and appropriate bibliographic information.
 
 ## How to Develop and Use an Authorship Policy
  
@@ -240,10 +240,10 @@ In addition, almost every AI system currently available provides results by draw
 
 Let's take a closer look at some approaches to authorship policies from teams of varying sizes. Each breakout group will focus on one policy and report back on their approach's strengths and weaknesses.
 
-1. [Nutrient Network Authorship Policy](https://nutnet.org/authorship){.external target="_blank"}
+1. [Nutrient Network Authorship Policy](https://nutnet.org/authorship)
 2. Expanded Authorship Guidelines[@cooke_ContemporaryAuthorship_2021]
 3. CReDiT Framework [@brand_AuthorshipAttribution_2015]
-4. [Arctic Data Center (ADC) Template](https://docs.google.com/document/d/16wNpk9vJiWqQQStmaEG66YgawU39hGC8x9KnbUqbyO4/edit#heading=h.gnbwiz3v0o8z){.external target="_blank"}
+4. [Arctic Data Center (ADC) Template](https://docs.google.com/document/d/16wNpk9vJiWqQQStmaEG66YgawU39hGC8x9KnbUqbyO4/edit#heading=h.gnbwiz3v0o8z)
 
 :::{.panel-tabset}
 ### Part 1 - Solo
