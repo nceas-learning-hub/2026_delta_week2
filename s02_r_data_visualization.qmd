@@ -75,7 +75,7 @@ library(janitor)   ### clean column names
 library(ggplot2)
 
 ### Interactive output
-library(DT)
+library(plotly)
 ```
 
 ### Load the Data
@@ -579,7 +579,7 @@ In the example above, we added extra spaces so that the `=` equals signs line up
 Save this plot to your figures folder.  
 
 ```r
-ggsave("figures/visit_restore_site_facet.jpg", 
+ggsave(here("figures/visit_restore_site_facet.jpg"), 
        plot = facet_plot, 
        width = 12, height = 8, units = "in")
 
@@ -592,15 +592,28 @@ Fixing tick labels in `ggplot` can be super annoying. The y-axis labels in the p
 
 The `scales` package provides some nice helper functions to easily rescale and relabel your plots. Here, we use `scale_y_continuous()` from `ggplot2`, with the argument `labels`, which is assigned to the function name `comma`, from the `scales` package. This will format all of the labels on the y-axis of our plot with comma-formatted numbers.-->
 
+## Interactive Plots with `plotly`
 
-## Aside: Interactive Tables with `DT`
+Most of the time, we will render our Quarto documents as .html files, which means we can include interactive elements in our documents.  The `plotly` package provides a simple way to convert your static `ggplot2` plots into interactive plots that a user can hover over, zoom in on, etc. 
+
+We already created a plot object above and stored it as the object `facet_plot`.  To make this interactive, we can simply wrap it in `ggplotly()`:
+
+```{r}
+ggplotly(facet_plot, tooltip = c('x', 'y'))
+```
+
+Note that any variable assigned to an aesthetic in the original `ggplot` (e.g., `x`, `y`, `color`, `fill`, etc.) will be included in the hover information in the interactive plot, by default.  You can customize this further using the `tooltip` argument in `ggplotly()` - for example, here we only included the `x` and `y` variables (since `x` and `fill` are both `visitor_type`, we we don't need to see it twice).  See `?ggplotly` for more options.
+
+<!-- ## Aside: Interactive Tables with `DT`
 
 Most of the time, we will render our Quarto documents as .html files, which means we can include interactive elements in our documents.  The `DT` package provides a simple way (using `DT::datatable()`) to create interactive tables in R, which a user can search, filter, reorder, etc.
 
 
-Try searching the following table for only specific locations or visitor types, and sorting by date or number of visits. 
+Try searching the following table for only specific locations or visitor types, and sorting by date or number of visits.  -->
 
 ```{r display_locations}
+#| eval: false
+#| echo: false
 DT::datatable(visits_long)
 ```
 
