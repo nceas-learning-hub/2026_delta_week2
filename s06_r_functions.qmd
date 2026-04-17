@@ -81,7 +81,7 @@ To create a function in R, we use the `function` function (so meta!) and assign 
 ```{r}
 #| label: f2c-function
 
-fahr_to_celsius <- function(fahr) {
+convert_f_to_c <- function(fahr) {
   celsius <- (fahr - 32) * 5/9
   return(celsius)
 }
@@ -91,10 +91,10 @@ Because R operations are vectorized, this works on a single value *or* an entire
 
 ```{r}
 ### check single value:
-celsius1a <- fahr_to_celsius(airtemps[1])
+celsius1a <- convert_f_to_c(airtemps[1])
 celsius1a == celsius1
 ### calculate for whole vector:
-celsius_vec <- fahr_to_celsius(airtemps)
+celsius_vec <- convert_f_to_c(airtemps)
 celsius_vec
 ```
 
@@ -102,7 +102,7 @@ celsius_vec
 ::: {.callout-exercise}
 ## Convert Celsius to Fahrenheit
 
-Write a function `celsius_to_fahr` that reverses the conversion. Use it to convert `celsius` back to Fahrenheit and verify that the result matches `airtemps`.
+Write a function `convert_c_to_f` that reverses the conversion. Use it to convert `celsius` back to Fahrenheit and verify that the result matches `airtemps`.
 
 **Hint:** the formula for Celsius to Fahrenheit conversions is `celsius * 9/5 + 32`.
 
@@ -111,12 +111,12 @@ Write a function `celsius_to_fahr` that reverses the conversion. Use it to conve
 ```{r}
 #| label: f2c-func-solution
 
-celsius_to_fahr <- function(celsius) {
+convert_c_to_f <- function(celsius) {
     fahr <- celsius * 9/5 + 32
     return(fahr)
 }
 
-fahr_vec <- celsius_to_fahr(celsius_vec)
+fahr_vec <- convert_c_to_f(celsius_vec)
 airtemps == fahr_vec
 ```
 
@@ -125,6 +125,83 @@ airtemps == fahr_vec
 
 :::
 <!-- end exercise -->
+
+## Function Arguments and `return`
+
+### Argument Defaults
+
+Function arguments often include a default value - in which case, the user can opt to simply not assign a value.  Here, `convert_temp()` allows the user to specify the scale of their input, defaulting to Fahrenheit (`scale = 'f'`).
+
+:::callout-tip
+## Error handling!
+
+Sometimes a user will include an argument that breaks the code - a character when the function expects a number, upper-case when expecting lower-case, etc.  Try to anticipate simple errors and include a way to identify and handle them in the function: try to correct the error on the fly, or use `stop()` to return a useful error message to the user.
+:::
+
+```{r}
+convert_temp <- function(t, scale = 'f') {
+    scale = tolower(substr(scale, 1, 1))         # <1>
+    if(!scale %in% c('c', 'f')) {                # <2>
+      stop('scale must be either "c" or "f"')
+    }
+    if(scale == "c") {                           # <3>
+        result = t * 9/5 + 32
+    } else {
+        result  = (t - 32) * 5/9
+    }
+    return(round(result, 3))
+}
+```
+1. What if user enters `scale = "Celsius"`?  `substr(x, 1, 1)` grabs just the first letter, and `tolower` forces it to lower case
+2. If `scale` is not one of the expected values, generate a sensible error with `stop()`
+3. We know the values are valid now, so we can use a simple if/else to do the correct calculation!
+
+```{r}
+convert_temp(t = airtemps)
+convert_temp(t = airtemps, scale = 'Celsius')
+```
+
+### Return Values
+
+Use `return(x)` to end the function and hand the result back to the user.  To provide multiple values back to a user, consider more complex data structures like a dataframe (well structured) or a named list (very flexible).
+
+::: {.panel-tabset}
+
+## Dataframe
+
+```{r}
+convert_f_to_c_k <- function(f) {
+  c <- (f - 32) * 5/9
+  k  <- c + 273.15
+  out_df <- data.frame(fahr = f, celsius = c, kelvin = k)
+  return(out_df)
+}
+
+convert_f_to_c_k(seq(-100, 100, 50))
+```
+
+## Named List
+
+```{r}
+convert_f_to_c_k <- function(f) {
+  c <- (f - 32) * 5/9
+  k  <- c + 273.15
+  out_list <- list(fahr = f, celsius = c, kelvin = k)
+  return(out_list)
+}
+
+convert_f_to_c_k(seq(-100, 100, 50))
+```
+
+:::
+
+:::callout-tip
+## Implicit vs explicit `return()`
+
+If you don't explicitly state a value to `return()`, R will pass the result of the last step of the function.  For simple functions, this is fine, but for anything more than a line or two, best practice is to explicitly call `return()` so it is obvious what is being returned.
+:::
+
+
 
 ## Documenting Functions
 
@@ -139,9 +216,9 @@ Well-named functions are a start, but good documentation tells collaborators (an
 #' @export
 #'
 #' @examples
-#' fahr_to_celsius(32)
-#' fahr_to_celsius(c(32, 212, 72))
-fahr_to_celsius <- function(fahr) {
+#' convert_f_to_c(32)
+#' convert_f_to_c(c(32, 212, 72))
+convert_f_to_c <- function(fahr) {
   celsius <- (fahr - 32) * 5/9
   return(celsius)
 }
@@ -156,7 +233,7 @@ Key tags:
 | `@examples` | Shows usage examples |
 | `@export` | Makes the function available if bundled in a package |
 
-This `roxygen2` structure might seem overly complicated, but it will pay off especially when including your functions in an R package!
+This `roxygen2` structure might seem overly complicated, but it will be useful for others interested in using your functions (including "future you") - especially when including your functions in an R package!
 
 ::: {.callout-note}
 For more best practices on function documentation, check out Hadley Wickham and Jennifer Bryan's online book [R Packages (2e)](https://r-pkgs.org/) - [Chapter 10, Section 16: Function Documentation](https://r-pkgs.org/man.html).
