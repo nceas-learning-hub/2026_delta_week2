@@ -300,6 +300,85 @@ In the same vein as the previous best practice, we recommend that you separate t
 
 This can sound harsh, but it is often a good idea to "quarantine" outputs received from others until they can be carefully vetted. This is not at all to suggest that such contributions might be malicious! As you embrace more of the project organization recommendations we've described above outputs from others have more and more opportunities to diverge from the framework you establish. Quarantining inputs from others gives you a chance to rename files to be consistent with the rest of your project as well as make sure that the style and content of the code also match (e.g., use or exclusion of particular packages, comment frequency and content, etc.)
 
-## Responsibly Using Generative AI
+## Introduction to Generative AI
 
-{{<fa person-digging >}} Under construction; check back later!
+Generative AI (hereafter "genAI") has become increasingly broadly-discussed and adopted in the sciences. As with any other flexible tool, there are a variety of opinions and use-cases. The goal of this component of this lesson is _not_ to provide comprehensive coverage for the entirety of genAI, rather **the goal here is to give you a starting point for thinking about genAI and deciding whether/how you'd like to use these tools.** We are by no means experts in the design and application of AI, we are just curious and excited (and sometimes apprehensive) about the possibilities these new tools offer.
+
+### Big Picture
+
+GenAI results are _probabilistic_ rather than _deterministic._ This means that the same exact prompt is not guaranteed to return the same result. This means that genAI results are not reproducible (i.e., cannot be guaranteed to return the same output from the same inputs) so should be used with caution when reproducibility is a priority.
+
+**Whether and how to use genAI for these projects is something your team will need to decide on collaboratively.** The use-cases, modalities, and drawbacks described below--or that you've encountered in your own work--may provide helpful context for that converation but the key point is that you do discuss this as a group and reach a shared understanding and plan of action that everyone on the team is comfortable with.
+
+### AI Use-Cases
+
+There are a handful of particularly well-recognized use-cases for genAI tools. A non-exhaustive set of these is included below.
+
+#### Note-Taking
+
+#### Refactoring Code
+
+
+#### Writing Unit Tests
+
+
+#### Code Language Translations
+
+In some synthesis teams, particularly those with a wide range of disciplines represented, it can be the case that not all members "speak" the same code languages. R, Python, and MATLAB are--in our experience--the most common but other languages may also be used depending on each individual's background.
+
+Using genAI to translate from one language into another can be super useful! Some considerations:
+
+- Discuss as a group which language everything should be translated into
+- Make sure that the original code and translated code are _tightly_ reviewed by someone who can speak both languages to make sure the code is actually comparable
+    - Errors in translation can be particularly pernicious to diagnose if the original author can't vet the translation of their work themself to confirm that the code does _exactly_ the same thing in both languages
+- Consider code style as a facet of translation
+    - Code written in the same language may have a wide range of style and content; if you use genAI to translate code, be sure to also match whatever style conventions your group has decided on
+
+### Context Window
+
+### AI Modalities
+
+:::{.panel-tabset}
+#### Browser / Chat Windows
+
+
+#### IDE
+
+#### Standalone AI App
+
+#### API
+
+:::
+
+### AI Drawbacks
+
+:::{.panel-tabset}
+#### Intellectual Property
+
+GenAI tools are/were trained on all publicly-available information (in many cases, regardless of license or copyright status) and on users' ongoing interactions with these tools. Keep in mind that the creators of the original content used to train the models are not currently credited for their work (and are not likely to be credited) and include that in your decisionmaking process for whether/how to use these tools.
+
+If you use these tools, be sure to check the privacy settings to ensure that you are comfortable with how your interactions are used to train the model you're using. If you are dealing with sensitive or private data (e.g., medical information, Indigenous data), making sure that you're not feeding that data into a large language model can have even more important ethical ramifications.
+
+For example, **GitHub Copilot by default learns from all of your interactions in GitHub!** You can switch this behavior off (Settings {{< fa arrow-right >}} Copilot {{< fa arrow-right >}} Features {{< fa arrow-right >}} Privacy) if desired, but this is illustrative of the reality that most of these tools (particularly the free ones or at least the free tier) do need to be told _not_ to collect your inputs/outputs rather than opting in to sharing that information.
+
+:::
+
+:::{.callout-exercise}
+### Discuss AI Use for This Project
+
+As a project team, get together and discuss (some of) the following questions:
+
+- To what extent (if at all) does your institution allow the use of genAI tools?
+    - How will those policies affect how you're even potentially able to use these tools as part of this group?
+- Do you use these tools yourself?
+    - If so, where have they worked well and where have they been less useful or you've been less comfortable using them?
+- For the work in this group, are there contexts where you are more or less comfortable using genAI tools?
+    - Note-taking?
+    - Code assistance?
+    - Scientific paper writing?
+    - Manuscript revision?
+- How do you plan to record (and eventually report) your use of genAI for this project?
+
+Conversations about AI use can become heated and may be susceptible to various forms of stuck communication, **remember to intentionally apply facilitation and dialogue techniques as you seek to understand your colleagues' perspectives.**
+
+:::
