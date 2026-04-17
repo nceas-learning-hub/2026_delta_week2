@@ -136,11 +136,11 @@ Top-level sub-folders are colored <span style="color:#209ACA">**blue**</span> so
 :::
 :::{.column width="50%"}
 
-#### Positives
+**Positives**
 
 - All project files are in one folder
 
-#### Areas for Improvement
+**Areas for Improvement**
 
 - No use of sub-folders to divide logically-linked content
 - File names lack key context (e.g., workflow order, inputs vs. outputs, etc.)
@@ -178,12 +178,12 @@ Top-level sub-folders are colored <span style="color:#209ACA">**blue**</span> so
 :::
 :::{.column width="50%"}
 
-#### Positives
+**Positives**
 
 - Sub-folders used to divide content
 - Project documentation included in top level (README and license files)
 
-#### Areas for Improvement
+**Areas for Improvement**
 
 - File names still inconsistent
     - File names contain different information in different order
@@ -225,12 +225,12 @@ Top-level sub-folders are colored <span style="color:#209ACA">**blue**</span> so
 :::
 :::{.column width="50%"}
 
-#### Positives
+**Positives**
 
 - Most file names contain context
 - Standardized use of casing and--within sub-folder--consistent delimiters used
 
-#### Areas for Improvement
+**Areas for Improvement**
 
 - Workflow order "guessable" but not explicit
 - Unclear which files are inputs / outputs (and of which scripts)
@@ -267,13 +267,13 @@ Top-level sub-folders are colored <span style="color:#209ACA">**blue**</span> so
 :::
 :::{.column width="50%"}
 
-#### Positives
+**Positives**
 
 - Scripts include zero-padded numbers indicating order of operations
 - Outputs share zero padded slug with source script
 - Report file names machine sorted from least to most recent (top to bottom)
 
-#### Areas for Improvement
+**Areas for Improvement**
 
 - Could add subfolder-specific README files
     - Depends on complexity of respective subfolder
