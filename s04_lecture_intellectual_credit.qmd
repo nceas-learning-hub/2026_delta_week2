@@ -80,7 +80,9 @@ Collaborators must do **all** of the following to warrant authorship:
 
 The [Contributor Role Taxonomy](https://credit.niso.org/) (CRediT) separates research roles into [14 categories](https://zenodo.org/records/18421449) though doesn't necessarily identify how performing those duties relates to authorship. Many teams that adopt this framework decide on some critical number of categories that a team member must fulfill in order to warrant authorship.
 
-The CRediT roles are defined in the table below.
+For teams that adopt this framework, a common convention is to create a shared spreadsheet with one row per collaborator with a column for each of the CRediT roles. Each collaborator simply marks an "X" in each column for which they feel they've contributed. Such a spreadsheet can also be a useful place to aggregate affilitation information as well!
+
+The CRediT roles are recapitulated in the table below.
 
 | Category | Definition |
 |:-:|:--------------------|
@@ -151,6 +153,8 @@ There are two major ways to approach authorship, whether you're talking about pa
 - Opt-out approaches assume that anyone contributing data, or making contributions to, say, the GitHub repository behind a package, will be credited as an author.
 
 Some collaboration efforts use a hybrid system, where the primary paper issuing from a data assembly effort is expected to use an opt-out model (and therefore includes all the data contributors), while subsequent papers require potential authors to opt-in and participate in developing the analysis and writing the paper.
+
+Note too that journals generally require that _all_ authors explicitly acknowledge their authorship. So even if you have an opt-out model, if a coauthor doesn't explicitly agree to be listed--which can be done by simply adding their name and affiliation to a spreadsheet--they must be excluded.
 
 :::callout-important
 ## It's okay to opt-out!
@@ -241,9 +245,11 @@ In addition, almost every AI system currently available provides results by draw
 Let's take a closer look at some approaches to authorship policies from teams of varying sizes. Each breakout group will focus on one policy and report back on their approach's strengths and weaknesses.
 
 1. [Nutrient Network Authorship Policy](https://nutnet.org/authorship)
-2. Expanded Authorship Guidelines[@cooke_ContemporaryAuthorship_2021]
+2. Expanded Authorship Guidelines [@cooke_ContemporaryAuthorship_2021]
 3. CReDiT Framework [@brand_AuthorshipAttribution_2015]
 4. [Arctic Data Center (ADC) Template](https://docs.google.com/document/d/16wNpk9vJiWqQQStmaEG66YgawU39hGC8x9KnbUqbyO4/edit#heading=h.gnbwiz3v0o8z)
+
+Note that **we've selected these policies as they represent a breadth of approaches** rather than because they are an exhaustive list (they are not).
 
 :::{.panel-tabset}
 ### Part 1 - Solo
