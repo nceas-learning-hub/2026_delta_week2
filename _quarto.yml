@@ -67,7 +67,7 @@ website:
         contents:
         - s01_github_collaboration.qmd
         - s02_r_data_visualization.qmd
-        - s03_r_github_practice.qmd
+        - s03_github_publishing.qmd
       - section: "Day 2"
         contents:
         - s04_lecture_intellectual_credit.qmd
@@ -79,7 +79,7 @@ website:
       - section: "Day 4"
         contents:
         - s08_project_doc_organization.qmd
-        - s09_github_publishing.qmd
+        - s09_r_github_practice.qmd
       # END SESSIONS
 
   page-footer:
