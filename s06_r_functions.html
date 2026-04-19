@@ -116,16 +116,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         background: #44444444;
       }
 </style>
-<link href="site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
-<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="site_libs/datatables-binding-0.33/datatables.js"></script>
-<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
-<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
-<script src="site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
-<link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
-<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
 
 
 <link rel="stylesheet" href="site_libs/quarto-contrib/quarto-project/nceas-learning-hub/theme/banner/banner.css">
@@ -522,13 +512,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#r-functions" id="toc-r-functions" class="nav-link active" data-scroll-target="#r-functions"><span class="header-section-number">1</span> R Functions</a>
+  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup"><span class="header-section-number">1</span> Setup</a>
   <ul class="collapse">
-  <li><a href="#why-functions" id="toc-why-functions" class="nav-link" data-scroll-target="#why-functions"><span class="header-section-number">1.1</span> Why Functions?</a></li>
-  <li><a href="#exercise-temperature-conversion" id="toc-exercise-temperature-conversion" class="nav-link" data-scroll-target="#exercise-temperature-conversion"><span class="header-section-number">1.2</span> Exercise: Temperature Conversion</a></li>
-  <li><a href="#documenting-r-functions" id="toc-documenting-r-functions" class="nav-link" data-scroll-target="#documenting-r-functions"><span class="header-section-number">1.3</span> Documenting R Functions</a></li>
-  <li><a href="#exercise-minimizing-work-with-functions" id="toc-exercise-minimizing-work-with-functions" class="nav-link" data-scroll-target="#exercise-minimizing-work-with-functions"><span class="header-section-number">1.4</span> Exercise: Minimizing Work with Functions</a></li>
+  <li><a href="#example-temperature-conversion" id="toc-example-temperature-conversion" class="nav-link" data-scroll-target="#example-temperature-conversion"><span class="header-section-number">1.1</span> Example: Temperature Conversion</a></li>
   </ul></li>
+  <li><a href="#function-arguments-and-return" id="toc-function-arguments-and-return" class="nav-link" data-scroll-target="#function-arguments-and-return"><span class="header-section-number">2</span> Function Arguments and <code>return</code></a>
+  <ul class="collapse">
+  <li><a href="#setting-argument-defaults" id="toc-setting-argument-defaults" class="nav-link" data-scroll-target="#setting-argument-defaults"><span class="header-section-number">2.1</span> Setting Argument Defaults</a></li>
+  <li><a href="#returning-values" id="toc-returning-values" class="nav-link" data-scroll-target="#returning-values"><span class="header-section-number">2.2</span> Returning Values</a></li>
+  </ul></li>
+  <li><a href="#functions-use-cases" id="toc-functions-use-cases" class="nav-link" data-scroll-target="#functions-use-cases"><span class="header-section-number">3</span> Functions: Use Cases</a>
+  <ul class="collapse">
+  <li><a href="#functions-for-iteration" id="toc-functions-for-iteration" class="nav-link" data-scroll-target="#functions-for-iteration"><span class="header-section-number">3.1</span> Functions for Iteration</a></li>
+  <li><a href="#functions-for-custom-plot-themes" id="toc-functions-for-custom-plot-themes" class="nav-link" data-scroll-target="#functions-for-custom-plot-themes"><span class="header-section-number">3.2</span> Functions for Custom Plot Themes</a></li>
+  </ul></li>
+  <li><a href="#documenting-functions" id="toc-documenting-functions" class="nav-link" data-scroll-target="#documenting-functions"><span class="header-section-number">4</span> Documenting Functions</a></li>
+  <li><a href="#exercises-minimizing-work-with-functions" id="toc-exercises-minimizing-work-with-functions" class="nav-link" data-scroll-target="#exercises-minimizing-work-with-functions"><span class="header-section-number">5</span> Exercises: Minimizing Work with Functions</a></li>
   </ul>
 </nav>
     </div>
@@ -563,46 +562,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<section id="r-functions" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="r-functions"><span class="header-section-number">1</span> R Functions</h2>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<section id="setup" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="setup"><span class="header-section-number">1</span> Setup</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">### For data wrangling and plotting</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr) <span class="do">### for iteration using map() family of functions</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins) <span class="do">### example data</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Quick reminder: What is a function?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A set of statements or expressions of code that are organized together to perform a specific task.</p>
-<p>The statements or expressions of code within the function accept accept user input(s), does something with it, and returns a useful output.</p>
-<p>Syntax: <code>result_value &lt;- function_name(argument1 = value1, argument2 = value2, ...)</code></p>
-</div>
-</div>
-<p>Many people write R code as a single, continuous stream of commands, often drawn from the R Console itself and simply pasted into a script. While any script brings benefits over non-scripted solutions, there are advantages to breaking code into small, reusable modules. This is the role of a <strong>function</strong> in R. In this lesson, we will review the advantages of coding with functions, practice by creating some functions and show how to call them, and then do some exercises to build other simple functions.</p>
-<section id="why-functions" class="level3" data-number="1.1">
-<h3 data-number="1.1" class="anchored" data-anchor-id="why-functions"><span class="header-section-number">1.1</span> Why Functions?</h3>
-<div class="callout callout-style-simple callout-important">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>DRY: Don’t Repeat Yourself</strong></p>
-</div>
-</div>
-</div>
-<blockquote class="blockquote">
-<p>“You should consider writing a function whenever you’ve copied and pasted a block of code more than twice (i.e.&nbsp;you now have three copies of the same code).”</p>
-<p><em><a href="https://r4ds.had.co.nz/functions.html">Chapter 19 Functions</a> in R for Data Science (Grolemund &amp; Wickham)</em></p>
-</blockquote>
-<p>By creating small functions that only complete one logical task and do it well, we quickly gain:</p>
-<ul>
-<li>Improved understanding</li>
-<li>Reuse via decomposing tasks into bite-sized chunks</li>
-<li>Improved error testing</li>
-</ul>
+<pre><code>## Why Functions?
+
+Many R users write code as a continuous stream of commands—paste from the console, run, repeat. That works, but breaking code into small, reusable **functions** pays off quickly.
+
+The guiding principle is **DRY: Don't Repeat Yourself**. If you've copied and pasted a block of code more than twice, it's time to write a function. Functions give you:
+
+- **Less repetition** — change logic in one piece of code, not ten
+- **Fewer errors** — one tested implementation instead of many copies
+- **Better readability** — a well-named function documents the coder's intent
+
+### Function Basics
+
+The syntax for defining a function in R is:
+
+```r
+my_function &lt;- function(argument1, argument2) {
+  &lt;code that performs some well defined task&gt;
+  return(result)
+}</code></pre>
+<p>You can call it just like any built-in function:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">my_function</span>(<span class="at">argument1 =</span> value1, <span class="at">argument2 =</span> value2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -613,96 +604,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The name of a function is important. Ideally, function names should be short, but still clearly captures what the function does.</p>
+<p>Ideally, function names should be short, but still clearly capture what the function does.</p>
 <p>Best Practices from <a href="https://r4ds.had.co.nz/functions.html">Chapter 19 Functions</a> in R for Data Science:</p>
 <ul>
-<li>Function names should be verbs and arguments should be nouns (there are <a href="https://r4ds.had.co.nz/functions.html#functions-are-for-humans-and-computers">exceptions</a>).</li>
+<li><strong>Function names</strong> should be <strong>verbs</strong> and <strong>arguments</strong> should be <strong>nouns</strong> (there are <a href="https://r4ds.had.co.nz/functions.html#functions-are-for-humans-and-computers">exceptions</a>).</li>
 <li>Use the <code>snake_case</code> naming convention for functions that are multiple words.</li>
-<li>For a “family” of functions, use a common prefix to indicate that they are connected.</li>
+<li>For a “family” of functions, use a common prefix to indicate that they are connected. For example, most of the functions in the <code>usethis</code> package have the prefix <code>use_*</code></li>
 </ul>
+<p>Based on these tips, is <code>my_function()</code> a good name for a function?</p>
 </div>
 </div>
-</section>
-<section id="exercise-temperature-conversion" class="level3" data-number="1.2">
-<h3 data-number="1.2" class="anchored" data-anchor-id="exercise-temperature-conversion"><span class="header-section-number">1.2</span> Exercise: Temperature Conversion</h3>
-<p>Imagine you have a bunch of data measured in Fahrenheit and you want to convert that for analytical purposes to Celsius. You might have an R script that does this for you.</p>
+<section id="example-temperature-conversion" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="example-temperature-conversion"><span class="header-section-number">1.1</span> Example: Temperature Conversion</h3>
+<p>Imagine you have some temperature data measured in degrees Fahrenheit and you want to convert that to Celsius for your analysis. You might have an R script that does this for you.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>airtemps <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">212</span>, <span class="fl">30.3</span>, <span class="dv">78</span>, <span class="dv">32</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>celsius1 <span class="ot">&lt;-</span> (airtemps[<span class="dv">1</span>] <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>celsius2 <span class="ot">&lt;-</span> (airtemps[<span class="dv">2</span>] <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>celsius3 <span class="ot">&lt;-</span> (airtemps[<span class="dv">3</span>] <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>airtemps <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">212</span>, <span class="fl">30.3</span>, <span class="dv">78</span>, <span class="dv">32</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>celsius1 <span class="ot">&lt;-</span> (airtemps[<span class="dv">1</span>] <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>celsius2 <span class="ot">&lt;-</span> (airtemps[<span class="dv">2</span>] <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>celsius3 <span class="ot">&lt;-</span> (airtemps[<span class="dv">3</span>] <span class="sc">-</span> <span class="dv">33</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Note the duplicated code, where the same formula is repeated three times. This code would be both more compact and more reliable if we didn’t repeat ourselves.</p>
-<section id="create-a-function-that-converts-fahrenheit-to-celsius" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="create-a-function-that-converts-fahrenheit-to-celsius">Create a Function that Converts Fahrenheit to Celsius</h4>
-<p>Functions in R are a mechanism to process some input and return a value. Similarly to other variables, functions can be assigned to a variable so that they can be used throughout code by reference. To create a function in R, you use the <code>function</code> function (so meta!) and assign its result to a variable. Let’s create a function that calculates Celsius temperature outputs from Fahrenheit temperature inputs.</p>
+<p>Here we repeat the same formula three times. And note the third time, there’s a subtle mistake! This code would be both more compact and more reliable if we didn’t repeat ourselves.</p>
+<section id="convert-fahrenheit-to-celsius" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="convert-fahrenheit-to-celsius">Convert Fahrenheit to Celsius</h4>
+<p>To create a function in R, we use the <code>function</code> function (so meta!) and assign its result to an object. Let’s create a function that calculates Celsius temperature outputs from Fahrenheit temperature inputs.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fahr_to_celsius <span class="ot">&lt;-</span> <span class="cf">function</span>(fahr) {</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  celsius <span class="ot">&lt;-</span> (fahr <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(celsius)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>convert_f_to_c <span class="ot">&lt;-</span> <span class="cf">function</span>(fahr) {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  celsius <span class="ot">&lt;-</span> (fahr <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(celsius)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>By running this code, we have created a function and stored it in R’s global environment. The <code>fahr</code> argument to the <code>function</code> function indicates that the function we are creating takes a single parameter (the temperature in Fahrenheit), and the <code>return</code> statement indicates that the function should return the value in the <code>celsius</code> variable that was calculated inside the function. Let’s use it, and check if we got the same value as before:</p>
+<p>Because R operations are vectorized, this works on a single value <em>or</em> an entire vector:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>celsius4 <span class="ot">&lt;-</span> <span class="fu">fahr_to_celsius</span>(airtemps[<span class="dv">1</span>])</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>celsius4</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 100</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>celsius1 <span class="sc">==</span> celsius4</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">### check single value:</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>celsius1a <span class="ot">&lt;-</span> <span class="fu">convert_f_to_c</span>(airtemps[<span class="dv">1</span>])</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>celsius1a <span class="sc">==</span> celsius1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
-</div>
-<p>Excellent. So now we have a conversion function we can use. Note that, because most operations in <code>R</code> can take multiple types as inputs, we can also pass the original vector of <code>airtemps</code>, and calculate all of the results at once:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>celsius <span class="ot">&lt;-</span> <span class="fu">fahr_to_celsius</span>(airtemps)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>celsius</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">### calculate for whole vector:</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>celsius_vec <span class="ot">&lt;-</span> <span class="fu">convert_f_to_c</span>(airtemps)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>celsius_vec</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 100.0000000  -0.9444444  25.5555556   0.0000000</code></pre>
 </div>
 </div>
-<p>This takes a vector of temperatures in Fahrenheit, and returns a vector of temperatures in Celsius.</p>
-</section>
-<section id="your-turn-create-a-function-that-converts-celsius-to-fahrenheit" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="your-turn-create-a-function-that-converts-celsius-to-fahrenheit">Your Turn: Create a Function that Converts Celsius to Fahrenheit</h4>
 <div class="callout callout-style-default callout-exercise no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Exercise</span>Exercise
+<span class="screen-reader-only">Exercise</span>Exercise  - Convert Celsius to Fahrenheit
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse show">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="callout-exercise">
-<p>Create a function named <code>celsius_to_fahr</code> that does the reverse, it takes temperature data in Celsius as input, and returns the data converted to Fahrenheit.</p>
-<p>Create the function <code>celsius_to_fahr</code> in a new R Script file.</p>
-<p>Then use that formula to convert the <code>celsius</code> vector back into a vector of Fahrenheit values, and compare it to the original <code>airtemps</code> vector to ensure that your answers are correct.</p>
-<div class="callout callout-style-default callout-hint no-icon callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Hint</span>Hint
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div class="callout-hint">
+<p>Write a function <code>convert_c_to_f</code> that reverses the conversion. Use it to convert <code>celsius</code> back to Fahrenheit and verify that the result matches <code>airtemps</code>.</p>
 <p><strong>Hint:</strong> the formula for Celsius to Fahrenheit conversions is <code>celsius * 9/5 + 32</code>.</p>
-</div>
-</div>
-</div>
-</div>
-<p>Did you encounter any issues with rounding or precision?</p>
 <div class="callout callout-style-default callout-answer no-icon callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -711,17 +673,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="callout-answer">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>celsius_to_fahr <span class="ot">&lt;-</span> <span class="cf">function</span>(celsius) {</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    fahr <span class="ot">&lt;-</span> celsius <span class="sc">*</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">5</span> <span class="sc">+</span> <span class="dv">32</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(fahr)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">celsius_to_fahr</span>(celsius)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>airtemps <span class="sc">==</span> result</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>convert_c_to_f <span class="ot">&lt;-</span> <span class="cf">function</span>(celsius) {</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    fahr <span class="ot">&lt;-</span> celsius <span class="sc">*</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">5</span> <span class="sc">+</span> <span class="dv">32</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(fahr)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>fahr_vec <span class="ot">&lt;-</span> <span class="fu">convert_c_to_f</span>(celsius_vec)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>airtemps <span class="sc">==</span> fahr_vec</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE TRUE TRUE TRUE</code></pre>
 </div>
@@ -730,163 +692,376 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<!-- end answer -->
 </div>
 </div>
 </div>
 </div>
+<!-- end exercise -->
 </section>
 </section>
-<section id="documenting-r-functions" class="level3" data-number="1.3">
-<h3 data-number="1.3" class="anchored" data-anchor-id="documenting-r-functions"><span class="header-section-number">1.3</span> Documenting R Functions</h3>
-<p>Functions need documentation so that we can communicate what they do, and why. The <a href="https://roxygen2.r-lib.org/"><code>roxygen2</code> R package</a> provides a simple means to document your functions so that you can explain what the function does, the assumptions about the input values, a description of the value that is returned, and the rationale for decisions made about implementation.</p>
-<p>Documentation in <code>roxygen2</code> is placed immediately before the function definition, and is indicated by a special comment line that always starts with the characters <code>#'</code>. Here’s a documented version of a function:</p>
+</section>
+<section id="function-arguments-and-return" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="function-arguments-and-return"><span class="header-section-number">2</span> Function Arguments and <code>return</code></h2>
+<section id="setting-argument-defaults" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="setting-argument-defaults"><span class="header-section-number">2.1</span> Setting Argument Defaults</h3>
+<p>Function arguments often include a default value - in which case, the user can opt to simply not assign a value. Here, <code>convert_temp()</code> allows the user to specify the scale of their input, defaulting to Fahrenheit (<code>scale = 'f'</code>).</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Error handling!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sometimes a user will include an argument that breaks the code - a character when the function expects a number, upper-case when expecting lower-case, etc. Try to anticipate simple errors and include a way to identify and handle them in the function: try to correct the error on the fly, or use <code>stop()</code> to return a useful error message to the user.</p>
+</div>
+</div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Convert temperature values from Fahrenheit to Celsius</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param fahr Numeric or numeric vector in degrees Fahrenheit</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' @return Numeric or numeric vector in degrees Celsius</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' @export</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examples</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">#' fahr_to_celsius(32)</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">#' fahr_to_celsius(c(32, 212, 72))</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>fahr_to_celsius <span class="ot">&lt;-</span> <span class="cf">function</span>(fahr) {</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  celsius <span class="ot">&lt;-</span> (fahr <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(celsius)</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-8"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-8-1"><a href="#annotated-cell-8-1" aria-hidden="true" tabindex="-1"></a>convert_temp <span class="ot">&lt;-</span> <span class="cf">function</span>(t, <span class="at">scale =</span> <span class="st">'f'</span>) {</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="1">1</button><span id="annotated-cell-8-2" class="code-annotation-target"><a href="#annotated-cell-8-2" aria-hidden="true" tabindex="-1"></a>    scale <span class="ot">=</span> <span class="fu">tolower</span>(<span class="fu">substr</span>(scale, <span class="dv">1</span>, <span class="dv">1</span>))</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="2">2</button><span id="annotated-cell-8-3" class="code-annotation-target"><a href="#annotated-cell-8-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="sc">!</span>scale <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">'c'</span>, <span class="st">'f'</span>)) {</span>
+<span id="annotated-cell-8-4"><a href="#annotated-cell-8-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">stop</span>(<span class="st">'scale must be either "c" or "f"'</span>)</span>
+<span id="annotated-cell-8-5"><a href="#annotated-cell-8-5" aria-hidden="true" tabindex="-1"></a>    }</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="3">3</button><span id="annotated-cell-8-6" class="code-annotation-target"><a href="#annotated-cell-8-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(scale <span class="sc">==</span> <span class="st">"c"</span>) {</span>
+<span id="annotated-cell-8-7"><a href="#annotated-cell-8-7" aria-hidden="true" tabindex="-1"></a>        result <span class="ot">=</span> t <span class="sc">*</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">5</span> <span class="sc">+</span> <span class="dv">32</span></span>
+<span id="annotated-cell-8-8"><a href="#annotated-cell-8-8" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="annotated-cell-8-9"><a href="#annotated-cell-8-9" aria-hidden="true" tabindex="-1"></a>        result  <span class="ot">=</span> (t <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span></span>
+<span id="annotated-cell-8-10"><a href="#annotated-cell-8-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="annotated-cell-8-11"><a href="#annotated-cell-8-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">round</span>(result, <span class="dv">3</span>))</span>
+<span id="annotated-cell-8-12"><a href="#annotated-cell-8-12" aria-hidden="true" tabindex="-1"></a>}</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-8" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-8" data-code-lines="2" data-code-annotation="1">What if user enters <code>scale = "Celsius"</code>? <code>substr(x, 1, 1)</code> grabs just the first letter, and <code>tolower</code> forces it to lower case</span>
+</dd>
+<dt data-target-cell="annotated-cell-8" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-8" data-code-lines="3" data-code-annotation="2">If <code>scale</code> is not one of the expected values, generate a sensible error with <code>stop()</code></span>
+</dd>
+<dt data-target-cell="annotated-cell-8" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-8" data-code-lines="6" data-code-annotation="3">We know the values are valid now, so we can use a simple if/else to do the correct calculation!</span>
+</dd>
+</dl>
 </div>
-<p>Note the use of the <code>@param</code> keyword to define the expectations of input data, and the <code>@return</code> keyword for defining the value that is returned from the function. The <code>@examples</code> function is useful as a reminder as to how to use the function. Finally, the <code>@export</code> keyword indicates that, if this function were added to a package, then the function should be available to other code and packages to utilize.</p>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">convert_temp</span>(<span class="at">t =</span> airtemps)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 100.000  -0.944  25.556   0.000</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">convert_temp</span>(<span class="at">t =</span> airtemps, <span class="at">scale =</span> <span class="st">'Celsius'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 413.60  86.54 172.40  89.60</code></pre>
+</div>
+</div>
+</section>
+<section id="returning-values" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="returning-values"><span class="header-section-number">2.2</span> Returning Values</h3>
+<p>Use <code>return(x)</code> to end the function and hand the resulting value back to the user. To provide multiple values back to a user, consider more complex data structures like a dataframe (well structured) or a named list (very flexible).</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Dataframe</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Named List</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>convert_f_to_c_k <span class="ot">&lt;-</span> <span class="cf">function</span>(f) {</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  c <span class="ot">&lt;-</span> (f <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  k  <span class="ot">&lt;-</span> c <span class="sc">+</span> <span class="fl">273.15</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  out_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">fahr =</span> f, <span class="at">celsius =</span> c, <span class="at">kelvin =</span> k)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(out_df)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>temps_df <span class="ot">&lt;-</span> <span class="fu">convert_f_to_c_k</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">50</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>convert_f_to_c_k <span class="ot">&lt;-</span> <span class="cf">function</span>(f) {</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  c <span class="ot">&lt;-</span> (f <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  k  <span class="ot">&lt;-</span> c <span class="sc">+</span> <span class="fl">273.15</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  out_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">fahr =</span> f, <span class="at">celsius =</span> c, <span class="at">kelvin =</span> k)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(out_list)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>temps_list <span class="ot">&lt;-</span> <span class="fu">convert_f_to_c_k</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">50</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Implicit vs explicit <code>return()</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you don’t explicitly state a value to <code>return()</code>, R will pass the result of the last step of the function. For simple functions, this is fine, but for anything more than a line or two, best practice is to explicitly call <code>return()</code> so it is obvious what is being returned.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="functions-use-cases" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="functions-use-cases"><span class="header-section-number">3</span> Functions: Use Cases</h2>
+<p>Functions are amazing for reusing common code logic and for communicating the intent of a block of code by assigning a name. But functions can make it much easier to iterate complex operations on vectors and lists, and can help you create customized plot themes that you can use across multiple plots to maintain a consistent “brand”.</p>
+<section id="functions-for-iteration" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="functions-for-iteration"><span class="header-section-number">3.1</span> Functions for Iteration</h3>
+<p>A function allows you to easily reuse a piece of code. This is especially powerful when coupled with iteration functions: <code>*apply</code> functions (base R) and the <code>map_*</code> functions from the <code>purrr</code> package. For example, you could apply a function to each element of a list or vector in sequence; separate a dataframe into pieces by some variable, then fit a model to each piece or generate a separate plot for each; or read in a series of separate data files and summarize the results into a complete dataframe.</p>
+<p>The <code>apply</code> and <code>map</code> functions typically take a list or vector for their first argument, and a function as their second.</p>
+<ul>
+<li>The first argument of the function <code>.x</code> or <code>X</code> should generally be the variable being iterated over!</li>
+<li>The function argument <code>.f</code> or <code>FUN</code> should not have parentheses after it!</li>
+</ul>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Simple Example</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Complex example</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p>Apply the square root function <code>sqrt()</code> to each element of a vector of numbers. NOTE, if <code>nums</code> were a vector, this would be trivial since <code>sqrt</code> already takes advantage of vectorization; here we made <code>nums</code> a list just for fun.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-22"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-22-1"><a href="#annotated-cell-22-1" aria-hidden="true" tabindex="-1"></a>nums <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">9</span>, <span class="dv">49</span>, <span class="dv">101</span>, pi)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-22" data-target-annotation="1">1</button><span id="annotated-cell-22-2" class="code-annotation-target"><a href="#annotated-cell-22-2" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">map_vec</span>(<span class="at">.x =</span> nums, <span class="at">.f =</span> sqrt)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-22" data-target-annotation="2">2</button><span id="annotated-cell-22-3" class="code-annotation-target"><a href="#annotated-cell-22-3" aria-hidden="true" tabindex="-1"></a>base<span class="sc">::</span><span class="fu">sapply</span>(<span class="at">X =</span> nums, <span class="at">FUN =</span> sqrt)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-22" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-22" data-code-lines="2" data-code-annotation="1"><code>map()</code> always returns a list, but <code>map_vec</code> simplifies into a vector; see also <code>map_df</code> or type-specific versions like <code>map_int</code>, <code>map_chr</code>, or <code>map_dbl</code></span>
+</dd>
+<dt data-target-cell="annotated-cell-22" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-22" data-code-lines="3" data-code-annotation="2"><code>apply()</code> returns various formats depending on output; <code>sapply</code> returns the results simplified into a vector or matrix</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  1.000000  1.732051  3.000000  7.000000 10.049876  1.772454
+[1]  1.000000  1.732051  3.000000  7.000000 10.049876  1.772454</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p>Let’s take the <code>palmerpenguins::penguins</code> dataset and create a linear model of bill length vs bill depth for each of the three penguin species, Chinstrap, Adelie, and Gentoo. Note, there are more efficient ways to do this, here we are spelling it out as a teaching case.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-24"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-24-1"><a href="#annotated-cell-24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="annotated-cell-24-2"><a href="#annotated-cell-24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(penguins)</span>
+<span id="annotated-cell-24-3"><a href="#annotated-cell-24-3" aria-hidden="true" tabindex="-1"></a>spp_vec <span class="ot">&lt;-</span> <span class="fu">unique</span>(penguins<span class="sc">$</span>species)</span>
+<span id="annotated-cell-24-4"><a href="#annotated-cell-24-4" aria-hidden="true" tabindex="-1"></a></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-24" data-target-annotation="1">1</button><span id="annotated-cell-24-5" class="code-annotation-target"><a href="#annotated-cell-24-5" aria-hidden="true" tabindex="-1"></a>calc_bill_model <span class="ot">&lt;-</span> <span class="cf">function</span>(spp, df) {</span>
+<span id="annotated-cell-24-6"><a href="#annotated-cell-24-6" aria-hidden="true" tabindex="-1"></a>    spp_df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="annotated-cell-24-7"><a href="#annotated-cell-24-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">filter</span>(species <span class="sc">==</span> spp)</span>
+<span id="annotated-cell-24-8"><a href="#annotated-cell-24-8" aria-hidden="true" tabindex="-1"></a>    bill_mdl <span class="ot">&lt;-</span> <span class="fu">lm</span>(bill_length_mm <span class="sc">~</span> bill_depth_mm, <span class="at">data =</span> spp_df)</span>
+<span id="annotated-cell-24-9"><a href="#annotated-cell-24-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(bill_mdl)</span>
+<span id="annotated-cell-24-10"><a href="#annotated-cell-24-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="annotated-cell-24-11"><a href="#annotated-cell-24-11" aria-hidden="true" tabindex="-1"></a>map_results <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(<span class="at">.x =</span> spp_vec, <span class="at">.f =</span> calc_bill_model, <span class="at">df =</span> penguins)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-24" data-target-annotation="2">2</button><span id="annotated-cell-24-12" class="code-annotation-target"><a href="#annotated-cell-24-12" aria-hidden="true" tabindex="-1"></a>broom<span class="sc">::</span><span class="fu">tidy</span>(map_results[[<span class="dv">3</span>]])</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-24" data-target-annotation="3">3</button><span id="annotated-cell-24-13" class="code-annotation-target"><a href="#annotated-cell-24-13" aria-hidden="true" tabindex="-1"></a>lapply_results <span class="ot">&lt;-</span> base<span class="sc">::</span><span class="fu">lapply</span>(<span class="at">X =</span> spp_vec, <span class="at">FUN =</span> calc_bill_model, <span class="at">df =</span> penguins)</span>
+<span id="annotated-cell-24-14"><a href="#annotated-cell-24-14" aria-hidden="true" tabindex="-1"></a>broom<span class="sc">::</span><span class="fu">tidy</span>(lapply_results[[<span class="dv">3</span>]])</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-24" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-24" data-code-lines="5,11" data-code-annotation="1"><code>map()</code> always returns a list, which works well for storing a complex object like a linear model</span>
+</dd>
+<dt data-target-cell="annotated-cell-24" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-24" data-code-lines="12,14" data-code-annotation="2"><code>broom::tidy()</code> summarizes a model object into a nice clean dataframe</span>
+</dd>
+<dt data-target-cell="annotated-cell-24" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-24" data-code-lines="13" data-code-annotation="3"><code>lapply()</code> always returns a list, which works well for storing a complex object like a linear model</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  term          estimate std.error statistic       p.value
+  &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;
+1 (Intercept)      13.4      5.06       2.66 0.00992      
+2 bill_depth_mm     1.92     0.274      7.01 0.00000000153
+# A tibble: 2 × 5
+  term          estimate std.error statistic       p.value
+  &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;
+1 (Intercept)      13.4      5.06       2.66 0.00992      
+2 bill_depth_mm     1.92     0.274      7.01 0.00000000153</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- end panel-tabset -->
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Named Functions vs Anonymous Functions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In the examples above, we used named functions (<code>sqrt</code> defined in base R, <code>calc_bill_model</code> defined by our own code). The <code>map</code> and <code>apply</code> functions also work well with “anonymous” functions - small tasks where the code is only needed once and can be discarded after. The function is created on the fly and not assigned to a named object.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">Base R Syntax</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Shorthand (R4.1+)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false" href=""><code>purrr</code> syntax</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<p>Using <code>function()</code> but not assigning it to an object, just giving it directly to the <code>FUN</code> argument.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>base<span class="sc">::</span><span class="fu">sapply</span>(<span class="at">X =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">FUN =</span> <span class="cf">function</span>(x) x <span class="sc">+</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2 3 4</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<p>R 4.1 introduced a shorthand for <code>function(args) {expr}</code> using a backslash: <code>\(args) expr</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>base<span class="sc">::</span><span class="fu">sapply</span>(<span class="at">X =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">FUN =</span> \(x) x <span class="sc">+</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2 3 4</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<p>The <code>purrr</code> package uses a tilde-dot syntax as placeholder for the argument. It also works with <code>function()</code> or the backslash shorthand.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">map_vec</span>(<span class="at">.x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">.f =</span> <span class="sc">~</span> .x <span class="sc">+</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2 3 4</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">map_vec</span>(<span class="at">.x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">.f =</span> \(x) x <span class="sc">+</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2 3 4</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- end panel tabset -->
+</div>
+</div>
+<!-- end named vs anon functions callout -->
+</section>
+<section id="functions-for-custom-plot-themes" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="functions-for-custom-plot-themes"><span class="header-section-number">3.2</span> Functions for Custom Plot Themes</h3>
+<p>If you make many similar plots, a custom theme function keeps formatting consistent and easy to update (we know this is not the greatest plot, we’re just changing various aspects that should be obvious in the resulting plot).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>custom_theme <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">base_size =</span> <span class="dv">9</span>) {</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">text             =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"serif"</span>,</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">color  =</span> <span class="st">"slateblue4"</span>,</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">size   =</span> base_size),</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title       =</span> <span class="fu">element_text</span>(<span class="at">size   =</span> <span class="fu">rel</span>(<span class="fl">1.25</span>),</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">hjust  =</span> <span class="fl">0.5</span>,</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">face   =</span> <span class="st">"bold"</span>),</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">'slateblue3'</span>,</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">fill  =</span> <span class="st">'azure'</span>),</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color    =</span> <span class="st">"slateblue1"</span>,</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">linewidth =</span> <span class="fl">0.25</span>),</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position  =</span> <span class="fu">c</span>(.<span class="dv">9</span>, .<span class="dv">4</span>),</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks       =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">'red'</span>)</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>You can go further and wrap the entire plot in a function too:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>scatterplot <span class="ot">&lt;-</span> <span class="cf">function</span>(df, <span class="at">point_size =</span> <span class="dv">2</span>, <span class="at">font_size =</span> <span class="dv">9</span>) {</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> fahr, <span class="at">y =</span> celsius, <span class="at">color =</span> kelvin)) <span class="sc">+</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> point_size) <span class="sc">+</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_viridis_c</span>() <span class="sc">+</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">custom_theme</span>(font_size)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="fu">scatterplot</span>(temps_df, <span class="at">point_size =</span> <span class="dv">3</span>, <span class="at">font_size =</span> <span class="dv">16</span>) <span class="sc">+</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'Temperature Conversions'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="s06_r_functions_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now all plots built with <code>scatterplot()</code> can be reformatted by changing <em>one</em> function – whether you’re making 1, 10, or 100 plots.</p>
+</section>
+</section>
+<section id="documenting-functions" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="documenting-functions"><span class="header-section-number">4</span> Documenting Functions</h2>
+<p>Well-named functions are a start, but good documentation tells collaborators (and future you) what a function expects and what it returns. Comments in the function body are a good start. For a more standardized structure, the <a href="https://roxygen2.r-lib.org/"><code>roxygen2</code></a> package provides a lightweight format for this. Place comments starting with <code>#'</code> immediately above the function definition, and use specific tags (e.g., <code>@param</code>) to define sections of the documentation.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Convert temperature from Fahrenheit to Celsius</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param fahr Numeric value or vector in degrees Fahrenheit</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' @return Numeric value or vector in degrees Celsius</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' @export</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examples</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="co">#' convert_f_to_c(32)</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="co">#' convert_f_to_c(c(32, 212, 72))</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>convert_f_to_c <span class="ot">&lt;-</span> <span class="cf">function</span>(fahr) {</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>  celsius <span class="ot">&lt;-</span> (fahr <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(celsius)</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Key tags:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tag</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>@param</code></td>
+<td>Describes each input argument to the function</td>
+</tr>
+<tr class="even">
+<td><code>@return</code></td>
+<td>Describes the function’s output</td>
+</tr>
+<tr class="odd">
+<td><code>@examples</code></td>
+<td>Shows usage examples</td>
+</tr>
+<tr class="even">
+<td><code>@export</code></td>
+<td>Makes the function available if bundled in a package</td>
+</tr>
+</tbody>
+</table>
+<p>This <code>roxygen2</code> structure might seem overly complicated, but it will be useful for others interested in using your functions (including “future you”) - especially when including your functions in an R package!</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Check it out: Function Documentation Section from R Packages (2e)
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>For more best practices on function documentation, review Hadley Wickham and Jennifer Bryan’s online book <a href="https://r-pkgs.org/">R Packages (2e)</a> - <a href="https://r-pkgs.org/man.html">Chapter 10, Section 16: Function Documentation</a>.</p>
+<p>For more best practices on function documentation, check out Hadley Wickham and Jennifer Bryan’s online book <a href="https://r-pkgs.org/">R Packages (2e)</a> - <a href="https://r-pkgs.org/man.html">Chapter 10, Section 16: Function Documentation</a>.</p>
 </div>
 </div>
 </section>
-<section id="exercise-minimizing-work-with-functions" class="level3" data-number="1.4">
-<h3 data-number="1.4" class="anchored" data-anchor-id="exercise-minimizing-work-with-functions"><span class="header-section-number">1.4</span> Exercise: Minimizing Work with Functions</h3>
-<p>Functions can of course be as simple or complex as needed. They can be be very effective in repeatedly performing calculations, or for bundling a group of commands that are used on many different input data sources. For example, we might create a simple function that takes Fahrenheit temperatures as input, and calculates both Celsius and Kelvin temperatures. All three values are then returned in a list, making it very easy to create a comparison table among the three scales.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>convert_temps <span class="ot">&lt;-</span> <span class="cf">function</span>(fahr) {</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  celsius <span class="ot">&lt;-</span> (fahr <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  kelvin <span class="ot">&lt;-</span> celsius <span class="sc">+</span> <span class="fl">273.15</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">fahr =</span> fahr, <span class="at">celsius =</span> celsius, <span class="at">kelvin =</span> kelvin))</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>temps_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">convert_temps</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">100</span>,<span class="dv">100</span>,<span class="dv">10</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-8d73b433509475ea6ffc" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-8d73b433509475ea6ffc">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21"],[-100,-90,-80,-70,-60,-50,-40,-30,-20,-10,0,10,20,30,40,50,60,70,80,90,100],[-73.33333333333333,-67.77777777777777,-62.22222222222222,-56.66666666666666,-51.11111111111111,-45.55555555555556,-40,-34.44444444444444,-28.88888888888889,-23.33333333333333,-17.77777777777778,-12.22222222222222,-6.666666666666667,-1.111111111111111,4.444444444444445,10,15.55555555555556,21.11111111111111,26.66666666666667,32.22222222222222,37.77777777777778],[199.8166666666667,205.3722222222222,210.9277777777777,216.4833333333333,222.0388888888889,227.5944444444444,233.15,238.7055555555555,244.2611111111111,249.8166666666666,255.3722222222222,260.9277777777777,266.4833333333333,272.0388888888889,277.5944444444444,283.15,288.7055555555555,294.2611111111111,299.8166666666667,305.3722222222222,310.9277777777777]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>fahr<\/th>\n      <th>celsius<\/th>\n      <th>kelvin<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"fahr","targets":1},{"name":"celsius","targets":2},{"name":"kelvin","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
-</div>
-</div>
-<p>Once we have a dataset like that, we might want to plot it. One thing that we do repeatedly is set a consistent set of display elements for creating graphs and plots. By using a function to create a custom <code>ggplot</code> theme, we can enable to keep key parts of the formatting flexible. For example, in the <code>custom_theme</code> function, we provide a <code>base_size</code> argument that defaults to using a font size of 9 points. Because it has a default set, it can safely be omitted. But if it is provided, then that value is used to set the base font size for the plot.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>custom_theme <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">base_size =</span> <span class="dv">9</span>) {</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">theme</span>(</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">text             =</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">'Helvetica'</span>, </span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                                               <span class="at">color =</span> <span class="st">'gray30'</span>, </span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                                               <span class="at">size =</span> base_size),</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">plot.title       =</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(<span class="at">size =</span> ggplot2<span class="sc">::</span><span class="fu">rel</span>(<span class="fl">1.25</span>), </span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                                               <span class="at">hjust =</span> <span class="fl">0.5</span>, </span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>                                               <span class="at">face =</span> <span class="st">'bold'</span>),</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.background =</span> ggplot2<span class="sc">::</span><span class="fu">element_blank</span>(),</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.border     =</span> ggplot2<span class="sc">::</span><span class="fu">element_blank</span>(),</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.grid.minor =</span> ggplot2<span class="sc">::</span><span class="fu">element_blank</span>(),</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.grid.major =</span> ggplot2<span class="sc">::</span><span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">'grey90'</span>, </span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>                                               <span class="at">linewidth =</span> <span class="fl">0.25</span>),</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">legend.position  =</span> <span class="st">'right'</span>,</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">legend.key       =</span> ggplot2<span class="sc">::</span><span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="cn">NA</span>, </span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>                                               <span class="at">fill =</span> <span class="cn">NA</span>),</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis.ticks       =</span> ggplot2<span class="sc">::</span><span class="fu">element_blank</span>(),</span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis.line        =</span> ggplot2<span class="sc">::</span><span class="fu">element_blank</span>()</span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'ggplot2' was built under R version 4.4.3</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(temps_df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> fahr, <span class="at">y =</span> celsius, <span class="at">color =</span> kelvin)) <span class="sc">+</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">custom_theme</span>(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="s06_r_functions_files/figure-html/func-custom-theme-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>In this case, we set the font size to 10, and plotted the air temperatures. The <code>custom_theme</code> function can be used anywhere that one needs to consistently format a plot.</p>
-<p>But we can go further. One can wrap the entire call to ggplot in a function, enabling one to create many plots of the same type with a consistent structure. For example, we can create a <code>scatterplot</code> function that takes a data frame as input, along with a point_size for the points on the plot, and a font_size for the text.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>scatterplot <span class="ot">&lt;-</span> <span class="cf">function</span>(df, <span class="at">point_size =</span> <span class="dv">2</span>, <span class="at">font_size =</span> <span class="dv">9</span>) {</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> fahr, <span class="at">y =</span> celsius, <span class="at">color =</span> kelvin)) <span class="sc">+</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> point_size) <span class="sc">+</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">custom_theme</span>(font_size)</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>Calling that let’s us, in a single line of code, create a highly customized plot but maintain flexibility via the arguments passed in to the function. Let’s set the point size to 3 and font to 16 to make the plot more legible.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scatterplot</span>(temps_df, <span class="at">point_size =</span> <span class="dv">3</span>, <span class="at">font_size =</span> <span class="dv">16</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="s06_r_functions_files/figure-html/func-call-sp-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Once these functions are set up, all of the plots built with them can be reformatted by changing the settings in just the functions, whether they were used to create 1, 10, or 100 plots.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Summary
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<section id="exercises-minimizing-work-with-functions" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="exercises-minimizing-work-with-functions"><span class="header-section-number">5</span> Exercises: Minimizing Work with Functions</h2>
 <ul>
-<li>Functions are useful to reduce redundancy, reuse code, and reduce errors</li>
-<li>Build functions with <code>function()</code></li>
-<li>Document functions with <code>roxygen2</code> comments</li>
+<li>sequence of exercises:
+<ul>
+<li>create a function like miles to km or km to miles</li>
+<li>add arguments to let the user decide which units to convert</li>
+<li>add roxygen documentation</li>
+<li>apply the function to a list of distances from Santa Barbara and report as a dataframe</li>
+</ul></li>
 </ul>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Workflow for Creating Functions
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ol type="1">
-<li>Have a clear goal (sometimes it helps to create a visual).</li>
-<li>Outline the plan and then add more detailed steps or tasks.</li>
-<li>Build it up bit-by-bit and start with a minimum viable example. As your function becomes more complex, it can harder to track all the bits.</li>
-<li>Always check intermediates!</li>
-</ol>
-</div>
-</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
