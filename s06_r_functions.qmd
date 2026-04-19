@@ -324,8 +324,9 @@ scatterplot <- function(df, point_size = 2, font_size = 9) {
 }
 
 scatterplot(temps_df, point_size = 3, font_size = 16) +
-  labs(title = 'Temperature Conversions')
+  labs(title = 'Temperature Conversions') # <1>
 ```
+1. Since `scatterplot()` returns a `ggplot` object, we can continue to add `ggplot` layers - additional geoms, scales, labels, etc.
 
 Now all plots built with `scatterplot()` can be reformatted by changing *one* function -- whether you're making 1, 10, or 100 plots.
 
@@ -338,7 +339,7 @@ Well-named functions are a start, but good documentation tells collaborators (an
 #'
 #' @param fahr Numeric value or vector in degrees Fahrenheit
 #'
-#' @return Numeric value or vector in degrees Celsius
+#' @returns Numeric value or vector in degrees Celsius
 #' @export
 #'
 #' @examples
@@ -355,7 +356,7 @@ Key tags:
 | Tag | Purpose |
 |---|---|
 | `@param` | Describes each input argument to the function |
-| `@return` | Describes the function's output |
+| `@returns` | Describes the function's output |
 | `@examples` | Shows usage examples |
 | `@export` | Makes the function available if bundled in a package |
 
@@ -368,8 +369,151 @@ For more best practices on function documentation, check out Hadley Wickham and 
 
 ## Exercises: Minimizing Work with Functions
 
+In this sequence of exercises, we will build up a function to calculate the weight of Chinook salmon based only on length, using a simple length-to-width formula $W = aL^b$.
+
+::: callout-exercise
+## Create basic model
+Write a function that takes salmon length, in inches, and returns the corresponding weight, in pounds.  The simple model is $W = aL^b$; for Chinook salmon, let's use $a=0.00057$ and $b=2.9$ (for inches to pounds).  Give it a name that indicates the purpose of the function.  For testing purposes, a 30" salmon should be about 11 lb; a 42" salmon is about 27 lb; and a 60" is about 82 lb.
+
+:::: callout-answer
+
+```{r}
+fish_l_to_w <- function(L) {
+    a <- .00057
+    b <- 2.9
+    W <- a * L^b
+    return(round(W, 2))
+}
+test_vec <- c(30, 42, 60)
+fish_l_to_w(L = test_vec)
+```
+::::
+:::
+<!-- end exercise: basic function -->
+
+:::callout-exercise
+## Generalize with default arguments
+The formula $W = aL^b$ is useful for many different fish species, but the $a$ and $b$ values differ from species to species.  Generalize the function in two ways:
+
+1. Allow the user to provide different values for $a$ and $b$, but use the values for salmon as the default.
+2. Allow the user to provide length in inches or centimeters, with an argument so the user can specify "in" or "cm".
+
+To test the functionality, a California kelp bass model might use $a=0.000779$ (for length in inches) and $b=3.01$; a 12-inch bass is about 1.4 lb, while a 22 inch is about 8.5 lb.
+
+::::callout-answer
+
+```{r}
+fish_l_to_w <- function(L, a = 0.00057, b = 2.9, units = "in") {
+    if(units == "cm") {
+      length_in <- L / 2.54
+    } else length_in <- L
+    W <- a * length_in^b           ### use length_in instead of L
+    if(units == "cm") W <- W / 2.2 ### convert lb to kg to keep in metric
+    return(round(W, 2))
+}
+test_vec <- c(30, 42, 60)
+fish_l_to_w(L = test_vec)
+fish_l_to_w(L = test_vec * 2.54, units = "cm")
+
+### test kelp bass
+fish_l_to_w(L = c(12, 22), a = 0.000779, b = 3.01)
+```
+
+::::
+:::
+<!-- end exercise: arguments -->
+
+:::callout-exercise
+## Add error handling
+What kinds of errors might someone make when applying this function - either misunderstandings or typos?  Some things we might check:
+
+* $a$ should be between 0 and 1 (usually very small); $b$ should be greater than 1.
+* A user might type the full unit name, or units that aren't supported.
+
+::::callout-answer
+
+```{r}
+fish_l_to_w <- function(L, a = 0.00057, b = 2.9, units = "in") {
+    if(a < 0 | a > 1) stop('The `a` parameter should be between 0 and 1!')
+    if(b < 1) stop('The `b` parameter should be greater than 1!')
+    if(!tolower(units) %in% c('in', 'cm')) stop('The units should be either `in` or `cm`!')
+    
+    if(units == "cm") {
+      length_in <- L / 2.54
+    } else length_in <- L
+    W <- a * length_in^b           ### use length_in instead of L
+    if(units == "cm") W <- W / 2.2 ### convert lb to kg to keep in metric
+    return(round(W, 2))
+}
+```
+<!-- display test code but don't eval:  -->
+```r
+fish_l_to_w(L = 30, a = -.0003)
+```
+<!-- run but don't show test code, catch and display error: -->
+```{r}
+#| echo: false
+tryCatch({
+    fish_l_to_w(L = 30, a = -.0003)
+    log("a") 
+}, error = function(e) {
+    # Return the actual error message as a string
+    return(conditionMessage(e))
+})
+```
+
+::::
+:::
+<!-- end exercise: error handling -->
+
+:::callout-exercise
+## Add documentation
+Create some basic documentation for your function using the `roxygen2` syntax.
+
+::::callout-answer
+Documentation might look something like this:
+```{r}
+#' Fish length-to-width conversion
+#' 
+#' Convert length of fish to estimated weight using the formula W = aL^b
+#' 
+#' @param L Fish length in inches or cm
+#' @param a The `a` value for the formula; default 0.00057 for Chinook 
+#'          salmon length given in inches
+#' @param b The `b` value for the formula; default 2.9 for Chinook salmon
+#' @param units The units of the given length, in inches (default) or cm.
+#' 
+#' @returns Numeric value or vector of fish weight in lb (if units = "in") or 
+#'          mass in kg (if units = "cm")
+#' 
+#' @export
+#' 
+#' @examples
+#' fish_l_to_w(L = c(24, 60))
+
+fish_l_to_w <- function(L, a = 0.00057, b = 2.9, units = "in") {
+    if(a < 0 | a > 1) stop('The `a` parameter should be between 0 and 1!')
+    if(b < 1) stop('The `b` parameter should be greater than 1!')
+    if(!tolower(units) %in% c('in', 'cm')) stop('The units should be either `in` or `cm`!')
+    
+    if(units == "cm") {
+      length_in <- L / 2.54
+    } else length_in <- L
+    W <- a * length_in^b           ### use length_in instead of L
+    if(units == "cm") W <- W / 2.2 ### convert lb to kg to keep in metric
+    return(round(W, 2))
+}
+```
+
+::::
+:::
+<!-- end exercise:  documentation -->
+
  - sequence of exercises:
-    * create a function like miles to km or km to miles
-    * add arguments to let the user decide which units to convert
+    * create a function like miles to km or km to miles, or fish weight from length using W = aL^b
+    * add arguments (with defaults) to let the user specify a, b, and whether length is in inches or cm (and then convert accordingly)
     * add roxygen documentation
-    * apply the function to a list of distances from Santa Barbara and report as a dataframe
+    * apply the function to a list of fish lengths
+    * optional - plot with a custom theme
+
+    
