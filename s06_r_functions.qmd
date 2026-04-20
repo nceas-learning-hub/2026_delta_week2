@@ -427,7 +427,7 @@ fish_l_to_w(L = c(12, 22), a = 0.000779, b = 3.01)
 ## Add error handling
 What kinds of errors might someone make when applying this function - either misunderstandings or typos?  Some things we might check:
 
-* $a$ should be between 0 and 1 (usually very small); $b$ should be greater than 1.
+* $a$ should be between 0 and 1 (usually very small); $b$ should be greater than 1 (usually close to 3, since volume ~ cube of linear dimensions).
 * A user might type the full unit name, or units that aren't supported.
 
 ::::callout-answer
@@ -478,8 +478,8 @@ Documentation might look something like this:
 #' Convert length of fish to estimated weight using the formula W = aL^b
 #' 
 #' @param L Fish length in inches or cm
-#' @param a The `a` value for the formula; default 0.00057 for Chinook 
-#'          salmon length given in inches
+#' @param a The `a` value for the formula *based on L in inches*; default 
+#'          0.00057 for Chinook salmon length
 #' @param b The `b` value for the formula; default 2.9 for Chinook salmon
 #' @param units The units of the given length, in inches (default) or cm.
 #' 
@@ -509,11 +509,52 @@ fish_l_to_w <- function(L, a = 0.00057, b = 2.9, units = "in") {
 :::
 <!-- end exercise:  documentation -->
 
- - sequence of exercises:
-    * create a function like miles to km or km to miles, or fish weight from length using W = aL^b
-    * add arguments (with defaults) to let the user specify a, b, and whether length is in inches or cm (and then convert accordingly)
-    * add roxygen documentation
-    * apply the function to a list of fish lengths
-    * optional - plot with a custom theme
+### Challenge Exercise
 
-    
+::: callout-exercise
+Use your function to iterate over a list of several species of fish.  Copy this code to create a list of fish lengths and parameters:
+
+```{r}
+fish_list <- list(
+    chinook_salmon = list(length = c(30, 42, 60), 
+                          a = 0.00057, b = 2.9, units = "in"),
+    kelp_bass      = list(length = c(12, 22), 
+                          a = 0.000779, b = 3.01, units = "in"),
+    rainbow_trout  = list(length = c(20, 35, 50), 
+                          a = 0.000605, b = 2.87, units = "cm")
+)
+```
+
+Hint: you may want to create an anonymous function that takes a list of parameters and feeds them into your `fish_l_to_w()` function, then use `map()` or `lapply()` to apply it to each element of the list.
+
+::::callout-answer
+
+:::::panel-tabset
+## Using `purrr::map()`
+
+```{r}
+purrr::map(.x = fish_list, 
+           .f = ~ fish_l_to_w(L = .x$length, 
+                              a = .x$a, 
+                              b = .x$b, 
+                              units = .x$units))
+```
+
+## Using `lapply()`
+
+```{r}
+lapply(X = fish_list, 
+       FUN = function(x) fish_l_to_w(L = x$length, 
+                                     a = x$a,
+                                     b = x$b,
+                                     units = x$units))
+```
+:::::
+<!-- end tabset -->
+
+::::
+<!-- end answer -->
+
+:::
+<!-- end exercise -->
+
