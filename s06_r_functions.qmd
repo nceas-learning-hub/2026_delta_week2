@@ -209,6 +209,29 @@ temps_list <- convert_f_to_c_k(seq(-100, 100, 50))
 If you don't explicitly state a value to `return()`, R will pass the result of the last step of the function.  For simple functions, this is fine, but for anything more than a line or two, best practice is to explicitly call `return()` so it is obvious what is being returned.
 :::
 
+### Functions and Environments
+
+When a function is called, it exists in some **environment** within R; this is its **parent** environment (when working interactively this is the **global** environment).  The function performs all its calculations in a temporary environment, **child** of the parent.   When the function completes, it returns a value to the **parent** then that temporary **child** environment disappears, taking any intermediate values with it.  This can cause confusing behavior.
+
+```{r}
+a <- 1       ### create object a in parent environment
+
+add_one <- function(x) {
+  x <- x + 1 ### increment argument by 1
+  a <- a + 2 ### modify a in function environment
+  b <- a + 3 ### create b in function environment
+  return(x)  ### only x is returned back to parent
+}
+
+add_one(a)   ### give `a` as arg to the function; returns the value a + 1
+a            ### value in parent env is unchanged by calcs in the function
+exists('b')  ### objects created in the function disappear when function ends
+```
+
+In the above example, there is no starting value of `a` in the child (function) environment, but like a good parent-child relationship, the child can look "up" to the parent if it can't find a needed value (`a` in parent environment) within its own environment.  However, the change in `a` (and the creation of `b`) within the child environment are lost when the function ends - like a *bad* parent-child relationship, the child is abandoned and forgotten!
+
+There are complexities and ways to get around this behavior, but it's best just to be aware, and make sure any values the user needs get sent back to the parent environment using `return()`!
+
 ## Functions: Use Cases
 
 Functions are amazing for reusing common code logic and for communicating the intent of a block of code by assigning a name.  But functions can make it much easier to iterate complex operations on vectors and lists, and can help you create customized plot themes that you can use across multiple plots to maintain a consistent "brand".
@@ -427,13 +450,15 @@ fish_l_to_w(L = c(12, 22), a = 0.000779, b = 3.01)
 ## Add error handling
 What kinds of errors might someone make when applying this function - either misunderstandings or typos?  Some things we might check:
 
-* $a$ should be between 0 and 1 (usually very small); $b$ should be greater than 1 (usually close to 3, since volume ~ cube of linear dimensions).
+* $a$ should be a number between 0 and 1 (usually very small); $b$ should be greater than 1 (usually close to 3, since volume ~ cube of linear dimensions).
 * A user might type the full unit name, or units that aren't supported.
+* What other errors might a user make?
 
 ::::callout-answer
 
 ```{r}
 fish_l_to_w <- function(L, a = 0.00057, b = 2.9, units = "in") {
+    if(!is.numeric(c(a, b))) stop('Both `a` and `b` must be numeric!')
     if(a < 0 | a > 1) stop('The `a` parameter should be between 0 and 1!')
     if(b < 1) stop('The `b` parameter should be greater than 1!')
     if(!tolower(units) %in% c('in', 'cm')) stop('The units should be either `in` or `cm`!')
