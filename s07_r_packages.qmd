@@ -5,9 +5,9 @@ title: Creating R Packages
 :::{.callout-learning}
 After completing this session, you will be able to:
 
-- The advantages of using R packages for organizing code
-- Simple techniques for creating R packages
-- Approaches to documenting code in packages
+- Discuss the advantages of creating your own R package to organize code
+- Identify simple techniques for creating an R package
+- Create CRAN-compliant documentation for functions in a package
 :::
 
 
