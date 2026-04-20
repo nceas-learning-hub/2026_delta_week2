@@ -11,23 +11,26 @@ After completing this session, you will be able to:
 :::
 
 
-## R Packages
+## Overview
 
-Most R users are familiar with loading and utilizing packages in their work. And they know how rich CRAN is in providing for many conceivable needs. Most people have never created a package for their own work, and most think the process is too complicated. Really it's pretty straighforward and super useful in your personal work. Creating packages serves two main use cases:
+Most R users are familiar with loading and using packages in their work; we've worked with a number of well-known packages in this course thus far! In addition, even if they mostly stick to a core set of packages, they understand the breadth of [packages available on CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html) (the R package authority) for handling virtually any conceivable need. 
 
--   Mechanism to redistribute reusable code (even if just for yourself)
--   Mechanism to reproducibly document analysis and models and their results
+However, most R users have never created a package for their own work, often out of a fear that the process is too complicated. In reality, it's fairly straighforward and super useful in your personal work. Creating packages serves two main use-cases:
+
+- Distribute reusable code among projects (even if just for yourself)
+- Reproducibly document analysis and models and their results
 
 Even if you don't plan on writing a package with such broad appeal such as, say, `ggplot2` or `dplyr`, you still might consider creating a package to contain:
 
--   Useful utility functions you write (i.e. a [Personal Package](https://hilaryparker.com/2013/04/03/personal-r-packages/)). Having a place to put these functions makes it much easier to find and use them later.
--   A set of shared routines for your lab or research group, making it easier to remain consistent within your team and also to save time.
--   The analysis accompanying a thesis or manuscript, making it all that much easier for others to reproduce your results.
+- Useful utility functions you write (i.e., a [Personal Package](https://hilaryparker.com/2013/04/03/personal-r-packages/))
+  - Having a place to put these functions makes it much easier to find and use them later.
+- A set of shared routines for your lab or research group, making it easier to remain consistent within your team and also to save time.
+- The analysis accompanying a thesis or manuscript, making it all that much easier for others to reproduce your results.
 
 ::: {.callout-caution icon="false"}
 ### Packages for Creating and Maintaining Packages
 
-The `usethis`, `devtools` and `roxygen2` packages make creating and maintining a package to be a straightforward experience.
+The `usethis`, `devtools` and `roxygen2` packages make greatly streamline the process of creating and maintining a package.
 :::
 
 ### Create a Basic Package
