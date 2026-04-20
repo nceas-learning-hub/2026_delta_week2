@@ -10,12 +10,9 @@ After completing this session, you will be able to:
 - Create CRAN-compliant documentation for functions in a package
 :::
 
-
 ## Overview
 
-Most R users are familiar with loading and using packages in their work; we've worked with a number of well-known packages in this course thus far! In addition, even if they mostly stick to a core set of packages, they understand the breadth of [packages available on CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html) (the R package authority) for handling virtually any conceivable need. 
-
-However, most R users have never created a package for their own work, often out of a fear that the process is too complicated. In reality, it's fairly straighforward and super useful in your personal work. Creating packages serves two main use-cases:
+Most R users are familiar with loading and using packages in their work; we've worked with a number of well-known packages in this course thus far! In addition, even if they mostly stick to a core set of packages, they understand the breadth of [packages available on CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html) (the R package authority) for handling virtually any conceivable need. However, most R users have never created a package for their own work, often out of a fear that the process is too complicated. In reality, it's fairly straighforward and super useful in your personal work. Creating packages serves two main use-cases:
 
 - Distribute reusable code among projects (even if just for yourself)
 - Reproducibly document analysis and models and their results
@@ -27,75 +24,107 @@ Even if you don't plan on writing a package with such broad appeal such as, say,
 - A set of shared routines for your lab or research group, making it easier to remain consistent within your team and also to save time.
 - The analysis accompanying a thesis or manuscript, making it all that much easier for others to reproduce your results.
 
-::: {.callout-caution icon="false"}
-### Packages for Creating and Maintaining Packages
+## Get Ready
 
-The `usethis`, `devtools` and `roxygen2` packages make greatly streamline the process of creating and maintining a package.
+Before we get started with the tutorial, go ahead and **make a new folder/project for the R package we'll start today.** Name that project/folder like so: `pkg_{lastname}` (e.g., `pkg_ohara` or `pkg_lyon`). 
+
+:::{.callout-warning icon="false"}
+### Packages & GitHub
+Make sure that your package is also tracked by Git and linked to a remote repository of the same name in GitHub! Include a ".gitignore" as you normally would for any other such project.
+
+Users--including you--can install your package from GitHub even if you don't go all the way to getting it accepted by CRAN.
 :::
 
-### Create a Basic Package
+### Install Packages for Maintaining Packages
 
-To create a package we're going to use the following packages:
-
-- `devtools`: Provides R functions that make package development easier by expediting common development tasks.
-- `usethis`: Commonly referred to as a "workflow package" and provides functions that automate common tasks in project setup and development for both R packages and non-package projects.
-- `roxygen2`: Provides a structure for describing your functions in the scripts you're creating them in. It will additionally process the source code and the documentation within it to automatically create the necessary files for the documentation to appear in your R Package.
-
-
-Thanks to the great [usethis](https://usethis.r-lib.org/) package, it only takes one function call to create the skeleton of an R package using `create_package()`. Which eliminates pretty much all reasons for procrastination. To create a package called `mytools`, all you do is:
+The `usethis`, `devtools`, `roxygen2`, and `testthat` packages greatly streamline the process of creating and maintaining a package. You should install all of these now if you have not already done so.
 
 ```{r}
+#| label: pkgs-for-pkgs
 #| eval: false
 
-usethis::create_package("~/mytools")
+# install.packages("librarian")
+librarian::shelf(usethis, devtools, roxygen2, testthat)
 ```
 
-```         
-✔ Creating '/home/dolinh/mytools/'
-✔ Setting active project to '/home/dolinh/mytools'
-✔ Creating 'R/'
-✔ Writing 'DESCRIPTION'
-Package: mytools
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
-Authors@R (parsed):
-    * First Last <first.last@example.com> [aut, cre] (YOUR-ORCID-ID)
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to
-    pick a license
-Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
-✔ Writing 'NAMESPACE'
-✔ Writing 'mytools.Rproj'
-✔ Adding '^mytools\\.Rproj$' to '.Rbuildignore'
-✔ Adding '.Rproj.user' to '.gitignore'
-✔ Adding '^\\.Rproj\\.user$' to '.Rbuildignore'
-✔ Opening '/home/dolinh/mytools/' in new RStudio session
-✔ Setting active project to '<no active project>'
-```
+## Create Core Package Skeleton
 
-::: {.callout-caution icon="false"}
-#### What did the `create_package()` function do?
+Fundamentally, an R package is a bundle of scripts that can be installed on any computer in order to grant access to those scripts. The core package architecture is intended to facilitate the installation step (so that `install.packages` works as expected, for example) and lets people who install the package use the functions as they would functions from any other package.
 
-1.  Open a new project called `mytools` (the name of the package) in a new RStduio session.
-2.  Create a top-level directory structure, including a number of critical files under the [standard R package structure](http://cran.r-project.org/doc/manuals/r-release/R-exts.html#Package-structure):
-    a.  `DESCRIPTION`file: The most important file, which provides metadata about your package. Edit this file to provide reasonable values for each of the fields, including your contact information.
-    b.  `NAMESPACE` file declares the functions your package exports for external use and the external functions your package imports from other packages.
-    c.  `R/` directory is where you save all your function scripts and other `.R` files.
-    d.  `.Rbuildignore` lists files that we need to have around but that should not be included when building the R package from source.
-    e.  `.Rproj.user` is a directory used internally by RStudio.
-3.  Add the **Build Tab** to the Environment Pane.
-:::
+**For an R package to work (i.e., be install-able), you need a few core components.** Click through the tabs below--in order--to create the fundamental structure for your R package.
 
-### Add a License
+:::{.panel-tabset}
+### 1. "DESCRIPTION"
 
-Information about choosing a `LICENSE` is provided in the R Package (2e) book [Chapter 12: Licensing](https://r-pkgs.org/license.html).
+Make a new file named _exactly_ "DESCRIPTION" (all caps, no file extension). This file is the central pillar of any R package as it tells R that this folder is a package along with a number of other necessary pieces of information (e.g., what other packages need to be installed, what R version is required, the license).
 
-The `DESCRIPTION` file expects the license to be chose from a predefined list, but you can use its various utility methods for setting a specific license file, such as the `MIT` license or the `Apache 2` license:
+Once you have this file, **click the collapsed menu below and copy/paste all of its contents into your empty DESCRIPTION file.**
+
+<details> 
+<summary>DESCRIPTION Contents</summary>
+
+Change the part of the first line after "Package: " to match the name of your folder.
 
 ```{r}
-#| eval: false 
+#| label: make-description
+#| eval: false
+
+Package: pkg_{lastname}
+Title: What the Package Does (One Line, Title Case)
+Version: 0.0.0.9000
+Authors@R: 
+    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
+Description: What the package does (one paragraph).
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+```
+
+</details>
+
+### 2. ".Rbuildignore"
+
+Make a new file named _exactly_ ".Rbuildignore", ignore any warnings about creating a file that starts with a period. This file is to an R package as the .gitignore is to a Git repository; it tells the package what files in your folder should not be included in the R package. This is typically used to avoid including things that would break your package or if you have content necessary for the package build on your (i.e., the maintainer's) end, but not useful to the end user.
+
+Once you have this file, **click the collapsed menu below and copy/paste all of its contents into your empty .Rbuildignore.**
+
+<details> 
+<summary>.Rbuildignore Contents</summary>
+
+Technically you only _need_ these two files listed if you're doing this in RStudio but it doesn't hurt to include them at this point and is a good excuse to make a necessary file.
+```{r}
+#| label: make-rbuildignore
+#| eval: false
+
+^.*\.Rproj$
+^\.Rproj\.user$
+```
+
+</details>
+
+### 3. "R" Folder
+
+Within your package folder, make a new folder called "R". All of the functions in your package _must_ live in this folder but for now we can leave it empty.
+
+:::
+
+## Add a License
+
+While R packages _tend_ to be publicly available, you still need to specify how you want people to be able to use the package and how to credit their use of your package! A "LICENSE" file is how this is specified. Information about choosing a `LICENSE` is provided in the R Package (2e) book [Chapter 12: Licensing](https://r-pkgs.org/license.html).
+
+We'll use the Apache 2.0 license for now and use one of the license-specific functions from the `usethis` package to quickly build it into our nascent R package. Copy and run the code from the following chunk.
+
+This will do three necessary things:
+
+1. Create a LICENSE.md file with the legal text of the license
+2. Add the name and version of the license to the relevant line of your DESCRIPTION file
+3. Add LICENSE.md to your .Rbuildignore
+
+```{r}
+#| label: add-license
+#| eval: false
 
 usethis::use_apache_license()
 ```
@@ -106,270 +135,210 @@ usethis::use_apache_license()
 ✔ Adding '^LICENSE\\.md$' to '.Rbuildignore'
 ```
 
-Once your license has been chosen, and you've edited your `DESCRIPTION` file with your contact information, a title, and a description, it will look like this:
+## Add Code
 
-::: {.callout-tip appearance="minimal"}
-```         
-Package: mytools
-Title: Halina Do-Linh's Utility R Functions
-Version: 0.0.0.9000
-Authors@R: 
-    person("Halina", "Do-Linh", email = "dolinh@nceas.ucsb.edu", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: A collection of useful R functions that I use for general utilities.
-License: Apache License (>= 2)
-Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
-```
-:::
+We are now ready to actually add code to our package! Go ahead and make a new R script in your "R" folder and name it "cv.R". Once you have that file, **click the collapsed menu below and copy/paste all of its contents into your empty "cv.R" file.**
 
-### Add Code
-
-The skeleton package created contains a directory `R` which should contain your source files. Add your functions and classes in files to this directory, attempting to choose names that don't conflict with existing packages. For example, you might add a file `custom_theme` that contains a function `custom_theme()` that you might want to reuse. The `usethis::use_r()` function will help set up you files in the right places. For example, running:
-
-```{r eval=FALSE}
-#| eval: false
-
-usethis::use_r("custom_theme")
-```
-
-```         
-✔ Setting active project to '/home/dolinh/mytools'
-• Modify 'R/custom_theme.R'
-• Call `use_test()` to create a matching test file
-```
-
-creates the file `R/custom_theme` and stores it in the `R` directory, which you can then modify as needed:
+<details> 
+<summary>`cv()` Function - Version 1</summary>
 
 ```{r}
-#| eval: false
+#| label: cv-fxn_version-01
+cv <- function(x){
 
-custom_theme <- function(base_size = 9) {
-    ggplot2::theme(
-      axis.ticks       = ggplot2::element_blank(),
-      text             = ggplot2::element_text(family = 'Helvetica', 
-                                               color = 'gray30', 
-                                               size = base_size),
-      plot.title       = ggplot2::element_text(size = ggplot2::rel(1.25), 
-                                               hjust = 0.5, 
-                                               face = 'bold'),
-      panel.background = ggplot2::element_blank(),
-      legend.position  = 'right',
-      panel.border     = ggplot2::element_blank(),
-      panel.grid.minor = ggplot2::element_blank(),
-      panel.grid.major = ggplot2::element_line(colour = 'grey90', 
-                                               linewidth = .25),
-      legend.key       = ggplot2::element_rect(colour = NA, 
-                                               fill = NA),
-      axis.line        = ggplot2::element_blank()
-      )
+  # Calculate SD and mean
+  sd_x <- sd(x = x, na.rm = FALSE)
+  avg_x <- mean(x = x, na.rm = FALSE)
+
+  # Calculate coefficient of variation
+  coef_var <- sd_x / avg_x
+
+  # Return that 
+  return(coef_var)
 }
-
 ```
 
-::: {.callout-caution icon="false"}
-#### Power of Packages
+</details>
 
-Remember when we created `custom_theme()` from the [Functions Lesson Section 15.1.4](https://learning.nceas.ucsb.edu/2023-10-coreR/session_15.html#examples-minimizing-work-with-functions)? Now that we've added it to our `mytools` package, we don't have to worry about coyping the code from another file, sourcing the file from another directory, or copying the script from an R Project.
+## Add Documentation
 
-Instead we can leverage the portable functionality of a package to easily access our custom functions **and** maintain the code in one location.
-:::
+Documentation is _vital_ for functions, particularly those shared as part of a package, because users will encounter errors and will want to refer back to some sort of help document to try to figure out where they went wrong. The preferred method of documenting a function is to use `roxygen2` syntax.
 
-### Add Dependencies
+Work through the tabs below to create documentation in your function and get your package to recognize it as such.
 
-If your R code depends on functions from another package, you must declare it. In the `Imports` section in the `DESCRIPTION` file, list all the packages your functions depend upon.
+:::{.panel-tabset}
+### 1. Document the Function
 
-In our `custom_theme()` function, we depend on the `ggplot2` package, and so we need to list it as a dependency.
-
-Once again, `usethis` provides a handy helper method:
+**Add the following lines to the top of your `cv()` function in your "cv.R" file** (i.e., push down the 'actual' function code so that all documentation can be above the function itself).
 
 ```{r}
-#| eval: false
-
-usethis::use_package("ggplot2")
-```
-
-```         
-✔ Adding 'ggplot2' to Imports field in DESCRIPTION
-• Refer to functions with `ggplot2::fun()`
-```
-
-Take a look at the `DESCRIPTION` file again, and you'll see the Imports section has been added, with `ggplot2` underneath.
-
-::: {.callout-tip appearance="minimal"}
-```         
-Package: mytools
-Title: Halina Do-Linh's Utility R Functions
-Version: 0.0.0.9000
-Authors@R: 
-    person("Halina", "Do-Linh", email = "dolinh@nceas.ucsb.edu", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: A collection of useful R functions that I use for general utilities.
-License: Apache License (>= 2)
-Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
-Imports: 
-    ggplot2
-```
-:::
-
-### Add Documentation
-
-Documentation is crucial to add to each of your functions. In the Functions Lesson, we did this using the `roxygen2` package and that same package and approach can be used for packages.
-
-The `roxygen2` approach allows us to add comments in the source code, where are then converted into Help pages that we can access by typing `?function_name` in the Console.
-
-Let's add documentation for the `custom_theme()` function.
-
-```{r}
-#' My custom ggplot theme
+#| label: cv-fxn-docs
+#' @title Calculate CV
 #'
-#' @param base_size Numeric value of font size of all text elements in plot
-#'
-#' @return A theme used for ggplot point or line plots
-#' @export
-#'
-#' @examples
-#' library(ggplot2)
+#' @description Calculates the Coefficient of Variation ("CV") of a vector of numbers.
 #' 
-#'   ggplot(data = mtcars, aes(x = mpg, y = disp)) +
-#'     geom_point() +
-#'     custom_theme(base_size = 30)
-custom_theme <- function(base_size = 9) {
-  ggplot2::theme(
-    axis.ticks       = ggplot2::element_blank(),
-    text             = ggplot2::element_text(family = 'Helvetica',
-                                             color = 'gray30',
-                                             size = base_size),
-    plot.title       = ggplot2::element_text(size = ggplot2::rel(1.25),
-                                             hjust = 0.5,
-                                             face = 'bold'),
-    panel.background = ggplot2::element_blank(),
-    legend.position  = 'right',
-    panel.border     = ggplot2::element_blank(),
-    panel.grid.minor = ggplot2::element_blank(),
-    panel.grid.major = ggplot2::element_line(colour = 'grey90',
-                                             linewidth = .25),
-    legend.key       = ggplot2::element_rect(colour = NA,
-                                             fill = NA),
-    axis.line        = ggplot2::element_blank()
-  )
-}
-
+#' @param x Vector of numbers
+#'
+#' @returns Coefficient of variation of the numbers provided to 'x'
+#' @export
+#' 
+#' @examples
+#' # Calculate CV
+#' cv(x = c(4, 5, 6))
+#' 
 ```
 
-Once your files are documented, you can then process the documentation using `devtools::document()` to generate the appropriate `.Rd` files that your package needs. The `.Rd` files will appear in the `man/` directory, which is automatically created by `devtools::document()`.
+Double check that you're on the right track by confirming that your "cv.R" file looks like the code chunk in the collapsed menu below
+
+<details> 
+<summary>`cv()` Function - Version 2</summary>
 
 ```{r}
+#| label: cv-fxn_version-02
+#' @title Calculate CV
+#'
+#' @description Calculates the Coefficient of Variation ("CV") of a vector of numbers.
+#' 
+#' @param x Vector of numbers
+#'
+#' @returns Coefficient of variation of the numbers provided to 'x'
+#' @export
+#' 
+#' @examples
+#' # Calculate CV
+#' cv(x = c(4, 5, 6))
+#' 
+cv <- function(x){
+
+  # Calculate SD and mean
+  sd_x <- sd(x = x, na.rm = FALSE)
+  avg_x <- mean(x = x, na.rm = FALSE)
+
+  # Calculate coefficient of variation
+  coef_var <- sd_x / avg_x
+
+  # Return that 
+  return(coef_var)
+}
+```
+
+</details>
+
+### 2. Document the Package
+
+Once your `cv()` function has `roxygen2`-style comments, we can document the _package_. Fortunately, the `devtools` package has a nice function for doing exactly this! **Run the following code chunk in your Console.**
+
+```{r}
+#| label: devtools-document
 #| eval: false
 
 devtools::document()
 ```
 
-```         
-ℹ Updating mytools documentation
-ℹ Loading mytools
-Writing custom_theme.Rd
-```
+This will create a new folder (named "man", short for "manuals") and fill it with specially-formatted ".Rd" files. _You will **never** edit these files manually!_ If you update your function documentation and need to update the respective .Rd files, re-run `devtools::document()`!
 
-We now have a package that we can `check()` and `install()` and `release()`. These functions come from the `devtools` package, but first let's do some testing.
+### 3. Celebrate!
 
-### Testing
+Congratulations, you're now the proud owner of your very own R package! You can now install this package (from GitHub) as well as run automatic checks on it, and even send it to CRAN.
 
-You can test your code using the `testthat` package's testing framework. The `ussethis::use_testthat()` function will set up your package for testing, and then you can use the `use_test()` function to setup individual test files. For example, in the Functions Lesson we created some tests for our `fahr_to_celsius` functions but ran them line by line in the console.
-
-First, lets add that function to our package. Run the `use_r` function in the console:
+A smaller, but only slightly less significant, win is that you can now check the help file for your `cv()` function! **Run the following code chunk in your Console.**
 
 ```{r}
+#| label: check-help
 #| eval: false
 
-usethis::use_r("fahr_to_celsius")
+?cv
 ```
 
-Then copy the function and documentation into the R script that opens and save the file.
+This should open up the help pane of your IDE and present the documentation that you just added (but processed so that it looks almost like a Quarto/RMarkdown document).
+
+:::
+
+## Testing
+
+Now that our package has a function, we can start creating "unit tests" to make sure our function(s) behave as expected/as they should. The `testthat` package provides some really nice tools for doing this reproducibly and to a high standard so we'll use that structure.
+
+:::{.panel-tabset}
+### 1. Initialize `testthat`
+
+Set up your package to use the `testthat` package by running the following code chunk in the Console.
 
 ```{r}
-#' Convert temperature values from Fahrenheit to Celsius
-#'
-#' @param fahr Numeric or numeric vector in degrees Fahrenheit
-#' 
-#' @return Numeric or numeric vector in degrees Celsius
-#' @export
-#' 
-#' @examples
-#' fahr_to_celsius(32)
-#' fahr_to_celsius(c(32, 212, 72))
-
-fahr_to_celsius <- function(fahr) {
-  celsius <- (fahr-32)*5/9
-  return(celsius)
-}
-```
-
-Now, set up your package for testing:
-
-```{r}
+#| label: setup-testthat
 #| eval: false
 
 usethis::use_testthat()
 ```
 
-```         
-✔ Setting active project to '/home/dolinh/mytools'
-✔ Adding 'testthat' to Suggests field in DESCRIPTION
-✔ Setting Config/testthat/edition field in DESCRIPTION to '3'
-✔ Creating 'tests/testthat/'
-✔ Writing 'tests/testthat.R'
-• Call `use_test()` to initialize a basic test file and open it for editing.
-```
+This will create a "tests" folder that contains both an R script called "testthat.R"--which you can ignore--and a folder called "testthat" containing nothing (yet).
 
-Then write a test for `fahr_to_celsius`:
+### 2. Write a Unit Test
 
-```{r}
-#| eval: false
+That done, we can write specific unit tests for the `cv()` function that use functions from `testthat`. The syntax of a unit test with `testthat` can be a little alien until you get familiar with it so for now, **do the following:**
 
-usethis::use_test("fahr_to_celsius")
-```
+1. Make a new script called "test-cv.R" in the "testthat" folder inside of the "tests" folder
+    - So the file path will be `pkg_{lastname} / tests / testthat / test-cv.R`
+2. Click the collapsed menu below and copy/paste all of its contents into the "test-cv.R" file
 
-```         
-✔ Writing 'tests/testthat/test-fahr_to_celsius.R'
-• Modify 'tests/testthat/test-fahr_to_celsius.R'
-```
-
-You can now add tests to the `test-fahr_to_celsius.R`, and you can run all of the tests using `devtools::test()`. For example, if you add a test to the `test-fahr_to_celsius.R` file:
+<details> 
+<summary>`cv()` Unit Test</summary>
 
 ```{r}
+#| label: cv-unittest
 #| eval: false
 
-test_that("fahr_to_celsius works", {
-  expect_equal(fahr_to_celsius(32), 0)
-  expect_equal(fahr_to_celsius(212), 100)
+# Run all tests in this script:
+## testthat::test_file(file.path("tests", "testthat", "test-cv.R"))
+
+# Error testing
+# test_that("Errors work as desired", {
+#   # None in this function (yet)
+#   expect_error()
+# })
+
+# Warning testing
+test_that("Warnings work as desired", {
+   expect_warning(cv(x = NULL))
 })
 
+# Message testing
+# test_that("Messages work as desired", {
+#   # None in this function (yet)
+#   expect_message()
+# })
+
+# Output testing
+test_that("Outputs are as expected", {
+  
+  # Make a testing vector
+  test_vec <- c(4, 5, 6)
+  
+  # Use the function to calculate CV and calculate it by hand
+  fxn_cv <- cv(x = test_vec)
+  raw_cv <- (sd(x = test_vec, na.rm = FALSE) / mean(x = test_vec, na.rm = FALSE))
+
+  # Check certain aspects of output
+  expect_equal(fxn_cv, raw_cv)
+  expect_true(class(fxn_cv) == "numeric")
+})
 ```
 
-Then you can run the tests to be sure all of your functions are working using `devtools::test()`:
+</details> 
+
+### 3. Test the Package
+
+Now we can run all of the unit tests in our package--currently just the one--by running the following code chunk in the Console.
 
 ```{r}
+#| label: devtools-test
 #| eval: false
 
 devtools::test()
 ```
 
-```         
-ℹ Testing mytools
-✔ | F W S  OK | Context
-✔ |         2 | fahr_to_celsius [0.2s]                                                                                             
+This will return a handy little report--in the Console--summarizing the results of your unit tests.
 
-══ Results ════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
-Duration: 0.4 s
-
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 2 ]
-```
-
-Yay, all tests passed!
+:::
 
 ### Checking and Installing
 
@@ -578,6 +547,45 @@ Selection: 2
 ```
 
 *Source: COMBINE's R package workshop, [Ch 9: Versioning](https://combine-australia.github.io/r-pkg-dev/versioning.html)*
+:::
+
+### Add Dependencies
+
+If your R code depends on functions from another package, you must declare it. In the `Imports` section in the `DESCRIPTION` file, list all the packages your functions depend upon.
+
+In our `custom_theme()` function, we depend on the `ggplot2` package, and so we need to list it as a dependency.
+
+Once again, `usethis` provides a handy helper method:
+
+```{r}
+#| eval: false
+
+usethis::use_package("ggplot2")
+```
+
+```         
+✔ Adding 'ggplot2' to Imports field in DESCRIPTION
+• Refer to functions with `ggplot2::fun()`
+```
+
+Take a look at the `DESCRIPTION` file again, and you'll see the Imports section has been added, with `ggplot2` underneath.
+
+::: {.callout-tip appearance="minimal"}
+```         
+Package: mytools
+Title: Halina Do-Linh's Utility R Functions
+Version: 0.0.0.9000
+Authors@R: 
+    person("Halina", "Do-Linh", email = "dolinh@nceas.ucsb.edu", role = c("aut", "cre"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: A collection of useful R functions that I use for general utilities.
+License: Apache License (>= 2)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Imports: 
+    ggplot2
+```
 :::
 
 ### Additional Resources
