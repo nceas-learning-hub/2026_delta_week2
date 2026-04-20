@@ -1,5 +1,6 @@
 ---
 title: Project Documentation & Organization
+bibliography: resources/project_doc_organization/refs.bib
 ---
 
 :::{.callout-learning}
@@ -383,15 +384,15 @@ With the advent of Model Context Protocols (MCP) for standardizing interactions 
 :::{.panel-tabset}
 #### Environment
 
-Using AI directly and substantively contributes to climate change (UN Environment Programme 2024).
+Using AI directly and substantively contributes to climate change [@un_2024].
 
-**AI Queries** – A ChatGPT query uses about 5 times the energy of an equivalent web search (Zewe, 2025). A 100-word email written by ChatGPT (GPT-4) uses 519 mL (17.6 oz) of water–about equivalent to a single-use water bottle (Pranshu & Tan, 2024).
+**AI Queries** – A ChatGPT query uses about 5 times the energy of an equivalent web search [@zewe_2025]. A 100-word email written by ChatGPT (GPT-4) uses 519 mL (17.6 oz) of water–about equivalent to a single-use water bottle [@verma_2024].
 
-**Data Centers** – Data centers use 10-50 times the energy used by a commercial office building of the same size (US Department of Energy, 2026). The electricity used to power the data centers is still largely powered by burning fossil fuels. Data centers tend to be built in places where the cost of land is cheap, and water is often scarce in such places (Osaka, 2023). Large data centers may use 1-5 million gallons of water a day, comparable to the daily water usage of a town of 10-50,000 people (Osaka, 2023). An average Google data center in 2022, for example, used 450,000 gallons of water each day (Hölzle, 2026). In 2018, United States data centers used just under 136 billion gallons of water (Siddick et al., 2021).
+**Data Centers** – Data centers use 10-50 times the energy used by a commercial office building of the same size [@doe_2026]. The electricity used to power the data centers is still largely powered by burning fossil fuels. Data centers tend to be built in places where the cost of land is cheap, and water is often scarce in such places [@osaka_2023]. Large data centers may use 1-5 million gallons of water a day, comparable to the daily water usage of a town of 10-50,000 people [@osaka_2023]. An average Google data center in 2022, for example, used 450,000 gallons of water each day [@hozle_2022]. In 2018, United States data centers used just under 136 billion gallons of water [@siddick_2021].
 
 #### Intellectual Property
 
-GenAI tools are/were trained on all publicly-available information (in many cases, regardless of license or copyright status) and on users' ongoing interactions with these tools. Keep in mind that the creators of the original content used to train the models are not currently credited for their work (and are not likely to be credited) and include that in your decision-making process for whether/how to use these tools.
+GenAI tools are/were trained on all publicly-available information (in many cases, regardless of license or copyright status) and on users' ongoing interactions with these tools. Keep in mind that the the original content used to train the models was used without consent, attribution, or compensation for the creators [@appel_2023] and include that in your decision-making process for whether/how to use these tools.
 
 If you use these tools, be sure to check the privacy settings to ensure that you are comfortable with how your interactions are used to train the model you're using. If you are dealing with sensitive or private data (e.g., medical information, Indigenous data), making sure that you're not feeding that data into a large language model can have even more important ethical ramifications.
 
@@ -399,13 +400,13 @@ For example, **GitHub Copilot by default learns from all of your interactions in
 
 #### Critical Thinking
 
-Studies on how AI use affects brain activity and critical thinking skills are beginning to be conducted and published. Using generative AI tools leads to a reduction of critical thinking skills, memory, and neural connections in the brain (Kosmyna et al., 2025). Frequent AI use has been found to negatively relate to critical thinking ability in adults aged 17-45 (Gerlich, 2025). The negative effect was strongest for the youngest age group of that study: 17-25 year olds (Gerlich, 2025). In work contexts, participants reported that they did less critical thinking the more that they trusted genAI outputs (Lee et al., 2025).
+Studies on how AI use affects brain activity and critical thinking skills are beginning to be conducted and published. Using generative AI tools leads to a reduction of critical thinking skills, memory, and neural connections in the brain [@kosmyna_2025]. Frequent AI use has been found to negatively relate to critical thinking ability in adults aged 17-45 [@gerlich_2025]. The negative effect was strongest for the youngest age group of that study: 17-25 year olds [@gerlich_2025]. In work contexts, participants reported that they did less critical thinking the more that they trusted genAI outputs [@lee_2025].
 
 #### Oversight & Bias
 
-Corporations develop and own generative AI engines but legal safeguards protecting customers–or people in general–are still in their infancy (Yakimova & Ojamo, 2022). In 2022, Google fought a 13-month legal battle (Rogoway, 2022) to avoid disclosing that they were using 25 percent of the town’s drinking water in The Dalles, Oregon (Osaka, 2023).
+Corporations develop and own generative AI engines but legal safeguards protecting customers–or people in general–are still in their infancy [@yakimova_2022]. In 2022, Google fought a 13-month legal battle [@rogoway_2022] to avoid disclosing that they were using 25 percent of the town’s drinking water in The Dalles, Oregon [@osaka_2023].
 
-If the information going in is inaccurate, biased, fabricated, etc., the product will be inaccurate, biased, or fabricated. AI suffers from a range of biases (Nazer et al., 2023). GenAI used in hiring decisions is particularly problematic as it reflects the biases built into current hiring pools and industry demographics. Amazon had to scrap its AI-hiring tool after finding it penalized resumes including the word “women” (Dastin, 2018). A genAI-based speech recognition system used by HireVue to make hiring decisions was found to disadvantage deaf and non-white applicants (Stein & Carrick, 2025).
+If the information going into a model is inaccurate, biased, fabricated, etc., the product will be inaccurate, biased, or fabricated. AI suffers from a range of biases [@nazer_2023]. GenAI used in hiring decisions is particularly problematic as it reflects the biases built into current hiring pools and industry demographics. Amazon had to scrap its AI-hiring tool after finding it penalized resumes including the word "women" [@dastin_2018]. A genAI-based speech recognition system used by HireVue to make hiring decisions was found to disadvantage deaf and non-white applicants [@stein_2025].
 
 :::
 
