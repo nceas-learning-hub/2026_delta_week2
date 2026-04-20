@@ -80,7 +80,7 @@ Collaborators must do **all** of the following to warrant authorship:
 
 The [Contributor Role Taxonomy](https://credit.niso.org/) (CRediT) separates research roles into [14 categories](https://zenodo.org/records/18421449) though doesn't necessarily identify how performing those duties relates to authorship. Many teams that adopt this framework decide on some critical number of categories that a team member must fulfill in order to warrant authorship.
 
-For teams that adopt this framework, a common convention is to create a shared spreadsheet with one row per collaborator with a column for each of the CRediT roles. Each collaborator simply marks an "X" in each column for which they feel they've contributed. Such a spreadsheet can also be a useful place to aggregate affilitation information as well!
+For teams that adopt this framework, a common convention is to create a shared spreadsheet with one row per collaborator with a column for each of the CRediT roles. Each collaborator simply marks an "X" in each column for which they feel they've contributed. Such a spreadsheet can also be a useful place to aggregate affiliation information as well!
 
 The CRediT roles are recapitulated in the table below.
 

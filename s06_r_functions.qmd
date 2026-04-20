@@ -367,7 +367,7 @@ For more best practices on function documentation, check out Hadley Wickham and 
 :::
 
 
-## Exercises: Minimizing Work with Functions
+## Exercises
 
 In this sequence of exercises, we will build up a function to calculate the weight of Chinook salmon based only on length, using a simple length-to-width formula $W = aL^b$.
 
