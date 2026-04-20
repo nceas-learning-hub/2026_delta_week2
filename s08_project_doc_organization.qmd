@@ -9,6 +9,8 @@ After completing this session, you will be able to:
 - Explain what information makes documentation more or less useful
 - Create robust workflow documentation
 - Implement reproducible project organization strategies
+- Identify modalities for engaging with generative AI
+- Discuss some use-cases and drawbacks of genAI
 
 :::
 
