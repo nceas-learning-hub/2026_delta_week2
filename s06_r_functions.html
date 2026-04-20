@@ -556,7 +556,10 @@ window.Quarto = {
   <li><a href="#functions-for-custom-plot-themes" id="toc-functions-for-custom-plot-themes" class="nav-link" data-scroll-target="#functions-for-custom-plot-themes"><span class="header-section-number">3.2</span> Functions for Custom Plot Themes</a></li>
   </ul></li>
   <li><a href="#documenting-functions" id="toc-documenting-functions" class="nav-link" data-scroll-target="#documenting-functions"><span class="header-section-number">4</span> Documenting Functions</a></li>
-  <li><a href="#exercises-minimizing-work-with-functions" id="toc-exercises-minimizing-work-with-functions" class="nav-link" data-scroll-target="#exercises-minimizing-work-with-functions"><span class="header-section-number">5</span> Exercises: Minimizing Work with Functions</a></li>
+  <li><a href="#exercises-minimizing-work-with-functions" id="toc-exercises-minimizing-work-with-functions" class="nav-link" data-scroll-target="#exercises-minimizing-work-with-functions"><span class="header-section-number">5</span> Exercises: Minimizing Work with Functions</a>
+  <ul class="collapse">
+  <li><a href="#challenge-exercise" id="toc-challenge-exercise" class="nav-link" data-scroll-target="#challenge-exercise"><span class="header-section-number">5.1</span> Challenge Exercise</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -1019,7 +1022,7 @@ my_function &lt;- function(argument1, argument2) {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="s06_r_functions_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="s06_r_functions_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1218,7 +1221,7 @@ Note
 <div class="callout-exercise">
 <p>What kinds of errors might someone make when applying this function - either misunderstandings or typos? Some things we might check:</p>
 <ul>
-<li><span class="math inline">\(a\)</span> should be between 0 and 1 (usually very small); <span class="math inline">\(b\)</span> should be greater than 1.</li>
+<li><span class="math inline">\(a\)</span> should be between 0 and 1 (usually very small); <span class="math inline">\(b\)</span> should be greater than 1 (usually close to 3, since volume ~ cube of linear dimensions).</li>
 <li>A user might type the full unit name, or units that aren’t supported.</li>
 </ul>
 <div class="callout callout-style-default callout-answer no-icon callout-titled">
@@ -1299,8 +1302,8 @@ Note
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' Convert length of fish to estimated weight using the formula W = aL^b</span></span>
 <span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
 <span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param L Fish length in inches or cm</span></span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param a The `a` value for the formula; default 0.00057 for Chinook </span></span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="co">#'          salmon length given in inches</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param a The `a` value for the formula *based on L in inches*; default </span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="co">#'          0.00057 for Chinook salmon length</span></span>
 <span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param b The `b` value for the formula; default 2.9 for Chinook salmon</span></span>
 <span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param units The units of the given length, in inches (default) or cm.</span></span>
 <span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
@@ -1334,18 +1337,103 @@ Note
 </div>
 </div>
 <!-- end exercise:  documentation -->
-<ul>
-<li>sequence of exercises:
-<ul>
-<li>create a function like miles to km or km to miles, or fish weight from length using W = aL^b</li>
-<li>add arguments (with defaults) to let the user specify a, b, and whether length is in inches or cm (and then convert accordingly)</li>
-<li>add roxygen documentation</li>
-<li>apply the function to a list of fish lengths</li>
-<li>optional - plot with a custom theme</li>
-</ul></li>
-</ul>
+<section id="challenge-exercise" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="challenge-exercise"><span class="header-section-number">5.1</span> Challenge Exercise</h3>
+<div class="callout callout-style-default callout-exercise no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Exercise</span>Exercise
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-18" class="callout-18-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="callout-exercise">
+<p>Use your function to iterate over a list of several species of fish. Copy this code to create a list of fish lengths and parameters:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>fish_list <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">chinook_salmon =</span> <span class="fu">list</span>(<span class="at">length =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">42</span>, <span class="dv">60</span>), </span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">a =</span> <span class="fl">0.00057</span>, <span class="at">b =</span> <span class="fl">2.9</span>, <span class="at">units =</span> <span class="st">"in"</span>),</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">kelp_bass      =</span> <span class="fu">list</span>(<span class="at">length =</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">22</span>), </span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">a =</span> <span class="fl">0.000779</span>, <span class="at">b =</span> <span class="fl">3.01</span>, <span class="at">units =</span> <span class="st">"in"</span>),</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">rainbow_trout  =</span> <span class="fu">list</span>(<span class="at">length =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">35</span>, <span class="dv">50</span>), </span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">a =</span> <span class="fl">0.000605</span>, <span class="at">b =</span> <span class="fl">2.87</span>, <span class="at">units =</span> <span class="st">"cm"</span>)</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Hint: you may want to create an anonymous function that takes a list of parameters and feeds them into your <code>fish_l_to_w()</code> function, then use <code>map()</code> or <code>lapply()</code> to apply it to each element of the list.</p>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="callout-answer">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">Using <code>purrr::map()</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">Using <code>lapply()</code></a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">map</span>(<span class="at">.x =</span> fish_list, </span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">.f =</span> <span class="sc">~</span> <span class="fu">fish_l_to_w</span>(<span class="at">L =</span> .x<span class="sc">$</span>length, </span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">a =</span> .x<span class="sc">$</span>a, </span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">b =</span> .x<span class="sc">$</span>b, </span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">units =</span> .x<span class="sc">$</span>units))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$chinook_salmon
+[1] 10.95 29.06 81.75
+
+$kelp_bass
+[1] 1.38 8.56
+
+$rainbow_trout
+[1] 0.10 0.51 1.42</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(<span class="at">X =</span> fish_list, </span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">FUN =</span> <span class="cf">function</span>(x) <span class="fu">fish_l_to_w</span>(<span class="at">L =</span> x<span class="sc">$</span>length, </span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">a =</span> x<span class="sc">$</span>a,</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">b =</span> x<span class="sc">$</span>b,</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">units =</span> x<span class="sc">$</span>units))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$chinook_salmon
+[1] 10.95 29.06 81.75
+
+$kelp_bass
+[1] 1.38 8.56
+
+$rainbow_trout
+[1] 0.10 0.51 1.42</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- end tabset -->
+</div>
+</div>
+</div>
+</div>
+<!-- end answer -->
+</div>
+</div>
+</div>
+</div>
+<!-- end exercise -->
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
