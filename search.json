@@ -15,7 +15,7 @@
     "href": "s07_r_packages.html",
     "title": "Creating R Packages",
     "section": "",
-    "text": "LearningLearning Objectives\n\n\n\n\n\n\nAfter completing this session, you will be able to:\n\nThe advantages of using R packages for organizing code\nSimple techniques for creating R packages\nApproaches to documenting code in packages",
+    "text": "LearningLearning Objectives\n\n\n\n\n\n\nAfter completing this session, you will be able to:\n\nDiscuss the advantages of creating your own R package to organize code\nIdentify simple techniques for creating an R package\nCreate CRAN-compliant documentation for functions in a package",
     "crumbs": [
       "Day 3",
       "Creating R Packages"
