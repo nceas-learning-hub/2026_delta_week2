@@ -541,24 +541,26 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup"><span class="header-section-number">1</span> Setup</a>
+  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup"><span class="header-section-number">1</span> Setup</a></li>
+  <li><a href="#why-functions" id="toc-why-functions" class="nav-link" data-scroll-target="#why-functions"><span class="header-section-number">2</span> Why Functions?</a>
   <ul class="collapse">
-  <li><a href="#example-temperature-conversion" id="toc-example-temperature-conversion" class="nav-link" data-scroll-target="#example-temperature-conversion"><span class="header-section-number">1.1</span> Example: Temperature Conversion</a></li>
+  <li><a href="#function-basics" id="toc-function-basics" class="nav-link" data-scroll-target="#function-basics"><span class="header-section-number">2.1</span> Function Basics</a></li>
+  <li><a href="#example-temperature-conversion" id="toc-example-temperature-conversion" class="nav-link" data-scroll-target="#example-temperature-conversion"><span class="header-section-number">2.2</span> Example: Temperature Conversion</a></li>
   </ul></li>
-  <li><a href="#function-arguments-and-return" id="toc-function-arguments-and-return" class="nav-link" data-scroll-target="#function-arguments-and-return"><span class="header-section-number">2</span> Function Arguments and <code>return</code></a>
+  <li><a href="#function-arguments-and-return" id="toc-function-arguments-and-return" class="nav-link" data-scroll-target="#function-arguments-and-return"><span class="header-section-number">3</span> Function Arguments and <code>return</code></a>
   <ul class="collapse">
-  <li><a href="#setting-argument-defaults" id="toc-setting-argument-defaults" class="nav-link" data-scroll-target="#setting-argument-defaults"><span class="header-section-number">2.1</span> Setting Argument Defaults</a></li>
-  <li><a href="#returning-values" id="toc-returning-values" class="nav-link" data-scroll-target="#returning-values"><span class="header-section-number">2.2</span> Returning Values</a></li>
+  <li><a href="#setting-argument-defaults" id="toc-setting-argument-defaults" class="nav-link" data-scroll-target="#setting-argument-defaults"><span class="header-section-number">3.1</span> Setting Argument Defaults</a></li>
+  <li><a href="#returning-values" id="toc-returning-values" class="nav-link" data-scroll-target="#returning-values"><span class="header-section-number">3.2</span> Returning Values</a></li>
   </ul></li>
-  <li><a href="#functions-use-cases" id="toc-functions-use-cases" class="nav-link" data-scroll-target="#functions-use-cases"><span class="header-section-number">3</span> Functions: Use Cases</a>
+  <li><a href="#functions-use-cases" id="toc-functions-use-cases" class="nav-link" data-scroll-target="#functions-use-cases"><span class="header-section-number">4</span> Functions: Use Cases</a>
   <ul class="collapse">
-  <li><a href="#functions-for-iteration" id="toc-functions-for-iteration" class="nav-link" data-scroll-target="#functions-for-iteration"><span class="header-section-number">3.1</span> Functions for Iteration</a></li>
-  <li><a href="#functions-for-custom-plot-themes" id="toc-functions-for-custom-plot-themes" class="nav-link" data-scroll-target="#functions-for-custom-plot-themes"><span class="header-section-number">3.2</span> Functions for Custom Plot Themes</a></li>
+  <li><a href="#functions-for-iteration" id="toc-functions-for-iteration" class="nav-link" data-scroll-target="#functions-for-iteration"><span class="header-section-number">4.1</span> Functions for Iteration</a></li>
+  <li><a href="#functions-for-custom-plot-themes" id="toc-functions-for-custom-plot-themes" class="nav-link" data-scroll-target="#functions-for-custom-plot-themes"><span class="header-section-number">4.2</span> Functions for Custom Plot Themes</a></li>
   </ul></li>
-  <li><a href="#documenting-functions" id="toc-documenting-functions" class="nav-link" data-scroll-target="#documenting-functions"><span class="header-section-number">4</span> Documenting Functions</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">5</span> Exercises</a>
+  <li><a href="#documenting-functions" id="toc-documenting-functions" class="nav-link" data-scroll-target="#documenting-functions"><span class="header-section-number">5</span> Documenting Functions</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">6</span> Exercises</a>
   <ul class="collapse">
-  <li><a href="#challenge-exercise" id="toc-challenge-exercise" class="nav-link" data-scroll-target="#challenge-exercise"><span class="header-section-number">5.1</span> Challenge Exercise</a></li>
+  <li><a href="#challenge-exercise" id="toc-challenge-exercise" class="nav-link" data-scroll-target="#challenge-exercise"><span class="header-section-number">6.1</span> Challenge Exercise</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -605,25 +607,23 @@ window.Quarto = {
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins) <span class="do">### example data</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<pre><code>## Why Functions?
-
-Many R users write code as a continuous stream of commands—paste from the console, run, repeat. That works, but breaking code into small, reusable **functions** pays off quickly.
-
-The guiding principle is **DRY: Don't Repeat Yourself**. If you've copied and pasted a block of code more than twice, it's time to write a function. Functions give you:
-
-- **Less repetition** — change logic in one piece of code, not ten
-- **Fewer errors** — one tested implementation instead of many copies
-- **Better readability** — a well-named function documents the coder's intent
-
-### Function Basics
-
-The syntax for defining a function in R is:
-
-```r
-my_function &lt;- function(argument1, argument2) {
-  &lt;code that performs some well defined task&gt;
-  return(result)
-}</code></pre>
+</section>
+<section id="why-functions" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="why-functions"><span class="header-section-number">2</span> Why Functions?</h2>
+<p>Many R users write code as a continuous stream of commands—paste from the console, run, repeat. That works, but breaking code into small, reusable <strong>functions</strong> pays off quickly.</p>
+<p>The guiding principle is <strong>DRY: Don’t Repeat Yourself</strong>. If you’ve copied and pasted a block of code more than twice, it’s time to write a function. Functions give you:</p>
+<ul>
+<li><strong>Less repetition</strong> — change logic in one piece of code, not ten</li>
+<li><strong>Fewer errors</strong> — one tested implementation instead of many copies</li>
+<li><strong>Better readability</strong> — a well-named function documents the coder’s intent</li>
+</ul>
+<section id="function-basics" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="function-basics"><span class="header-section-number">2.1</span> Function Basics</h3>
+<p>The syntax for defining a function in R is:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>my_function <span class="ot">&lt;-</span> <span class="cf">function</span>(argument1, argument2) {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>code that performs some well defined task<span class="sc">&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You can call it just like any built-in function:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">my_function</span>(<span class="at">argument1 =</span> value1, <span class="at">argument2 =</span> value2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -646,8 +646,9 @@ my_function &lt;- function(argument1, argument2) {
 <p>Based on these tips, is <code>my_function()</code> a good name for a function?</p>
 </div>
 </div>
-<section id="example-temperature-conversion" class="level3" data-number="1.1">
-<h3 data-number="1.1" class="anchored" data-anchor-id="example-temperature-conversion"><span class="header-section-number">1.1</span> Example: Temperature Conversion</h3>
+</section>
+<section id="example-temperature-conversion" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="example-temperature-conversion"><span class="header-section-number">2.2</span> Example: Temperature Conversion</h3>
 <p>Imagine you have some temperature data measured in degrees Fahrenheit and you want to convert that to Celsius for your analysis. You might have an R script that does this for you.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>airtemps <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">212</span>, <span class="fl">30.3</span>, <span class="dv">78</span>, <span class="dv">32</span>)</span>
@@ -733,10 +734,10 @@ my_function &lt;- function(argument1, argument2) {
 </section>
 </section>
 </section>
-<section id="function-arguments-and-return" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="function-arguments-and-return"><span class="header-section-number">2</span> Function Arguments and <code>return</code></h2>
-<section id="setting-argument-defaults" class="level3" data-number="2.1">
-<h3 data-number="2.1" class="anchored" data-anchor-id="setting-argument-defaults"><span class="header-section-number">2.1</span> Setting Argument Defaults</h3>
+<section id="function-arguments-and-return" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="function-arguments-and-return"><span class="header-section-number">3</span> Function Arguments and <code>return</code></h2>
+<section id="setting-argument-defaults" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="setting-argument-defaults"><span class="header-section-number">3.1</span> Setting Argument Defaults</h3>
 <p>Function arguments often include a default value - in which case, the user can opt to simply not assign a value. Here, <code>convert_temp()</code> allows the user to specify the scale of their input, defaulting to Fahrenheit (<code>scale = 'f'</code>).</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -792,8 +793,8 @@ my_function &lt;- function(argument1, argument2) {
 </div>
 </div>
 </section>
-<section id="returning-values" class="level3" data-number="2.2">
-<h3 data-number="2.2" class="anchored" data-anchor-id="returning-values"><span class="header-section-number">2.2</span> Returning Values</h3>
+<section id="returning-values" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="returning-values"><span class="header-section-number">3.2</span> Returning Values</h3>
 <p>Use <code>return(x)</code> to end the function and hand the resulting value back to the user. To provide multiple values back to a user, consider more complex data structures like a dataframe (well structured) or a named list (very flexible).</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Dataframe</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Named List</a></li></ul>
@@ -839,11 +840,11 @@ my_function &lt;- function(argument1, argument2) {
 </div>
 </section>
 </section>
-<section id="functions-use-cases" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="functions-use-cases"><span class="header-section-number">3</span> Functions: Use Cases</h2>
+<section id="functions-use-cases" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="functions-use-cases"><span class="header-section-number">4</span> Functions: Use Cases</h2>
 <p>Functions are amazing for reusing common code logic and for communicating the intent of a block of code by assigning a name. But functions can make it much easier to iterate complex operations on vectors and lists, and can help you create customized plot themes that you can use across multiple plots to maintain a consistent “brand”.</p>
-<section id="functions-for-iteration" class="level3" data-number="3.1">
-<h3 data-number="3.1" class="anchored" data-anchor-id="functions-for-iteration"><span class="header-section-number">3.1</span> Functions for Iteration</h3>
+<section id="functions-for-iteration" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="functions-for-iteration"><span class="header-section-number">4.1</span> Functions for Iteration</h3>
 <p>A function allows you to easily reuse a piece of code. This is especially powerful when coupled with iteration functions: <code>*apply</code> functions (base R) and the <code>map_*</code> functions from the <code>purrr</code> package. For example, you could apply a function to each element of a list or vector in sequence; separate a dataframe into pieces by some variable, then fit a model to each piece or generate a separate plot for each; or read in a series of separate data files and summarize the results into a complete dataframe.</p>
 <p>The <code>apply</code> and <code>map</code> functions typically take a list or vector for their first argument, and a function as their second.</p>
 <ul>
@@ -979,8 +980,8 @@ my_function &lt;- function(argument1, argument2) {
 </div>
 <!-- end named vs anon functions callout -->
 </section>
-<section id="functions-for-custom-plot-themes" class="level3" data-number="3.2">
-<h3 data-number="3.2" class="anchored" data-anchor-id="functions-for-custom-plot-themes"><span class="header-section-number">3.2</span> Functions for Custom Plot Themes</h3>
+<section id="functions-for-custom-plot-themes" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="functions-for-custom-plot-themes"><span class="header-section-number">4.2</span> Functions for Custom Plot Themes</h3>
 <p>If you make many similar plots, a custom theme function keeps formatting consistent and easy to update (we know this is not the greatest plot, we’re just changing various aspects that should be obvious in the resulting plot).</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>custom_theme <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">base_size =</span> <span class="dv">9</span>) {</span>
@@ -1030,8 +1031,8 @@ my_function &lt;- function(argument1, argument2) {
 <p>Now all plots built with <code>scatterplot()</code> can be reformatted by changing <em>one</em> function – whether you’re making 1, 10, or 100 plots.</p>
 </section>
 </section>
-<section id="documenting-functions" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="documenting-functions"><span class="header-section-number">4</span> Documenting Functions</h2>
+<section id="documenting-functions" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="documenting-functions"><span class="header-section-number">5</span> Documenting Functions</h2>
 <p>Well-named functions are a start, but good documentation tells collaborators (and future you) what a function expects and what it returns. Comments in the function body are a good start. For a more standardized structure, the <a href="https://roxygen2.r-lib.org/"><code>roxygen2</code></a> package provides a lightweight format for this. Place comments starting with <code>#'</code> immediately above the function definition, and use specific tags (e.g., <code>@param</code>) to define sections of the documentation.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Convert temperature from Fahrenheit to Celsius</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
@@ -1089,8 +1090,8 @@ Note
 </div>
 </div>
 </section>
-<section id="exercises" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="exercises"><span class="header-section-number">5</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="exercises"><span class="header-section-number">6</span> Exercises</h2>
 <p>In this sequence of exercises, we will build up a function to calculate the weight of Chinook salmon based only on length, using a simple length-to-width formula <span class="math inline">\(W = aL^b\)</span>.</p>
 <div class="callout callout-style-default callout-exercise no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="true" aria-label="Toggle callout">
@@ -1337,8 +1338,8 @@ Note
 </div>
 </div>
 <!-- end exercise:  documentation -->
-<section id="challenge-exercise" class="level3" data-number="5.1">
-<h3 data-number="5.1" class="anchored" data-anchor-id="challenge-exercise"><span class="header-section-number">5.1</span> Challenge Exercise</h3>
+<section id="challenge-exercise" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="challenge-exercise"><span class="header-section-number">6.1</span> Challenge Exercise</h3>
 <div class="callout callout-style-default callout-exercise no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
