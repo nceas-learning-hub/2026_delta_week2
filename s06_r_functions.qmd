@@ -26,7 +26,7 @@ library(purrr) ### for iteration using map() family of functions
 library(palmerpenguins) ### example data
 ```
 
-```
+
 ## Why Functions?
 
 Many R users write code as a continuous stream of commands—paste from the console, run, repeat. That works, but breaking code into small, reusable **functions** pays off quickly.
