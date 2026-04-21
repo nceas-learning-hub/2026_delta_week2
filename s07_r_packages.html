@@ -523,12 +523,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#add-documentation" id="toc-add-documentation" class="nav-link" data-scroll-target="#add-documentation"><span class="header-section-number">6</span> Add Documentation</a></li>
   <li><a href="#testing" id="toc-testing" class="nav-link" data-scroll-target="#testing"><span class="header-section-number">7</span> Testing</a>
   <ul class="collapse">
-  <li><a href="#checking-and-installing" id="toc-checking-and-installing" class="nav-link" data-scroll-target="#checking-and-installing"><span class="header-section-number">7.1</span> Checking and Installing</a></li>
-  <li><a href="#sharing-and-releasing" id="toc-sharing-and-releasing" class="nav-link" data-scroll-target="#sharing-and-releasing"><span class="header-section-number">7.2</span> Sharing and Releasing</a></li>
-  <li><a href="#exercise-add-more-functions" id="toc-exercise-add-more-functions" class="nav-link" data-scroll-target="#exercise-add-more-functions"><span class="header-section-number">7.3</span> Exercise: Add More Functions</a></li>
-  <li><a href="#add-dependencies" id="toc-add-dependencies" class="nav-link" data-scroll-target="#add-dependencies"><span class="header-section-number">7.4</span> Add Dependencies</a></li>
-  <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources"><span class="header-section-number">7.5</span> Additional Resources</a></li>
+  <li><a href="#unit-tests" id="toc-unit-tests" class="nav-link" data-scroll-target="#unit-tests"><span class="header-section-number">7.1</span> Unit Tests</a></li>
+  <li><a href="#package-level-checks" id="toc-package-level-checks" class="nav-link" data-scroll-target="#package-level-checks"><span class="header-section-number">7.2</span> Package-Level Checks</a></li>
+  <li><a href="#checking-by-doing" id="toc-checking-by-doing" class="nav-link" data-scroll-target="#checking-by-doing"><span class="header-section-number">7.3</span> Checking By Doing</a></li>
   </ul></li>
+  <li><a href="#sharing-releasing" id="toc-sharing-releasing" class="nav-link" data-scroll-target="#sharing-releasing"><span class="header-section-number">8</span> Sharing &amp; Releasing</a></li>
+  <li><a href="#looking-ahead" id="toc-looking-ahead" class="nav-link" data-scroll-target="#looking-ahead"><span class="header-section-number">9</span> Looking Ahead</a>
+  <ul class="collapse">
+  <li><a href="#dependencies" id="toc-dependencies" class="nav-link" data-scroll-target="#dependencies"><span class="header-section-number">9.1</span> Dependencies</a></li>
+  <li><a href="#version-numbers" id="toc-version-numbers" class="nav-link" data-scroll-target="#version-numbers"><span class="header-section-number">9.2</span> Version Numbers</a></li>
+  </ul></li>
+  <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources"><span class="header-section-number">10</span> Additional Resources</a></li>
   </ul>
 </nav>
     </div>
@@ -558,6 +563,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Discuss the advantages of creating your own R package to organize code</li>
 <li>Identify simple techniques for creating an R package</li>
 <li>Create CRAN-compliant documentation for functions in a package</li>
+<li>Write unit tests with syntax from the <code>testthat</code> package</li>
+<li>Discuss the (dis)advantages of hosting a package in GitHub, CRAN, or R-Universe</li>
 </ul>
 </div>
 </div>
@@ -565,7 +572,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="overview" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="overview"><span class="header-section-number">1</span> Overview</h2>
-<p>Most R users are familiar with loading and using packages in their work; we’ve worked with a number of well-known packages in this course thus far! In addition, even if they mostly stick to a core set of packages, they understand the breadth of <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html">packages available on CRAN</a> (the R package authority) for handling virtually any conceivable need. However, most R users have never created a package for their own work, often out of a fear that the process is too complicated. In reality, it’s fairly straighforward and super useful in your personal work. Creating packages serves two main use-cases:</p>
+<p>Most R users are familiar with loading and using packages in their work; we’ve worked with a number of well-known packages in this course thus far! In addition, even if they mostly stick to a core set of packages, they understand the breadth of <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html">packages available on the Comprehensive R Archive Network</a> (a.k.a. “CRAN”; the R package authority) for handling virtually any conceivable need. However, most R users have never created a package for their own work, often out of a fear that the process is too complicated. In reality, it’s fairly straighforward and super useful in your personal work. Creating packages serves two main use-cases:</p>
 <ul>
 <li>Distribute reusable code among projects (even if just for yourself)</li>
 <li>Reproducibly document analysis and models and their results</li>
@@ -774,6 +781,8 @@ DESCRIPTION Contents
 </section>
 <section id="testing" class="level2" data-number="7">
 <h2 data-number="7" class="anchored" data-anchor-id="testing"><span class="header-section-number">7</span> Testing</h2>
+<section id="unit-tests" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="unit-tests"><span class="header-section-number">7.1</span> Unit Tests</h3>
 <p>Now that our package has a function, we can start creating “unit tests” to make sure our function(s) behave as expected/as they should. The <code>testthat</code> package provides some really nice tools for doing this reproducibly and to a high standard so we’ll use that structure.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">1. Initialize <code>testthat</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">2. Write a Unit Test</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false" href="">3. Test the Package</a></li></ul>
@@ -845,238 +854,115 @@ DESCRIPTION Contents
 </div>
 </div>
 </div>
-<section id="checking-and-installing" class="level3" data-number="7.1">
-<h3 data-number="7.1" class="anchored" data-anchor-id="checking-and-installing"><span class="header-section-number">7.1</span> Checking and Installing</h3>
-<p>Now that you’ve completed testing your package, you can check it for consistency and completeness using <code>devtools::check()</code>.</p>
+</section>
+<section id="package-level-checks" class="level3" data-number="7.2">
+<h3 data-number="7.2" class="anchored" data-anchor-id="package-level-checks"><span class="header-section-number">7.2</span> Package-Level Checks</h3>
+<p>In addition to function-specific unit tests, the <code>devtools</code> package also includes some tools for package-level checks. Copy and run the following code in the Console.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">check</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<pre><code>══ Documenting ════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
-ℹ Updating mytools documentation
-ℹ Loading mytools
-
-══ Building ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
-Setting env vars:
-• CFLAGS    : -Wall -pedantic -fdiagnostics-color=always
-• CXXFLAGS  : -Wall -pedantic -fdiagnostics-color=always
-• CXX11FLAGS: -Wall -pedantic -fdiagnostics-color=always
-• CXX14FLAGS: -Wall -pedantic -fdiagnostics-color=always
-• CXX17FLAGS: -Wall -pedantic -fdiagnostics-color=always
-• CXX20FLAGS: -Wall -pedantic -fdiagnostics-color=always
-── R CMD build ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-✔  checking for file ‘/home/dolinh/mytools/DESCRIPTION’ (610ms)
-─  preparing ‘mytools’:
-✔  checking DESCRIPTION meta-information (338ms)
-─  checking for LF line-endings in source and make files and shell scripts
-─  checking for empty or unneeded directories
-─  building ‘mytools_0.0.0.9000.tar.gz’
-   
-══ Checking ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
-Setting env vars:
-• _R_CHECK_CRAN_INCOMING_REMOTE_               : FALSE
-• _R_CHECK_CRAN_INCOMING_                      : FALSE
-• _R_CHECK_FORCE_SUGGESTS_                     : FALSE
-• _R_CHECK_PACKAGES_USED_IGNORE_UNUSED_IMPORTS_: FALSE
-• NOT_CRAN                                     : true
-── R CMD check ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-─  using log directory ‘/tmp/Rtmp1UgqFD/file6d79323df6fae/mytools.Rcheck’ (649ms)
-─  using R version 4.2.2 (2022-10-31)
-─  using platform: x86_64-pc-linux-gnu (64-bit)
-─  using session charset: UTF-8
-─  using options ‘--no-manual --as-cran’
-✔  checking for file ‘mytools/DESCRIPTION’
-─  this is package ‘mytools’ version ‘0.0.0.9000’
-─  package encoding: UTF-8
-✔  checking package namespace information
-✔  checking package dependencies (2.1s)
-✔  checking if this is a source package
-✔  checking if there is a namespace
-✔  checking for executable files
-✔  checking for hidden files and directories
-✔  checking for portable file names
-✔  checking for sufficient/correct file permissions
-✔  checking serialization versions
-✔  checking whether package ‘mytools’ can be installed (3.2s)
-✔  checking installed package size
-✔  checking package directory
-✔  checking for future file timestamps (412ms)
-✔  checking DESCRIPTION meta-information (584ms)
-✔  checking top-level files ...
-✔  checking for left-over files
-✔  checking index information
-✔  checking package subdirectories ...
-✔  checking R files for non-ASCII characters ...
-✔  checking R files for syntax errors ...
-✔  checking whether the package can be loaded (481ms)
-✔  checking whether the package can be loaded with stated dependencies ...
-✔  checking whether the package can be unloaded cleanly ...
-✔  checking whether the namespace can be loaded with stated dependencies ...
-✔  checking whether the namespace can be unloaded cleanly (450ms)
-✔  checking loading without being on the library search path (522ms)
-✔  checking dependencies in R code (1.2s)
-✔  checking S3 generic/method consistency (1s)
-✔  checking replacement functions ...
-✔  checking foreign function calls ...
-✔  checking R code for possible problems (5.2s)
-✔  checking Rd files (449ms)
-✔  checking Rd metadata ...
-✔  checking Rd line widths ...
-✔  checking Rd cross-references ...
-✔  checking for missing documentation entries ...
-✔  checking for code/documentation mismatches (885ms)
-✔  checking Rd \usage sections (1.3s)
-✔  checking Rd contents ...
-✔  checking for unstated dependencies in examples ...
-✔  checking examples (2.7s)
-✔  checking for unstated dependencies in ‘tests’ ...
-─  checking tests (418ms)
-✔  Running ‘testthat.R’ (1.4s)
-✔  checking for non-standard things in the check directory
-✔  checking for detritus in the temp directory
-   
-   
-── R CMD check results ──────────────────────────────────────────────────────────────────────────────────── mytools 0.0.0.9000 ────
-Duration: 27.3s
-
-0 errors ✔ | 0 warnings ✔ | 0 notes ✔</code></pre>
-<p>Then you can install it locally using <code>devtools::install()</code>, which needs to be run from the parent directory of your module</p>
+<p>The <code>check()</code> function will do the following:</p>
+<ol type="1">
+<li>Run <code>devtools::test()</code></li>
+<li>Run <code>devtools::document()</code></li>
+<li>Check the core package structure is compliant with CRAN standards</li>
+</ol>
+</section>
+<section id="checking-by-doing" class="level3" data-number="7.3">
+<h3 data-number="7.3" class="anchored" data-anchor-id="checking-by-doing"><span class="header-section-number">7.3</span> Checking By Doing</h3>
+<p>Beyond automated checks, sometimes the best way to test your functions is simply to load the package and use the functions! You can load your functions (in order to test them) by copying the contents of the following code chunk and running it.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<pre><code>── R CMD build ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-✔  checking for file ‘/home/dolinh/mytools/DESCRIPTION’ (541ms)
-─  preparing ‘mytools’:
-✔  checking DESCRIPTION meta-information ...
-─  checking for LF line-endings in source and make files and shell scripts
-─  checking for empty or unneeded directories
-─  building ‘mytools_0.0.0.9000.tar.gz’
-   
-Running /opt/R/4.2.2/lib/R/bin/R CMD INSTALL /tmp/Rtmp1UgqFD/mytools_0.0.0.9000.tar.gz --install-tests 
-* installing to library ‘/home/dolinh/R/x86_64-pc-linux-gnu-library/4.2’
-* installing *source* package ‘mytools’ ...
-** using staged installation
-** R
-** tests
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** testing if installed package can be loaded from temporary location
-** testing if installed package can be loaded from final location
-** testing if installed package keeps a record of temporary installation path
-* DONE (mytools)</code></pre>
-<p>After installing, your package is now available for use in your local environment, yay!</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Check out the Build Tab
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Remember when we ran <code>usethis::create_package()</code> and after we ran it we saw the Build Tab added to the Environment pane?</p>
-<p>In the Build Tab, each of the buttons correspond with one of the <code>devtools</code> functions we ran, meaning:</p>
-<ul>
-<li>Test button is equivalent to running <code>devtools::test()</code> in the Console</li>
-<li>Check button is equivalent to running <code>devtools::check()</code> in the Console</li>
-<li>Install button is equivalent to running <code>devtools::install()</code> in the Console</li>
-</ul>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">load_all</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="sharing-and-releasing" class="level3" data-number="7.2">
-<h3 data-number="7.2" class="anchored" data-anchor-id="sharing-and-releasing"><span class="header-section-number">7.2</span> Sharing and Releasing</h3>
-<ul>
-<li><p><strong>GitHub</strong>: The simplest way to share your package with others is to upload it to a <a href="https://github.com">GitHub repository</a>, which allows others to install your package using the <code>install_github('mytools','github_username')</code> function from <code>devtools</code>.</p></li>
-<li><p><strong>CRAN</strong>: If your package might be broadly useful, also consider releasing it to <a href="https://cran.r-project.org/">CRAN</a>, using the <code>release()</code> method from <code>devtools()</code>. Releasing a package to CRAN requires a significant amount of work to ensure it follows the standards set by the R community, but it is entirely tractable and a valuable contribution to the science community. If you are considering releasing a package more broadly, you may find that the supportive community at <a href="https://ropensci.org">ROpenSci</a> provides incredible help and valuable feeback through their onboarding process.</p></li>
-<li><p><strong>R-Universe</strong>: A newer approach is to link your package release to <a href="https://r-universe.dev">R-Universe</a>, which is an effective way to make it easy to test and maintain packages so that many people can install them using the familiar <code>install.pacakges()</code> function in R. In R-Universe, people and organizations can <a href="https://github.com/r-universe-org/help#how-to-setup-your-personal-universe">create their own <em>universe</em> of packages</a>, which represent a collection of packages that appear as a CRAN-compatible repository in R. For example, for DataONE we maintain the <a href="https://dataoneorg.r-universe.dev">DataONE R-Universe</a>, which lists the packages we actively maintain as an organization. So, any R-user that wants to install these packages can do so by adding our universe to their list of repositories, and then installing packages as normal. For example, to install the <code>codyn</code> package, one could use:</p></li>
-</ul>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'codyn'</span>, <span class="at">repos =</span> <span class="fu">c</span>(<span class="st">'https://dataoneorg.r-universe.dev'</span>, <span class="st">'https://cloud.r-project.org'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
 </section>
-<section id="exercise-add-more-functions" class="level3" data-number="7.3">
-<h3 data-number="7.3" class="anchored" data-anchor-id="exercise-add-more-functions"><span class="header-section-number">7.3</span> Exercise: Add More Functions</h3>
-<p>Add additional temperature conversion functions to the <code>mytools</code> package and:</p>
-<ul>
-<li>Add full documentation for each function</li>
-<li>Write tests to ensure the functions work properly</li>
-<li>Rebuild the package using <code>document()</code>, <code>check()</code>, and <code>install()</code></li>
-</ul>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Don’t forget to update the version number before you install!
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Version information is located in the <code>DESCRIPTION</code> file and when you first create a package the version is 0.0.0.9000.</p>
-<p>This version number follows the format major.minor.patch.dev. The different parts of the version represent different things:</p>
-<ul>
-<li><strong>Major</strong>: A significant change to the package that would be expected to break users code. This is updated very rarely when the package has been redesigned in some way.</li>
-<li><strong>Minor</strong>: A minor version update means that new functionality has been added to the package. It might be new functions to improvements to existing functions that are compatible with most existing code.</li>
-<li><strong>Patch</strong>: Patch updates are bug fixes. They solve existing issues but don’t do anything new.</li>
-<li><strong>Dev</strong>: Dev versions are used during development and this part is missing from release versions. For example you might use a dev version when you give someone a beta version to test. A package with a dev version can be expected to change rapidly or have undiscovered issues.</li>
-</ul>
-<p>After you’ve made some changes to a package, but before you install run the code:</p>
+<section id="sharing-releasing" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="sharing-releasing"><span class="header-section-number">8</span> Sharing &amp; Releasing</h2>
+<p>Once your package is set up, you have a number of options for places to share that package and allow others to install it. These platforms have different requirements for you so consider those standards when choosing where to host your package.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">GitHub</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">CRAN</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false" href="">R-Universe</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<p>The simplest way of sharing your package is simply to put it in a GitHub repository. If you’ve been following along with this lesson, you’re already nicely set up for this! Once your package is on GitHub, anyone who can find that repository can install it directly from GitHub like so:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_version</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Option 1: devtools</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"github-username/repository-name"</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Option 2: librarian</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>librarian<span class="sc">::</span><span class="fu">shelf</span>(github<span class="sc">-</span>username<span class="sc">/</span>repository<span class="sc">-</span>name)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<pre><code>Current version is 0.0.0.9000.
-What should the new version be? (0 to exit) 
-
-1: major --&gt; 1.0.0
-2: minor --&gt; 0.1.0
-3: patch --&gt; 0.0.1
-4:   dev --&gt; 0.0.0.9001</code></pre>
-<p>Since we’re adding new functions, we can consider this a <em>minor</em> change and can select option 2.</p>
-<pre><code>Selection: 2
-✔ Setting Version field in DESCRIPTION to '0.1.0'</code></pre>
-<p><em>Source: COMBINE’s R package workshop, <a href="https://combine-australia.github.io/r-pkg-dev/versioning.html">Ch 9: Versioning</a></em></p>
+<p><strong>Prerequisites:</strong></p>
+<ul>
+<li>GitHub has <em>no</em> pre-requisites for an R package! Even packages that are malformed / uninstallable are allowed to be in GitHub repository because GitHub doesn’t inherently support special cases of repositories</li>
+<li>You can add a GitHub Action (GHA) to automate tests of your package each time you push but the success/failure of the GHA–or whether you have one at all–doesn’t affect whether you’re ‘allowed’ to have it on GitHub</li>
+</ul>
 </div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<p>If you’re willing to do additional legwork, you can get your package released onto CRAN. This would let anyone install it using the standard <code>install.packages</code> function. Note this is typically done <em>in addition to hosting it on GitHub.</em> In order to release your package on CRAN, you’ll need to run <code>devtools::release()</code> and work through the prompts it will put in the Console asking you whether you’ve done a set of necessary steps for CRAN-compliance (some of which were covered above).</p>
+<p>If you are considering releasing a package more broadly, you may find that the supportive community at <a href="https://ropensci.org">ROpenSci</a> provides incredible help and valuable feeback through their onboarding process.</p>
+<p><strong>Prerequisites:</strong></p>
+<ul>
+<li>Releasing to CRAN requires a non-trivial amount of work beyond what’s necessary for GitHub</li>
+<li>We don’t have time today to go into the specifics here, but if this is of interest, check out the R Packages (2e) book <a href="https://r-pkgs.org/release.html">Chapter 20: Releasing to CRAN</a></li>
+</ul>
 </div>
-</section>
-<section id="add-dependencies" class="level3" data-number="7.4">
-<h3 data-number="7.4" class="anchored" data-anchor-id="add-dependencies"><span class="header-section-number">7.4</span> Add Dependencies</h3>
-<p>If your R code depends on functions from another package, you must declare it. In the <code>Imports</code> section in the <code>DESCRIPTION</code> file, list all the packages your functions depend upon.</p>
-<p>In our <code>custom_theme()</code> function, we depend on the <code>ggplot2</code> package, and so we need to list it as a dependency.</p>
-<p>Once again, <code>usethis</code> provides a handy helper method:</p>
+<div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
+<p>A newer approach is to link your package release to <a href="https://r-universe.dev">R-Universe</a>, which is an effective way to make it easy to test and maintain packages so that many people can install them using the familiar <code>install.pacakges()</code> function in R. In R-Universe, people and organizations can <a href="https://github.com/r-universe-org/help#how-to-setup-your-personal-universe">create their own <em>universe</em> of packages</a>, which represents a collection of packages that appear as a CRAN-compatible repository in R.</p>
+<p>For example, DataONE maintains the <a href="https://dataoneorg.r-universe.dev">DataONE R-Universe</a>, which lists the packages they actively maintain as an organization. So, any R-user that wants to install these packages can do so by adding our universe to their list of repositories, and then installing packages as normal. For example, to install the <code>codyn</code> package, one could use:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_package</span>(<span class="st">"ggplot2"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'codyn'</span>, <span class="at">repos =</span> <span class="fu">c</span>(<span class="st">'https://dataoneorg.r-universe.dev'</span>, <span class="st">'https://cloud.r-project.org'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<pre><code>✔ Adding 'ggplot2' to Imports field in DESCRIPTION
-• Refer to functions with `ggplot2::fun()`</code></pre>
-<p>Take a look at the <code>DESCRIPTION</code> file again, and you’ll see the Imports section has been added, with <code>ggplot2</code> underneath.</p>
-<div class="callout callout-style-simple callout-tip no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<pre><code>Package: mytools
-Title: Halina Do-Linh's Utility R Functions
-Version: 0.0.0.9000
-Authors@R: 
-    person("Halina", "Do-Linh", email = "dolinh@nceas.ucsb.edu", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: A collection of useful R functions that I use for general utilities.
-License: Apache License (&gt;= 2)
-Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
-Imports: 
-    ggplot2</code></pre>
+<p><strong>Prerequisites:</strong></p>
+<ul>
+<li>The requirements here are like a less-stringent version of what’s necessary for CRAN</li>
+<li>So, you’d need to do more than you would for GitHub but less than you’d need to do for CRAN</li>
+</ul>
 </div>
 </div>
 </div>
 </section>
-<section id="additional-resources" class="level3" data-number="7.5">
-<h3 data-number="7.5" class="anchored" data-anchor-id="additional-resources"><span class="header-section-number">7.5</span> Additional Resources</h3>
+<section id="looking-ahead" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="looking-ahead"><span class="header-section-number">9</span> Looking Ahead</h2>
+<p>What we’ve outlined above is the core content of creating an R package but if this is of interest, the <a href="https://r-pkgs.org/">R Packages (2e) book</a> is actually written in a very accessible way while still containing a ton of useful, practical information. <strong>If you decide to fully embrace making/maintaining an R package, it’s worth reading through some of this book!</strong></p>
+<p>There are a handful of extra components that are worth surfacing here though.</p>
+<section id="dependencies" class="level3" data-number="9.1">
+<h3 data-number="9.1" class="anchored" data-anchor-id="dependencies"><span class="header-section-number">9.1</span> Dependencies</h3>
+<p>If your R code depends on functions from another package, you must declare it as a “dependency” (i.e., a package on which your package <em>depends</em>). This will make that package also be installed when someone installs your package. As you might expect, <strong>dependencies must be declared in the DESCRIPTION file.</strong></p>
+<p>If you don’t have any dependencies, your DESCRIPTION won’t have the relevant field so it’s helpful to use the <code>usethis</code> package for your first dependency and then edit the DESCRIPTION manually for subsequent dependencies.</p>
+<p>In order to add a dependency, copy run the code from the following chunk.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_package</span>(<span class="st">"ggplot2"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>This will add a new line to the end of the DESCRIPTION labeled “Imports” and then another line indented below that with the <code>ggplot2</code> package named. Note that you will get a warning from <code>devtools::check()</code> if you declare a dependency that isn’t used in your package.</p>
+</section>
+<section id="version-numbers" class="level3" data-number="9.2">
+<h3 data-number="9.2" class="anchored" data-anchor-id="version-numbers"><span class="header-section-number">9.2</span> Version Numbers</h3>
+<p>A key point in the default DESCRIPTION that we did not cover was the “Version” line. Version information is located in the DESCRIPTION file and when you first create a package (if you follow our instructions above) the version is 0.0.0.9000. When you update your package, you need to “increment” that version number so that users can know–and cite!–which version of your package they used.</p>
+<p><strong>Each part of the version number implies a different severity of change</strong>, where the earlier numbers represent more significant version changes and the later numbers represent more minor ones. The R package version number follows the format <strong>major.minor.patch.dev</strong>, see below for an in-depth explanation of each.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">Major</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">Minor</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-3" role="tab" aria-controls="tabset-5-3" aria-selected="false" href="">Patch</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-4" role="tab" aria-controls="tabset-5-4" aria-selected="false" href="">Dev</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<p>A significant change to the package that would be expected to break users code. This is updated very rarely when the package has been redesigned in some way.</p>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<p>A minor version update means that new functionality has been added to the package. It might be new functions to improvements to existing functions that are compatible with most existing code.</p>
+</div>
+<div id="tabset-5-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-3-tab">
+<p>Patch updates are bug fixes. They solve existing issues but don’t do anything new.</p>
+</div>
+<div id="tabset-5-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-4-tab">
+<p>Dev versions are used during development and <em>this part is missing from release versions.</em> For example you might use a dev version when you give someone a beta version to test. A package with a dev version can be expected to change rapidly or have undiscovered issues.</p>
+<p>Typically the dev version will always just be the more recent release version with “.900” added to the end.</p>
+</div>
+</div>
+</div>
+<p>It is common convention to create a “NEWS.md” file in the top-level of your R package and note changes among versions in that so that there’s a quick, strategic summary of how your package evolves from version to version. <strong>It’s good practice to create and curate this file as you make edits so that you don’t depend on your memory for what changes you’ve made to your package since its last release version.</strong></p>
+<p>Check out the <a href="https://github.com/njlyon0/supportR/blob/main/NEWS.md">NEWS.md file from the <code>supportR</code> package</a> as an example for what this might look like after a few years.</p>
+</section>
+</section>
+<section id="additional-resources" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="additional-resources"><span class="header-section-number">10</span> Additional Resources</h2>
 <ul>
 <li>Hadley Wickham and Jenny Bryan’s awesome book: <a href="https://r-pkgs.org/">R Packages</a></li>
 <li>ROpenSci Blog Post: <a href="https://ropensci.org/blog/2021/06/22/setup-runiverse/">How to create your personal CRAN-like repository on R-universe</a></li>
@@ -1085,7 +971,6 @@ Imports:
 </ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
