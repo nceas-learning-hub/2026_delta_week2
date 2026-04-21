@@ -90,23 +90,34 @@ With a partner, discuss (some of) the following questions:
 
 We've brought up the importance of naming several times already but haven't actually discussed the specifics of what makes a "good" name for a file or folder. Consider the adopting some (or all!) of the file name tips we outline below.
 
-> Names should be sorted by a computer and human in the same way
+:::{.panel-tabset}
+#### Human/Computer Agreement
+
+**Names should be sorted by a computer and human in the same way.**
 
 Computers sort files/folders alphabetically and numerically. Sorting alphabetically rarely matches the order scripts in a workflow _should be_ run. If you add step numbers to the start of each file name the computer will sort the files in an order that makes sense for the project. You may also want to "zero pad" numbers so that all numbers have the same number of digits (e.g., "01" and "10" vs. "1" and "10").
 
-> Names should avoid spaces and special characters
+#### No Spaces
+
+**Names should avoid spaces and special characters.**
 
 Spaces and special characters (e.g., é, ü, etc.) cause errors in some computers (particularly Windows operating systems). You can replace spaces with underscores or hyphens to increase machine readability. Avoid using special characters as much as possible. You should also be consistent about casing (i.e., lower vs. uppercase).
 
-> Names should use consistent delimiters
+#### Delimeters
 
-**Delimiters** are characters used to separate pieces of information in otherwise plain text. Underscores are a commonly used example of this. If a file/folder name has multiple pieces of information, you can separate these with a delimiter to make them more readable to people and machines. For example, you could name a folder "coral_reef_data" which would be more readable than "coralreefdata".
+**Names should use consistent delimiters.**
+
+"Delimiters" are characters used to separate pieces of information in otherwise plain text. Underscores are a commonly used example of this. If a file/folder name has multiple pieces of information, you can separate these with a delimiter to make them more readable to people and machines. For example, you could name a folder "coral_reef_data" which would be more readable than "coralreefdata".
 
 You may also want to use _multiple_ delimiters to indicate different things. For instance, you could use underscores to differentiate categories and then use hyphens instead of spaces between words.
 
-> Names should use "slugs" to connect inputs and outputs
+#### Slugs
 
-**Slugs** are human-readable, unique pieces of file names that are shared between files and the outputs that they create. Maybe a script is named "02_tidy.R" and all of the data files it creates are named "02_...". Weird or unlikely outputs are easily traced to the scripts that created them because of their shared slug.
+**Names should use slugs to connect inputs and outputs.**
+
+"Slugs" are human-readable, unique pieces of file names that are shared between files and the outputs that they create. Maybe a script is named "02_tidy.R" and all of the data files it creates are named "02_...". Weird or unlikely outputs are easily traced to the scripts that created them because of their shared slug.
+
+:::
 
 ### Organizing Example
 
@@ -291,17 +302,21 @@ Top-level sub-folders are colored <span style="color:#209ACA">**blue**</span> so
 
 If you integrate any of the concepts we've covered above you will find the reproducibility and transparency of your project will greatly increase. However, if you'd like additional recommendations we've assembled a non-exhaustive set of _additional_ "best practices" that you may find helpful.
 
+:::{.panel-tabset}
+
 #### Never Edit Raw Data
 
 First and foremost, it is critical that you <u>**_never_**</u> edit the raw data directly. If you do need to edit the raw data, use a script to make all needed edits and save the output of that script as a _separate_ file. Editing the raw data directly without a script or using a script but overwriting the raw data are both incredibly risky operations because your create a file that "looks" like the raw data (and is likely documented as such) but differs from what others would have if they downloaded the 'real' raw data personally.
 
-#### Separate Raw and Processed Data
+#### Separate Stages of Data
 
 In the same vein as the previous best practice, we recommend that you separate the raw and processed data into separate folders. This will make it easier to avoid accidental edits to the raw data and will make it clear what data are created by your project's scripts; even if you choose not to adopt a file naming convention that would make this clear.
 
-#### Quarantine External Outputs
+#### Quarantine New Inputs
 
-This can sound harsh, but it is often a good idea to "quarantine" outputs received from others until they can be carefully vetted. This is not at all to suggest that such contributions might be malicious! As you embrace more of the project organization recommendations we've described above outputs from others have more and more opportunities to diverge from the framework you establish. Quarantining inputs from others gives you a chance to rename files to be consistent with the rest of your project as well as make sure that the style and content of the code also match (e.g., use or exclusion of particular packages, comment frequency and content, etc.)
+This can sound harsh, but it is often a good idea to "quarantine" inputs received from others until they can be carefully vetted. This is not at all to suggest that such contributions might be malicious! As you embrace more of the project organization recommendations we've described above, inputs from others have more and more opportunities to diverge from the framework you establish. Quarantining inputs from others gives you a chance to rename files to be consistent with the rest of your project as well as make sure that the style and content of the code also match (e.g., use or exclusion of particular packages, comment frequency and content, etc.)
+
+:::
 
 ## Introduction to Generative AI
 
@@ -332,25 +347,28 @@ Finally, note that **you must have a fundamental understanding of any process yo
 
 There are a handful of particularly well-recognized use-cases for genAI tools. A non-exhaustive set of these is included below.
 
-> Note-Taking
+:::{.panel-tabset}
+#### Note-Taking
 
 Many video conference platforms (e.g., Microsoft Teams, Zoom) now include AI components that take meeting notes and may even provide executive summaries of key points and/or action items
 
-> Refactoring Code
+#### Refactoring Code
 
 You may want to use AI to "refactor" code that you've already written; this means that the code will still accept the same inputs and produce the same outputs but the way it accomplishes the steps between the beginning and end is changed. This can be useful to 'clean up' code and/or increase its efficiency
 
-> Writing Unit Tests
+#### Writing Unit Tests
 
 In software development, a "unit test" is not a test on a measurement unit, _it is a test on the smallest relevent unit of a piece of code._ When developing a function or package, a unit test might check whether one argument/parameter of a function returns an error when it should (for instance, a function that calculates the average of a set of numbers should return an error if it is provided with a set of letters instead of numbers)
 
-> Code language translations
+#### Code Translations
 
 In some synthesis teams, particularly those with a wide range of disciplines represented, it can be the case that not all members "speak" the same code languages. R, Python, and MATLAB are--in our experience--the most common but other languages may also be used depending on each individual's background
 
 Using genAI to translate from one language into another can be super useful! Your group should discuss what the desired style/language of the output is and make sure that the original code and translated code are _tightly_ reviewed by someone who can speak both languages to make sure the code is actually comparable.
 
 Errors in translation can be particularly pernicious to diagnose if the original author can't vet the translation of their work themself to confirm that the code does _exactly_ the same thing in both languages
+
+:::
 
 ### AI Modalities
 
