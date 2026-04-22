@@ -40,7 +40,7 @@ In this lesson, our goal is to use a shapefile of Alaska regions and rivers, and
 
 ## About the data
 
-All of the data used in this tutorial are simplified versions of real datasets available on the [KNB Data Repository](https://knb.ecoinformatics.org/). We are using simplified datasets to ease the processing burden on all our computers since the original geospatial datasets are high-resolution. These simplified versions of the datasets may contain topological errors.
+Most of the data used in this tutorial are simplified versions of real datasets available on the [KNB Data Repository](https://knb.ecoinformatics.org/). We are using simplified datasets to ease the processing burden on all our computers since the original geospatial datasets are high-resolution. These simplified versions of the datasets may contain topological errors.
 
 The spatial data we will be using to create the map are:
 
@@ -52,13 +52,13 @@ The spatial data we will be using to create the map are:
 
 ### Download the Data
 
-Open your project `training_{username}`.  Here are two methods: programmatic (for reproducibility) and manual (perhaps more intuitive?).  If you are working on a server, the programmatic method is probably best, since you won't have to later upload the downloaded file to the server.
+Open your project `training_{username}`.  We will download a **simplified** version of the Alaska regional boundaries dataset.  Here are two methods: programmatic (for reproducibility) and manual (perhaps more intuitive?).  If you are working on a server, the programmatic method is probably best, since you won't have to later upload the downloaded file to the server.
 
 ::: {.panel-tabset}
 
 ## Programmatic
 
-Here is programmatic code to download the dataset from KNB into your current project, unzip it into a folder, and then delete the zip file.  Copy and paste this into the console in Positron or RStudio to run it.  Then check that your data folder has an `ak_regions` subfolder with some files.
+Here is programmatic code to download [the dataset from KNB](https://dev.nceas.ucsb.edu/view/urn:uuid:6f07cb25-a4a1-48e8-95cb-74f532f3ce2d) into your current project, unzip it into a folder, and then delete the zip file.  Copy and paste this into the console in Positron or RStudio to run it.  Then check that your data folder has an `ak_regions` subfolder with some files.
 
 <!-- NOTE mode = "wb" is important for Windows since these are binary files -->
 
@@ -123,6 +123,7 @@ In the Setup section, attach the following libraries in a code chunk (perhaps wi
 ### Data wrangling packages:
 library(readr)
 library(dplyr)
+library(tidyr)
 library(here)
 
 ### Simple Features vector spatial data:
@@ -347,7 +348,7 @@ We have some population data that gives the population by city, not by region. T
 
 ### Download the Population Data
 
-As for the vector spatial data, let's download the population data either programmatically or manually.  Save it as `data/alaska_population.csv` (NOT in the `ak_regions` folder).
+As for the vector spatial data, let's download the population data either programmatically or manually.  Here we are downloading the full dataset, not a simplified one.  Save it as `data/alaska_population.csv` (NOT in the `ak_regions` folder).
 
 ::: {.panel-tabset}
 
@@ -355,43 +356,48 @@ As for the vector spatial data, let's download the population data either progra
 
 Copy and paste this into the console in Positron or RStudio to run it.  Then check your `data` folder for the file.
 
-<!-- NOTE mode = "wb" is important for Windows since these are binary files -->
-
 ```{r}
 #| eval: false
 out_file <- here::here('data/alaska_population.csv')
 
-if(!dir.exists(out_file)) {
-pop_data_url <- "https://github.com/nceas-learning-hub/lhLessons/blob/main/inst/lesson_data/r_geospatial_vector_analysis/alaska_population.csv"
+if(!file.exists(out_file)) {
+pop_data_url <- "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/urn%3Auuid%3A7fc6f6db-c5ea-426a-a743-1f2edafb43b8"
 
-download.file(url = pop_data_url, destfile = 'out_file', mode = 'w')
+download.file(url = pop_data_url, destfile = out_file, mode = 'w')
 }
 ```
 
 ## Manual
 
-Navigate to [this dataset](https://github.com/nceas-learning-hub/lhLessons/blob/main/inst/lesson_data/r_geospatial_vector_analysis/alaska_population.csv) on the NCEAS Learning Hub GitHub site and click the download button.
+Navigate to [this dataset](https://knb.ecoinformatics.org/view/doi:10.5063/F11G0JHX) on the KNB site and click the download button for the file called `household_language.csv`. (We're only going to use the population data from this file)
 
 * If on a local computer: Save it or move it into the current project as `data/alaska_population.csv`.
-* If on a server: Upload the file to the `data` folder in the `training_{username}` project.
+* If on a server: Upload the file to the `data` folder in the `training_{username}` project as `data/alaska_population.csv`.
 
 :::
 <!-- end tabset -->
 
 ###  Read in Population Data
 
+This dataset actually includes a lot more than just population by city - it also includes info on how many people in each city speak different languages.  But for this example, we'll just focus on the population column, using `dplyr` methods to filter for the most recent year of data (2015) and select the relevant columns.
 
 Here we'll add a `_df` suffix to remind us that this is just a regular data frame, not a spatial data frame.  It does contain spatial variables (longitude and latitude), but as far as it knows, those are just numbers, not recognized as spatial geometry... yet!
 
 ```r
-pop_df <- read_csv(here("data/alaska_population.csv"))
+pop_df <- read_csv(here("data/alaska_population.csv")) %>%
+    filter(Year == 2015) %>%
+    select(city, lat, lng, population = total) %>%
+    drop_na()
 ```
 
 ```{r}
 #| include: false
 
 # for Quarto rendering, data is saved in a different folder than participants
-pop_df <- read_csv(here("data/r_geospatial_vector_analysis/alaska_population.csv"))
+pop_df <- read_csv(here("data/r_geospatial_vector_analysis/alaska_population.csv")) %>%
+    filter(Year == 2015) %>%
+    select(city, lat, lng, population = total) %>%
+    drop_na()
 ```
 
 ### Turn `pop_df` Into a Spatial Object
@@ -518,7 +524,7 @@ ggplot(pop_rgn_3338_sf) +
     theme_bw()
 ```
 
-Layer multiple geometries exactly like regular `ggplot2`.  Here it is best to separately assign each `data =` and `mapping = aes()` inside each `geom_sf` call.  Later geoms are visually stacked on top of earlier geoms.  Let's read in and add rivers to the plot (already in EPSG:3338), along with cities from our `pop_3338_sf` data:
+Layer multiple geometries exactly like regular `ggplot2`.  Here it is best to separately assign each `data =` and `mapping = aes()` inside each `geom_sf` call.  Later geoms are visually stacked on top of earlier geoms.  Let's read in and add a simplified rivers dataset to the plot (already downloaded with the Alaska regions, and already in EPSG:3338), along with cities from our `pop_3338_sf` data:
 
 ```r
 rivers_3338_sf <- read_sf(here("data/ak_rivers_simp.shp"))
