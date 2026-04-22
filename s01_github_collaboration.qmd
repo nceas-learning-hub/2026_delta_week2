@@ -119,12 +119,13 @@ A **merge conflict** occurs when two collaborators edit the *same line(s) of the
 When a conflict occurs, Git marks the affected section of the file like this:
 
 ```r
-<<<<<<< HEAD
-Your version of this line
-=======
-Collaborator's version of this line
->>>>>>> (commit SHA)
+ <<<<<<< HEAD
+ Your version of this line
+ =======
+ Collaborator's version of this line
+ >>>>>>> (commit SHA)
 ```
+<!-- NOTE: added space in front of conflict markers to prevent rendering issues in Quarto -->
 
 To resolve the conflict: edit the file so it reads how you want, remove all the marker lines (`<<<<<<<`, `=======`, `>>>>>>>`), then stage (add), commit-pull-push.  This might look different depending on your IDE.
 
@@ -246,7 +247,6 @@ Work with the same partner as the previous exercise (since you've already both i
 **Round Two:**
 
 Switch roles, and repeat using the README in the NEW [**Owner's**]{style="color: orange;"} repository.
-
 
 :::
 <!-- end exercise -->
