@@ -76,13 +76,13 @@ file.remove('shapefile_demo_data.zip')
 }
 ```
 
-:::callout-tip
+::::callout-tip
 ## Include this in your script?
 
 You could include this code in your script, so any time anyone runs it for the first time it automatically downloads the required data.  This is great for reproducibility!
 
 The code above includes a check `if(!dir.exists(out_dir))`: if a user already has this directory, presumably they've downloaded the data so the script does not need to re-download it!
-:::
+::::
 
 ## Manual
 
@@ -92,6 +92,7 @@ Navigate to [this dataset](https://dev.nceas.ucsb.edu/view/urn:uuid:6f07cb25-a4a
 * If on a server: Upload the zip folder to a `data/ak_regions` folder in the `training_{username}` project. You don't need to unzip the folder ahead of time, uploading will automatically unzip the folder.
 
 :::
+<!-- end tabset -->
 
 :::callout-tip
 ### Optional: Add folder to `.gitignore`
@@ -183,6 +184,7 @@ The datum is how you georeference your points (in 3 dimensions!) onto a spheroid
 The projection is how these points are mathematically transformed to represent the georeferenced point on a flat piece of paper. Since you will visualize a 3D object onto a 2D space, there will be some distortions depending on the projection that you choose. Analogously, how do you peel the fruit (representing the Earth) and flatten the peel?
 
 :::
+<!-- end tabset -->
 
 ![Source: [ESRI](https://www.esri.com/arcgis-blog/products/arcgis-pro/mapping/gcs_vs_pcs/)](images/r_geospatial_vector_analysis/geospatial-gcs-pcs.png){width="70%" fig-align="center"}
 
@@ -342,7 +344,6 @@ We have some population data that gives the population by city, not by region. T
 2.  Use a spatial join (`st_join()`) to match each city to a region
 3.  Use `group_by()` and `summarize()` to calculate the total population by region
 4.  Save the resulting spatial object using `write_sf()`
-:::
 
 ### Download the Population Data
 
@@ -375,6 +376,7 @@ Navigate to [this dataset](https://github.com/nceas-learning-hub/lhLessons/blob/
 * If on a server: Upload the file to the `data` folder in the `training_{username}` project.
 
 :::
+<!-- end tabset -->
 
 ###  Read in Population Data
 
