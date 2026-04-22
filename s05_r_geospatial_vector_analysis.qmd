@@ -66,13 +66,15 @@ Here is programmatic code to download [the dataset from KNB](https://dev.nceas.u
 out_dir <- here::here('data/ak_regions')
 
 if(!dir.exists(out_dir)) {
-knb_url <- "https://dev.nceas.ucsb.edu/knb/d1/mn/v2/object/urn%3Auuid%3Aaceaecb2-1ce0-4d41-a839-d3607d32bb58"
+    knb_url <- "https://dev.nceas.ucsb.edu/knb/d1/mn/v2/object/urn%3Auuid%3Aaceaecb2-1ce0-4d41-a839-d3607d32bb58"
 
-download.file(url = knb_url, destfile = 'shapefile_demo_data.zip', mode = 'wb')
+    download.file(url = knb_url, 
+                  destfile = 'shapefile_demo_data.zip', 
+                  mode = 'wb')
 
-unzip('shapefile_demo_data.zip', exdir = out_dir)
+    unzip('shapefile_demo_data.zip', exdir = out_dir)
 
-file.remove('shapefile_demo_data.zip')
+    file.remove('shapefile_demo_data.zip')
 }
 ```
 
@@ -307,31 +309,101 @@ class(ak_rgns_3338_sf)
 
 `sf` objects should have (at least) two classes: `sf` and `data.frame`.  Let's look at their basic structure:
 
-```{r}
-head(ak_rgns_3338_sf)
+:::panel-tabset
+## `head(ak_rgns_3338_sf)`
 
-glimpse(ak_rgns_3338_sf)
+<details> 
+<summary>Output (collapsed)</summary>
 ```
+Simple feature collection with 6 features and 3 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -2175328 ymin: 405653 xmax: 773820 ymax: 2383770
+Projected CRS: NAD83 / Alaska Albers
+# A tibble: 6 × 4
+  region_id region           mgmt_area                    geometry
+      <int> <chr>                <dbl>          <MULTIPOLYGON [m]>
+1         1 Aleutian Islands         3 (((-1156666 420855.1, -115…
+2         2 Arctic                   4 (((571289.9 2143072, 56994…
+3         3 Bristol Bay              3 (((-339688.6 973904.9, -33…
+4         4 Chignik                  3 (((-114381.9 649966.8, -11…
+5         5 Copper River             2 (((561012 1148301, 559393.…
+6         6 Kodiak                   3 (((115112.5 983293, 113051…
+```
+</details>                                            
+
+## `glimpse(ak_rgns_3338_sf)`
+<details> 
+<summary>Output (collapsed)</summary>
+```
+Rows: 13
+Columns: 4
+$ region_id <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
+$ region    <chr> "Aleutian Islands", "Arctic", "Bristol Bay", "…
+$ mgmt_area <dbl> 3, 4, 3, 3, 2, 3, 4, 4, 2, 4, 2, 1, 4
+$ geometry  <MULTIPOLYGON [m]> MULTIPOLYGON (((-1156666 42..., MULTIPOLYGON (…
+```
+</details>   
+
+:::
 
 Since our shapefile object has the `data.frame` class, all the usual `dplyr` and `tidyr` functions work on them, just as if we read in tabular data using `read.csv()` or `read_csv()`.
 
 But, unlike a typical `data.frame`, an `sf` object has an additional column typically named `geometry` that contains the spatial data.  This `geometry` column is **sticky** - it will stick around even if you don't explicitly ask for it.  For example:
 
-```{r}
+:::panel-tabset
+## `select()` keeps `geometry`
+```r
 ### select keeps `region` AND `geometry` automatically
 ak_rgns_3338_sf %>%
     select(region) %>% 
     head()
 ```
 
+<details> 
+<summary>Output (collapsed)</summary>
+```
+Simple feature collection with 6 features and 1 field
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -2175328 ymin: 405653 xmax: 773820 ymax: 2383770
+Projected CRS: NAD83 / Alaska Albers
+# A tibble: 6 × 2
+  region                                                  geometry
+  <chr>                                         <MULTIPOLYGON [m]>
+1 Aleutian Islands (((-1156666 420855.1, -1159837 417990.3, -1161…
+2 Arctic           (((571289.9 2143072, 569941.5 2142691, 569158.…
+3 Bristol Bay      (((-339688.6 973904.9, -339302 972297.3, -3392…
+4 Chignik          (((-114381.9 649966.8, -112866.8 652065.8, -10…
+5 Copper River     (((561012 1148301, 559393.7 1148169, 557797.7 …
+6 Kodiak           (((115112.5 983293, 113051.3 982825.9, 110801.…
+```
+</details>   
 
-```{r}
+## `filter()` works as expected
+```r
 ### filter() works exactly as expected!
 ak_rgns_3338_sf %>%
     filter(region %in% c("Arctic", "Kodiak")) # <1>
 ```
 1. Recall that `==` is problematic if you're testing whether a variable might match multiple values - use `%in%` for that situation!
 
+<details> 
+<summary>Output (collapsed)</summary>
+```
+Simple feature collection with 2 features and 3 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -497326.7 ymin: 704730.2 xmax: 706032.5 ymax: 2383770
+Projected CRS: NAD83 / Alaska Albers
+# A tibble: 2 × 4
+  region_id region mgmt_area                              geometry
+*     <int> <chr>      <dbl>                    <MULTIPOLYGON [m]>
+1         2 Arctic         4 (((571289.9 2143072, 569941.5 214269…
+2         6 Kodiak         3 (((115112.5 983293, 113051.3 982825.…
+```
+</details> 
+:::
 
 ## Spatial Joins
 
@@ -361,9 +433,11 @@ Copy and paste this into the console in Positron or RStudio to run it.  Then che
 out_file <- here::here('data/alaska_population.csv')
 
 if(!file.exists(out_file)) {
-pop_data_url <- "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/urn%3Auuid%3A7fc6f6db-c5ea-426a-a743-1f2edafb43b8"
+    pop_data_url <- "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/urn%3Auuid%3A7fc6f6db-c5ea-426a-a743-1f2edafb43b8"
 
-download.file(url = pop_data_url, destfile = out_file, mode = 'w')
+    download.file(url = pop_data_url, 
+                  destfile = out_file, 
+                  mode = 'w')
 }
 ```
 
@@ -413,12 +487,34 @@ pop_4326_sf <- st_as_sf(pop_df,
                         coords = c('lng', 'lat'), # <1>
                         crs = 4326,
                         remove = FALSE)           # <2>
-
-head(pop_4326_sf)                                 # <3>
 ```
 1. This refers to the associated column names in the dataframe; x is longitude, y is latitude.
 2. `remove = FALSE` overrides the default to drop the longitude/latitude columns; we'll need those later!
-3. Note the new `geometry` column of lat/long pairs!
+
+Note the `geometry` column for this contains points!
+```r
+head(pop_4326_sf)
+```
+
+<details>
+<summary>Output (collapsed)</summary>
+```
+Simple feature collection with 6 features and 4 fields
+Geometry type: POINT
+Dimension:     XY
+Bounding box:  xmin: -176.6581 ymin: 51.88 xmax: -154.1703 ymax: 62.68889
+Geodetic CRS:  WGS 84
+# A tibble: 6 × 5
+  city       lat   lng population             geometry
+  <chr>    <dbl> <dbl>      <dbl>          <POINT [°]>
+1 Adak      51.9 -177.        122    (-176.6581 51.88)
+2 Akhiok    56.9 -154.         84 (-154.1703 56.94556)
+3 Akiachak  60.9 -161.        562 (-161.4314 60.90944)
+4 Akiak     60.9 -161.        399 (-161.2139 60.91222)
+5 Akutan    54.1 -166.        899 (-165.7731 54.13556)
+6 Alakanuk  62.7 -165.        777 (-164.6153 62.68889)
+```
+</details>
 
 ### Join Population Data with Alaska Regions
 
@@ -436,9 +532,32 @@ pop_3338_sf <- st_transform(pop_4326_sf,
 pop_joined_sf <- st_join(pop_3338_sf, 
                          ak_rgns_3338_sf, 
                          join = st_within)
+```
 
+```r
 head(pop_joined_sf)
 ```
+
+<details>
+<summary>Output (collapsed)</summary>
+```
+Simple feature collection with 6 features and 7 fields
+Geometry type: POINT
+Dimension:     XY
+Bounding box:  xmin: -1537925 ymin: 472626.9 xmax: -10340.71 ymax: 1456223
+Projected CRS: NAD83 / Alaska Albers
+# A tibble: 6 × 8
+  city    lat   lng population             geometry region_id
+  <chr> <dbl> <dbl>      <dbl>          <POINT [m]>     <int>
+1 Adak   51.9 -177.        122  (-1537925 472626.9)         1
+2 Akhi…  56.9 -154.         84 (-10340.71 770998.4)         6
+3 Akia…  60.9 -161.        562  (-400885.5 1236460)         8
+4 Akiak  60.9 -161.        399  (-389165.7 1235475)         8
+5 Akut…  54.1 -166.        899 (-766425.7 526057.8)         1
+6 Alak…  62.7 -165.        777  (-539724.9 1456223)        13
+# ℹ 2 more variables: region <chr>, mgmt_area <dbl>
+```
+</details>
 
 Each point from the city population data now includes a region name from the Alaska regions data.  Note, only the point geometry is kept here!  If we swapped the order of the datasets, we would keep the region geometry instead.
 
@@ -450,7 +569,7 @@ Other useful join predicates include `st_intersects` (any overlap), `st_crosses`
 
 ### Calculate Total Population by Region
 
-Next we compute the total population for each region. In this case, we want to do a `group_by()` and `summarize()` as if this were a regular `data.frame`, without the spatial information - otherwise all of our point geometries would be included in the aggregation, which is not what we want.  We remove the sticky geometry using `st_drop_geometry()`.  Here we're going to a `_df` suffix because it's no longer a spatial data frame.
+Next we compute the total population for each region. In this case, we want to do a `group_by()` and `summarize()` as if this were a regular `data.frame`, without the spatial information - otherwise all of our point geometries would be included in the aggregation, which is not what we want.  We remove the sticky geometry using `st_drop_geometry()`.  Here we're going to add a `_df` suffix because it's no longer a spatial data frame.
 
 ```{r}
 #| label: calc total pop
@@ -458,9 +577,26 @@ pop_rgn_df <- pop_joined_sf %>%
     st_drop_geometry() %>%
     group_by(region) %>%
     summarize(total_pop = sum(population))
+```
 
+```r
 head(pop_rgn_df)
 ```
+
+<details>
+<summary>Output (collapsed)</summary>
+```
+# A tibble: 6 × 2
+  region           total_pop
+  <chr>                <dbl>
+1 Aleutian Islands      8840
+2 Arctic                8419
+3 Bristol Bay           6947
+4 Chignik                311
+5 Cook Inlet          408254
+6 Copper River          2294
+```
+</details>
 
 And then we use a regular `left_join()` to connect the (non-spatial) population dataframe back to the Alaska region spatial dataframe.
 
