@@ -508,6 +508,8 @@ We can plot any `sf` object using `geom_sf`:
 
 ```{r}
 #| label: Alaska bare map
+#| fig-width: 8 
+#| fig-height: 4
 ggplot(pop_rgn_3338_sf) +
     geom_sf(aes(fill = total_pop)) +
     labs(fill = "Total Population") +
@@ -533,6 +535,8 @@ rivers_3338_sf <- read_sf(here("data/r_geospatial_vector_analysis/ak_rivers_simp
 
 ```{r}
 #| label: map with rivers and towns
+#| fig-width: 8 
+#| fig-height: 4
 ggplot() +
     geom_sf(data = pop_rgn_3338_sf, 
             mapping = aes(fill = total_pop)) +
@@ -554,7 +558,7 @@ ggplot() +
 
 
 
-### Incorporate base maps into static maps using `ggspatial`
+### Incorporate Base Maps Into Static Maps
 
 The `ggspatial` package has a function that can add tile layers from a few predefined tile sources like OpenStreetMap. Making sure that the tiles will plot correctly can be a finicky, so we will reproject our population data into the OpenStreetMap projection, Pseudo-Mercator (EPSG 3857), first.
 
@@ -583,27 +587,9 @@ ggplot(data = pop_3857_sf) +
 ### Zoom in with `coord_sf()`
 
 `coord_sf()` lets you zoom into a bounding box without subsetting your data:
-`coord_sf(xlim = c(-500000, 600000), ylim = c(900000, 2000000))`
+
+```coord_sf(xlim = c(-500000, 600000), ylim = c(900000, 2000000))```
 :::
-
-```{r}
-#| include: false 
-#| eval: false
-
-## Potential way of plotting base maps with more basemap providers. Issue: cropping is right at the border of the western, norther, eastern and southern point. So plot looks funky.
-
-pop_osm <- maptiles::get_tiles(pop_3857_sf, crop = TRUE) # retrieve maptiles
-
-
-ggplot(data = pop_3857_sf) + # pop polygon layer
-  tidyterra::geom_spatraster_rgb(data = pop_osm) + #add basemap 
-  geom_sf(aes(color = population),  #add geometry
-          fill = NA)+
-    scale_color_continuous(low = "darkkhaki",
-                           high =  "firebrick",
-                           labels = comma)
-
-```
 
 
 ## Visualize Interactive Maps With `leaflet`
@@ -612,21 +598,7 @@ We can also make an interactive map from our data above using `leaflet`.
 
 `leaflet` builds interactive, pannable/zoomable maps. It handles reprojection internally, but **expects data in WGS84 (EPSG:4326)**. If you want to display in a custom projection (like Alaska Albers), you need `leaflet.extras` or the `proj4leaflet` plugin — for most use cases WGS84 is fine.
 
-Here we define a leaflet projection for Alaska Albers, and save it as a variable to use later.
-
-```{r}
-#| label: leafletCRS
-#| eval: false
-#| include: false
-epsg3338 <- leaflet::leafletCRS(
-    crsClass = "L.Proj.CRS",
-    code = "EPSG:3338",
-    proj4def =  "+proj=aea +lat_1=55 +lat_2=65 +lat_0=50 +lon_0=-154 +x_0=0 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs",
-    resolutions = 2 ^ (16:7)
-)
-```
-
-
+### Create Basic `leaflet` Map
 
 Since `leaflet` requires that we use an unprojected coordinate system, let's use `st_transform()` get our joined data again to get back to WGS84.
 
@@ -642,8 +614,8 @@ pal <- colorNumeric(palette = "Reds", domain = pop_rgn_4326_sf$total_pop)
 
 pop_rgn_map <- leaflet(data = pop_rgn_4326_sf) %>%
   addProviderTiles("CartoDB.Positron") %>%  # <1>
-  addPolygons(
-    fillColor  = ~pal(total_pop),           # <2>
+  addPolygons(                              # <2>
+    fillColor  = ~pal(total_pop),           
     fillOpacity = 0.8,
     color      = "white",
     weight     = 1,
@@ -661,8 +633,9 @@ pop_rgn_map
 1. Add a basemap
 2. Add polygons; here we are using the default data assigned inside `leaflet()`
 
-We can also add the individual communities, with popup labels showing their population, on top of that!
+### Add Cities and Zoom In
 
+We can also add the individual communities, with popup labels showing their population, on top of that.  
 ```{r}
 pop_rgn_map <- pop_rgn_map %>% # <1>
     addCircleMarkers(
@@ -676,13 +649,42 @@ pop_rgn_map <- pop_rgn_map %>% # <1>
                                ", population ", 
                                comma(pop_4326_sf$population))
     ) 
-
-pop_rgn_map
 ```
 1. On top of everything in the previous map, we can keep adding layers directly
 2. This overrides the default data from `leaflet()` to instead use the city points: `pop_4326_sf`
 3. This is an arbitrary scaling of point size
 4. Tooltip labels - hover over a city point to see the information!
+
+Before we plot, let's zoom in two ways: focusing on a point and zoom level, and focusing on a bounding box.
+
+:::panel-tabset
+
+## Zoom in on Point
+Here we focuson the Anchorage area using `setView()`, which takes a longitude, latitude, and zoom level (higher zoom = more detail).  We can simply add it to the end of our map object.  Here we pull the lat/long for Anchorage from our population data frame, but you could also just look it up and hardcode it.
+
+```{r}
+anch_latlong <- pop_df %>%
+    filter(city == "Anchorage") %>%
+    select(lat, lng)
+anch_latlong
+
+pop_rgn_map %>%
+    setView(lng = anch_latlong$lng, lat = anch_latlong$lat, zoom = 5)
+```
+
+## Set Bounding Box
+Alternatively, we can zoom in on a bounding box using `fitBounds()`, which takes the longitude and latitude of two opposite corner points.  Here we use `st_bbox()` to get those coordinates from our spatial dataframe of population by region, but there seems to be a {{< fa bug >}} bug if we pass those to `fitBounds()` as is.  Here we coerce the bounding box coordinates to a format that `fitBounds()` can use (`as.numeric`), but you could also just look up the lat/long for the corners and hardcode them.
+
+```{r}
+ak_bbox <- st_bbox(pop_4326_sf) %>%
+    as.numeric()
+pop_rgn_map %>%
+    fitBounds(lng1 = ak_bbox[1], lat1 = ak_bbox[2],
+              lng2 = ak_bbox[3], lat2 = ak_bbox[4])
+```
+
+:::
+<!-- end panel-tabset -->
 
 ## Geometry Operations (Going Further)
 
@@ -703,6 +705,8 @@ Example — buffer cities by 50 km and find which regions they intersect:
 ```{r}
 #| label: buffer-example
 #| warning: false
+#| fig-width: 8
+#| fig-height: 4
 city_buffers <- pop_3338_sf |>
   st_buffer(dist = 50000)   ### distance in CRS units (meters for EPSG:3338)
 
