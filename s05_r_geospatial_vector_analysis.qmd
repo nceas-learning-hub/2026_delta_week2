@@ -18,9 +18,19 @@ This lesson focuses on working with **vector spatial data** in R, primarily usin
 
 This lesson **does not** focus on working with **raster spatial data**.  Raster data is typically a grid of pixels with each pixel containing some value, like elevation or temperature.  Satellite imagery and remote sensing data are common examples of raster data.
 
+::: {#fig-raster-vs-vector layout-ncol=2 fig-numbering=false}
+
+![Vector spatial data](images/r_geospatial_vector_analysis/vector_diagram.png){width="83%" fig-align="center" .lightbox}
+
+![Raster spatial data](images/r_geospatial_vector_analysis/raster_diagram.png){width="90%" fig-align="center" .lightbox}
+
+Image Source - National Ecological Observatory Network (NEON)
+:::
+
+
 Mastering spatial data in R (or any GIS system) requires a solid understanding of both vector and raster spatial data; at the end of the lesson are some resources to build you up on vector data and get you started with rasters.
 
-## Brief introduction to `sf`
+## Brief Introduction to `sf`
 
 From the [**`sf`**](https://r-spatial.github.io/sf/articles/sf1.html) vignette:
 
@@ -38,7 +48,7 @@ In this lesson, our goal is to use a shapefile of Alaska regions and rivers, and
 
 ![](images/r_geospatial_vector_analysis/alaska_population.png)
 
-## About the data
+## About the Data
 
 Most of the data used in this tutorial are simplified versions of real datasets available on the [KNB Data Repository](https://knb.ecoinformatics.org/). We are using simplified datasets to ease the processing burden on all our computers since the original geospatial datasets are high-resolution. These simplified versions of the datasets may contain topological errors.
 
@@ -96,10 +106,12 @@ Navigate to [this dataset](https://dev.nceas.ucsb.edu/view/urn:uuid:6f07cb25-a4a
 :::
 <!-- end tabset -->
 
-:::callout-tip
-### Optional: Add folder to `.gitignore`
+:::callout-important
+### Add spatial data to `.gitignore`
 
-These spatial data are binary format, large and not well suited for Git tracking.  You may wish to add them to the .gitignore in the project root folder, by adding a line `/data/ak_regions/`
+Spatial data are typically binary format files, and often quite large (> 5 MB), and therefore not well suited for Git tracking.  Let's add them to the `.gitignore` in the project root folder, by adding a line `/data/ak_regions/`.
+
+If you include code to programmatically download the data (see above), then any collaborators will be able to automatically download the data to their own computers, so no need to worry about sharing the data files themselves.
 :::
 
 ## Set Up a New Analysis
