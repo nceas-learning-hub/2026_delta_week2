@@ -20,9 +20,9 @@ This lesson **does not** focus on working with **raster spatial data**.  Raster 
 
 ::: {#fig-raster-vs-vector layout-ncol=2 fig-numbering=false}
 
-![Vector spatial data](images/r_geospatial_vector_analysis/vector_diagram.png){width="83%" fig-align="center" .lightbox}
+![Vector spatial data](images/r_geospatial_vector_analysis/vector_diagram.png){width="83%" fig-align="center" .lightbox fig-alt="Diagram of vector spatial data types including points, lines (points connected by lines), and polygons (three or more points that define the edges of a shape)"}
 
-![Raster spatial data](images/r_geospatial_vector_analysis/raster_diagram.png){width="90%" fig-align="center" .lightbox}
+![Raster spatial data](images/r_geospatial_vector_analysis/raster_diagram.png){width="90%" fig-align="center" .lightbox fig-alt="Satellite picture (raster) of a forest with an inset showing how the pixels in that image relate to information stored in each pixel"}
 
 Image Source - National Ecological Observatory Network (NEON)
 :::
