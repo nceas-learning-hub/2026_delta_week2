@@ -12,7 +12,7 @@ After completing this session, you will be able to:
 
 ## Git and GitHub Tools for Collaboration
 
-![Artwork by @allison_horst](images/github_collaboration/allison_horst_jenny_bryan_quote.png){width="100%" fig-align="center" .lightbox}
+![Artwork by @allison_horst](images/github_collaboration/allison_horst_jenny_bryan_quote.png){width="100%" fig-align="center" .lightbox fig-alt="Artwork by @allison_horst with a quote from Jenny Bryan that reads: 'Collaboration is the most compelling reason to manage a project with Git and GitHub.  My definition of collaboration includes hands-on participation by multiple people, including your past and future self, as well as an asymmetric model, in which some people are active makers and others only read or review.'"}
 
 Git is a powerful tool for both individual and collaborative work. The most common way to collaborate is through a **shared repository on [GitHub](https://github.com)**, which acts as a central hub where teammates can exchange and merge changes. In this lesson, one person (the **Owner**) hosts the repository on GitHub and grants a colleague (the **Collaborator**) permission to push changes directly.
 
@@ -133,23 +133,23 @@ To resolve the conflict: edit the file so it reads how you want, remove all the 
 
 ## {{< fa p >}} Positron
 
-![](images/github_collaboration/positron_merge_conflict_diff.png){width="70%" fig-align="center" .lightbox}
+![](images/github_collaboration/positron_merge_conflict_diff.png){width="70%" fig-align="center" .lightbox fig-alt="Screenshot of Positron IDE showing a merge conflict warning and diff view with conflict markers"}
 
 In Positron, when you pull remote changes that conflict with local changes, you will see a window that looks like this.  Conflicted files appear with a red "!" icon in the Git pane.  The image also shows the "diff" view where you can see the header `<<<<<<<`, footer `>>>>>>>` followed by commit SHA, and dividing line `=======`.  
 
 You can edit the conflicted file(s) directly in this view, or click on [&nbsp;**Resolve in Merge Editor**&nbsp;]{style="color:white; background-color:blue;"} to open the file in the Merge Editor:
 
-![](images/github_collaboration/positron_merge_editor.png){width="70%" fig-align="center" .lightbox}
+![](images/github_collaboration/positron_merge_editor.png){width="70%" fig-align="center" .lightbox fig-alt="Screenshot of Positron IDE Merge Editor showing the same conflict markers as the diff view, but with options to select either version or both"}
 
 After resolution and staging, the icon changes to a green "M" (Modified).
 
 ## {{< fa brands r-project >}} RStudio
 
-![](images/github_collaboration/rstudio_merge_conflict_warning.png){width="70%" fig-align="center" .lightbox}
+![](images/github_collaboration/rstudio_merge_conflict_warning.png){width="70%" fig-align="center" .lightbox fig-alt="Screenshot of RStudio window showing the warning message: 'CONFLICT (content): Merge conflict in README.md. Automatic merge failed; fix conflicts and then commit the result.'"}
 
 In RStudio, when you pull remote changes that conflict with local changes, you will see a window that looks like this.  Read it - it basically says there was a merge conflict and it needs to be fixed and then committed before you can do anything else.  Close the window.
 
-![](images/github_collaboration/rstudio_merge_conflict_diff.png){width="70%" fig-align="center" .lightbox}
+![](images/github_collaboration/rstudio_merge_conflict_diff.png){width="70%" fig-align="center" .lightbox fig-alt="Screenshot of RStudio window showing the diff view with conflict markers"}
 
 In RStudio, conflicted files appear with an orange U (Unmerged) in the Git pane. The image also shows the "diff" view where you can see the header `<<<<<<<`, footer `>>>>>>>` followed by commit SHA, and dividing line `=======`.  You can resolve your edits in the text editor.
 
@@ -261,7 +261,7 @@ What are some steps you could have taken to avoid merge conflicts in the first p
 Some basic rules of thumb can avoid the vast majority of merge conflicts, saving a lot of time and frustration. These are words our teams live by:
 
 ::: column-margin
-[![XKCD 1597](images/github_collaboration/git_xkcd_comic.png)](https://xkcd.com/1597/)
+[![XKCD 1597](images/github_collaboration/git_xkcd_comic.png)](https://xkcd.com/1597/){fig-alt="XKCD comic showing three people at a desk.  One points to a computer and says 'This is Git. It tracks collaborative work on projects througha beautiful distributed graphy theory tree model.' The second person says 'Cool. How do we use it?' The third person says 'No idea. Just memorize these shell commands and type them to sync up.  If you get errors, save your work elsewhere, delete the project, and download a fresh copy.'"}
 :::
 
 * **Communicate before and after changes.** Tell your collaborator what you're about to work on, and when you've pushed.
