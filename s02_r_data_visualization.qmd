@@ -282,6 +282,42 @@ ggplot() +
 <!-- end tip -->
 
 
+### The Grammar of Graphics
+
+The four components above are entry points to a richer underlying framework called the **Grammar of Graphics**. A quick look at this framework will help you reason about what's possible, and what to change when plots don't look right.
+
+::: callout-exercise
+
+Before looking at the figure below, predict what you'd see if you mapped these columns from a salmon escapement dataset:
+
+- `sample_date` → **x**
+- `daily_count` → **y**
+- `species` → **color**
+- `location` → **shape**
+
+How many legends would appear? What would each one show?
+
+::::{.callout-answer}
+
+:::{.column-body-outset}
+![Each column mapped in `aes()` (left) becomes a visual property in the plot (right), with a corresponding guide (axis or legend). *Note: figure uses a different dataset for illustration.*](images/r_data_visualization/ggplot-data-to-viz.png){.lightbox width=100% fig-align="center"}
+:::
+
+Trace the arrows from the data table to the plot: each `aes()` mapping is one arrow. `ggplot2` executes the full Grammar of Graphics pipeline behind the scenes:
+
+| Component | Role |
+|:---|:---|
+| **Aesthetic** (`aes()`) | Maps a data column to a visual property (`x`, `y`, `color`, `shape`, `fill`, ...) |
+| **Scale** | Translates raw data values into visual values (e.g., dates → pixel positions; species names → colors) |
+| **Guide** | Communicates the scale back to the viewer (axes and legends) |
+| **Geom** | The visual mark drawn for each observation (`geom_point()`, `geom_col()`, ...) |
+| **Stat** | Statistical transformation applied before drawing; `geom_point()` leaves data unchanged (`stat_identity`), while `geom_boxplot()` computes IQR and median automatically |
+
+You rarely call scale, guide, or stat functions directly; `ggplot2` picks sensible defaults. But knowing they exist explains why `geom_boxplot()` "just works" without you computing a median first, and gives you the vocabulary to find the right function when you want to override a default.
+
+::::
+:::
+
 ### Different Geometries for Different Plot Types
 
 Having the basic structure with the essential components in mind, we can easily change the type of graph by updating the `geom_*()`.  First let's filter the data to remove some extreme values, and to focus on boat users specifically.
