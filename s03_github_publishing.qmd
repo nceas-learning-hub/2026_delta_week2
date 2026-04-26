@@ -298,3 +298,10 @@ format:
 
 This bundles all JavaScript, CSS, and images into the HTML file itself. The trade-off is a larger file size; for sharing via URL, omitting `embed-resources: true` produces smaller, faster-loading pages.
 :::
+
+## Resources
+
+- [Quarto Websites](https://quarto.org/docs/websites/) - documentation for building multi-page sites with shared navigation and `_quarto.yml`
+- [GitHub Pages documentation](https://docs.github.com/en/pages) - details about custom domains, build workflows, and more
+- [DT package documentation](https://rstudio.github.io/DT/) - a full reference for interactive table options
+- [Leaflet for R](https://rstudio.github.io/leaflet/) - a comprehensive guide including polygons, WMS tiles, and color scales
