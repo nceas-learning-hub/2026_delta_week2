@@ -37,7 +37,7 @@ Base R graphics  (`plot()`, `hist()`, etc) can be helpful for simple, quick-and-
 
 ## Setup
 
-Make sure you’re in the right project (`training_<username>`). Use Git Pull to check for any changes. Then, create a new Quarto document and save it as **`data-visualization.qmd`**.
+Make sure you’re in the right project (`training_<username>`). Use Git Pull to check for any changes. Then, create a `notebooks/` folder at the top level of your project, create a new Quarto document, and save it as **`data-visualization.qmd`** inside that folder.
 
 - Depending on your IDE, the new document may include default template content below the YAML header. If so, delete anything below the `---` before continuing.
 

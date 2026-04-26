@@ -85,6 +85,59 @@ Now make a small edit to confirm the full publish cycle works:
 
 :::
 
+## Link Your Content Page
+
+Now let's connect your landing page to the visualization analysis you built in the previous session.
+
+::: callout-note
+## Relative paths
+
+When linking between pages in your site, use a **relative path** from the linking file to the target file. Your `index.qmd` is at the repo root, and your visualization notebook is in a `notebooks/` subfolder, so the correct link looks like this:
+
+```markdown
+[Data Visualization](notebooks/data-visualization.html)
+```
+
+Common mistakes and what goes wrong:
+
+| Path | Problem |
+|---|---|
+| `notebooks/data-visualization.html` | ✓ correct |
+| `data-visualization.html` | ✗ missing subfolder → 404 |
+| `notebooks/Data-Visualization.html` | ✗ wrong case → 404 on case-sensitive servers |
+| `notebooks/data-visualization.qmd` | ✗ links to source, not rendered output |
+
+A **404 error** ("Not Found") means the browser cannot find the file at the path you gave it. Getting the path exactly right is one of the most common publishing stumbling blocks.
+:::
+
+::: callout-exercise
+
+**Part 1: Trigger a broken link on purpose**
+
+In `index.qmd`, replace the placeholder with a link using a deliberately wrong path (missing the subfolder):
+
+```markdown
+## Course Analyses
+
+- [Data Visualization](data-visualization.html)
+```
+
+Render `index.qmd`, commit, push, then visit your live site and click the link. Observe the 404.
+
+**Part 2: Fix the link**
+
+Update the path to include the `notebooks/` subfolder:
+
+```markdown
+## Course Analyses
+
+- [Data Visualization](notebooks/data-visualization.html)
+```
+
+Make sure `notebooks/data-visualization.qmd` has been rendered (so `notebooks/data-visualization.html` exists) and both files are committed. Render `index.qmd`, commit, push, and verify the link works on the live site.
+
+:::
+
 ## Resources
 
 *(Coming soon)*
