@@ -262,6 +262,39 @@ leaflet(restoration_sites) %>%
 As an extension exercise, try joining `restoration_sites` with total visit counts from `daily_visits_loc` and mapping `fillColor` to visit volume.
 :::
 
-## Resources
+## Publish and Share
 
-*(Coming soon)*
+With the interactive elements in place, publish everything to your live site.
+
+::: {.callout-note}
+## Publishing workflow
+
+1. Render both `notebooks/data-visualization.qmd` and `index.qmd` to make sure everything looks right locally
+2. In your Git panel, stage all changed files:
+   - `notebooks/data-visualization.qmd` and `notebooks/data-visualization.html`
+   - `index.qmd` and `index.html`
+   - Any `*_files/` folders for supporting assets
+3. Commit with a descriptive message, then Pull → Push
+4. Wait ~1 minute for GitHub Pages to rebuild, then visit your live URL
+5. Test all interactive elements, including the table and map
+:::
+
+## What's Next
+
+In this module, we published individual HTML pages linked from a landing page. A natural next step might be a proper **Quarto website**. This is a multi-page site where navigation, themes, and shared settings are configured in a single `_quarto.yml` file, giving you a consistent navigation bar across all pages.
+
+For truly **dynamic** content that responds to user input in real time (e.g., filtering data on the fly, running models), look into [Shiny](https://shiny.posit.co/), an R framework for building interactive web applications backed by a live R session.
+
+::: callout-tip
+## Self-contained HTML files
+
+If you want to share a single HTML file that works without a web server (e.g., via email), add this to your YAML header:
+
+```yaml
+format:
+  html:
+    embed-resources: true
+```
+
+This bundles all JavaScript, CSS, and images into the HTML file itself. The trade-off is a larger file size; for sharing via URL, omitting `embed-resources: true` produces smaller, faster-loading pages.
+:::
