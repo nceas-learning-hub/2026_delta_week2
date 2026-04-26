@@ -14,7 +14,7 @@ After completing this session, you will be able to:
 - Describe the four essential components of a `ggplot2::ggplot()` call
 - Use `theme` and other functions to customize appealing data visualizations
 - Use `facet_wrap()` to create multiple related plots in one figure
-- Introduce the `leaflet` and `DT` package to create interactive maps and tables respectively
+- Use `ggplotly()` to convert a static `ggplot2` plot into an interactive visualization
 :::
 
 ## Overview
@@ -706,18 +706,6 @@ ggplotly(facet_plot, tooltip = c('x', 'y'))
 
 Note that any variable assigned to an aesthetic in the original `ggplot` (e.g., `x`, `y`, `color`, `fill`, etc.) will be included in the hover information in the interactive plot, by default.  You can customize this further using the `tooltip` argument in `ggplotly()` - for example, here we only included the `x` and `y` variables (since `x` and `fill` are both `visitor_type`, we we don't need to see it twice).  See `?ggplotly` for more options.
 
-<!-- ## Aside: Interactive Tables with `DT`
-
-Most of the time, we will render our Quarto documents as .html files, which means we can include interactive elements in our documents.  The `DT` package provides a simple way (using `DT::datatable()`) to create interactive tables in R, which a user can search, filter, reorder, etc.
-
-
-Try searching the following table for only specific locations or visitor types, and sorting by date or number of visits.  -->
-
-```{r display_locations}
-#| eval: false
-#| echo: false
-DT::datatable(visits_long)
-```
 
 <!-- ### Maps with `leaflet`
 
