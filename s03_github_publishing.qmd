@@ -212,6 +212,56 @@ The `options` list accepts standard [DataTables options](https://datatables.net/
 See `?DT::datatable` or the [DT documentation](https://rstudio.github.io/DT/) for the full reference.
 :::
 
+### Interactive Map with `leaflet`
+
+`leaflet` wraps the [Leaflet.js](https://leafletjs.com/) JavaScript library for interactive maps. Its syntax is similar to `ggplot2` in that you build up a map by adding layers, but it uses the pipe operator `%>%` rather than `+`.
+
+We can pull the unique restoration site locations directly from the data we already loaded. Add this to your document:
+
+````markdown
+## Interactive Map
+
+```{{r}}
+restoration_sites <- delta_visits_raw %>%
+  janitor::clean_names() %>%
+  distinct(restore_loc = eco_restore_approximate_location,
+           latitude, longitude) %>%
+  drop_na(latitude, longitude)
+
+leaflet(restoration_sites) %>%
+  addTiles() %>%
+  addMarkers(
+    lng   = ~longitude,
+    lat   = ~latitude,
+    popup = ~restore_loc
+  )
+```
+````
+
+Render the document, then pan the map, zoom in, and click a marker to see the popup.
+
+::: callout-tip
+## Circle markers and color
+
+For more control over marker appearance, use `addCircleMarkers()` instead of `addMarkers()`:
+
+```r
+leaflet(restoration_sites) %>%
+  addTiles() %>%
+  addCircleMarkers(
+    lng         = ~longitude,
+    lat         = ~latitude,
+    popup       = ~restore_loc,
+    radius      = 8,
+    fillColor   = "steelblue",
+    fillOpacity = 0.8,
+    stroke      = FALSE
+  )
+```
+
+As an extension exercise, try joining `restoration_sites` with total visit counts from `daily_visits_loc` and mapping `fillColor` to visit volume.
+:::
+
 ## Resources
 
 *(Coming soon)*
