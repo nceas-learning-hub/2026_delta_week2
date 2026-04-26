@@ -491,6 +491,56 @@ my_theme <- function(size = 14) {
 ```
 :::
 
+### Position Adjustments
+
+Notice the bar chart above stacks bars for each `visitor_type` on top of one another. This is controlled by the `position` argument of `geom_col()`, which defaults to `"stack"`. Three positions are useful for grouped categorical data:
+
+:::panel-tabset
+
+## Stacked (default)
+
+Each group is stacked; total bar length shows the overall sum.
+```{r}
+#| out-width: "80%"
+#| fig-align: "center"
+#| fig-height: 3.5
+ggplot(data = daily_visits_loc,
+       aes(y = restore_loc, x = daily_visits, fill = visitor_type)) +
+  geom_col(position = "stack") +
+  labs(x = "Number of Visits", y = "Restoration Location", fill = "Visitor Type") +
+  theme_minimal() + theme(legend.position = "bottom")
+```
+
+## Dodged
+
+Each group is placed side-by-side; easier to compare within a location.
+```{r}
+#| out-width: "80%"
+#| fig-align: "center"
+#| fig-height: 3.5
+ggplot(data = daily_visits_loc,
+       aes(y = restore_loc, x = daily_visits, fill = visitor_type)) +
+  geom_col(position = "dodge") +
+  labs(x = "Number of Visits", y = "Restoration Location", fill = "Visitor Type") +
+  theme_minimal() + theme(legend.position = "bottom")
+```
+
+## Filled
+
+Each bar is scaled to 100%; shows proportions rather than totals.
+```{r}
+#| out-width: "80%"
+#| fig-align: "center"
+#| fig-height: 3.5
+ggplot(data = daily_visits_loc,
+       aes(y = restore_loc, x = daily_visits, fill = visitor_type)) +
+  geom_col(position = "fill") +
+  labs(x = "Proportion of Visits", y = "Restoration Location", fill = "Visitor Type") +
+  theme_minimal() + theme(legend.position = "bottom")
+```
+
+:::
+
 ### Order Categorical Values and Add Color
 
 For categorical variables (e.g., text), `ggplot2` defaults to displaying values in alphabetical order (see the plots above). We can use factors (ordered vectors of categorical values) to force a particular display order.  One easy approach is to use `forcats::fct_reorder()` from `forcats` to sort by a meaningful variable instead (the `levels` of a factor determine the order of values).
