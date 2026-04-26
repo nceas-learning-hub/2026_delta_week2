@@ -138,6 +138,80 @@ Make sure `notebooks/data-visualization.qmd` has been rendered (so `notebooks/da
 
 :::
 
+## Add Interactive Elements
+
+Quarto's HTML output format supports interactive elements powered by JavaScript, such as tables that users can sort and search, and maps they can pan and zoom. We'll add two of these to `notebooks/data-visualization.qmd`: a searchable table using `DT` and an interactive map using `leaflet`.
+
+Open `notebooks/data-visualization.qmd` and add the following to your setup chunk and then at the end of the document.
+
+### Setup
+
+Add these packages to your setup chunk (or create one at the top of the document if you don't have one yet):
+
+```{{r}}
+#| message: false
+#| warning: false
+library(readr)
+library(here)
+library(dplyr)
+library(tidyr)
+library(janitor)
+library(DT)
+library(leaflet)
+```
+
+The examples below use a `daily_visits_loc` data frame derived from the Delta socioecological monitoring dataset. Add this code after your setup chunk if you don't already have it:
+
+```{{r}}
+delta_visits_raw <- read_csv(here("data/Socioecological_monitoring_data.csv"),
+                             show_col_types = FALSE)
+
+daily_visits_loc <- delta_visits_raw %>%
+  janitor::clean_names() %>%
+  tidyr::pivot_longer(
+    cols      = c(sm_boat, med_boat, lrg_boat, bank_angler, scientist, cars),
+    names_to  = "visitor_type",
+    values_to = "quantity"
+  ) %>%
+  dplyr::rename(restore_loc = eco_restore_approximate_location) %>%
+  dplyr::select(-notes) %>%
+  dplyr::group_by(restore_loc, date, visitor_type) %>%
+  dplyr::summarize(daily_visits = sum(quantity), .groups = "drop")
+```
+
+### Interactive Table with `DT`
+
+`DT` is an R package that wraps the [`DataTables`](https://datatables.net/) JavaScript library, producing tables that readers can sort, search, and page through directly in the browser.
+
+Add a new section:
+
+````markdown
+## Interactive Table
+
+```{{r}}
+DT::datatable(
+  daily_visits_loc,
+  caption  = "Daily visitor counts at Delta restoration sites",
+  colnames = c("Location", "Date", "Visitor type", "Daily visits"),
+  options  = list(pageLength = 10)
+)
+```
+````
+
+Render the document and try sorting by column, searching for a specific location or visitor type, and paging through results.
+
+::: callout-tip
+## Useful `datatable()` options
+
+The `options` list accepts standard [DataTables options](https://datatables.net/reference/option/). A few worth knowing:
+
+- `pageLength`: default number of rows shown
+- `dom`: controls which UI controls appear (search box, pagination, info, etc.)
+- `columnDefs`: per-column formatting (width, sorting, visibility)
+
+See `?DT::datatable` or the [DT documentation](https://rstudio.github.io/DT/) for the full reference.
+:::
+
 ## Resources
 
 *(Coming soon)*
