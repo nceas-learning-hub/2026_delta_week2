@@ -37,7 +37,7 @@ Base R graphics  (`plot()`, `hist()`, etc) can be helpful for simple, quick-and-
 
 ## Setup
 
-Make sure you’re in the right project (`training_<username>`). Use Git Pull to check for any changes. Then, create a new Quarto document, delete the default text below the YAML header, and save this document.  
+Make sure you’re in the right project (`training_<username>`). Use Git Pull to check for any changes. Then, create a new Quarto document, delete the default text below the YAML header, and save it as **`data-visualization.qmd`**.
 
 :::{.callout-tip collapse=true}
 ## Quarto header options?
@@ -299,8 +299,7 @@ How many legends would appear? What would each one show?
 
 ::::{.callout-answer}
 
-:::{.column-body-outset}
-![Each column mapped in `aes()` (left) becomes a visual property in the plot (right), with a corresponding guide (axis or legend). *Note: figure uses a different dataset for illustration.*](images/r_data_visualization/ggplot-data-to-viz.png){.lightbox width=100% fig-align="center"}
+![Each column mapped in `aes()` (left) becomes a visual property in the plot (right), with a corresponding guide (axis or legend). *Note: figure uses a different dataset for illustration.*](images/r_data_visualization/ggplot-data-to-viz.png){.lightbox width=80% fig-align="center"}
 :::
 
 Trace the arrows from the data table to the plot: each `aes()` mapping is one arrow. `ggplot2` executes the full Grammar of Graphics pipeline behind the scenes:
