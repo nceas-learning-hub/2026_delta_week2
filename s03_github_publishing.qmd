@@ -5,132 +5,303 @@ title: Publishing to the Web
 :::{.callout-learning}
 After completing this session, you will be able to:
 
-- How to use Git, GitHub (+Pages), and Quarto to publish an analysis to the web
+- Publish a Quarto analysis to the web using Git and GitHub Pages
+- Create a multi-page site with a landing page that correctly links to a content page
+- Add interactive tables and maps to an HTML document using `DT` and `leaflet`
+- Follow the complete author → render → commit → push → verify publishing workflow
 :::
 
 ## Introduction
 
-Sharing your work with others in engaging ways is an important part of the scientific process.
+Everything you've done so far using R -- your wrangled data and visualizations -- lives on your laptop. This session changes that: we'll take the analysis you built in the previous lesson and publish it as a live, interactive website anyone can visit by URL.
 
-So far in this course, we've introduced a small set of powerful tools for doing open science:
+Quarto's HTML output format unlocks capabilities that static formats (PDF, Word) can't match:
 
-- R and its many packages
-- RStudio
-- Git
-- GitHub
-- Quarto
+- **Interactive plots** you can zoom, hover, and filter (you already made one with `ggplotly`)
+- **Sortable, searchable tables** that let readers explore data directly in the browser
+- **Interactive maps** readers can pan, zoom, and click
 
-Quarto, in particular, is amazingly powerful for creating scientific reports but, so far, we haven't tapped its full potential for sharing our work with others.
+These elements are powered by JavaScript libraries (`plotly.js`, `DataTables`, and `Leaflet.js`) that R packages `ggplotly()`, `DT`, and `leaflet` make it easy for you to use in R. They work because web browsers run JavaScript; HTML is the right output format when you want to share interactive analyses.
 
-In this lesson, we're going to take our `training_{USERNAME}` GitHub repository and turn it into a beautiful and easy to read web page using the tools listed above.
+::: callout-note
+## A published example
+
+[Here](https://pages.github.nceas.ucsb.edu/NCEAS/sasap-data/language_vis.html) is an example of a published data analysis site built with these same tools. Notice the interactive maps, the clean landing page, and how individual analyses are linked from it. That is the structure we will build today.
+:::
+
+## Set Up GitHub Pages
 
 ::: {.callout-note}
-## Set up
+## Steps
 
-1. Make sure you are in `training_{USERNAME}` project
+1. Make sure you are in your `training_{USERNAME}` project
 
-2. Add a new Quarto file at the top level called `index.qmd`
+2. Create a new Quarto document called `index.qmd` at the top level of your project
+    a. File → New File → Quarto Document
+    b. Set the title (e.g., `"Delta Socioecological Monitoring"`), keep Default Output Format as HTML, click OK
+    c. If your IDE added default template content below the YAML header, delete it
+    d. Add a brief description and a placeholder for your analyses:
 
-    a. Go to the RStudio menu  File -> New File -> Quarto Document
-    b. This will bring up a dialog box. Add the title "GitHub Pages Example", keep the Default Output Format as "HTML", and then click "OK"
-    
-3. Save the Quarto Document you just created. Use `index.qmd` as the file name
-    a. Be sure to use the exact case (**lower case "index"**) as different operating systems handle case differently and it can interfere with loading your web page later
+    ```markdown
+    Welcome to my Delta socioecological monitoring analysis.
 
-4. Press "Render" and observe the rendered output
-    a. Notice the new file in the same directory `index.html`
-    b. This is our Quarto file rendered as `HTML` (a web page)
-    
-5. Commit your changes (for both `index.qmd` and `index.html`) with a commit message, and `push` to GitHub
-    a. If you have a folder called `index_files`, commit this as well. This folder contains the all the formatting and display settings for your html page. 
+    ## Course Analyses
 
-6. Open your web browser to the [github.com](https://github.com/) and navigate to the page for your `training_{USERNAME}` repository
+    - Data Visualization (link coming soon)
+    ```
 
-7. Activate GitHub Pages for the `main` branch 
-    a. Go to Settings -> Pages (underneath the Code and Automation section)
-    b. Keep the "Source" as "Deploy from a branch"
-    c. Under "Branch" you'll see a message that says "GitHub Pages is currently disabled". To change this, change the branch from "None" to `main`. Keep the folder as the `root` and then click "Save"
-    d. You should see the message change to "Your GitHub Pages site is currently being built from the `main` branch"
+3. Save as `index.qmd`. Be sure to use this exact name, all lowercase. Web servers return `index.html` by default when no specific file is requested, so this name matters.
 
-**Note:** `index.qmd` represents the default file for a web site, and is returned whenever you visit the web site but doesn't specify an explicit file to be returned.
+4. Render `index.qmd` and observe the new `index.html` in the same directory
+
+5. Commit both `index.qmd` and `index.html` with a descriptive message, and push to GitHub
+    - If an `index_files/` folder appears, commit it too -- it holds supporting files for the HTML
+
+6. In your browser, go to your GitHub repo → Settings → Pages
+    a. Keep Source as "Deploy from a branch"
+    b. Change Branch from "None" to `main`, keep folder as `/ (root)`, click Save
+    c. The message changes to "Your GitHub Pages site is currently being built from the `main` branch"
+
 :::
 
-Now, the rendered website version of your repo will show up at a special URL.
-    
-GitHub Pages follows a convention like this:
-    
-![](images/github_publishing/github_pages.png){fig-alt="GitHub Pages URL pattern"}
-     
-Note that it changes from **github.com** to **github.io**
-     
-- Go to `https://{username}.github.io/{repo_name}/` (Note the trailing `/`)
-- Observe the awesome rendered output
-    
+GitHub Pages follows a URL convention based on your username and repository name:
 
-Now that we've successfully published a web page from an Quarto Document, let's make a change to our Quarto Document and follow the steps to publish the change on the web:
+![](images/github_publishing/github_pages.png){fig-alt="GitHub Pages URL pattern showing the change from github.com to github.io"}
 
+Note that it changes from **github.com** to **github.io**.
+
+- Visit `https://{username}.github.io/{repo_name}/` (note the trailing `/`)
+- It may take a minute or two on first setup; refresh if you get a 404 error
+
+Now make a small edit to confirm the full publish cycle works:
 
 ::: {.callout-note}
-## Update content in your published page
+## Update your published page
 
-- Go back to your `index.qmd`
-- Delete all the content, except the `YAML` frontmatter
-- Type "Hello world"
+- Add the text "Under construction" somewhere in `index.qmd`
 - Render `index.qmd`
-- Use Git workflow: ```Stage (add) -> Commit -> Pull -> Push```
-- Go back to `https://{username}.github.io/{repo_name}/`
-:::
-
-Next, we will show how you can link different `qmd`'s rendered into `html` so you can easily share different parts of your work. 
-
-::: {.callout-exercise}
-
-In this exercise, you'll create a table of contents with the lessons of this course on the main page, and link some of the files we have work on so far.
-
-- Go back to the RStudio server and to your `index.qmd` file
-
-- Create a table of contents with the names of the main technical lessons of this course, like so:
-
-```
-## Course Lessons
-
-- Introduction to Literate Analysis Using Quarto 
-- Cleaning and Wrangling data
-- Data Visualization
-- Functions and packages
-
-## Course Practice Session
-
-- Practice I
-- Practice II
-- Practice III
-
-```
-
-
-- Make sure you have the `html` versions of your `intro-to-qmd.qmd` and `data-cleaning.qmd` files. If you only see the `qmd` version, you need to "Render" your files first
-
-- In your `index.qmd` let's add the links to the `html` files we want to show on our webpage. Do you remember the Markdown syntax to create a link?
-
-
-<details>
-  <summary>Markdown syntax to create a link:</summary>
-  - ```[Text you want to hyperlink](link)```
-  - Example: ```[Data wrangling and cleaning](scripts/data-wrangling-cleaning.html)```
-</details>
-
-- Render `index.qmd`
-
-- Use Git workflow: ```Stage (add) -> Commit -> Pull -> Push```
-
-Now when you visit your web site, you'll see the table of contents, and can navigate to the others file you linked.
+- Git workflow: Stage → Commit → Pull → Push
+- Wait ~1 minute, then revisit `https://{username}.github.io/{repo_name}/` and confirm the change appears
 
 :::
 
+## Link Your Content Page
 
-Quarto web pages are a great way to share work in progress with your colleagues. Here we showed an example with the materials we have created in this course. However, you can use these same steps to share the different files and progress of a project you've been working on. To do so simply requires thinking through your presentation so that it highlights the workflow to be reviewed. You can include multiple pages and build a simple web site and make your work accessible to people who aren't set up to open your project in R. Your site could look something like this:
+Now let's connect your landing page to the visualization analysis you built in the previous session.
 
+::: callout-note
+## Relative paths
 
+When linking between pages in your site, use a **relative path** from the linking file to the target file. Your `index.qmd` is at the repo root, and your visualization notebook is in a `notebooks/` subfolder, so the correct link looks like this:
 
-![](images/github_publishing/github-pages-index-coreR.png)
+```markdown
+[Data Visualization](notebooks/data-visualization.html)
+```
 
+Common mistakes and what goes wrong:
+
+| Path | Problem |
+|---|---|
+| `notebooks/data-visualization.html` | ✓ correct |
+| `data-visualization.html` | ✗ missing subfolder → 404 |
+| `notebooks/Data-Visualization.html` | ✗ wrong case → 404 on case-sensitive servers |
+| `notebooks/data-visualization.qmd` | ✗ links to source, not rendered output |
+
+A **404 error** ("Not Found") means the browser cannot find the file at the path you gave it. Getting the path exactly right is one of the most common publishing stumbling blocks.
+:::
+
+::: callout-exercise
+
+**Part 1: Trigger a broken link on purpose**
+
+In `index.qmd`, replace the placeholder with a link using a deliberately wrong path (missing the subfolder):
+
+```markdown
+## Course Analyses
+
+- [Data Visualization](data-visualization.html)
+```
+
+Render `index.qmd`, commit, push, then visit your live site and click the link. Observe the 404.
+
+**Part 2: Fix the link**
+
+Update the path to include the `notebooks/` subfolder:
+
+```markdown
+## Course Analyses
+
+- [Data Visualization](notebooks/data-visualization.html)
+```
+
+Make sure `notebooks/data-visualization.qmd` has been rendered (so `notebooks/data-visualization.html` exists) and both files are committed. Render `index.qmd`, commit, push, and verify the link works on the live site.
+
+:::
+
+## Add Interactive Elements
+
+Quarto's HTML output format supports interactive elements powered by JavaScript, such as tables that users can sort and search, and maps they can pan and zoom. We'll add two of these to `notebooks/data-visualization.qmd`: a searchable table using `DT` and an interactive map using `leaflet`.
+
+Open `notebooks/data-visualization.qmd` and add the following to your setup chunk and then at the end of the document.
+
+### Setup
+
+Add these packages to your setup chunk (or create one at the top of the document if you don't have one yet):
+
+```{{r}}
+#| message: false
+#| warning: false
+library(readr)
+library(here)
+library(dplyr)
+library(tidyr)
+library(janitor)
+library(DT)
+library(leaflet)
+```
+
+The examples below use a `daily_visits_loc` data frame derived from the Delta socioecological monitoring dataset. Add this code after your setup chunk if you don't already have it:
+
+```{{r}}
+delta_visits_raw <- read_csv(here("data/Socioecological_monitoring_data.csv"),
+                             show_col_types = FALSE)
+
+daily_visits_loc <- delta_visits_raw %>%
+  janitor::clean_names() %>%
+  tidyr::pivot_longer(
+    cols      = c(sm_boat, med_boat, lrg_boat, bank_angler, scientist, cars),
+    names_to  = "visitor_type",
+    values_to = "quantity"
+  ) %>%
+  dplyr::rename(restore_loc = eco_restore_approximate_location) %>%
+  dplyr::select(-notes) %>%
+  dplyr::group_by(restore_loc, date, visitor_type) %>%
+  dplyr::summarize(daily_visits = sum(quantity), .groups = "drop")
+```
+
+### Interactive Table with `DT`
+
+`DT` is an R package that wraps the [`DataTables`](https://datatables.net/) JavaScript library, producing tables that readers can sort, search, and page through directly in the browser.
+
+Add a new section:
+
+````markdown
+## Interactive Table
+
+```{{r}}
+DT::datatable(
+  daily_visits_loc,
+  caption  = "Daily visitor counts at Delta restoration sites",
+  colnames = c("Location", "Date", "Visitor type", "Daily visits"),
+  options  = list(pageLength = 10)
+)
+```
+````
+
+Render the document and try sorting by column, searching for a specific location or visitor type, and paging through results.
+
+::: callout-tip
+## Useful `datatable()` options
+
+The `options` list accepts standard [DataTables options](https://datatables.net/reference/option/). A few worth knowing:
+
+- `pageLength`: default number of rows shown
+- `dom`: controls which UI controls appear (search box, pagination, info, etc.)
+- `columnDefs`: per-column formatting (width, sorting, visibility)
+
+See `?DT::datatable` or the [DT documentation](https://rstudio.github.io/DT/) for the full reference.
+:::
+
+### Interactive Map with `leaflet`
+
+`leaflet` wraps the [Leaflet.js](https://leafletjs.com/) JavaScript library for interactive maps. Its syntax is similar to `ggplot2` in that you build up a map by adding layers, but it uses the pipe operator `%>%` rather than `+`.
+
+We can pull the unique restoration site locations directly from the data we already loaded. Add this to your document:
+
+````markdown
+## Interactive Map
+
+```{{r}}
+restoration_sites <- delta_visits_raw %>%
+  janitor::clean_names() %>%
+  distinct(restore_loc = eco_restore_approximate_location,
+           latitude, longitude) %>%
+  drop_na(latitude, longitude)
+
+leaflet(restoration_sites) %>%
+  addTiles() %>%
+  addMarkers(
+    lng   = ~longitude,
+    lat   = ~latitude,
+    popup = ~restore_loc
+  )
+```
+````
+
+Render the document, then pan the map, zoom in, and click a marker to see the popup.
+
+::: callout-tip
+## Circle markers and color
+
+For more control over marker appearance, use `addCircleMarkers()` instead of `addMarkers()`:
+
+```r
+leaflet(restoration_sites) %>%
+  addTiles() %>%
+  addCircleMarkers(
+    lng         = ~longitude,
+    lat         = ~latitude,
+    popup       = ~restore_loc,
+    radius      = 8,
+    fillColor   = "steelblue",
+    fillOpacity = 0.8,
+    stroke      = FALSE
+  )
+```
+
+As an extension exercise, try joining `restoration_sites` with total visit counts from `daily_visits_loc` and mapping `fillColor` to visit volume.
+:::
+
+## Publish and Share
+
+With the interactive elements in place, publish everything to your live site.
+
+::: {.callout-note}
+## Publishing workflow
+
+1. Render both `notebooks/data-visualization.qmd` and `index.qmd` to make sure everything looks right locally
+2. In your Git panel, stage all changed files:
+   - `notebooks/data-visualization.qmd` and `notebooks/data-visualization.html`
+   - `index.qmd` and `index.html`
+   - Any `*_files/` folders for supporting assets
+3. Commit with a descriptive message, then Pull → Push
+4. Wait ~1 minute for GitHub Pages to rebuild, then visit your live URL
+5. Test all interactive elements, including the table and map
+:::
+
+## What's Next
+
+In this module, we published individual HTML pages linked from a landing page. A natural next step might be a proper **Quarto website**. This is a multi-page site where navigation, themes, and shared settings are configured in a single `_quarto.yml` file, giving you a consistent navigation bar across all pages.
+
+For truly **dynamic** content that responds to user input in real time (e.g., filtering data on the fly, running models), look into [Shiny](https://shiny.posit.co/), an R framework for building interactive web applications backed by a live R session.
+
+::: callout-tip
+## Self-contained HTML files
+
+If you want to share a single HTML file that works without a web server (e.g., via email), add this to your YAML header:
+
+```yaml
+format:
+  html:
+    embed-resources: true
+```
+
+This bundles all JavaScript, CSS, and images into the HTML file itself. The trade-off is a larger file size; for sharing via URL, omitting `embed-resources: true` produces smaller, faster-loading pages.
+:::
+
+## Resources
+
+- [Quarto Websites](https://quarto.org/docs/websites/) - documentation for building multi-page sites with shared navigation and `_quarto.yml`
+- [GitHub Pages documentation](https://docs.github.com/en/pages) - details about custom domains, build workflows, and more
+- [DT package documentation](https://rstudio.github.io/DT/) - a full reference for interactive table options
+- [Leaflet for R](https://rstudio.github.io/leaflet/) - a comprehensive guide including polygons, WMS tiles, and color scales

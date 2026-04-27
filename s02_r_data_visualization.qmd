@@ -14,7 +14,7 @@ After completing this session, you will be able to:
 - Describe the four essential components of a `ggplot2::ggplot()` call
 - Use `theme` and other functions to customize appealing data visualizations
 - Use `facet_wrap()` to create multiple related plots in one figure
-- Introduce the `leaflet` and `DT` package to create interactive maps and tables respectively
+- Use `ggplotly()` to convert a static `ggplot2` plot into an interactive visualization
 :::
 
 ## Overview
@@ -37,7 +37,9 @@ Base R graphics  (`plot()`, `hist()`, etc) can be helpful for simple, quick-and-
 
 ## Setup
 
-Make sure you’re in the right project (`training_<username>`). Use Git Pull to check for any changes. Then, create a new Quarto document, delete the default text below the YAML header, and save this document.  
+Make sure you’re in the right project (`training_<username>`). Use Git Pull to check for any changes. Then, create a `notebooks/` folder at the top level of your project, create a new Quarto document, and save it as **`data-visualization.qmd`** inside that folder.
+
+- Depending on your IDE, the new document may include default template content below the YAML header. If so, delete anything below the `---` before continuing.
 
 :::{.callout-tip collapse=true}
 ## Quarto header options?
@@ -281,7 +283,6 @@ ggplot() +
 :::
 <!-- end tip -->
 
-
 ### Different Geometries for Different Plot Types
 
 Having the basic structure with the essential components in mind, we can easily change the type of graph by updating the `geom_*()`.  First let's filter the data to remove some extreme values, and to focus on boat users specifically.
@@ -291,6 +292,22 @@ daily_boats_filtered <- daily_visits_loc %>%
     filter(daily_visits < 30,
            visitor_type %in% c("sm_boat", "med_boat", "lrg_boat"))
 ```
+
+::: callout-tip
+## Piping directly into `ggplot()`
+
+Because `ggplot()` takes data as its first argument, you can pipe a data frame straight into it without creating an intermediate object:
+
+```r
+daily_visits_loc %>%
+    filter(daily_visits < 30,
+           visitor_type %in% c("sm_boat", "med_boat", "lrg_boat")) %>%
+    ggplot(aes(x = visitor_type, y = daily_visits)) +
+    geom_boxplot()
+```
+
+This is handy for quick exploration, but use it carefully: chaining too many wrangling steps with a `ggplot()` call can make code harder to read and debug. A good rule of thumb: if the filter/transform is specific to *this plot*, pipe it in; if it would be useful elsewhere, save it to a named object first.
+:::
 
 :::panel-tabset
 
@@ -347,6 +364,27 @@ ggplot(data = daily_boats_filtered,
 ```
 :::
 <!-- end tabset -->
+
+### The Grammar of Graphics
+
+The components above are entry points to a richer underlying framework called the **Grammar of Graphics**. A quick look at this framework will help you reason about what's possible, and what to change when plots don't look right.
+
+[Full Screen](slides/r_data_visualization/slides1_mapping_data_to_viz.html){.external target="_blank" rel="noopener"}
+
+```{=html}
+<iframe class="slide-deck" src="slides/r_data_visualization/slides1_mapping_data_to_viz.html" style="border: 1px   solid #2e3846;"></iframe>
+```
+
+| Component | Role |
+|:---|:---|
+|**Aesthetic** (`aes()`) | Maps a data column to a visual property (`x`, `y`, `color`, `shape`, `fill`, ...) |
+| **Scale** | Translates raw data values into visual values (e.g., dates → pixel positions; species names → colors) |
+| **Guide** | Communicates the scale back to the viewer (axes and legends) |
+| **Geom** | The visual mark drawn for each observation (`geom_point()`, `geom_col()`, ...) |
+| **Stat** | Statistical transformation applied before drawing; `geom_point()` leaves data unchanged (`stat_identity`), while `geom_boxplot()` computes IQR and median automatically |
+
+You rarely call scale, guide, or stat functions directly; `ggplot2` picks sensible defaults. But knowing they exist explains why `geom_boxplot()` "just works" without you computing a median first, and gives you the vocabulary to find the right function when you want to override a default.
+
 
 ## Customize the Plot
 
@@ -453,6 +491,56 @@ my_theme <- function(size = 14) {
           axis.ticks.y = element_line(color = "red", size = 0.5))
 }
 ```
+:::
+
+### Position Adjustments
+
+Notice the bar chart above stacks bars for each `visitor_type` on top of one another. This is controlled by the `position` argument of `geom_col()`, which defaults to `"stack"`. Three positions are useful for grouped categorical data:
+
+:::panel-tabset
+
+## Stacked (default)
+
+Each group is stacked; total bar length shows the overall sum.
+```{r}
+#| out-width: "80%"
+#| fig-align: "center"
+#| fig-height: 3.5
+ggplot(data = daily_visits_loc,
+       aes(y = restore_loc, x = daily_visits, fill = visitor_type)) +
+  geom_col(position = "stack") +
+  labs(x = "Number of Visits", y = "Restoration Location", fill = "Visitor Type") +
+  theme_minimal() + theme(legend.position = "bottom")
+```
+
+## Dodged
+
+Each group is placed side-by-side; easier to compare within a location.
+```{r}
+#| out-width: "80%"
+#| fig-align: "center"
+#| fig-height: 3.5
+ggplot(data = daily_visits_loc,
+       aes(y = restore_loc, x = daily_visits, fill = visitor_type)) +
+  geom_col(position = "dodge") +
+  labs(x = "Number of Visits", y = "Restoration Location", fill = "Visitor Type") +
+  theme_minimal() + theme(legend.position = "bottom")
+```
+
+## Filled
+
+Each bar is scaled to 100%; shows proportions rather than totals.
+```{r}
+#| out-width: "80%"
+#| fig-align: "center"
+#| fig-height: 3.5
+ggplot(data = daily_visits_loc,
+       aes(y = restore_loc, x = daily_visits, fill = visitor_type)) +
+  geom_col(position = "fill") +
+  labs(x = "Proportion of Visits", y = "Restoration Location", fill = "Visitor Type") +
+  theme_minimal() + theme(legend.position = "bottom")
+```
+
 :::
 
 ### Order Categorical Values and Add Color
@@ -604,18 +692,6 @@ ggplotly(facet_plot, tooltip = c('x', 'y'))
 
 Note that any variable assigned to an aesthetic in the original `ggplot` (e.g., `x`, `y`, `color`, `fill`, etc.) will be included in the hover information in the interactive plot, by default.  You can customize this further using the `tooltip` argument in `ggplotly()` - for example, here we only included the `x` and `y` variables (since `x` and `fill` are both `visitor_type`, we we don't need to see it twice).  See `?ggplotly` for more options.
 
-<!-- ## Aside: Interactive Tables with `DT`
-
-Most of the time, we will render our Quarto documents as .html files, which means we can include interactive elements in our documents.  The `DT` package provides a simple way (using `DT::datatable()`) to create interactive tables in R, which a user can search, filter, reorder, etc.
-
-
-Try searching the following table for only specific locations or visitor types, and sorting by date or number of visits.  -->
-
-```{r display_locations}
-#| eval: false
-#| echo: false
-DT::datatable(visits_long)
-```
 
 <!-- ### Maps with `leaflet`
 
