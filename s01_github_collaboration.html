@@ -626,10 +626,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>The <span style="color: purple;"><strong>Collaborator</strong></span> navigates to the <span style="color: orange;"><strong>Owner’s</strong></span> GitHub repository, copies the clone URL, and creates a new RStudio project or Positron folder from version control using that URL.</li>
 <li>Note: the cloned repo <strong>will not</strong> appear under the <span style="color: purple;"><strong>Collaborator’s</strong></span> own GitHub profile page.</li>
 </ul></li>
-<li><span style="color: purple;"><strong>Collaborator</strong></span> edits, commit-pull-push
+<li><span style="color: purple;"><strong>Collaborator</strong></span> creates new file, commit-pull-push
 <ul>
-<li>With the repo cloned, the <span style="color: purple;"><strong>Collaborator</strong></span> edits <code>README.md</code> - adding a line near the top with whatever text they like - then follows the standard workflow:</li>
-<li><strong>Stage and commit</strong> the edited file</li>
+<li>With the repo cloned, the <span style="color: purple;"><strong>Collaborator</strong></span> creates a new Quarto document, edits the title (e.g., “Git Collaboration Tips”) and author(s). Delete any placeholder text in the body of the document, leaving just the YAML header and a blank body. Then paste in the content in the details box below.<br>
+</li>
+<li>Save the Quarto doc as <code>git_collaboration_tips.qmd</code> in the repo directory.</li>
+</ul></li>
+</ol>
+<details>
+<summary>
+Content for new file
+</summary>
+<p>Paste the following template text into the Quarto document body:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## Git Collaboration Tips</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">### Tips: &lt;owner's name here&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">Owner</span><span class="ot"> adds their tips here</span><span class="er">!</span><span class="dt">&gt;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">### Tips: &lt;collaborator's name here&gt;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">Collaborator</span><span class="ot"> adds their tips here</span><span class="er">!</span><span class="dt">&gt;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## How to Create a Merge Conflict </span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">### Merge Conflict: Owner Resolves</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">Owner</span><span class="ot"> and Collaborator edit the same line here to create a conflict</span><span class="er">!</span><span class="ot"> </span><span class="er">-</span><span class="ot"> COLLABORATOR commits-pulls-pushes first</span><span class="dt">&gt;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">### Merge Conflict: Collaborator Resolves</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">Owner</span><span class="ot"> and Collaborator edit the same line here to create a conflict</span><span class="er">!</span><span class="ot"> </span><span class="er">-</span><span class="ot"> OWNER commits-pulls-pushes first</span><span class="dt">&gt;</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">## Summary: How to Avoid Merge Conflicts</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">Owner</span><span class="ot"> and Collaborator use best practices to write some concluding tips here</span><span class="er">!</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<ol start="4" type="1">
+<li><span style="color: purple;"><strong>Collaborator</strong></span> follows the standard workflow:
+<ul>
+<li><strong>Stage and commit</strong> the new file</li>
 <li><strong>Pull</strong> (to fetch any changes made since cloning)</li>
 <li><strong>Push</strong> to the shared remote repository</li>
 </ul></li>
@@ -647,18 +684,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Let the <span style="color: orange;"><strong>Owner</strong></span> know you’ve pushed your changes so they know it’s safe to pull.</p>
 </div>
 </div>
-<ol start="4" type="1">
-<li><span style="color: orange;"><strong>Owner</strong></span> pulls, edits, commit-pull-push{.unnumbered}
+<ol start="5" type="1">
+<li><span style="color: orange;"><strong>Owner</strong></span> pulls, all repos now in sync
 <ul>
 <li>The <span style="color: orange;"><strong>Owner</strong></span> opens their local copy in RStudio and <strong>pulls</strong> the <span style="color: purple;"><strong>Collaborator’s</strong></span> changes.</li>
 <li>All three repositories - remote, <span style="color: orange;"><strong>Owner’s</strong></span> local, and <span style="color: purple;"><strong>Collaborator’s</strong></span> local - are now in sync.</li>
-<li>The <span style="color: orange;"><strong>Owner</strong></span> then makes their own edits as they see fit, following the same <strong>commit <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> pull <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> push</strong> workflow.</li>
+<li>The <span style="color: orange;"><strong>Owner</strong></span> then edits their own “tips” section ONLY.</li>
 </ul></li>
-<li>Wrapping up{.unnumbered}
+<li><span style="color: orange;"><strong>Owner</strong></span> and <span style="color: purple;"><strong>Collaborator</strong></span> add tips, then commit-pull-push
 <ul>
-<li>After pushing, the <span style="color: orange;"><strong>Owner</strong></span> lets the <span style="color: purple;"><strong>Collaborator</strong></span> know, and the <span style="color: purple;"><strong>Collaborator</strong></span> <strong>pulls</strong> to sync up. <strong>You’ve just successfully collaborated!</strong> <i class="fa-solid fa-champagne-glasses" aria-label="champagne-glasses"></i></li>
+<li>At the same time as the the <span style="color: orange;"><strong>Owner</strong></span> is adding their tips, the <span style="color: purple;"><strong>Collaborator</strong></span> adds their own tips to their section ONLY.</li>
+</ul></li>
+<li>Wrapping Up
+<ul>
+<li>Both <span style="color: orange;"><strong>Owner</strong></span> and <span style="color: purple;"><strong>Collaborator</strong></span> follow the same <strong>commit <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> pull <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> push workflow</strong> - Decide who goes first, though it should not matter here - and <strong>communicate</strong>!</li>
+<li>Once both have pulled each other’s changes, the first person should do one last <strong>pull</strong> to retrieve changes made by the second.</li>
+<li>Check with each other to ensure the repositories are in sync again.</li>
 </ul></li>
 </ol>
+<p><strong>You’ve just successfully collaborated!</strong> <i class="fa-solid fa-champagne-glasses" aria-label="champagne-glasses"></i></p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -676,7 +720,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="exercise-collaborate-well" class="level3" data-number="2.2">
 <h3 data-number="2.2" class="anchored" data-anchor-id="exercise-collaborate-well"><span class="header-section-number">2.2</span> Exercise: Collaborate Well!</h3>
-<p>Get into pairs; designate one person as <span style="color: orange;"><strong>Owner</strong></span> and one as <span style="color: purple;"><strong>Collaborator</strong></span>. Both participants log in to GitHub.</p>
+<p>Get into pairs. Designate one person as <span style="color: orange;"><strong>Owner</strong></span> and one as <span style="color: purple;"><strong>Collaborator</strong></span> - we recommend whoever has the <strong>fewer</strong> repositories should be the <span style="color: orange;"><strong>Owner</strong></span>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -706,23 +750,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="callout-6" class="callout-6-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="callout-exercise">
-<p>Complete two rounds, switching <span style="color: orange;"><strong>Owner</strong></span>/<span style="color: purple;"><strong>Collaborator</strong></span> roles between rounds.</p>
-<p><strong>Round One:</strong></p>
 <ul>
 <li><span style="color: orange;"><strong>Owner</strong></span> adds <span style="color: purple;"><strong>Collaborator</strong></span> to <code>git_collab_&lt;username&gt;</code> (see Setup above)</li>
 <li><span style="color: purple;"><strong>Collaborator</strong></span> clones the <span style="color: orange;"><strong>Owner</strong></span>’s repository</li>
-<li><span style="color: purple;"><strong>Collaborator</strong></span> adds a new level-2 heading “Git Workflow” to README.md, then applies commit-pull-push workflow</li>
+<li><span style="color: purple;"><strong>Collaborator</strong></span> creates a new Quarto document <code>git_collaboration_tips.qmd</code> with the provided template content above, then saves and commit-pull-push</li>
 <li><span style="color: orange;"><strong>Owner</strong></span> pulls those changes</li>
-<li><span style="color: orange;"><strong>Owner</strong></span> adds the steps of the Git workflow under that heading, then commit-pull-push</li>
-<li><span style="color: purple;"><strong>Collaborator</strong></span> pulls the <span style="color: orange;"><strong>Owner’s</strong></span> changes <i class="fa-solid fa-cake-candles" aria-label="cake-candles"></i></li>
-</ul>
-<p><strong>Round Two (switch roles!):</strong></p>
-<ul>
-<li>NEW <span style="color: orange;"><strong>Owner</strong></span> creates a new <code>git_collab_&lt;username&gt;</code> repository and adds NEW <span style="color: purple;"><strong>Collaborator</strong></span> (see Setup above)</li>
-<li><span style="color: purple;"><strong>Collaborator</strong></span> clones</li>
-<li><span style="color: purple;"><strong>Collaborator</strong></span> adds a level 3 heading “How to Create a Git Repository” with high-level steps, then commit-pull-push</li>
-<li><span style="color: orange;"><strong>Owner</strong></span> pulls, adds detail under the heading, then commit-pull-push</li>
-<li><span style="color: purple;"><strong>Collaborator</strong></span> pulls the <span style="color: orange;"><strong>Owner’s</strong></span> changes 🥳</li>
+<li><span style="color: orange;"><strong>Owner</strong></span> and <span style="color: purple;"><strong>Collaborator</strong></span> each their own Git tips under their respective headers</li>
+<li><span style="color: orange;"><strong>Owner</strong></span> and <span style="color: purple;"><strong>Collaborator</strong></span> decide who will commit-pull-push first, and each performs the Git workflow as agreed</li>
+<li>The first person to commit-pull-push does one final pull to retrieve the second person’s changes <i class="fa-solid fa-cake-candles" aria-label="cake-candles"></i></li>
 </ul>
 </div>
 </div>
@@ -735,11 +770,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="3" class="anchored" data-anchor-id="merge-conflicts"><span class="header-section-number">3</span> Merge Conflicts</h2>
 <p>A <strong>merge conflict</strong> occurs when two collaborators edit the <em>same line(s) of the same file</em>. Git cannot automatically decide which version to keep, so it pauses the merge and asks you to resolve the conflict manually.</p>
 <p>When a conflict occurs, Git marks the affected section of the file like this:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="sc">&lt;</span><span class="er">&lt;&lt;&lt;&lt;&lt;&lt;</span> HEAD</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a> Your version of this line</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a> <span class="sc">==</span><span class="er">=====</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a> Collaborator<span class="st">'s version of this line</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="st"> &gt;&gt;&gt;&gt;&gt;&gt;&gt; (commit SHA)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a> <span class="sc">&lt;</span><span class="er">&lt;&lt;&lt;&lt;&lt;&lt;</span> HEAD</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a> Your version of this line</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a> <span class="sc">==</span><span class="er">=====</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a> Collaborator<span class="st">'s version of this line</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="st"> &gt;&gt;&gt;&gt;&gt;&gt;&gt; (commit SHA)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <!-- NOTE: added space in front of conflict markers to prevent rendering issues in Quarto -->
 <p>To resolve the conflict: edit the file so it reads how you want, remove all the marker lines (<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>), then stage (add), commit-pull-push. This might look different depending on your IDE.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
@@ -788,15 +823,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <p>Abort - if you made a mistake and want to start fresh:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge <span class="at">--abort</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge <span class="at">--abort</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This returns the repo to a usable state, as it was just before you tried to pull - but you still haven’t integrated your collaborator’s changes. This basically just kicks the can down the line!</p>
 </div>
 <div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
 <p>From the Terminal, choose whose version to keep (note, need to specify the file!). Note, you should DEFINITELY communicate with your collaborator before rejecting their changes wholesale.</p>
 <p>To keep your collaborator’s version:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">--theirs</span> <span class="op">&lt;</span>path/to/conflicted_file.qmd<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">--theirs</span> <span class="op">&lt;</span>path/to/conflicted_file.qmd<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To keep your own version:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">--ours</span> <span class="op">&lt;</span>path/to/conflicted_file.qmd<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">--ours</span> <span class="op">&lt;</span>path/to/conflicted_file.qmd<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then stage, commit-pull-push as normal.</p>
 </div>
 </div>
@@ -814,7 +849,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Ensure both <span style="color: orange;"><strong>Owner</strong></span> and <span style="color: purple;"><strong>Collaborator</strong></span> have all the latest changes locally (Git pane shows no pending commits).</li>
 </ul></li>
-<li><span style="color: orange;"><strong>Owner</strong></span> edits line 1 of README and commits - but <strong>does not pull or push</strong></li>
+<li><span style="color: orange;"><strong>Owner</strong></span> edits the content in the Quarto document under the section titled “Merge Conflict: Owner Resolves” and commits - but <strong>does not pull or push</strong></li>
 <li><span style="color: purple;"><strong>Collaborator</strong></span> edits the same line and commits - but <strong>does not pull or push</strong>
 <ul>
 <li><strong>Both people now have local commits that conflict with each other!</strong></li>
@@ -861,8 +896,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Round One:</strong></p>
 <ol type="1">
 <li><strong>Both</strong> pull to sync to the <span style="color: orange;"><strong>Owner’s</strong></span> <code>git_collab_&lt;username&gt;</code> repository</li>
-<li><span style="color: orange;"><strong>Owner</strong></span> edits the README title on line 1 and commits but <strong>does not pull or push</strong></li>
-<li><span style="color: purple;"><strong>Collaborator</strong></span> edits the same line differently and commits but <strong>does not pull or push</strong>
+<li><span style="color: orange;"><strong>Owner</strong></span> edits the content in the section titled “Merge Conflict: Owner Resolves” and commits but <strong>does not pull or push</strong></li>
+<li><span style="color: purple;"><strong>Collaborator</strong></span> edits the same section differently and commits but <strong>does not pull or push</strong>
 <ul>
 <li><strong>Both people now have local commits that conflict with each other!</strong></li>
 </ul></li>
@@ -870,18 +905,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><strong>GitHub now reflects the <span style="color: purple;">Collaborator</span>’s version.</strong> The <span style="color: orange;"><strong>Owner</strong></span> is one commit behind.</li>
 </ul></li>
-<li><span style="color: orange;"><strong>Owner</strong></span> tries to push <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> gets an error</li>
-<li><span style="color: orange;"><strong>Owner</strong></span> pulls <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> sees merge conflict</li>
+<li><span style="color: orange;"><strong>Owner</strong></span> tries to push <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> gets an error (consider why?)</li>
+<li><span style="color: orange;"><strong>Owner</strong></span> pulls <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> and sees merge conflict</li>
 <li><span style="color: orange;"><strong>Owner</strong></span> edits the file to resolve the conflict
 <ul>
-<li><span style="color: orange;"><strong>Owner</strong></span> communicates with <span style="color: purple;"><strong>Collaborator</strong></span>!</li>
+<li><span style="color: orange;"><strong>Owner</strong></span> communicates with <span style="color: purple;"><strong>Collaborator</strong></span> to make sure edits are OK!</li>
 </ul></li>
 <li><span style="color: orange;"><strong>Owner</strong></span> stages, then commit-pull-push the resolved file</li>
 <li><span style="color: purple;"><strong>Collaborator</strong></span> pulls the resolved version</li>
-<li>Both view commit history</li>
+<li>Both view commit history to see the conflict and merge commits.</li>
+<li>Repeat steps 2-10, in the section titled “Merge Conflict: Collaborator Resolves”, and this time, swap the order of who pushes first.</li>
 </ol>
-<p><strong>Round Two:</strong></p>
-<p>Switch roles, and repeat using the README in the NEW <span style="color: orange;"><strong>Owner’s</strong></span> repository.</p>
+<p><strong>Congratulations, you’ve just created and resolved two merge conflicts!</strong> <i class="fa-solid fa-champagne-glasses" aria-label="champagne-glasses"></i></p>
 </div>
 </div>
 </div>
