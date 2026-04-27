@@ -1,0 +1,28 @@
+---
+format: 
+  revealjs:
+    slide-number: true
+    code-link: true
+    highlight-style: a11y
+    chalkboard: true
+    theme:
+      - lh_slides_style.scss ### this lives in folder with slide qmd file
+execute:
+  echo: true
+  code-line-numbers: false
+---
+
+##
+![](images/01_table_and_viz.png){fig-align="center"}
+
+##
+![](images/02_mapping.png){fig-align="center"}
+
+##
+![](images/03_scales_and_guides.png){fig-align="center"}
+
+##
+![](images/04_geometry.png){fig-align="center"}
+
+##
+![](images/05_final_viz.png){fig-align="center"}
