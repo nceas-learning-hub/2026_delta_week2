@@ -46,9 +46,44 @@ Here, the instructors will demonstrate.  In the following exercise, the particip
 2. [**Collaborator**]{style="color: purple;"} clones the repository
     * The [**Collaborator**]{style="color: purple;"} navigates to the [**Owner's**]{style="color: orange;"} GitHub repository, copies the clone URL, and creates a new RStudio project or Positron folder from version control using that URL.
     * Note: the cloned repo **will not** appear under the [**Collaborator's**]{style="color: purple;"} own GitHub profile page.
-3. [**Collaborator**]{style="color: purple;"} edits, commit-pull-push
-    * With the repo cloned, the [**Collaborator**]{style="color: purple;"} edits `README.md` - adding a line near the top with whatever text they like - then follows the standard workflow:
-    * **Stage and commit** the edited file
+3. [**Collaborator**]{style="color: purple;"} creates new file, commit-pull-push
+    * With the repo cloned, the [**Collaborator**]{style="color: purple;"} creates a new Quarto document, edits the title (e.g., "Git Collaboration Tips") and author(s).
+    Delete any placeholder text in the body of the document, leaving just the YAML header and a blank body.  Then paste in the content in the details box below.  
+    * Save the Quarto doc as `git_collaboration_tips.qmd` in the repo directory.
+
+<details>
+<summary>Content for new file</summary>
+Paste the following template text into the Quarto document body:
+```markdown
+
+## Git Collaboration Tips
+
+### Tips: <owner's name here>
+
+<Owner adds their tips here!>
+
+### Tips: <collaborator's name here>
+
+<Collaborator adds their tips here!>
+
+## How to Create a Merge Conflict 
+
+### Merge Conflict: Owner Resolves
+
+<Owner and Collaborator edit the same line here to create a conflict! - COLLABORATOR commits-pulls-pushes first>
+
+### Merge Conflict: Collaborator Resolves
+
+<Owner and Collaborator edit the same line here to create a conflict! - OWNER commits-pulls-pushes first>
+
+## Summary: How to Avoid Merge Conflicts
+
+<Owner and Collaborator use best practices to write some concluding tips here!>
+```
+</details>
+
+4. [**Collaborator**]{style="color: purple;"} follows the standard workflow:
+    * **Stage and commit** the new file
     * **Pull** (to fetch any changes made since cloning)
     * **Push** to the shared remote repository
 
@@ -57,12 +92,18 @@ Here, the instructors will demonstrate.  In the following exercise, the particip
 Let the [**Owner**]{style="color: orange;"} know you've pushed your changes so they know it's safe to pull.
 :::
 
-4. [**Owner**]{style="color: orange;"} pulls, edits, commit-pull-push{.unnumbered}
+5. [**Owner**]{style="color: orange;"} pulls, all repos now in sync
     * The [**Owner**]{style="color: orange;"} opens their local copy in RStudio and **pulls** the [**Collaborator's**]{style="color: purple;"} changes. 
     * All three repositories - remote, [**Owner's**]{style="color: orange;"} local, and [**Collaborator's**]{style="color: purple;"} local - are now in sync.
-    * The [**Owner**]{style="color: orange;"} then makes their own edits as they see fit, following the same **commit {{<fa arrow-right>}} pull {{<fa arrow-right>}} push** workflow. 
-5. Wrapping up{.unnumbered}
-    * After pushing, the [**Owner**]{style="color: orange;"} lets the [**Collaborator**]{style="color: purple;"} know, and the [**Collaborator**]{style="color: purple;"} **pulls** to sync up. **You've just successfully collaborated!** {{< fa champagne-glasses >}}
+    * The [**Owner**]{style="color: orange;"} then edits their own "tips" section ONLY.
+6. [**Owner**]{style="color: orange;"} and [**Collaborator**]{style="color: purple;"} add tips, then commit-pull-push
+    * At the same time as the the [**Owner**]{style="color: orange;"} is adding their tips, the [**Collaborator**]{style="color: purple;"} adds their own tips to their section ONLY.
+7. Wrapping Up
+    * Both [**Owner**]{style="color: orange;"} and [**Collaborator**]{style="color: purple;"} follow the same **commit {{<fa arrow-right>}} pull {{<fa arrow-right>}} push workflow** - Decide who goes first, though it should not matter here - and **communicate**!
+    * Once both have pulled each other's changes, the first person should do one last **pull** to retrieve changes made by the second.
+    * Check with each other to ensure the repositories are in sync again.
+
+**You've just successfully collaborated!** {{< fa champagne-glasses >}}
 
 :::callout-warning 
 ## Why commit before pulling?
@@ -74,7 +115,7 @@ commit {{<fa arrow-right>}} pull {{<fa arrow-right>}} push (RStudio or Terminal)
 
 ### Exercise: Collaborate Well!
 
-Get into pairs; designate one person as [**Owner**]{style="color: orange;"} and one as [**Collaborator**]{style="color: purple;"}.  Both participants log in to GitHub.
+Get into pairs.  Designate one person as [**Owner**]{style="color: orange;"} and one as [**Collaborator**]{style="color: purple;"} - we recommend whoever has the **fewer** repositories should be the [**Owner**]{style="color: orange;"}.  
 
 ::::callout-note 
 ## Setup
@@ -89,24 +130,13 @@ Get into pairs; designate one person as [**Owner**]{style="color: orange;"} and 
 
 ### Instructions{.unnumbered}
 
-Complete two rounds, switching [**Owner**]{style="color: orange;"}/[**Collaborator**]{style="color: purple;"} roles between rounds.
-
-**Round One:**
-
 * [**Owner**]{style="color: orange;"} adds [**Collaborator**]{style="color: purple;"} to `git_collab_<username>` (see Setup above)
 * [**Collaborator**]{style="color: purple;"} clones the [**Owner**]{style="color: orange;"}'s repository
-* [**Collaborator**]{style="color: purple;"} adds a new level-2 heading "Git Workflow" to README.md, then applies commit-pull-push workflow
+* [**Collaborator**]{style="color: purple;"} creates a new Quarto document `git_collaboration_tips.qmd` with the provided template content above, then saves and commit-pull-push
 * [**Owner**]{style="color: orange;"} pulls those changes
-* [**Owner**]{style="color: orange;"} adds the steps of the Git workflow under that heading, then commit-pull-push
-* [**Collaborator**]{style="color: purple;"} pulls the [**Owner's**]{style="color: orange;"} changes {{< fa cake-candles >}}
-
-**Round Two (switch roles!):**
-
-* NEW [**Owner**]{style="color: orange;"} creates a new `git_collab_<username>` repository and adds NEW [**Collaborator**]{style="color: purple;"} (see Setup above)
-* [**Collaborator**]{style="color: purple;"} clones
-* [**Collaborator**]{style="color: purple;"} adds a level 3 heading "How to Create a Git Repository" with high-level steps, then commit-pull-push
-* [**Owner**]{style="color: orange;"} pulls, adds detail under the heading, then commit-pull-push
-* [**Collaborator**]{style="color: purple;"} pulls the [**Owner's**]{style="color: orange;"} changes 🥳
+* [**Owner**]{style="color: orange;"} and [**Collaborator**]{style="color: purple;"} each their own Git tips under their respective headers
+* [**Owner**]{style="color: orange;"} and [**Collaborator**]{style="color: purple;"} decide who will commit-pull-push first, and each performs the Git workflow as agreed
+* The first person to commit-pull-push does one final pull to retrieve the second person's changes {{< fa cake-candles >}}
 
 :::
 <!-- end exercise -->
@@ -204,7 +234,7 @@ As before, the instructors will first demonstrate this sequence. Then participan
 
 1. **Both** pull to sync to the [**Owner's**]{style="color: orange;"} `git_collab_<username>` repository
     * Ensure both [**Owner**]{style="color: orange;"} and [**Collaborator**]{style="color: purple;"} have all the latest changes locally (Git pane shows no pending commits).
-2. [**Owner**]{style="color: orange;"} edits line 1 of README and commits - but **does not pull or push**
+2. [**Owner**]{style="color: orange;"} edits the content in the Quarto document under the section titled "Merge Conflict: Owner Resolves" and commits - but **does not pull or push**
 3. [**Collaborator**]{style="color: purple;"} edits the same line and commits - but **does not pull or push**
     * **Both people now have local commits that conflict with each other!**
 4. [**Collaborator**]{style="color: purple;"} pushes
@@ -231,22 +261,21 @@ Work with the same partner as the previous exercise (since you've already both i
 **Round One:**
 
 1.  **Both** pull to sync to the [**Owner's**]{style="color: orange;"} `git_collab_<username>` repository
-2. [**Owner**]{style="color: orange;"} edits the README title on line 1 and commits but **does not pull or push**
-3. [**Collaborator**]{style="color: purple;"} edits the same line differently and commits but **does not pull or push**
+2. [**Owner**]{style="color: orange;"} edits the content in the section titled "Merge Conflict: Owner Resolves" and commits but **does not pull or push**
+3. [**Collaborator**]{style="color: purple;"} edits the same section differently and commits but **does not pull or push**
     * **Both people now have local commits that conflict with each other!**
 4. [**Collaborator**]{style="color: purple;"} pushes
     * **GitHub now reflects the [Collaborator]{style="color: purple;"}'s version.** The [**Owner**]{style="color: orange;"} is one commit behind.
-5. [**Owner**]{style="color: orange;"} tries to push {{<fa arrow-right>}} gets an error
-6. [**Owner**]{style="color: orange;"} pulls {{<fa arrow-right>}} sees merge conflict
+5. [**Owner**]{style="color: orange;"} tries to push {{<fa arrow-right>}} gets an error (consider why?)
+6. [**Owner**]{style="color: orange;"} pulls {{<fa arrow-right>}} and sees merge conflict
 7. [**Owner**]{style="color: orange;"} edits the file to resolve the conflict
-    * [**Owner**]{style="color: orange;"} communicates with [**Collaborator**]{style="color: purple;"}!
+    * [**Owner**]{style="color: orange;"} communicates with [**Collaborator**]{style="color: purple;"} to make sure edits are OK!
 8. [**Owner**]{style="color: orange;"} stages, then commit-pull-push the resolved file
 9. [**Collaborator**]{style="color: purple;"} pulls the resolved version
-10. Both view commit history
+10. Both view commit history to see the conflict and merge commits.
+11. Repeat steps 2-10, in the section titled "Merge Conflict: Collaborator Resolves", and this time, swap the order of who pushes first.
 
-**Round Two:**
-
-Switch roles, and repeat using the README in the NEW [**Owner's**]{style="color: orange;"} repository.
+**Congratulations, you've just created and resolved two merge conflicts!** {{< fa champagne-glasses >}}
 
 :::
 <!-- end exercise -->
