@@ -95,8 +95,8 @@ Let the [**Owner**]{style="color: orange;"} know you've pushed your changes so t
 5. [**Owner**]{style="color: orange;"} pulls, all repos now in sync
     * The [**Owner**]{style="color: orange;"} opens their local copy in RStudio and **pulls** the [**Collaborator's**]{style="color: purple;"} changes. 
     * All three repositories - remote, [**Owner's**]{style="color: orange;"} local, and [**Collaborator's**]{style="color: purple;"} local - are now in sync.
-    * The [**Owner**]{style="color: orange;"} then edits their own "tips" section ONLY.
 6. [**Owner**]{style="color: orange;"} and [**Collaborator**]{style="color: purple;"} add tips, then commit-pull-push
+    * The [**Owner**]{style="color: orange;"} then edits their own "tips" section ONLY.
     * At the same time as the the [**Owner**]{style="color: orange;"} is adding their tips, the [**Collaborator**]{style="color: purple;"} adds their own tips to their section ONLY.
 7. Wrapping Up
     * Both [**Owner**]{style="color: orange;"} and [**Collaborator**]{style="color: purple;"} follow the same **commit {{<fa arrow-right>}} pull {{<fa arrow-right>}} push workflow** - Decide who goes first, though it should not matter here - and **communicate**!
