@@ -124,7 +124,7 @@ In your `training_{username}` project, create a new Quarto file.
 Delete any default text below the YAML header and set up a basic structure with Markdown headers:
 
 * Setup
-* Data Axploration
+* Data Exploration
 * Analysis
 * Visualization
 
@@ -152,8 +152,12 @@ library(ggspatial)
 
 ## Explore the Data
 
-### Read In and Plot
+:::callout-tip
+### Optional: include code here for programmatic download
+To enhance reproducibility for others interested in this analysis, include the code here to download the data from the original source (ideally, checking whether it has already been downloaded)!
+:::
 
+### Read In and Plot
 
 `sf` reads most vector formats (shapefiles, GeoPackages, GeoJSON, etc.) with a single function. The result looks and behaves like a `data.frame`, with one special column called `geometry` that holds the spatial information.
 
@@ -180,7 +184,7 @@ plot(ak_rgns_sf)
 
 ### Coordinate Reference Systems (CRS)
 
-![Source: [ESRI](images/r_geospatial_vector_analysis/projections-esri-blog.jpg)](https://www.esri.com/arcgis-blog/products/arcgis-pro/mapping/gcs_vs_pcs/){width="90%" fig-align="center"}
+![Source: [ESRI](https://www.esri.com/arcgis-blog/products/arcgis-pro/mapping/gcs_vs_pcs/)](images/r_geospatial_vector_analysis/projections-esri-blog.jpg){width="90%" fig-align="center"}
 
 Every spatial dataset has a **coordinate reference system (CRS)** that ties coordinates to locations on Earth. The CRS bundles two things:
 
@@ -204,7 +208,7 @@ The projection is how these points are mathematically transformed to represent t
 ![Source: [ESRI](https://www.esri.com/arcgis-blog/products/arcgis-pro/mapping/gcs_vs_pcs/)](images/r_geospatial_vector_analysis/geospatial-gcs-pcs.png){width="70%" fig-align="center"}
 
 
-This [blog post](https://www.esri.com/arcgis-blog/products/arcgis-pro/mapping/gcs_vs_pcs/) that explains these concepts in more detail with very helpful diagrams and examples.
+This [blog post](https://www.esri.com/arcgis-blog/products/arcgis-pro/mapping/gcs_vs_pcs/) that explains these concepts in more detail with helpful diagrams and examples.
 
 You can view what `crs` is set by using the function `st_crs()`.
 
