@@ -477,17 +477,25 @@ A key point in the default DESCRIPTION that we did not cover was the "Version" l
 :::{.panel-tabset}
 ### Major
 
+<span style="color:red">3</span>.2.9 {{< fa arrow-right >}} <span style="color:red">4</span>.0.0
+
 A significant change to the package that would be expected to break users code. This is updated very rarely when the package has been redesigned in some way.
 
 ### Minor
+
+1.<span style="color:red">1</span>.8 {{< fa arrow-right >}} 1.<span style="color:red">2</span>.0
 
 A minor version update means that new functionality has been added to the package. It might be new functions to improvements to existing functions that are compatible with most existing code.
 
 ### Patch
 
+1.1.<span style="color:red">2</span> {{< fa arrow-right >}} 1.1.<span style="color:red">3</span>
+
 Patch updates are bug fixes. They solve existing issues but don't do anything new.
 
 ### Dev 
+
+4.0.0 {{< fa arrow-right >}} 4.0.0.<span style="color:red">900</span>
 
 Dev versions are used during development and _this part is missing from release versions._ For example you might use a dev version when you give someone a beta version to test. A package with a dev version can be expected to change rapidly or have undiscovered issues.
 
