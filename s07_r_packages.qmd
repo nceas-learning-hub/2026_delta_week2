@@ -136,14 +136,19 @@ usethis::use_apache_license()
 ```
 
 ```         
-✔ Setting License field in DESCRIPTION to 'Apache License (>= 2.0)'
-✔ Writing 'LICENSE.md'
-✔ Adding '^LICENSE\\.md$' to '.Rbuildignore'
+✔ Adding "Apache License (>= 2)" to License.
+✔ Writing LICENSE.md.
+✔ Adding "^LICENSE\\.md$"" to .Rbuildignore.
 ```
 
 ## Add Code
 
-We are now ready to actually add code to our package! Go ahead and make a new R script in your "R" folder and name it "cv.R". Once you have that file, **click the collapsed menu below and copy/paste all of its contents into your empty "cv.R" file.**
+We are now ready to actually add a function to our package! To do this, do the following:
+
+1. Make a new R script in the "R" folder
+    - You can do this either manually or with the `usethis::use_r()` function
+2. Save that script as "cv.R"
+3. Click the collapsed menu below and copy/paste all of its contents into your new script
 
 <details> 
 <summary>`cv()` Function - Version 1</summary>
@@ -458,11 +463,21 @@ There are a handful of extra components that are worth surfacing here though.
 
 ### Dependencies
 
-If your R code depends on functions from another package, you must declare it as a "dependency" (i.e., a package on which your package _depends_). This will make that package also be installed when someone installs your package. As you might expect, **dependencies must be declared in the DESCRIPTION file.**
+If your R code depends on functions from another package, you must declare it as a "dependency" (i.e., a package on which your package _depends_). This will make that package also be installed when someone installs your package. As you might expect, **dependencies must be declared in the DESCRIPTION file.** You can add a dependency either manually or with the `usethis` package.
 
-If you don't have any dependencies, your DESCRIPTION won't have the relevant field so it's helpful to use the `usethis` package for your first dependency and then edit the DESCRIPTION manually for subsequent dependencies.
+:::{.panel-tabset}
+### Add Dependency Manually
 
-In order to add a dependency, copy run the code from the following chunk.
+In order to add a dependency manually, add the following lines to the end of your DESCRIPTION file. Be sure the package name is indented relative to the "Imports" field name.
+
+```
+Imports:
+    ggplot2
+```
+
+### Add Dependency with `usethis`
+
+In order to add a dependency with `usethis`, copy run the code from the following chunk. This will add a new line to the end of the DESCRIPTION labeled "Imports" and then another line indented below that with the `ggplot2` package named. 
 
 ```{r}
 #| label: add-depends
@@ -471,7 +486,9 @@ In order to add a dependency, copy run the code from the following chunk.
 usethis::use_package("ggplot2")
 ```
 
-This will add a new line to the end of the DESCRIPTION labeled "Imports" and then another line indented below that with the `ggplot2` package named. Note that you will get a warning from `devtools::check()` if you declare a dependency that isn't used in your package.
+:::
+
+Note that you will get a warning from `devtools::check()` if you declare a dependency that isn't used in your package.
 
 ### Version Numbers
 
