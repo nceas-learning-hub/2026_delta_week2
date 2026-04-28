@@ -109,7 +109,7 @@ Technically you only _need_ these two files listed if you're doing this in RStud
 
 ### 3. "R" Folder
 
-Within your package folder, make a new folder called "R". All of the functions in your package _must_ live in this folder but for now we can leave it empty.
+Within your package folder, make a new folder called "R". All of the functions in your package _must_ live in this folder but **for now we can leave it empty.**
 
 :::
 
@@ -147,7 +147,16 @@ We are now ready to actually add code to our package! Go ahead and make a new R 
 
 ```{r}
 #| label: cv-fxn_version-01
-cv <- function(x){
+cv <- function(x = NULL, na_rm = TRUE){
+
+  # Check input(s)
+  if(is.null(x) || is.numeric(x) != TRUE)
+    stop("'x' must be numeric")
+
+  if(is.logical(na_rm) != TRUE){
+    warning("'na_rm' must be a logical. Coercing to TRUE.")
+    na_rm <- TRUE 
+  }
 
   # Calculate SD and mean
   sd_x <- sd(x = x, na.rm = FALSE)
@@ -211,7 +220,16 @@ Double check that you're on the right track by confirming that your "cv.R" file 
 #' # Calculate CV
 #' cv(x = c(4, 5, 6))
 #' 
-cv <- function(x){
+cv <- function(x = NULL, na_rm = TRUE){
+
+  # Check input(s)
+  if(is.null(x) || is.numeric(x) != TRUE)
+    stop("'x' must be numeric")
+
+  if(is.logical(na_rm) != TRUE){
+    warning("'na_rm' must be a logical. Coercing to TRUE.")
+    na_rm <- TRUE 
+  }
 
   # Calculate SD and mean
   sd_x <- sd(x = x, na.rm = FALSE)
@@ -296,14 +314,14 @@ That done, we can write specific unit tests for the `cv()` function that use fun
 ## testthat::test_file(file.path("tests", "testthat", "test-cv.R"))
 
 # Error testing
-# test_that("Errors work as desired", {
-#   # None in this function (yet)
-#   expect_error()
-# })
+test_that("Errors work as desired", {
+   expect_error(cv(x = NULL), na_rm = TRUE)
+   expect_error(cv(x = "not a number", na_rm = TRUE))
+ })
 
 # Warning testing
 test_that("Warnings work as desired", {
-   expect_warning(cv(x = NULL))
+   expect_warning(x = c(1, 2, 3), na_rm = "false")
 })
 
 # Message testing
@@ -320,10 +338,12 @@ test_that("Outputs are as expected", {
   
   # Use the function to calculate CV and calculate it by hand
   fxn_cv <- cv(x = test_vec)
-  raw_cv <- (sd(x = test_vec, na.rm = FALSE) / mean(x = test_vec, na.rm = FALSE))
+  test_sd <- sd(x = test_vec, na.rm = FALSE)
+  test_avg <- mean(x = test_vec, na.rm = FALSE)
+  test_cv <- (test_sd / test_avg)
 
   # Check certain aspects of output
-  expect_equal(fxn_cv, raw_cv)
+  expect_equal(fxn_cv, test_cv)
   expect_true(class(fxn_cv) == "numeric")
 })
 ```
@@ -356,11 +376,7 @@ In addition to function-specific unit tests, the `devtools` package also include
 devtools::check()
 ```
 
-The `check()` function will do the following:
-
-1. Run `devtools::test()`
-2. Run `devtools::document()`
-3. Check the core package structure is compliant with CRAN standards
+The `check()` function will _both_, (1) run `devtools::test()` _and_ (2) check the core package structure is compliant with CRAN standards. **Even if you don't plan on submitting to CRAN, you should still run `check()`** because it will help make sure your package is working as desired.
 
 ### Checking By Doing
 
@@ -385,10 +401,10 @@ The simplest way of sharing your package is simply to put it in a GitHub reposit
 ```{r}
 #| label: install-from-github
 #| eval: false
-# Option 1: devtools
+# Option 1: `devtools`
 devtools::install_github("github-username/repository-name")
 
-# Option 2: librarian
+# Option 2: `librarian`
 librarian::shelf(github-username/repository-name)
 ```
 
@@ -418,7 +434,8 @@ For example, DataONE maintains the [DataONE R-Universe](https://dataoneorg.r-uni
 #| label: install-from-runiverse
 #| eval: false
 
-install.packages('codyn', repos = c('https://dataoneorg.r-universe.dev', 'https://cloud.r-project.org'))
+install.packages('codyn', repos = c('https://dataoneorg.r-universe.dev', 
+  'https://cloud.r-project.org'))
 ```
 
 **Prerequisites:**
