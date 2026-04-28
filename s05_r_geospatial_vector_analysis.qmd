@@ -44,7 +44,7 @@ The `sf` package is an R implementation of [Simple Features](https://en.wikipedi
 
 Most of the functions in this package starts with prefix `st_` which stands for *spatial* and *temporal*.
 
-In this lesson, our goal is to use a shapefile of Alaska regions and rivers, and data on population in Alaska by community to create a map that looks like this:
+In this lesson, our goal is to use spatial data on Alaska regions and community populations to summarize population per region.  From this, we will then create a map that shows regional populations, major rivers, and community locations:
 
 ![](images/r_geospatial_vector_analysis/alaska_population.png)
 
@@ -146,8 +146,8 @@ library(sf)
 ### Data visualization packages:
 library(ggplot2)
 library(leaflet)
-library(scales)
-library(ggspatial)
+library(ggspatial) 
+library(prettymapr) ### ggspatial depends on but does not import prettymapr for internal functions
 ```
 
 ## Explore the Data
@@ -164,7 +164,7 @@ To enhance reproducibility for others interested in this analysis, include the c
 Read in the shapefile of regional boundaries in Alaska using `read_sf()` and then create a basic plot of the data `plot()`.  Here we're adding a `_sf` suffix to our object name, to remind us that this is a Simple Features object with spatial information.
 
 ```r
-ak_rgns_sf <- read_sf(here("data/ak_regions_simp.shp"))
+ak_rgns_sf <- read_sf(here("data/ak_regions/ak_regions_simp.shp"))
 ```
 
 ```{r read_shp_sf}
@@ -652,10 +652,10 @@ The `group_by()` and `summarize()` functions can also be used on `sf` objects to
 
 ### Save the Spatial Object to a New File
 
-Save the spatial object using `write_sf()` and specifying the filename. The file extension controls the format (`.shp` = ESRI Shapefile, `.gpkg` = GeoPackage, `.geojson` = GeoJSON). GeoPackage is generally preferred over Shapefile for new work — it's a single file, supports long field names, and handles multiple layers.
+Save the spatial object using `write_sf()` and specifying the filename. The file extension controls the format (`.shp` = ESRI Shapefile, `.gpkg` = GeoPackage, `.geojson` = GeoJSON). GeoPackage is generally preferred over Shapefile for new work — it's a single file, is filesize efficient, supports long field names, and handles multiple layers.
 
 ```r
-write_sf(pop_rgn_3338_sf, here("data/ak_regions_population.shp"))
+write_sf(pop_rgn_3338_sf, here("data/ak_regions_population.gpkg"))
 ```
 
 ## Visualize Static Maps with `ggplot2`
@@ -671,15 +671,14 @@ We can plot any `sf` object using `geom_sf`:
 ggplot(pop_rgn_3338_sf) +
     geom_sf(aes(fill = total_pop)) +
     labs(fill = "Total Population") +
-    scale_fill_continuous(low = "khaki", high =  "firebrick",
-                          labels = comma, name = "Population") +
+    scale_fill_continuous(low = "khaki", high =  "firebrick") +
     theme_bw()
 ```
 
 Layer multiple geometries exactly like regular `ggplot2`.  Here it is best to separately assign each `data =` and `mapping = aes()` inside each `geom_sf` call.  Later geoms are visually stacked on top of earlier geoms.  Let's read in and add a simplified rivers dataset to the plot (already downloaded with the Alaska regions, and already in EPSG:3338), along with cities from our `pop_3338_sf` data:
 
 ```r
-rivers_3338_sf <- read_sf(here("data/ak_rivers_simp.shp"))
+rivers_3338_sf <- read_sf(here("data/ak_regions/ak_rivers_simp.shp"))
 ```
 
 ```{r}
@@ -707,8 +706,7 @@ ggplot() +
     labs(title = "Total Population by Alaska Region",
          fill = "Total Population") +
     scale_fill_continuous(low = "khaki",
-                          high =  "firebrick",
-                          labels = comma) +
+                          high =  "firebrick") +
     theme_bw() 
 
 ```
@@ -724,7 +722,7 @@ Then we will add `ggspatial::annotation_map_tile()` function to our plot to add 
 
 ```{r}
 pop_3857_sf <- st_transform(pop_3338_sf, 
-                         crs = 3857)
+                            crs = 3857)
 ```
 
 ```{r}
@@ -736,8 +734,7 @@ ggplot(data = pop_3857_sf) +
             fill = NA) +
     coord_sf(xlim = c(-16900000, -16300000), ylim = c(8400000, 9000000)) +
     scale_color_continuous(low = "darkkhaki",
-                           high =  "firebrick",
-                           labels = comma)
+                           high =  "firebrick")
 
 ```
 
@@ -773,11 +770,11 @@ pal <- colorNumeric(palette = "Reds", domain = pop_rgn_4326_sf$total_pop)
 pop_rgn_map <- leaflet(data = pop_rgn_4326_sf) %>%
   addProviderTiles("CartoDB.Positron") %>%  # <1>
   addPolygons(                              # <2>
-    fillColor  = ~pal(total_pop),           
+    fillColor   = ~pal(total_pop),           
     fillOpacity = 0.8,
-    color      = "white",
-    weight     = 1,
-    label      = ~paste0(region, ": ", comma(total_pop))
+    color       = "white",
+    weight      = 1,
+    label       = ~paste0(region, ": ", total_pop)
   ) %>%
   addLegend(
     position = "bottomleft",
@@ -805,7 +802,7 @@ pop_rgn_map <- pop_rgn_map %>% # <1>
         color       = "black",
         label       = ~ paste0(pop_4326_sf$city,     # <4>
                                ", population ", 
-                               comma(pop_4326_sf$population))
+                               pop_4326_sf$population)
     ) 
 ```
 1. On top of everything in the previous map, we can keep adding layers directly
