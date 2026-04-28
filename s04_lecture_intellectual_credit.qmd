@@ -18,7 +18,7 @@ After completing this session, you will be able to:
 ::: {.callout-note}
 ## Acknowledgments
 
-Parts of the content in this page was adapted from the Long Term Ecological Research (LTER) Network's course "Synthesis Skills for Early Career Researchers" (SSECR). Those materials can be found at [lter.github.io/ssecr](https://lter.github.io/ssecr/)
+Parts of the content in this page were adapted from the Long Term Ecological Research (LTER) Network's course "Synthesis Skills for Early Career Researchers" (SSECR). Those materials can be found at [lter.github.io/ssecr](https://lter.github.io/ssecr/)
 :::
 
 ## Intellectual Credit Context
@@ -42,6 +42,7 @@ In pairs, discuss (some of) the following:
     - Has that changed over time?
     - If so, how?
 - Other than degree of contribution, what other factors affect how much credit you feel someone deserves on a given project?
+    - For example, to what extent does the perceived (or actual) career benefit to someone supersede their contribution when allocating formal credit?
 
 :::
 
@@ -191,7 +192,7 @@ Then **develop a draft authorship policy** - either from scratch or starting wit
 
 ### Step 3: Announce Foci
 
-**Announcing ideas that may lead to manuscripts** is also critical in their view. It allows the whole team to contribute to developing the idea (creativity) and allows interested parties to opt-in to further development (transparency) and work on the project.
+**Announcing ideas that may lead to manuscripts** is also critical in their view. It allows the whole team to contribute to developing the idea (creativity) and allows interested parties to opt-in to further development (transparency) and work on the project. Note that Oliver _et al._ were identifying their best practices from an academic perspective [-@oliver_StrategiesEffective_2018] but this step is also applicable to non-manuscript products.
 
 ### Step 4: Identify Product Type
 
@@ -269,7 +270,7 @@ With others who reviewed the same authorship policy, discuss your main take-away
 
 ### Part 3 - Project Groups
 
-In your <u>project teams</u> (_not your breakout groups_), begin to build out your own authorship approach. **Remember that even if you "finish" this today, the document should be a living one that you feel confident that you could revisit and revise should circumstances change!** Here are a few key questions to get you started:
+In your <u>project teams</u> (_not your breakout groups_), begin to build out your own authorship approach. **Remember that even if you "finish" this today, the document should be a _living_ one that you feel confident that you could revisit and revise should circumstances change!** Here are a few key questions to get you started:
 
 - How will you let participants know about papers and products?
 - Beyond your core group, have others been involved or are likely to become involved in ways that might warrant intellectual credit?
