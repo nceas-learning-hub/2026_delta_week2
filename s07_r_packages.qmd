@@ -472,7 +472,7 @@ This will add a new line to the end of the DESCRIPTION labeled "Imports" and the
 
 A key point in the default DESCRIPTION that we did not cover was the "Version" line. Version information is located in the DESCRIPTION file and when you first create a package (if you follow our instructions above) the version is 0.0.0.9000. When you update your package, you need to "increment" that version number so that users can know--and cite!--which version of your package they used.
 
-**Each part of the version number implies a different severity of change**, where the earlier numbers represent more significant version changes and the later numbers represent more minor ones. The R package version number follows the format **major.minor.patch.dev**, see below for an in-depth explanation of each.
+**Each part of the version number implies a different severity of change**, where the earlier numbers represent more significant version changes and the later numbers represent more minor ones. The R package version number follows the format **major.minor.patch.dev**. Note that when you increment one part of the version number, you should reset all numbers to the right of the changed number to zero. See below for an in-depth explanation of each component of a version number.
 
 :::{.panel-tabset}
 ### Major
