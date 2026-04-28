@@ -29,7 +29,7 @@ Even if you don't plan on writing a package with such broad appeal such as, say,
 
 ## Get Ready
 
-Before we get started with the tutorial, go ahead and **make a new folder/project for the R package we'll start today.** Name that project/folder like so: `pkg_{lastname}` (e.g., `pkg_ohara` or `pkg_lyon`). 
+Before we get started with the tutorial, go ahead and **make a new folder/project for the R package we'll start today.** Name that project/folder like so: `{lastname}tools` (e.g., `oharatools` or `lyontools`). 
 
 :::{.callout-warning icon="false"}
 ### Packages & GitHub
@@ -72,9 +72,9 @@ Change the part of the first line after "Package: " to match the name of your fo
 #| label: make-description
 #| eval: false
 
-Package: pkg_{lastname}
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Package: mytools
+Title: What the Package Does in One Line and Title Case
+Version: 0.0.0.900
 Authors@R: 
     person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
 Description: What the package does (one paragraph).
@@ -86,6 +86,9 @@ RoxygenNote: 7.3.3
 ```
 
 </details>
+
+Once you have that file, **edit the Title, Authors\@R, and Description fields.**
+
 
 ### 2. ".Rbuildignore"
 
@@ -159,8 +162,8 @@ cv <- function(x = NULL, na_rm = TRUE){
   }
 
   # Calculate SD and mean
-  sd_x <- sd(x = x, na.rm = FALSE)
-  avg_x <- mean(x = x, na.rm = FALSE)
+  sd_x <- sd(x = x, na.rm = na_rm)
+  avg_x <- mean(x = x, na.rm = na_rm)
 
   # Calculate coefficient of variation
   coef_var <- sd_x / avg_x
@@ -190,13 +193,14 @@ Work through the tabs below to create documentation in your function and get you
 #' @description Calculates the Coefficient of Variation ("CV") of a vector of numbers.
 #' 
 #' @param x Vector of numbers
+#' @param na_rm Whether `NA`s should be removed. Defaults to `TRUE`
 #'
 #' @returns Coefficient of variation of the numbers provided to 'x'
 #' @export
 #' 
 #' @examples
 #' # Calculate CV
-#' cv(x = c(4, 5, 6))
+#' cv(x = c(4, 5, 6), na_rm = TRUE)
 #' 
 ```
 
@@ -212,13 +216,14 @@ Double check that you're on the right track by confirming that your "cv.R" file 
 #' @description Calculates the Coefficient of Variation ("CV") of a vector of numbers.
 #' 
 #' @param x Vector of numbers
+#' @param na_rm Whether `NA`s should be removed. Defaults to `TRUE`
 #'
 #' @returns Coefficient of variation of the numbers provided to 'x'
 #' @export
 #' 
 #' @examples
 #' # Calculate CV
-#' cv(x = c(4, 5, 6))
+#' cv(x = c(4, 5, 6), na_rm = TRUE)
 #' 
 cv <- function(x = NULL, na_rm = TRUE){
 
@@ -232,8 +237,8 @@ cv <- function(x = NULL, na_rm = TRUE){
   }
 
   # Calculate SD and mean
-  sd_x <- sd(x = x, na.rm = FALSE)
-  avg_x <- mean(x = x, na.rm = FALSE)
+  sd_x <- sd(x = x, na.rm = na_rm)
+  avg_x <- mean(x = x, na.rm = na_rm)
 
   # Calculate coefficient of variation
   coef_var <- sd_x / avg_x
@@ -300,7 +305,7 @@ This will create a "tests" folder that contains both an R script called "testtha
 That done, we can write specific unit tests for the `cv()` function that use functions from `testthat`. The syntax of a unit test with `testthat` can be a little alien until you get familiar with it so for now, **do the following:**
 
 1. Make a new script called "test-cv.R" in the "testthat" folder inside of the "tests" folder
-    - So the file path will be `pkg_{lastname} / tests / testthat / test-cv.R`
+    - So the file path will be `tests / testthat / test-cv.R`
 2. Click the collapsed menu below and copy/paste all of its contents into the "test-cv.R" file
 
 <details> 
@@ -315,13 +320,13 @@ That done, we can write specific unit tests for the `cv()` function that use fun
 
 # Error testing
 test_that("Errors work as desired", {
-   expect_error(cv(x = NULL), na_rm = TRUE)
+   expect_error(cv(x = NULL, na_rm = TRUE))
    expect_error(cv(x = "not a number", na_rm = TRUE))
  })
 
 # Warning testing
 test_that("Warnings work as desired", {
-   expect_warning(x = c(1, 2, 3), na_rm = "false")
+   expect_warning(cv(x = c(1, 2, 3), na_rm = "false"))
 })
 
 # Message testing
@@ -337,7 +342,7 @@ test_that("Outputs are as expected", {
   test_vec <- c(4, 5, 6)
   
   # Use the function to calculate CV and calculate it by hand
-  fxn_cv <- cv(x = test_vec)
+  fxn_cv <- cv(x = test_vec, na_rm = FALSE)
   test_sd <- sd(x = test_vec, na.rm = FALSE)
   test_avg <- mean(x = test_vec, na.rm = FALSE)
   test_cv <- (test_sd / test_avg)
