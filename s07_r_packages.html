@@ -644,6 +644,7 @@ DESCRIPTION Contents
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>RoxygenNote<span class="sc">:</span> <span class="dv">7</span>.<span class="fl">3.3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </details>
+<p>Once you have that file, <strong>edit the Title, Authors@R, and Description fields.</strong></p>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <p>Make a new file named <em>exactly</em> “.Rbuildignore”, ignore any warnings about creating a file that starts with a period. This file is to an R package as the .gitignore is to a Git repository; it tells the package what files in your folder should not be included in the R package. This is typically used to avoid including things that would break your package or if you have content necessary for the package build on your (i.e., the maintainer’s) end, but not useful to the end user.</p>
@@ -726,20 +727,18 @@ DESCRIPTION Contents
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' @title Calculate CV</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' @title Calculate CV</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' @description Calculates the Coefficient of Variation ("CV") of a vector of numbers.</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param x Vector of numbers</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param na_rm Whether `NA`s should be removed. Defaults to `TRUE`</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#' @returns Coefficient of variation of the numbers provided to 'x'</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#' @export</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examples</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#' # Calculate CV</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">#' cv(x = c(4, 5, 6), na_rm = TRUE)</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' @description Calculates the Coefficient of Variation ("CV") of a vector of numbers.</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param x Vector of numbers</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param na_rm Whether `NA`s should be removed. Defaults to `TRUE`</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#' @returns Coefficient of variation of the numbers provided to 'x'</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#' @export</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examples</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#' # Calculate CV</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">#' cv(x = c(4, 5, 6), na_rm = TRUE)</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Double check that you’re on the right track by confirming that your “cv.R” file looks like the code chunk in the collapsed menu below</p>
 <details>
@@ -823,7 +822,7 @@ DESCRIPTION Contents
 <ol type="1">
 <li>Make a new script called “test-cv.R” in the “testthat” folder inside of the “tests” folder
 <ul>
-<li>So the file path will be <code>pkg_{lastname} / tests / testthat / test-cv.R</code></li>
+<li>So the file path will be <code>tests / testthat / test-cv.R</code></li>
 </ul></li>
 <li>Click the collapsed menu below and copy/paste all of its contents into the “test-cv.R” file</li>
 </ol>
@@ -859,7 +858,7 @@ DESCRIPTION Contents
 <span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>  test_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
 <span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Use the function to calculate CV and calculate it by hand</span></span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>  fxn_cv <span class="ot">&lt;-</span> <span class="fu">cv</span>(<span class="at">x =</span> test_vec)</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>  fxn_cv <span class="ot">&lt;-</span> <span class="fu">cv</span>(<span class="at">x =</span> test_vec, <span class="at">na_rm =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>  test_sd <span class="ot">&lt;-</span> <span class="fu">sd</span>(<span class="at">x =</span> test_vec, <span class="at">na.rm =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>  test_avg <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="at">x =</span> test_vec, <span class="at">na.rm =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>  test_cv <span class="ot">&lt;-</span> (test_sd <span class="sc">/</span> test_avg)</span>
