@@ -679,13 +679,21 @@ DESCRIPTION Contents
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_apache_license</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<pre><code>✔ Setting License field in DESCRIPTION to 'Apache License (&gt;= 2.0)'
-✔ Writing 'LICENSE.md'
-✔ Adding '^LICENSE\\.md$' to '.Rbuildignore'</code></pre>
+<pre><code>✔ Adding "Apache License (&gt;= 2)" to License.
+✔ Writing LICENSE.md.
+✔ Adding "^LICENSE\\.md$"" to .Rbuildignore.</code></pre>
 </section>
 <section id="add-code" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="add-code"><span class="header-section-number">5</span> Add Code</h2>
-<p>We are now ready to actually add code to our package! Go ahead and make a new R script in your “R” folder and name it “cv.R”. Once you have that file, <strong>click the collapsed menu below and copy/paste all of its contents into your empty “cv.R” file.</strong></p>
+<p>We are now ready to actually add a function to our package! To do this, do the following:</p>
+<ol type="1">
+<li>Make a new R script in the “R” folder
+<ul>
+<li>You can do this either manually or with the <code>usethis::use_r()</code> function</li>
+</ul></li>
+<li>Save that script as “cv.R”</li>
+<li>Click the collapsed menu below and copy/paste all of its contents into your new script</li>
+</ol>
 <details>
 <summary>
 <code>cv()</code> Function - Version 1
@@ -948,34 +956,45 @@ DESCRIPTION Contents
 <p>There are a handful of extra components that are worth surfacing here though.</p>
 <section id="dependencies" class="level3" data-number="9.1">
 <h3 data-number="9.1" class="anchored" data-anchor-id="dependencies"><span class="header-section-number">9.1</span> Dependencies</h3>
-<p>If your R code depends on functions from another package, you must declare it as a “dependency” (i.e., a package on which your package <em>depends</em>). This will make that package also be installed when someone installs your package. As you might expect, <strong>dependencies must be declared in the DESCRIPTION file.</strong></p>
-<p>If you don’t have any dependencies, your DESCRIPTION won’t have the relevant field so it’s helpful to use the <code>usethis</code> package for your first dependency and then edit the DESCRIPTION manually for subsequent dependencies.</p>
-<p>In order to add a dependency, copy run the code from the following chunk.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_package</span>(<span class="st">"ggplot2"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If your R code depends on functions from another package, you must declare it as a “dependency” (i.e., a package on which your package <em>depends</em>). This will make that package also be installed when someone installs your package. As you might expect, <strong>dependencies must be declared in the DESCRIPTION file.</strong> You can add a dependency either manually or with the <code>usethis</code> package.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">Add Dependency Manually</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">Add Dependency with <code>usethis</code></a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<p>In order to add a dependency manually, add the following lines to the end of your DESCRIPTION file. Be sure the package name is indented relative to the “Imports” field name.</p>
+<pre><code>Imports:
+    ggplot2</code></pre>
 </div>
-<p>This will add a new line to the end of the DESCRIPTION labeled “Imports” and then another line indented below that with the <code>ggplot2</code> package named. Note that you will get a warning from <code>devtools::check()</code> if you declare a dependency that isn’t used in your package.</p>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<p>In order to add a dependency with <code>usethis</code>, copy run the code from the following chunk. This will add a new line to the end of the DESCRIPTION labeled “Imports” and then another line indented below that with the <code>ggplot2</code> package named.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_package</span>(<span class="st">"ggplot2"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+<p>Note that you will get a warning from <code>devtools::check()</code> if you declare a dependency that isn’t used in your package.</p>
 </section>
 <section id="version-numbers" class="level3" data-number="9.2">
 <h3 data-number="9.2" class="anchored" data-anchor-id="version-numbers"><span class="header-section-number">9.2</span> Version Numbers</h3>
 <p>A key point in the default DESCRIPTION that we did not cover was the “Version” line. Version information is located in the DESCRIPTION file and when you first create a package (if you follow our instructions above) the version is 0.0.0.9000. When you update your package, you need to “increment” that version number so that users can know–and cite!–which version of your package they used.</p>
 <p><strong>Each part of the version number implies a different severity of change</strong>, where the earlier numbers represent more significant version changes and the later numbers represent more minor ones. The R package version number follows the format <strong>major.minor.patch.dev</strong>. Note that when you increment one part of the version number, you should reset all numbers to the right of the changed number to zero. See below for an in-depth explanation of each component of a version number.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">Major</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">Minor</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-3" role="tab" aria-controls="tabset-5-3" aria-selected="false" href="">Patch</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-4" role="tab" aria-controls="tabset-5-4" aria-selected="false" href="">Dev</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true" href="">Major</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false" href="">Minor</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-3" role="tab" aria-controls="tabset-6-3" aria-selected="false" href="">Patch</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-4" role="tab" aria-controls="tabset-6-4" aria-selected="false" href="">Dev</a></li></ul>
 <div class="tab-content">
-<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
 <p><span style="color:red">3</span>.2.9 <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> <span style="color:red">4</span>.0.0</p>
 <p>A significant change to the package that would be expected to break users code. This is updated very rarely when the package has been redesigned in some way.</p>
 </div>
-<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
 <p>1.<span style="color:red">1</span>.8 <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> 1.<span style="color:red">2</span>.0</p>
 <p>A minor version update means that new functionality has been added to the package. It might be new functions to improvements to existing functions that are compatible with most existing code.</p>
 </div>
-<div id="tabset-5-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-3-tab">
+<div id="tabset-6-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-3-tab">
 <p>1.1.<span style="color:red">2</span> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> 1.1.<span style="color:red">3</span></p>
 <p>Patch updates are bug fixes. They solve existing issues but don’t do anything new.</p>
 </div>
-<div id="tabset-5-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-4-tab">
+<div id="tabset-6-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-4-tab">
 <p>4.0.0 <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> 4.0.0.<span style="color:red">900</span></p>
 <p>Dev versions are used during development and <em>this part is missing from release versions.</em> For example you might use a dev version when you give someone a beta version to test. A package with a dev version can be expected to change rapidly or have undiscovered issues.</p>
 <p>Typically the dev version will always just be the more recent release version with “.900” added to the end.</p>
