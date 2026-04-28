@@ -87,6 +87,9 @@ RoxygenNote: 7.3.3
 
 </details>
 
+Once you have that file, **edit the Title, Authors\@R, and Description fields.**
+
+
 ### 2. ".Rbuildignore"
 
 Make a new file named _exactly_ ".Rbuildignore", ignore any warnings about creating a file that starts with a period. This file is to an R package as the .gitignore is to a Git repository; it tells the package what files in your folder should not be included in the R package. This is typically used to avoid including things that would break your package or if you have content necessary for the package build on your (i.e., the maintainer's) end, but not useful to the end user.
@@ -185,8 +188,6 @@ Work through the tabs below to create documentation in your function and get you
 
 ```{r}
 #| label: cv-fxn-docs
-#' @title Calculate CV
-#'
 #' @title Calculate CV
 #'
 #' @description Calculates the Coefficient of Variation ("CV") of a vector of numbers.
@@ -304,7 +305,7 @@ This will create a "tests" folder that contains both an R script called "testtha
 That done, we can write specific unit tests for the `cv()` function that use functions from `testthat`. The syntax of a unit test with `testthat` can be a little alien until you get familiar with it so for now, **do the following:**
 
 1. Make a new script called "test-cv.R" in the "testthat" folder inside of the "tests" folder
-    - So the file path will be `pkg_{lastname} / tests / testthat / test-cv.R`
+    - So the file path will be `tests / testthat / test-cv.R`
 2. Click the collapsed menu below and copy/paste all of its contents into the "test-cv.R" file
 
 <details> 
@@ -341,7 +342,7 @@ test_that("Outputs are as expected", {
   test_vec <- c(4, 5, 6)
   
   # Use the function to calculate CV and calculate it by hand
-  fxn_cv <- cv(x = test_vec)
+  fxn_cv <- cv(x = test_vec, na_rm = FALSE)
   test_sd <- sd(x = test_vec, na.rm = FALSE)
   test_avg <- mean(x = test_vec, na.rm = FALSE)
   test_cv <- (test_sd / test_avg)
