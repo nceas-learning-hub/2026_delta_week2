@@ -83,6 +83,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/bootstrap/bootstrap-9b56d48366abb6eba4bb3e64c1f9567e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark-2c290697c3761eafa933aa4e33fa9a12.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="site_libs/bootstrap/bootstrap-9b56d48366abb6eba4bb3e64c1f9567e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -658,7 +660,7 @@ DESCRIPTION Contents
 </details>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<p>Within your package folder, make a new folder called “R”. All of the functions in your package <em>must</em> live in this folder but for now we can leave it empty.</p>
+<p>Within your package folder, make a new folder called “R”. All of the functions in your package <em>must</em> live in this folder but <strong>for now we can leave it empty.</strong></p>
 </div>
 </div>
 </div>
@@ -688,18 +690,27 @@ DESCRIPTION Contents
 <code>cv()</code> Function - Version 1
 </summary>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>cv <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>cv <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">na_rm =</span> <span class="cn">TRUE</span>){</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate SD and mean</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  sd_x <span class="ot">&lt;-</span> <span class="fu">sd</span>(<span class="at">x =</span> x, <span class="at">na.rm =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  avg_x <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="at">x =</span> x, <span class="at">na.rm =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Check input(s)</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.null</span>(x) <span class="sc">||</span> <span class="fu">is.numeric</span>(x) <span class="sc">!=</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">"'x' must be numeric"</span>)</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate coefficient of variation</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  coef_var <span class="ot">&lt;-</span> sd_x <span class="sc">/</span> avg_x</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Return that </span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(coef_var)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.logical</span>(na_rm) <span class="sc">!=</span> <span class="cn">TRUE</span>){</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">warning</span>(<span class="st">"'na_rm' must be a logical. Coercing to TRUE."</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    na_rm <span class="ot">&lt;-</span> <span class="cn">TRUE</span> </span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate SD and mean</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  sd_x <span class="ot">&lt;-</span> <span class="fu">sd</span>(<span class="at">x =</span> x, <span class="at">na.rm =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  avg_x <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="at">x =</span> x, <span class="at">na.rm =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate coefficient of variation</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  coef_var <span class="ot">&lt;-</span> sd_x <span class="sc">/</span> avg_x</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Return that </span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(coef_var)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </details>
 </section>
@@ -746,18 +757,27 @@ DESCRIPTION Contents
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#' # Calculate CV</span></span>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#' cv(x = c(4, 5, 6))</span></span>
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>cv <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>cv <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">na_rm =</span> <span class="cn">TRUE</span>){</span>
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate SD and mean</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  sd_x <span class="ot">&lt;-</span> <span class="fu">sd</span>(<span class="at">x =</span> x, <span class="at">na.rm =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  avg_x <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="at">x =</span> x, <span class="at">na.rm =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Check input(s)</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.null</span>(x) <span class="sc">||</span> <span class="fu">is.numeric</span>(x) <span class="sc">!=</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">"'x' must be numeric"</span>)</span>
 <span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate coefficient of variation</span></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  coef_var <span class="ot">&lt;-</span> sd_x <span class="sc">/</span> avg_x</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Return that </span></span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(coef_var)</span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.logical</span>(na_rm) <span class="sc">!=</span> <span class="cn">TRUE</span>){</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">warning</span>(<span class="st">"'na_rm' must be a logical. Coercing to TRUE."</span>)</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    na_rm <span class="ot">&lt;-</span> <span class="cn">TRUE</span> </span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate SD and mean</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>  sd_x <span class="ot">&lt;-</span> <span class="fu">sd</span>(<span class="at">x =</span> x, <span class="at">na.rm =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>  avg_x <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="at">x =</span> x, <span class="at">na.rm =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate coefficient of variation</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>  coef_var <span class="ot">&lt;-</span> sd_x <span class="sc">/</span> avg_x</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Return that </span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(coef_var)</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </details>
 </div>
@@ -812,14 +832,14 @@ DESCRIPTION Contents
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="do">## testthat::test_file(file.path("tests", "testthat", "test-cv.R"))</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Error testing</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># test_that("Errors work as desired", {</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   # None in this function (yet)</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">#   expect_error()</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># })</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">"Errors work as desired"</span>, {</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">expect_error</span>(<span class="fu">cv</span>(<span class="at">x =</span> <span class="cn">NULL</span>), <span class="at">na_rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>   <span class="fu">expect_error</span>(<span class="fu">cv</span>(<span class="at">x =</span> <span class="st">"not a number"</span>, <span class="at">na_rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a> })</span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Warning testing</span></span>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">"Warnings work as desired"</span>, {</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>   <span class="fu">expect_warning</span>(<span class="fu">cv</span>(<span class="at">x =</span> <span class="cn">NULL</span>))</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>   <span class="fu">expect_warning</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="at">na_rm =</span> <span class="st">"false"</span>)</span>
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Message testing</span></span>
@@ -836,12 +856,14 @@ DESCRIPTION Contents
 <span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Use the function to calculate CV and calculate it by hand</span></span>
 <span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>  fxn_cv <span class="ot">&lt;-</span> <span class="fu">cv</span>(<span class="at">x =</span> test_vec)</span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>  raw_cv <span class="ot">&lt;-</span> (<span class="fu">sd</span>(<span class="at">x =</span> test_vec, <span class="at">na.rm =</span> <span class="cn">FALSE</span>) <span class="sc">/</span> <span class="fu">mean</span>(<span class="at">x =</span> test_vec, <span class="at">na.rm =</span> <span class="cn">FALSE</span>))</span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Check certain aspects of output</span></span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(fxn_cv, raw_cv)</span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_true</span>(<span class="fu">class</span>(fxn_cv) <span class="sc">==</span> <span class="st">"numeric"</span>)</span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>  test_sd <span class="ot">&lt;-</span> <span class="fu">sd</span>(<span class="at">x =</span> test_vec, <span class="at">na.rm =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>  test_avg <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="at">x =</span> test_vec, <span class="at">na.rm =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>  test_cv <span class="ot">&lt;-</span> (test_sd <span class="sc">/</span> test_avg)</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Check certain aspects of output</span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(fxn_cv, test_cv)</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_true</span>(<span class="fu">class</span>(fxn_cv) <span class="sc">==</span> <span class="st">"numeric"</span>)</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </details>
 </div>
@@ -861,12 +883,7 @@ DESCRIPTION Contents
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">check</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>The <code>check()</code> function will do the following:</p>
-<ol type="1">
-<li>Run <code>devtools::test()</code></li>
-<li>Run <code>devtools::document()</code></li>
-<li>Check the core package structure is compliant with CRAN standards</li>
-</ol>
+<p>The <code>check()</code> function will <em>both</em>, (1) run <code>devtools::test()</code> <em>and</em> (2) check the core package structure is compliant with CRAN standards. <strong>Even if you don’t plan on submitting to CRAN, you should still run <code>check()</code></strong> because it will help make sure your package is working as desired.</p>
 </section>
 <section id="checking-by-doing" class="level3" data-number="7.3">
 <h3 data-number="7.3" class="anchored" data-anchor-id="checking-by-doing"><span class="header-section-number">7.3</span> Checking By Doing</h3>
@@ -885,10 +902,10 @@ DESCRIPTION Contents
 <div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
 <p>The simplest way of sharing your package is simply to put it in a GitHub repository. If you’ve been following along with this lesson, you’re already nicely set up for this! Once your package is on GitHub, anyone who can find that repository can install it directly from GitHub like so:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Option 1: devtools</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Option 1: `devtools`</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"github-username/repository-name"</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Option 2: librarian</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Option 2: `librarian`</span></span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>librarian<span class="sc">::</span><span class="fu">shelf</span>(github<span class="sc">-</span>username<span class="sc">/</span>repository<span class="sc">-</span>name)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>Prerequisites:</strong></p>
@@ -910,7 +927,8 @@ DESCRIPTION Contents
 <p>A newer approach is to link your package release to <a href="https://r-universe.dev">R-Universe</a>, which is an effective way to make it easy to test and maintain packages so that many people can install them using the familiar <code>install.pacakges()</code> function in R. In R-Universe, people and organizations can <a href="https://github.com/r-universe-org/help#how-to-setup-your-personal-universe">create their own <em>universe</em> of packages</a>, which represents a collection of packages that appear as a CRAN-compatible repository in R.</p>
 <p>For example, DataONE maintains the <a href="https://dataoneorg.r-universe.dev">DataONE R-Universe</a>, which lists the packages they actively maintain as an organization. So, any R-user that wants to install these packages can do so by adding our universe to their list of repositories, and then installing packages as normal. For example, to install the <code>codyn</code> package, one could use:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'codyn'</span>, <span class="at">repos =</span> <span class="fu">c</span>(<span class="st">'https://dataoneorg.r-universe.dev'</span>, <span class="st">'https://cloud.r-project.org'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'codyn'</span>, <span class="at">repos =</span> <span class="fu">c</span>(<span class="st">'https://dataoneorg.r-universe.dev'</span>, </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">'https://cloud.r-project.org'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>Prerequisites:</strong></p>
 <ul>
@@ -938,20 +956,24 @@ DESCRIPTION Contents
 <section id="version-numbers" class="level3" data-number="9.2">
 <h3 data-number="9.2" class="anchored" data-anchor-id="version-numbers"><span class="header-section-number">9.2</span> Version Numbers</h3>
 <p>A key point in the default DESCRIPTION that we did not cover was the “Version” line. Version information is located in the DESCRIPTION file and when you first create a package (if you follow our instructions above) the version is 0.0.0.9000. When you update your package, you need to “increment” that version number so that users can know–and cite!–which version of your package they used.</p>
-<p><strong>Each part of the version number implies a different severity of change</strong>, where the earlier numbers represent more significant version changes and the later numbers represent more minor ones. The R package version number follows the format <strong>major.minor.patch.dev</strong>, see below for an in-depth explanation of each.</p>
+<p><strong>Each part of the version number implies a different severity of change</strong>, where the earlier numbers represent more significant version changes and the later numbers represent more minor ones. The R package version number follows the format <strong>major.minor.patch.dev</strong>. Note that when you increment one part of the version number, you should reset all numbers to the right of the changed number to zero. See below for an in-depth explanation of each component of a version number.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">Major</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">Minor</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-3" role="tab" aria-controls="tabset-5-3" aria-selected="false" href="">Patch</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-4" role="tab" aria-controls="tabset-5-4" aria-selected="false" href="">Dev</a></li></ul>
 <div class="tab-content">
 <div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<p><span style="color:red">3</span>.2.9 <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> <span style="color:red">4</span>.0.0</p>
 <p>A significant change to the package that would be expected to break users code. This is updated very rarely when the package has been redesigned in some way.</p>
 </div>
 <div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<p>1.<span style="color:red">1</span>.8 <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> 1.<span style="color:red">2</span>.0</p>
 <p>A minor version update means that new functionality has been added to the package. It might be new functions to improvements to existing functions that are compatible with most existing code.</p>
 </div>
 <div id="tabset-5-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-3-tab">
+<p>1.1.<span style="color:red">2</span> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> 1.1.<span style="color:red">3</span></p>
 <p>Patch updates are bug fixes. They solve existing issues but don’t do anything new.</p>
 </div>
 <div id="tabset-5-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-4-tab">
+<p>4.0.0 <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> 4.0.0.<span style="color:red">900</span></p>
 <p>Dev versions are used during development and <em>this part is missing from release versions.</em> For example you might use a dev version when you give someone a beta version to test. A package with a dev version can be expected to change rapidly or have undiscovered issues.</p>
 <p>Typically the dev version will always just be the more recent release version with “.900” added to the end.</p>
 </div>
