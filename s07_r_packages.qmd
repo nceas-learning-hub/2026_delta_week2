@@ -29,7 +29,7 @@ Even if you don't plan on writing a package with such broad appeal such as, say,
 
 ## Get Ready
 
-Before we get started with the tutorial, go ahead and **make a new folder/project for the R package we'll start today.** Name that project/folder like so: `pkg_{lastname}` (e.g., `pkg_ohara` or `pkg_lyon`). 
+Before we get started with the tutorial, go ahead and **make a new folder/project for the R package we'll start today.** Name that project/folder like so: `{lastname}tools` (e.g., `oharatools` or `lyontools`). 
 
 :::{.callout-warning icon="false"}
 ### Packages & GitHub
