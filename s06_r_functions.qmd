@@ -134,7 +134,7 @@ airtemps == fahr_vec
 :::
 <!-- end exercise -->
 
-## Function Arguments and `return`
+## Functions: Input, Output, Environment
 
 ### Setting Argument Defaults
 
@@ -145,6 +145,28 @@ Function arguments often include a default value - in which case, the user can o
 
 Sometimes a user will include an argument that breaks the code - a character when the function expects a number, upper-case when expecting lower-case, etc.  Try to anticipate simple errors and include a way to identify and handle them in the function: try to correct the error on the fly, or use `stop()` to return a useful error message to the user.
 :::
+
+```{r}
+convert_temp <- function(t, scale = 'f') {
+    if(scale == "c") {
+        result = t * 9/5 + 32
+    } else {
+        result  = (t - 32) * 5/9
+    }
+    return(round(result, 3))
+}
+```
+
+```{r}
+convert_temp(t = airtemps)
+convert_temp(t = airtemps, scale = 'Celsius')
+```
+
+### Error handling!
+
+Sometimes a user will include an argument that breaks the code - a character when the function expects a number, upper-case when expecting lower-case, etc.  Try to anticipate simple errors and include a way to identify and handle them in the function: try to correct the error on the fly, or use `stop()` to return a useful error message to the user.
+
+Consider some common mistakes a usermight make with `convert_temp()` and how might we deal with them?
 
 ```{r}
 convert_temp <- function(t, scale = 'f') {
@@ -164,11 +186,6 @@ convert_temp <- function(t, scale = 'f') {
 2. If `scale` is not one of the expected values, generate a sensible error with `stop()`
 3. We know the values are valid now, so we can use a simple if/else to do the correct calculation!
 
-```{r}
-convert_temp(t = airtemps)
-convert_temp(t = airtemps, scale = 'Celsius')
-```
-
 ### Returning Values
 
 Use `return(x)` to end the function and hand the resulting value back to the user.  To provide multiple values back to a user, consider more complex data structures like a dataframe (well structured) or a named list (very flexible).
@@ -186,6 +203,7 @@ convert_f_to_c_k <- function(f) {
 }
 
 temps_df <- convert_f_to_c_k(seq(-100, 100, 50))
+temps_df
 ```
 
 ## Named List
@@ -199,6 +217,22 @@ convert_f_to_c_k <- function(f) {
 }
 
 temps_list <- convert_f_to_c_k(seq(-100, 100, 50))
+temps_list
+```
+
+## Unexpected?
+Without an explicit `return()` we might get unexpected results!
+
+```{r}
+convert_f_to_c_k <- function(f) {
+  c <- (f - 32) * 5/9
+  k  <- c + 273.15
+  out_list <- list(fahr = f, celsius = c, kelvin = k)
+  print('calculation successful!')
+}
+
+temps_oops <- convert_f_to_c_k(seq(-100, 100, 50))
+temps_oops
 ```
 
 :::
@@ -284,7 +318,7 @@ broom::tidy(lapply_results[[3]]) # <2>
 
 :::callout-tip
 ## Named Functions vs Anonymous Functions
-In the examples above, we used named functions (`sqrt` defined in base R, `calc_bill_model` defined by our own code).  The `map` and `apply` functions also work well with "anonymous" functions - small tasks where the code is only needed once and can be discarded after.  The function is created on the fly and not assigned to a named object.
+In the examples above, we used **named** functions (`sqrt` defined in base R, `calc_bill_model` defined by our own code).  The `map` and `apply` functions also work well with **anonymous** functions - small tasks where the code is only needed once and can be discarded after.  The function is created on the fly and not assigned to a named object.
 
 :::: {.panel-tabset}
 
@@ -293,6 +327,7 @@ Using `function()` but not assigning it to an object, just giving it directly to
 ```{r}
 base::sapply(X = 1:3, FUN = function(x) x + 1)
 ```
+
 ## Shorthand (R4.1+)
 R 4.1 introduced a shorthand for `function(args) {expr}` using a backslash: `\(args) expr`:
 ```{r}
