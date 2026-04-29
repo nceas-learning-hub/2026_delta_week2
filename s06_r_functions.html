@@ -550,7 +550,7 @@ window.Quarto = {
   <li><a href="#functions-input-output-environment" id="toc-functions-input-output-environment" class="nav-link" data-scroll-target="#functions-input-output-environment"><span class="header-section-number">3</span> Functions: Input, Output, Environment</a>
   <ul class="collapse">
   <li><a href="#setting-argument-defaults" id="toc-setting-argument-defaults" class="nav-link" data-scroll-target="#setting-argument-defaults"><span class="header-section-number">3.1</span> Setting Argument Defaults</a></li>
-  <li><a href="#error-handling-1" id="toc-error-handling-1" class="nav-link" data-scroll-target="#error-handling-1"><span class="header-section-number">3.2</span> Error handling!</a></li>
+  <li><a href="#error-handling" id="toc-error-handling" class="nav-link" data-scroll-target="#error-handling"><span class="header-section-number">3.2</span> Error handling!</a></li>
   <li><a href="#returning-values" id="toc-returning-values" class="nav-link" data-scroll-target="#returning-values"><span class="header-section-number">3.3</span> Returning Values</a></li>
   <li><a href="#functions-and-environments" id="toc-functions-and-environments" class="nav-link" data-scroll-target="#functions-and-environments"><span class="header-section-number">3.4</span> Functions and Environments</a></li>
   </ul></li>
@@ -741,19 +741,6 @@ window.Quarto = {
 <section id="setting-argument-defaults" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="setting-argument-defaults"><span class="header-section-number">3.1</span> Setting Argument Defaults</h3>
 <p>Function arguments often include a default value - in which case, the user can opt to simply not assign a value. Here, <code>convert_temp()</code> allows the user to specify the scale of their input, defaulting to Fahrenheit (<code>scale = 'f'</code>).</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Error handling!
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Sometimes a user will include an argument that breaks the code - a character when the function expects a number, upper-case when expecting lower-case, etc. Try to anticipate simple errors and include a way to identify and handle them in the function: try to correct the error on the fly, or use <code>stop()</code> to return a useful error message to the user.</p>
-</div>
-</div>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>convert_temp <span class="ot">&lt;-</span> <span class="cf">function</span>(t, <span class="at">scale =</span> <span class="st">'f'</span>) {</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(scale <span class="sc">==</span> <span class="st">"c"</span>) {</span>
@@ -775,8 +762,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="error-handling-1" class="level3" data-number="3.2">
-<h3 data-number="3.2" class="anchored" data-anchor-id="error-handling-1"><span class="header-section-number">3.2</span> Error handling!</h3>
+<section id="error-handling" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="error-handling"><span class="header-section-number">3.2</span> Error handling!</h3>
 <p>Sometimes a user will include an argument that breaks the code - a character when the function expects a number, upper-case when expecting lower-case, etc. Try to anticipate simple errors and include a way to identify and handle them in the function: try to correct the error on the fly, or use <code>stop()</code> to return a useful error message to the user.</p>
 <p>Consider some common mistakes a usermight make with <code>convert_temp()</code> and how might we deal with them?</p>
 <div class="cell">
@@ -1180,7 +1167,7 @@ Note
 <h2 data-number="6" class="anchored" data-anchor-id="exercises"><span class="header-section-number">6</span> Exercises</h2>
 <p>In this sequence of exercises, we will build up a function to calculate the weight of Chinook salmon based only on length, using a simple length-to-width formula <span class="math inline">\(W = aL^b\)</span>.</p>
 <div class="callout callout-style-default callout-exercise no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1189,12 +1176,12 @@ Note
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse show">
+<div id="callout-9" class="callout-9-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="callout-exercise">
 <p>Write a function that takes salmon length, in inches, and returns the corresponding weight, in pounds. The simple model is <span class="math inline">\(W = aL^b\)</span>; for Chinook salmon, let’s use <span class="math inline">\(a=0.00057\)</span> and <span class="math inline">\(b=2.9\)</span> (for inches to pounds). Give it a name that indicates the purpose of the function. For testing purposes, a 30” salmon should be about 11 lb; a 42” salmon is about 27 lb; and a 60” is about 82 lb.</p>
 <div class="callout callout-style-default callout-answer no-icon callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1203,7 +1190,7 @@ Note
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="callout-answer">
 <div class="cell">
@@ -1229,7 +1216,7 @@ Note
 </div>
 <!-- end exercise: basic function -->
 <div class="callout callout-style-default callout-exercise no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1238,7 +1225,7 @@ Note
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-12" class="callout-12-contents callout-collapse collapse show">
+<div id="callout-11" class="callout-11-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="callout-exercise">
 <p>The formula <span class="math inline">\(W = aL^b\)</span> is useful for many different fish species, but the <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> values differ from species to species. Generalize the function in two ways:</p>
@@ -1248,7 +1235,7 @@ Note
 </ol>
 <p>To test the functionality, a California kelp bass model might use <span class="math inline">\(a=0.000779\)</span> (for length in inches) and <span class="math inline">\(b=3.01\)</span>; a 12-inch bass is about 1.4 lb, while a 22 inch is about 8.5 lb.</p>
 <div class="callout callout-style-default callout-answer no-icon callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1257,7 +1244,7 @@ Note
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="callout-answer">
 <div class="cell">
@@ -1294,7 +1281,7 @@ Note
 </div>
 <!-- end exercise: arguments -->
 <div class="callout callout-style-default callout-exercise no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1303,7 +1290,7 @@ Note
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-14" class="callout-14-contents callout-collapse collapse show">
+<div id="callout-13" class="callout-13-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="callout-exercise">
 <p>What kinds of errors might someone make when applying this function - either misunderstandings or typos? Some things we might check:</p>
@@ -1313,7 +1300,7 @@ Note
 <li>What other errors might a user make?</li>
 </ul>
 <div class="callout callout-style-default callout-answer no-icon callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1322,7 +1309,7 @@ Note
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="callout-answer">
 <div class="cell">
@@ -1358,7 +1345,7 @@ Note
 </div>
 <!-- end exercise: error handling -->
 <div class="callout callout-style-default callout-exercise no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1367,12 +1354,12 @@ Note
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-16" class="callout-16-contents callout-collapse collapse show">
+<div id="callout-15" class="callout-15-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="callout-exercise">
 <p>Create some basic documentation for your function using the <code>roxygen2</code> syntax.</p>
 <div class="callout callout-style-default callout-answer no-icon callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1381,7 +1368,7 @@ Note
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="callout-answer">
 <p>Documentation might look something like this:</p>
@@ -1429,7 +1416,7 @@ Note
 <section id="challenge-exercise" class="level3" data-number="6.1">
 <h3 data-number="6.1" class="anchored" data-anchor-id="challenge-exercise"><span class="header-section-number">6.1</span> Challenge Exercise</h3>
 <div class="callout callout-style-default callout-exercise no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1438,7 +1425,7 @@ Note
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-18" class="callout-18-contents callout-collapse collapse show">
+<div id="callout-17" class="callout-17-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="callout-exercise">
 <p>Use your function to iterate over a list of several species of fish. Copy this code to create a list of fish lengths and parameters:</p>
@@ -1454,7 +1441,7 @@ Note
 </div>
 <p>Hint: you may want to create an anonymous function that takes a list of parameters and feeds them into your <code>fish_l_to_w()</code> function, then use <code>map()</code> or <code>lapply()</code> to apply it to each element of the list.</p>
 <div class="callout callout-style-default callout-answer no-icon callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1463,7 +1450,7 @@ Note
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="callout-answer">
 <div class="tabset-margin-container"></div><div class="panel-tabset">
