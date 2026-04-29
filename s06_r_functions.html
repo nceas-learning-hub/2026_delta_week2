@@ -547,11 +547,12 @@ window.Quarto = {
   <li><a href="#function-basics" id="toc-function-basics" class="nav-link" data-scroll-target="#function-basics"><span class="header-section-number">2.1</span> Function Basics</a></li>
   <li><a href="#example-temperature-conversion" id="toc-example-temperature-conversion" class="nav-link" data-scroll-target="#example-temperature-conversion"><span class="header-section-number">2.2</span> Example: Temperature Conversion</a></li>
   </ul></li>
-  <li><a href="#function-arguments-and-return" id="toc-function-arguments-and-return" class="nav-link" data-scroll-target="#function-arguments-and-return"><span class="header-section-number">3</span> Function Arguments and <code>return</code></a>
+  <li><a href="#functions-input-output-environment" id="toc-functions-input-output-environment" class="nav-link" data-scroll-target="#functions-input-output-environment"><span class="header-section-number">3</span> Functions: Input, Output, Environment</a>
   <ul class="collapse">
   <li><a href="#setting-argument-defaults" id="toc-setting-argument-defaults" class="nav-link" data-scroll-target="#setting-argument-defaults"><span class="header-section-number">3.1</span> Setting Argument Defaults</a></li>
-  <li><a href="#returning-values" id="toc-returning-values" class="nav-link" data-scroll-target="#returning-values"><span class="header-section-number">3.2</span> Returning Values</a></li>
-  <li><a href="#functions-and-environments" id="toc-functions-and-environments" class="nav-link" data-scroll-target="#functions-and-environments"><span class="header-section-number">3.3</span> Functions and Environments</a></li>
+  <li><a href="#error-handling-1" id="toc-error-handling-1" class="nav-link" data-scroll-target="#error-handling-1"><span class="header-section-number">3.2</span> Error handling!</a></li>
+  <li><a href="#returning-values" id="toc-returning-values" class="nav-link" data-scroll-target="#returning-values"><span class="header-section-number">3.3</span> Returning Values</a></li>
+  <li><a href="#functions-and-environments" id="toc-functions-and-environments" class="nav-link" data-scroll-target="#functions-and-environments"><span class="header-section-number">3.4</span> Functions and Environments</a></li>
   </ul></li>
   <li><a href="#functions-use-cases" id="toc-functions-use-cases" class="nav-link" data-scroll-target="#functions-use-cases"><span class="header-section-number">4</span> Functions: Use Cases</a>
   <ul class="collapse">
@@ -735,8 +736,8 @@ window.Quarto = {
 </section>
 </section>
 </section>
-<section id="function-arguments-and-return" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="function-arguments-and-return"><span class="header-section-number">3</span> Function Arguments and <code>return</code></h2>
+<section id="functions-input-output-environment" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="functions-input-output-environment"><span class="header-section-number">3</span> Functions: Input, Output, Environment</h2>
 <section id="setting-argument-defaults" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="setting-argument-defaults"><span class="header-section-number">3.1</span> Setting Argument Defaults</h3>
 <p>Function arguments often include a default value - in which case, the user can opt to simply not assign a value. Here, <code>convert_temp()</code> allows the user to specify the scale of their input, defaulting to Fahrenheit (<code>scale = 'f'</code>).</p>
@@ -754,74 +755,129 @@ window.Quarto = {
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-8"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-8-1"><a href="#annotated-cell-8-1" aria-hidden="true" tabindex="-1"></a>convert_temp <span class="ot">&lt;-</span> <span class="cf">function</span>(t, <span class="at">scale =</span> <span class="st">'f'</span>) {</span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="1">1</button><span id="annotated-cell-8-2" class="code-annotation-target"><a href="#annotated-cell-8-2" aria-hidden="true" tabindex="-1"></a>    scale <span class="ot">=</span> <span class="fu">tolower</span>(<span class="fu">substr</span>(scale, <span class="dv">1</span>, <span class="dv">1</span>))</span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="2">2</button><span id="annotated-cell-8-3" class="code-annotation-target"><a href="#annotated-cell-8-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="sc">!</span>scale <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">'c'</span>, <span class="st">'f'</span>)) {</span>
-<span id="annotated-cell-8-4"><a href="#annotated-cell-8-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">stop</span>(<span class="st">'scale must be either "c" or "f"'</span>)</span>
-<span id="annotated-cell-8-5"><a href="#annotated-cell-8-5" aria-hidden="true" tabindex="-1"></a>    }</span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="3">3</button><span id="annotated-cell-8-6" class="code-annotation-target"><a href="#annotated-cell-8-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(scale <span class="sc">==</span> <span class="st">"c"</span>) {</span>
-<span id="annotated-cell-8-7"><a href="#annotated-cell-8-7" aria-hidden="true" tabindex="-1"></a>        result <span class="ot">=</span> t <span class="sc">*</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">5</span> <span class="sc">+</span> <span class="dv">32</span></span>
-<span id="annotated-cell-8-8"><a href="#annotated-cell-8-8" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="annotated-cell-8-9"><a href="#annotated-cell-8-9" aria-hidden="true" tabindex="-1"></a>        result  <span class="ot">=</span> (t <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span></span>
-<span id="annotated-cell-8-10"><a href="#annotated-cell-8-10" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="annotated-cell-8-11"><a href="#annotated-cell-8-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">round</span>(result, <span class="dv">3</span>))</span>
-<span id="annotated-cell-8-12"><a href="#annotated-cell-8-12" aria-hidden="true" tabindex="-1"></a>}</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>convert_temp <span class="ot">&lt;-</span> <span class="cf">function</span>(t, <span class="at">scale =</span> <span class="st">'f'</span>) {</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(scale <span class="sc">==</span> <span class="st">"c"</span>) {</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        result <span class="ot">=</span> t <span class="sc">*</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">5</span> <span class="sc">+</span> <span class="dv">32</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>        result  <span class="ot">=</span> (t <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">round</span>(result, <span class="dv">3</span>))</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">convert_temp</span>(<span class="at">t =</span> airtemps)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 100.000  -0.944  25.556   0.000</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">convert_temp</span>(<span class="at">t =</span> airtemps, <span class="at">scale =</span> <span class="st">'Celsius'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 100.000  -0.944  25.556   0.000</code></pre>
+</div>
+</div>
+</section>
+<section id="error-handling-1" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="error-handling-1"><span class="header-section-number">3.2</span> Error handling!</h3>
+<p>Sometimes a user will include an argument that breaks the code - a character when the function expects a number, upper-case when expecting lower-case, etc. Try to anticipate simple errors and include a way to identify and handle them in the function: try to correct the error on the fly, or use <code>stop()</code> to return a useful error message to the user.</p>
+<p>Consider some common mistakes a usermight make with <code>convert_temp()</code> and how might we deal with them?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-11"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-11-1"><a href="#annotated-cell-11-1" aria-hidden="true" tabindex="-1"></a>convert_temp <span class="ot">&lt;-</span> <span class="cf">function</span>(t, <span class="at">scale =</span> <span class="st">'f'</span>) {</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="1">1</button><span id="annotated-cell-11-2" class="code-annotation-target"><a href="#annotated-cell-11-2" aria-hidden="true" tabindex="-1"></a>    scale <span class="ot">=</span> <span class="fu">tolower</span>(<span class="fu">substr</span>(scale, <span class="dv">1</span>, <span class="dv">1</span>))</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="2">2</button><span id="annotated-cell-11-3" class="code-annotation-target"><a href="#annotated-cell-11-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="sc">!</span>scale <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">'c'</span>, <span class="st">'f'</span>)) {</span>
+<span id="annotated-cell-11-4"><a href="#annotated-cell-11-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">stop</span>(<span class="st">'scale must be either "c" or "f"'</span>)</span>
+<span id="annotated-cell-11-5"><a href="#annotated-cell-11-5" aria-hidden="true" tabindex="-1"></a>    }</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="3">3</button><span id="annotated-cell-11-6" class="code-annotation-target"><a href="#annotated-cell-11-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(scale <span class="sc">==</span> <span class="st">"c"</span>) {</span>
+<span id="annotated-cell-11-7"><a href="#annotated-cell-11-7" aria-hidden="true" tabindex="-1"></a>        result <span class="ot">=</span> t <span class="sc">*</span> <span class="dv">9</span><span class="sc">/</span><span class="dv">5</span> <span class="sc">+</span> <span class="dv">32</span></span>
+<span id="annotated-cell-11-8"><a href="#annotated-cell-11-8" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="annotated-cell-11-9"><a href="#annotated-cell-11-9" aria-hidden="true" tabindex="-1"></a>        result  <span class="ot">=</span> (t <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span></span>
+<span id="annotated-cell-11-10"><a href="#annotated-cell-11-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="annotated-cell-11-11"><a href="#annotated-cell-11-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">round</span>(result, <span class="dv">3</span>))</span>
+<span id="annotated-cell-11-12"><a href="#annotated-cell-11-12" aria-hidden="true" tabindex="-1"></a>}</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-8" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-11" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-8" data-code-lines="2" data-code-annotation="1">What if user enters <code>scale = "Celsius"</code>? <code>substr(x, 1, 1)</code> grabs just the first letter, and <code>tolower</code> forces it to lower case</span>
+<span data-code-cell="annotated-cell-11" data-code-lines="2" data-code-annotation="1">What if user enters <code>scale = "Celsius"</code>? <code>substr(x, 1, 1)</code> grabs just the first letter, and <code>tolower</code> forces it to lower case</span>
 </dd>
-<dt data-target-cell="annotated-cell-8" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-11" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-8" data-code-lines="3" data-code-annotation="2">If <code>scale</code> is not one of the expected values, generate a sensible error with <code>stop()</code></span>
+<span data-code-cell="annotated-cell-11" data-code-lines="3" data-code-annotation="2">If <code>scale</code> is not one of the expected values, generate a sensible error with <code>stop()</code></span>
 </dd>
-<dt data-target-cell="annotated-cell-8" data-target-annotation="3">3</dt>
+<dt data-target-cell="annotated-cell-11" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-8" data-code-lines="6" data-code-annotation="3">We know the values are valid now, so we can use a simple if/else to do the correct calculation!</span>
+<span data-code-cell="annotated-cell-11" data-code-lines="6" data-code-annotation="3">We know the values are valid now, so we can use a simple if/else to do the correct calculation!</span>
 </dd>
 </dl>
 </div>
 </div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">convert_temp</span>(<span class="at">t =</span> airtemps)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 100.000  -0.944  25.556   0.000</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">convert_temp</span>(<span class="at">t =</span> airtemps, <span class="at">scale =</span> <span class="st">'Celsius'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 413.60  86.54 172.40  89.60</code></pre>
-</div>
-</div>
 </section>
-<section id="returning-values" class="level3" data-number="3.2">
-<h3 data-number="3.2" class="anchored" data-anchor-id="returning-values"><span class="header-section-number">3.2</span> Returning Values</h3>
+<section id="returning-values" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="returning-values"><span class="header-section-number">3.3</span> Returning Values</h3>
 <p>Use <code>return(x)</code> to end the function and hand the resulting value back to the user. To provide multiple values back to a user, consider more complex data structures like a dataframe (well structured) or a named list (very flexible).</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Dataframe</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Named List</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Dataframe</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Named List</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Unexpected?</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>convert_f_to_c_k <span class="ot">&lt;-</span> <span class="cf">function</span>(f) {</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  c <span class="ot">&lt;-</span> (f <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  k  <span class="ot">&lt;-</span> c <span class="sc">+</span> <span class="fl">273.15</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  out_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">fahr =</span> f, <span class="at">celsius =</span> c, <span class="at">kelvin =</span> k)</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(out_df)</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>temps_df <span class="ot">&lt;-</span> <span class="fu">convert_f_to_c_k</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">50</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>convert_f_to_c_k <span class="ot">&lt;-</span> <span class="cf">function</span>(f) {</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  c <span class="ot">&lt;-</span> (f <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  k  <span class="ot">&lt;-</span> c <span class="sc">+</span> <span class="fl">273.15</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  out_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">fahr =</span> f, <span class="at">celsius =</span> c, <span class="at">kelvin =</span> k)</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(out_list)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  out_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">fahr =</span> f, <span class="at">celsius =</span> c, <span class="at">kelvin =</span> k)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(out_df)</span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>temps_list <span class="ot">&lt;-</span> <span class="fu">convert_f_to_c_k</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">50</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>temps_df <span class="ot">&lt;-</span> <span class="fu">convert_f_to_c_k</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">50</span>))</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>temps_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  fahr   celsius   kelvin
+1 -100 -73.33333 199.8167
+2  -50 -45.55556 227.5944
+3    0 -17.77778 255.3722
+4   50  10.00000 283.1500
+5  100  37.77778 310.9278</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>convert_f_to_c_k <span class="ot">&lt;-</span> <span class="cf">function</span>(f) {</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  c <span class="ot">&lt;-</span> (f <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  k  <span class="ot">&lt;-</span> c <span class="sc">+</span> <span class="fl">273.15</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  out_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">fahr =</span> f, <span class="at">celsius =</span> c, <span class="at">kelvin =</span> k)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(out_list)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>temps_list <span class="ot">&lt;-</span> <span class="fu">convert_f_to_c_k</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">50</span>))</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>temps_list</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$fahr
+[1] -100  -50    0   50  100
+
+$celsius
+[1] -73.33333 -45.55556 -17.77778  10.00000  37.77778
+
+$kelvin
+[1] 199.8167 227.5944 255.3722 283.1500 310.9278</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p>Without an explicit <code>return()</code> we might get unexpected results!</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>convert_f_to_c_k <span class="ot">&lt;-</span> <span class="cf">function</span>(f) {</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  c <span class="ot">&lt;-</span> (f <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  k  <span class="ot">&lt;-</span> c <span class="sc">+</span> <span class="fl">273.15</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  out_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">fahr =</span> f, <span class="at">celsius =</span> c, <span class="at">kelvin =</span> k)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">'calculation successful!'</span>)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>temps_oops <span class="ot">&lt;-</span> <span class="fu">convert_f_to_c_k</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">50</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "calculation successful!"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>temps_oops</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "calculation successful!"</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -840,28 +896,28 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="functions-and-environments" class="level3" data-number="3.3">
-<h3 data-number="3.3" class="anchored" data-anchor-id="functions-and-environments"><span class="header-section-number">3.3</span> Functions and Environments</h3>
+<section id="functions-and-environments" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="functions-and-environments"><span class="header-section-number">3.4</span> Functions and Environments</h3>
 <p>When a function is called, it exists in some <strong>environment</strong> within R; this is its <strong>parent</strong> environment (when working interactively this is the <strong>global</strong> environment). The function performs all its calculations in a temporary environment, <strong>child</strong> of the parent. When the function completes, it returns a value to the <strong>parent</strong> then that temporary <strong>child</strong> environment disappears, taking any intermediate values with it. This can cause confusing behavior.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span>       <span class="do">### create object a in parent environment</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>add_one <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> x <span class="sc">+</span> <span class="dv">1</span> <span class="do">### increment argument by 1</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="dv">2</span> <span class="do">### modify a in function environment</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  b <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="dv">3</span> <span class="do">### create b in function environment</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x)  <span class="do">### only x is returned back to parent</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="fu">add_one</span>(a)   <span class="do">### give `a` as arg to the function; returns the value a + 1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span>       <span class="do">### create object a in parent environment</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>add_one <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> x <span class="sc">+</span> <span class="dv">1</span> <span class="do">### increment argument by 1</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="dv">2</span> <span class="do">### modify a in function environment</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  b <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="dv">3</span> <span class="do">### create b in function environment</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x)  <span class="do">### only x is returned back to parent</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="fu">add_one</span>(a)   <span class="do">### give `a` as arg to the function; returns the value a + 1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>a            <span class="do">### value in parent env is unchanged by calcs in the function</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>a            <span class="do">### value in parent env is unchanged by calcs in the function</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exists</span>(<span class="st">'b'</span>)  <span class="do">### objects created in the function disappear when function ends</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exists</span>(<span class="st">'b'</span>)  <span class="do">### objects created in the function disappear when function ends</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
@@ -887,18 +943,18 @@ window.Quarto = {
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <p>Apply the square root function <code>sqrt()</code> to each element of a vector of numbers. NOTE, if <code>nums</code> were a vector, this would be trivial since <code>sqrt</code> already takes advantage of vectorization; here we made <code>nums</code> a list just for fun.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-28"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-28-1"><a href="#annotated-cell-28-1" aria-hidden="true" tabindex="-1"></a>nums <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">9</span>, <span class="dv">49</span>, <span class="dv">101</span>, pi)</span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-28" data-target-annotation="1">1</button><span id="annotated-cell-28-2" class="code-annotation-target"><a href="#annotated-cell-28-2" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">map_vec</span>(<span class="at">.x =</span> nums, <span class="at">.f =</span> sqrt)</span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-28" data-target-annotation="2">2</button><span id="annotated-cell-28-3" class="code-annotation-target"><a href="#annotated-cell-28-3" aria-hidden="true" tabindex="-1"></a>base<span class="sc">::</span><span class="fu">sapply</span>(<span class="at">X =</span> nums, <span class="at">FUN =</span> sqrt)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-35"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-35-1"><a href="#annotated-cell-35-1" aria-hidden="true" tabindex="-1"></a>nums <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">9</span>, <span class="dv">49</span>, <span class="dv">101</span>, pi)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-35" data-target-annotation="1">1</button><span id="annotated-cell-35-2" class="code-annotation-target"><a href="#annotated-cell-35-2" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">map_vec</span>(<span class="at">.x =</span> nums, <span class="at">.f =</span> sqrt)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-35" data-target-annotation="2">2</button><span id="annotated-cell-35-3" class="code-annotation-target"><a href="#annotated-cell-35-3" aria-hidden="true" tabindex="-1"></a>base<span class="sc">::</span><span class="fu">sapply</span>(<span class="at">X =</span> nums, <span class="at">FUN =</span> sqrt)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-28" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-35" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-28" data-code-lines="2" data-code-annotation="1"><code>map()</code> always returns a list, but <code>map_vec</code> simplifies into a vector; see also <code>map_df</code> or type-specific versions like <code>map_int</code>, <code>map_chr</code>, or <code>map_dbl</code></span>
+<span data-code-cell="annotated-cell-35" data-code-lines="2" data-code-annotation="1"><code>map()</code> always returns a list, but <code>map_vec</code> simplifies into a vector; see also <code>map_df</code> or type-specific versions like <code>map_int</code>, <code>map_chr</code>, or <code>map_dbl</code></span>
 </dd>
-<dt data-target-cell="annotated-cell-28" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-35" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-28" data-code-lines="3" data-code-annotation="2"><code>apply()</code> returns various formats depending on output; <code>sapply</code> returns the results simplified into a vector or matrix</span>
+<span data-code-cell="annotated-cell-35" data-code-lines="3" data-code-annotation="2"><code>apply()</code> returns various formats depending on output; <code>sapply</code> returns the results simplified into a vector or matrix</span>
 </dd>
 </dl>
 </div>
@@ -911,33 +967,33 @@ window.Quarto = {
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <p>Let’s take the <code>palmerpenguins::penguins</code> dataset and create a linear model of bill length vs bill depth for each of the three penguin species, Chinstrap, Adelie, and Gentoo. Note, there are more efficient ways to do this, here we are spelling it out as a teaching case.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-30"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-30-1"><a href="#annotated-cell-30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="annotated-cell-30-2"><a href="#annotated-cell-30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(penguins)</span>
-<span id="annotated-cell-30-3"><a href="#annotated-cell-30-3" aria-hidden="true" tabindex="-1"></a>spp_vec <span class="ot">&lt;-</span> <span class="fu">unique</span>(penguins<span class="sc">$</span>species)</span>
-<span id="annotated-cell-30-4"><a href="#annotated-cell-30-4" aria-hidden="true" tabindex="-1"></a></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-30" data-target-annotation="1">1</button><span id="annotated-cell-30-5" class="code-annotation-target"><a href="#annotated-cell-30-5" aria-hidden="true" tabindex="-1"></a>calc_bill_model <span class="ot">&lt;-</span> <span class="cf">function</span>(spp, df) {</span>
-<span id="annotated-cell-30-6"><a href="#annotated-cell-30-6" aria-hidden="true" tabindex="-1"></a>    spp_df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="annotated-cell-30-7"><a href="#annotated-cell-30-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">filter</span>(species <span class="sc">==</span> spp)</span>
-<span id="annotated-cell-30-8"><a href="#annotated-cell-30-8" aria-hidden="true" tabindex="-1"></a>    bill_mdl <span class="ot">&lt;-</span> <span class="fu">lm</span>(bill_length_mm <span class="sc">~</span> bill_depth_mm, <span class="at">data =</span> spp_df)</span>
-<span id="annotated-cell-30-9"><a href="#annotated-cell-30-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(bill_mdl)</span>
-<span id="annotated-cell-30-10"><a href="#annotated-cell-30-10" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="annotated-cell-30-11"><a href="#annotated-cell-30-11" aria-hidden="true" tabindex="-1"></a>map_results <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(<span class="at">.x =</span> spp_vec, <span class="at">.f =</span> calc_bill_model, <span class="at">df =</span> penguins)</span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-30" data-target-annotation="2">2</button><span id="annotated-cell-30-12" class="code-annotation-target"><a href="#annotated-cell-30-12" aria-hidden="true" tabindex="-1"></a>broom<span class="sc">::</span><span class="fu">tidy</span>(map_results[[<span class="dv">3</span>]])</span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-30" data-target-annotation="3">3</button><span id="annotated-cell-30-13" class="code-annotation-target"><a href="#annotated-cell-30-13" aria-hidden="true" tabindex="-1"></a>lapply_results <span class="ot">&lt;-</span> base<span class="sc">::</span><span class="fu">lapply</span>(<span class="at">X =</span> spp_vec, <span class="at">FUN =</span> calc_bill_model, <span class="at">df =</span> penguins)</span>
-<span id="annotated-cell-30-14"><a href="#annotated-cell-30-14" aria-hidden="true" tabindex="-1"></a>broom<span class="sc">::</span><span class="fu">tidy</span>(lapply_results[[<span class="dv">3</span>]])</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-37"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-37-1"><a href="#annotated-cell-37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="annotated-cell-37-2"><a href="#annotated-cell-37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(penguins)</span>
+<span id="annotated-cell-37-3"><a href="#annotated-cell-37-3" aria-hidden="true" tabindex="-1"></a>spp_vec <span class="ot">&lt;-</span> <span class="fu">unique</span>(penguins<span class="sc">$</span>species)</span>
+<span id="annotated-cell-37-4"><a href="#annotated-cell-37-4" aria-hidden="true" tabindex="-1"></a></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-37" data-target-annotation="1">1</button><span id="annotated-cell-37-5" class="code-annotation-target"><a href="#annotated-cell-37-5" aria-hidden="true" tabindex="-1"></a>calc_bill_model <span class="ot">&lt;-</span> <span class="cf">function</span>(spp, df) {</span>
+<span id="annotated-cell-37-6"><a href="#annotated-cell-37-6" aria-hidden="true" tabindex="-1"></a>    spp_df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="annotated-cell-37-7"><a href="#annotated-cell-37-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">filter</span>(species <span class="sc">==</span> spp)</span>
+<span id="annotated-cell-37-8"><a href="#annotated-cell-37-8" aria-hidden="true" tabindex="-1"></a>    bill_mdl <span class="ot">&lt;-</span> <span class="fu">lm</span>(bill_length_mm <span class="sc">~</span> bill_depth_mm, <span class="at">data =</span> spp_df)</span>
+<span id="annotated-cell-37-9"><a href="#annotated-cell-37-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(bill_mdl)</span>
+<span id="annotated-cell-37-10"><a href="#annotated-cell-37-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="annotated-cell-37-11"><a href="#annotated-cell-37-11" aria-hidden="true" tabindex="-1"></a>map_results <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(<span class="at">.x =</span> spp_vec, <span class="at">.f =</span> calc_bill_model, <span class="at">df =</span> penguins)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-37" data-target-annotation="2">2</button><span id="annotated-cell-37-12" class="code-annotation-target"><a href="#annotated-cell-37-12" aria-hidden="true" tabindex="-1"></a>broom<span class="sc">::</span><span class="fu">tidy</span>(map_results[[<span class="dv">3</span>]])</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-37" data-target-annotation="3">3</button><span id="annotated-cell-37-13" class="code-annotation-target"><a href="#annotated-cell-37-13" aria-hidden="true" tabindex="-1"></a>lapply_results <span class="ot">&lt;-</span> base<span class="sc">::</span><span class="fu">lapply</span>(<span class="at">X =</span> spp_vec, <span class="at">FUN =</span> calc_bill_model, <span class="at">df =</span> penguins)</span>
+<span id="annotated-cell-37-14"><a href="#annotated-cell-37-14" aria-hidden="true" tabindex="-1"></a>broom<span class="sc">::</span><span class="fu">tidy</span>(lapply_results[[<span class="dv">3</span>]])</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-30" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-37" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-30" data-code-lines="5,11" data-code-annotation="1"><code>map()</code> always returns a list, which works well for storing a complex object like a linear model</span>
+<span data-code-cell="annotated-cell-37" data-code-lines="5,11" data-code-annotation="1"><code>map()</code> always returns a list, which works well for storing a complex object like a linear model</span>
 </dd>
-<dt data-target-cell="annotated-cell-30" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-37" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-30" data-code-lines="12,14" data-code-annotation="2"><code>broom::tidy()</code> summarizes a model object into a nice clean dataframe</span>
+<span data-code-cell="annotated-cell-37" data-code-lines="12,14" data-code-annotation="2"><code>broom::tidy()</code> summarizes a model object into a nice clean dataframe</span>
 </dd>
-<dt data-target-cell="annotated-cell-30" data-target-annotation="3">3</dt>
+<dt data-target-cell="annotated-cell-37" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-30" data-code-lines="13" data-code-annotation="3"><code>lapply()</code> always returns a list, which works well for storing a complex object like a linear model</span>
+<span data-code-cell="annotated-cell-37" data-code-lines="13" data-code-annotation="3"><code>lapply()</code> always returns a list, which works well for storing a complex object like a linear model</span>
 </dd>
 </dl>
 </div>
@@ -968,14 +1024,14 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In the examples above, we used named functions (<code>sqrt</code> defined in base R, <code>calc_bill_model</code> defined by our own code). The <code>map</code> and <code>apply</code> functions also work well with “anonymous” functions - small tasks where the code is only needed once and can be discarded after. The function is created on the fly and not assigned to a named object.</p>
+<p>In the examples above, we used <strong>named</strong> functions (<code>sqrt</code> defined in base R, <code>calc_bill_model</code> defined by our own code). The <code>map</code> and <code>apply</code> functions also work well with <strong>anonymous</strong> functions - small tasks where the code is only needed once and can be discarded after. The function is created on the fly and not assigned to a named object.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">Base R Syntax</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Shorthand (R4.1+)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false" href=""><code>purrr</code> syntax</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <p>Using <code>function()</code> but not assigning it to an object, just giving it directly to the <code>FUN</code> argument.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>base<span class="sc">::</span><span class="fu">sapply</span>(<span class="at">X =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">FUN =</span> <span class="cf">function</span>(x) x <span class="sc">+</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>base<span class="sc">::</span><span class="fu">sapply</span>(<span class="at">X =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">FUN =</span> <span class="cf">function</span>(x) x <span class="sc">+</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2 3 4</code></pre>
 </div>
@@ -984,7 +1040,7 @@ window.Quarto = {
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
 <p>R 4.1 introduced a shorthand for <code>function(args) {expr}</code> using a backslash: <code>\(args) expr</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>base<span class="sc">::</span><span class="fu">sapply</span>(<span class="at">X =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">FUN =</span> \(x) x <span class="sc">+</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>base<span class="sc">::</span><span class="fu">sapply</span>(<span class="at">X =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">FUN =</span> \(x) x <span class="sc">+</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2 3 4</code></pre>
 </div>
@@ -993,11 +1049,11 @@ window.Quarto = {
 <div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
 <p>The <code>purrr</code> package uses a tilde-dot syntax as placeholder for the argument. It also works with <code>function()</code> or the backslash shorthand.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">map_vec</span>(<span class="at">.x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">.f =</span> <span class="sc">~</span> .x <span class="sc">+</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">map_vec</span>(<span class="at">.x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">.f =</span> <span class="sc">~</span> .x <span class="sc">+</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2 3 4</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">map_vec</span>(<span class="at">.x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">.f =</span> \(x) x <span class="sc">+</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">map_vec</span>(<span class="at">.x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">.f =</span> \(x) x <span class="sc">+</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2 3 4</code></pre>
 </div>
@@ -1014,46 +1070,46 @@ window.Quarto = {
 <h3 data-number="4.2" class="anchored" data-anchor-id="functions-for-custom-plot-themes"><span class="header-section-number">4.2</span> Functions for Custom Plot Themes</h3>
 <p>If you make many similar plots, a custom theme function keeps formatting consistent and easy to update (we know this is not the greatest plot, we’re just changing various aspects that should be obvious in the resulting plot).</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>custom_theme <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">base_size =</span> <span class="dv">9</span>) {</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">text             =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"serif"</span>,</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">color  =</span> <span class="st">"slateblue4"</span>,</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">size   =</span> base_size),</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title       =</span> <span class="fu">element_text</span>(<span class="at">size   =</span> <span class="fu">rel</span>(<span class="fl">1.25</span>),</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">hjust  =</span> <span class="fl">0.5</span>,</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">face   =</span> <span class="st">"bold"</span>),</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">'slateblue3'</span>,</span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">fill  =</span> <span class="st">'azure'</span>),</span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color    =</span> <span class="st">"slateblue1"</span>,</span>
-<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">linewidth =</span> <span class="fl">0.25</span>),</span>
-<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position  =</span> <span class="fu">c</span>(.<span class="dv">9</span>, .<span class="dv">4</span>),</span>
-<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks       =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">'red'</span>)</span>
-<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>custom_theme <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">base_size =</span> <span class="dv">9</span>) {</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">text             =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"serif"</span>,</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">color  =</span> <span class="st">"slateblue4"</span>,</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">size   =</span> base_size),</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title       =</span> <span class="fu">element_text</span>(<span class="at">size   =</span> <span class="fu">rel</span>(<span class="fl">1.25</span>),</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">hjust  =</span> <span class="fl">0.5</span>,</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">face   =</span> <span class="st">"bold"</span>),</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">'slateblue3'</span>,</span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">fill  =</span> <span class="st">'azure'</span>),</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color    =</span> <span class="st">"slateblue1"</span>,</span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">linewidth =</span> <span class="fl">0.25</span>),</span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position  =</span> <span class="fu">c</span>(.<span class="dv">9</span>, .<span class="dv">4</span>),</span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks       =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">'red'</span>)</span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>You can go further and wrap the entire plot in a function too:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-15"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-15-1"><a href="#annotated-cell-15-1" aria-hidden="true" tabindex="-1"></a>scatterplot <span class="ot">&lt;-</span> <span class="cf">function</span>(df, <span class="at">point_size =</span> <span class="dv">2</span>, <span class="at">font_size =</span> <span class="dv">9</span>) {</span>
-<span id="annotated-cell-15-2"><a href="#annotated-cell-15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> fahr, <span class="at">y =</span> celsius, <span class="at">color =</span> kelvin)) <span class="sc">+</span></span>
-<span id="annotated-cell-15-3"><a href="#annotated-cell-15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> point_size) <span class="sc">+</span></span>
-<span id="annotated-cell-15-4"><a href="#annotated-cell-15-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_viridis_c</span>() <span class="sc">+</span></span>
-<span id="annotated-cell-15-5"><a href="#annotated-cell-15-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">custom_theme</span>(font_size)</span>
-<span id="annotated-cell-15-6"><a href="#annotated-cell-15-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="annotated-cell-15-7"><a href="#annotated-cell-15-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-15-8"><a href="#annotated-cell-15-8" aria-hidden="true" tabindex="-1"></a><span class="fu">scatterplot</span>(temps_df, <span class="at">point_size =</span> <span class="dv">3</span>, <span class="at">font_size =</span> <span class="dv">16</span>) <span class="sc">+</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-15" data-target-annotation="1">1</button><span id="annotated-cell-15-9" class="code-annotation-target"><a href="#annotated-cell-15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'Temperature Conversions'</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-16"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-16-1"><a href="#annotated-cell-16-1" aria-hidden="true" tabindex="-1"></a>scatterplot <span class="ot">&lt;-</span> <span class="cf">function</span>(df, <span class="at">point_size =</span> <span class="dv">2</span>, <span class="at">font_size =</span> <span class="dv">9</span>) {</span>
+<span id="annotated-cell-16-2"><a href="#annotated-cell-16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> fahr, <span class="at">y =</span> celsius, <span class="at">color =</span> kelvin)) <span class="sc">+</span></span>
+<span id="annotated-cell-16-3"><a href="#annotated-cell-16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> point_size) <span class="sc">+</span></span>
+<span id="annotated-cell-16-4"><a href="#annotated-cell-16-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_viridis_c</span>() <span class="sc">+</span></span>
+<span id="annotated-cell-16-5"><a href="#annotated-cell-16-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">custom_theme</span>(font_size)</span>
+<span id="annotated-cell-16-6"><a href="#annotated-cell-16-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="annotated-cell-16-7"><a href="#annotated-cell-16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-16-8"><a href="#annotated-cell-16-8" aria-hidden="true" tabindex="-1"></a><span class="fu">scatterplot</span>(temps_df, <span class="at">point_size =</span> <span class="dv">3</span>, <span class="at">font_size =</span> <span class="dv">16</span>) <span class="sc">+</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="1">1</button><span id="annotated-cell-16-9" class="code-annotation-target"><a href="#annotated-cell-16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'Temperature Conversions'</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-15" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-16" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-15" data-code-lines="9" data-code-annotation="1">Since <code>scatterplot()</code> returns a <code>ggplot</code> object, we can continue to add <code>ggplot</code> layers - additional geoms, scales, labels, etc.</span>
+<span data-code-cell="annotated-cell-16" data-code-lines="9" data-code-annotation="1">Since <code>scatterplot()</code> returns a <code>ggplot</code> object, we can continue to add <code>ggplot</code> layers - additional geoms, scales, labels, etc.</span>
 </dd>
 </dl>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="s06_r_functions_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="s06_r_functions_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1064,20 +1120,20 @@ window.Quarto = {
 <section id="documenting-functions" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="documenting-functions"><span class="header-section-number">5</span> Documenting Functions</h2>
 <p>Well-named functions are a start, but good documentation tells collaborators (and future you) what a function expects and what it returns. Comments in the function body are a good start. For a more standardized structure, the <a href="https://roxygen2.r-lib.org/"><code>roxygen2</code></a> package provides a lightweight format for this. Place comments starting with <code>#'</code> immediately above the function definition, and use specific tags (e.g., <code>@param</code>) to define sections of the documentation.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Convert temperature from Fahrenheit to Celsius</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param fahr Numeric value or vector in degrees Fahrenheit</span></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' @returns Numeric value or vector in degrees Celsius</span></span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' @export</span></span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examples</span></span>
-<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="co">#' convert_f_to_c(32)</span></span>
-<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="co">#' convert_f_to_c(c(32, 212, 72))</span></span>
-<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>convert_f_to_c <span class="ot">&lt;-</span> <span class="cf">function</span>(fahr) {</span>
-<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>  celsius <span class="ot">&lt;-</span> (fahr <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span></span>
-<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(celsius)</span>
-<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Convert temperature from Fahrenheit to Celsius</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param fahr Numeric value or vector in degrees Fahrenheit</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' @returns Numeric value or vector in degrees Celsius</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' @export</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examples</span></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a><span class="co">#' convert_f_to_c(32)</span></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="co">#' convert_f_to_c(c(32, 212, 72))</span></span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>convert_f_to_c <span class="ot">&lt;-</span> <span class="cf">function</span>(fahr) {</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>  celsius <span class="ot">&lt;-</span> (fahr <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span></span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(celsius)</span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Key tags:</p>
 <table class="caption-top table">
 <thead>
@@ -1151,14 +1207,14 @@ Note
 <div class="callout-body-container callout-body">
 <div class="callout-answer">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>fish_l_to_w <span class="ot">&lt;-</span> <span class="cf">function</span>(L) {</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    a <span class="ot">&lt;-</span> .<span class="dv">00057</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    b <span class="ot">&lt;-</span> <span class="fl">2.9</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    W <span class="ot">&lt;-</span> a <span class="sc">*</span> L<span class="sc">^</span>b</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">round</span>(W, <span class="dv">2</span>))</span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>test_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">42</span>, <span class="dv">60</span>)</span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="fu">fish_l_to_w</span>(<span class="at">L =</span> test_vec)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>fish_l_to_w <span class="ot">&lt;-</span> <span class="cf">function</span>(L) {</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>    a <span class="ot">&lt;-</span> .<span class="dv">00057</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>    b <span class="ot">&lt;-</span> <span class="fl">2.9</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>    W <span class="ot">&lt;-</span> a <span class="sc">*</span> L<span class="sc">^</span>b</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">round</span>(W, <span class="dv">2</span>))</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>test_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">42</span>, <span class="dv">60</span>)</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="fu">fish_l_to_w</span>(<span class="at">L =</span> test_vec)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 10.95 29.06 81.75</code></pre>
 </div>
@@ -1205,25 +1261,25 @@ Note
 <div class="callout-body-container callout-body">
 <div class="callout-answer">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>fish_l_to_w <span class="ot">&lt;-</span> <span class="cf">function</span>(L, <span class="at">a =</span> <span class="fl">0.00057</span>, <span class="at">b =</span> <span class="fl">2.9</span>, <span class="at">units =</span> <span class="st">"in"</span>) {</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(units <span class="sc">==</span> <span class="st">"cm"</span>) {</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>      length_in <span class="ot">&lt;-</span> L <span class="sc">/</span> <span class="fl">2.54</span></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> length_in <span class="ot">&lt;-</span> L</span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    W <span class="ot">&lt;-</span> a <span class="sc">*</span> length_in<span class="sc">^</span>b           <span class="do">### use length_in instead of L</span></span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(units <span class="sc">==</span> <span class="st">"cm"</span>) W <span class="ot">&lt;-</span> W <span class="sc">/</span> <span class="fl">2.2</span> <span class="do">### convert lb to kg to keep in metric</span></span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">round</span>(W, <span class="dv">2</span>))</span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>test_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">42</span>, <span class="dv">60</span>)</span>
-<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="fu">fish_l_to_w</span>(<span class="at">L =</span> test_vec)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>fish_l_to_w <span class="ot">&lt;-</span> <span class="cf">function</span>(L, <span class="at">a =</span> <span class="fl">0.00057</span>, <span class="at">b =</span> <span class="fl">2.9</span>, <span class="at">units =</span> <span class="st">"in"</span>) {</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(units <span class="sc">==</span> <span class="st">"cm"</span>) {</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>      length_in <span class="ot">&lt;-</span> L <span class="sc">/</span> <span class="fl">2.54</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> length_in <span class="ot">&lt;-</span> L</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>    W <span class="ot">&lt;-</span> a <span class="sc">*</span> length_in<span class="sc">^</span>b           <span class="do">### use length_in instead of L</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(units <span class="sc">==</span> <span class="st">"cm"</span>) W <span class="ot">&lt;-</span> W <span class="sc">/</span> <span class="fl">2.2</span> <span class="do">### convert lb to kg to keep in metric</span></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">round</span>(W, <span class="dv">2</span>))</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>test_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">42</span>, <span class="dv">60</span>)</span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a><span class="fu">fish_l_to_w</span>(<span class="at">L =</span> test_vec)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 10.95 29.06 81.75</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fish_l_to_w</span>(<span class="at">L =</span> test_vec <span class="sc">*</span> <span class="fl">2.54</span>, <span class="at">units =</span> <span class="st">"cm"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fish_l_to_w</span>(<span class="at">L =</span> test_vec <span class="sc">*</span> <span class="fl">2.54</span>, <span class="at">units =</span> <span class="st">"cm"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  4.98 13.21 37.16</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="do">### test kelp bass</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fish_l_to_w</span>(<span class="at">L =</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">22</span>), <span class="at">a =</span> <span class="fl">0.000779</span>, <span class="at">b =</span> <span class="fl">3.01</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="do">### test kelp bass</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fish_l_to_w</span>(<span class="at">L =</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">22</span>), <span class="at">a =</span> <span class="fl">0.000779</span>, <span class="at">b =</span> <span class="fl">3.01</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.38 8.56</code></pre>
 </div>
@@ -1270,22 +1326,22 @@ Note
 <div class="callout-body-container callout-body">
 <div class="callout-answer">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>fish_l_to_w <span class="ot">&lt;-</span> <span class="cf">function</span>(L, <span class="at">a =</span> <span class="fl">0.00057</span>, <span class="at">b =</span> <span class="fl">2.9</span>, <span class="at">units =</span> <span class="st">"in"</span>) {</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.numeric</span>(<span class="fu">c</span>(a, b))) <span class="fu">stop</span>(<span class="st">'Both `a` and `b` must be numeric!'</span>)</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(a <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">|</span> a <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="fu">stop</span>(<span class="st">'The `a` parameter should be between 0 and 1!'</span>)</span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(b <span class="sc">&lt;</span> <span class="dv">1</span>) <span class="fu">stop</span>(<span class="st">'The `b` parameter should be greater than 1!'</span>)</span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="sc">!</span><span class="fu">tolower</span>(units) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">'in'</span>, <span class="st">'cm'</span>)) <span class="fu">stop</span>(<span class="st">'The units should be either `in` or `cm`!'</span>)</span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(units <span class="sc">==</span> <span class="st">"cm"</span>) {</span>
-<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>      length_in <span class="ot">&lt;-</span> L <span class="sc">/</span> <span class="fl">2.54</span></span>
-<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> length_in <span class="ot">&lt;-</span> L</span>
-<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>    W <span class="ot">&lt;-</span> a <span class="sc">*</span> length_in<span class="sc">^</span>b           <span class="do">### use length_in instead of L</span></span>
-<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(units <span class="sc">==</span> <span class="st">"cm"</span>) W <span class="ot">&lt;-</span> W <span class="sc">/</span> <span class="fl">2.2</span> <span class="do">### convert lb to kg to keep in metric</span></span>
-<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">round</span>(W, <span class="dv">2</span>))</span>
-<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>fish_l_to_w <span class="ot">&lt;-</span> <span class="cf">function</span>(L, <span class="at">a =</span> <span class="fl">0.00057</span>, <span class="at">b =</span> <span class="fl">2.9</span>, <span class="at">units =</span> <span class="st">"in"</span>) {</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.numeric</span>(<span class="fu">c</span>(a, b))) <span class="fu">stop</span>(<span class="st">'Both `a` and `b` must be numeric!'</span>)</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(a <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">|</span> a <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="fu">stop</span>(<span class="st">'The `a` parameter should be between 0 and 1!'</span>)</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(b <span class="sc">&lt;</span> <span class="dv">1</span>) <span class="fu">stop</span>(<span class="st">'The `b` parameter should be greater than 1!'</span>)</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="sc">!</span><span class="fu">tolower</span>(units) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">'in'</span>, <span class="st">'cm'</span>)) <span class="fu">stop</span>(<span class="st">'The units should be either `in` or `cm`!'</span>)</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(units <span class="sc">==</span> <span class="st">"cm"</span>) {</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>      length_in <span class="ot">&lt;-</span> L <span class="sc">/</span> <span class="fl">2.54</span></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> length_in <span class="ot">&lt;-</span> L</span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>    W <span class="ot">&lt;-</span> a <span class="sc">*</span> length_in<span class="sc">^</span>b           <span class="do">### use length_in instead of L</span></span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(units <span class="sc">==</span> <span class="st">"cm"</span>) W <span class="ot">&lt;-</span> W <span class="sc">/</span> <span class="fl">2.2</span> <span class="do">### convert lb to kg to keep in metric</span></span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">round</span>(W, <span class="dv">2</span>))</span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <!-- display test code but don't eval:  -->
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fish_l_to_w</span>(<span class="at">L =</span> <span class="dv">30</span>, <span class="at">a =</span> <span class="sc">-</span>.<span class="dv">0003</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fish_l_to_w</span>(<span class="at">L =</span> <span class="dv">30</span>, <span class="at">a =</span> <span class="sc">-</span>.<span class="dv">0003</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <!-- run but don't show test code, catch and display error: -->
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -1330,36 +1386,36 @@ Note
 <div class="callout-answer">
 <p>Documentation might look something like this:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Fish length-to-width conversion</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' Convert length of fish to estimated weight using the formula W = aL^b</span></span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param L Fish length in inches or cm</span></span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param a The `a` value for the formula *based on L in inches*; default </span></span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="co">#'          0.00057 for Chinook salmon length</span></span>
-<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param b The `b` value for the formula; default 2.9 for Chinook salmon</span></span>
-<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param units The units of the given length, in inches (default) or cm.</span></span>
-<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
-<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a><span class="co">#' @returns Numeric value or vector of fish weight in lb (if units = "in") or </span></span>
-<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a><span class="co">#'          mass in kg (if units = "cm")</span></span>
-<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
-<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a><span class="co">#' @export</span></span>
-<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
-<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examples</span></span>
-<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a><span class="co">#' fish_l_to_w(L = c(24, 60))</span></span>
-<span id="cb47-18"><a href="#cb47-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-19"><a href="#cb47-19" aria-hidden="true" tabindex="-1"></a>fish_l_to_w <span class="ot">&lt;-</span> <span class="cf">function</span>(L, <span class="at">a =</span> <span class="fl">0.00057</span>, <span class="at">b =</span> <span class="fl">2.9</span>, <span class="at">units =</span> <span class="st">"in"</span>) {</span>
-<span id="cb47-20"><a href="#cb47-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(a <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">|</span> a <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="fu">stop</span>(<span class="st">'The `a` parameter should be between 0 and 1!'</span>)</span>
-<span id="cb47-21"><a href="#cb47-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(b <span class="sc">&lt;</span> <span class="dv">1</span>) <span class="fu">stop</span>(<span class="st">'The `b` parameter should be greater than 1!'</span>)</span>
-<span id="cb47-22"><a href="#cb47-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="sc">!</span><span class="fu">tolower</span>(units) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">'in'</span>, <span class="st">'cm'</span>)) <span class="fu">stop</span>(<span class="st">'The units should be either `in` or `cm`!'</span>)</span>
-<span id="cb47-23"><a href="#cb47-23" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb47-24"><a href="#cb47-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(units <span class="sc">==</span> <span class="st">"cm"</span>) {</span>
-<span id="cb47-25"><a href="#cb47-25" aria-hidden="true" tabindex="-1"></a>      length_in <span class="ot">&lt;-</span> L <span class="sc">/</span> <span class="fl">2.54</span></span>
-<span id="cb47-26"><a href="#cb47-26" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> length_in <span class="ot">&lt;-</span> L</span>
-<span id="cb47-27"><a href="#cb47-27" aria-hidden="true" tabindex="-1"></a>    W <span class="ot">&lt;-</span> a <span class="sc">*</span> length_in<span class="sc">^</span>b           <span class="do">### use length_in instead of L</span></span>
-<span id="cb47-28"><a href="#cb47-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(units <span class="sc">==</span> <span class="st">"cm"</span>) W <span class="ot">&lt;-</span> W <span class="sc">/</span> <span class="fl">2.2</span> <span class="do">### convert lb to kg to keep in metric</span></span>
-<span id="cb47-29"><a href="#cb47-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">round</span>(W, <span class="dv">2</span>))</span>
-<span id="cb47-30"><a href="#cb47-30" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Fish length-to-width conversion</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' Convert length of fish to estimated weight using the formula W = aL^b</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param L Fish length in inches or cm</span></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param a The `a` value for the formula *based on L in inches*; default </span></span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a><span class="co">#'          0.00057 for Chinook salmon length</span></span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param b The `b` value for the formula; default 2.9 for Chinook salmon</span></span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param units The units of the given length, in inches (default) or cm.</span></span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a><span class="co">#' @returns Numeric value or vector of fish weight in lb (if units = "in") or </span></span>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a><span class="co">#'          mass in kg (if units = "cm")</span></span>
+<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
+<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a><span class="co">#' @export</span></span>
+<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
+<span id="cb54-16"><a href="#cb54-16" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examples</span></span>
+<span id="cb54-17"><a href="#cb54-17" aria-hidden="true" tabindex="-1"></a><span class="co">#' fish_l_to_w(L = c(24, 60))</span></span>
+<span id="cb54-18"><a href="#cb54-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-19"><a href="#cb54-19" aria-hidden="true" tabindex="-1"></a>fish_l_to_w <span class="ot">&lt;-</span> <span class="cf">function</span>(L, <span class="at">a =</span> <span class="fl">0.00057</span>, <span class="at">b =</span> <span class="fl">2.9</span>, <span class="at">units =</span> <span class="st">"in"</span>) {</span>
+<span id="cb54-20"><a href="#cb54-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(a <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">|</span> a <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="fu">stop</span>(<span class="st">'The `a` parameter should be between 0 and 1!'</span>)</span>
+<span id="cb54-21"><a href="#cb54-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(b <span class="sc">&lt;</span> <span class="dv">1</span>) <span class="fu">stop</span>(<span class="st">'The `b` parameter should be greater than 1!'</span>)</span>
+<span id="cb54-22"><a href="#cb54-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="sc">!</span><span class="fu">tolower</span>(units) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">'in'</span>, <span class="st">'cm'</span>)) <span class="fu">stop</span>(<span class="st">'The units should be either `in` or `cm`!'</span>)</span>
+<span id="cb54-23"><a href="#cb54-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb54-24"><a href="#cb54-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(units <span class="sc">==</span> <span class="st">"cm"</span>) {</span>
+<span id="cb54-25"><a href="#cb54-25" aria-hidden="true" tabindex="-1"></a>      length_in <span class="ot">&lt;-</span> L <span class="sc">/</span> <span class="fl">2.54</span></span>
+<span id="cb54-26"><a href="#cb54-26" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> length_in <span class="ot">&lt;-</span> L</span>
+<span id="cb54-27"><a href="#cb54-27" aria-hidden="true" tabindex="-1"></a>    W <span class="ot">&lt;-</span> a <span class="sc">*</span> length_in<span class="sc">^</span>b           <span class="do">### use length_in instead of L</span></span>
+<span id="cb54-28"><a href="#cb54-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(units <span class="sc">==</span> <span class="st">"cm"</span>) W <span class="ot">&lt;-</span> W <span class="sc">/</span> <span class="fl">2.2</span> <span class="do">### convert lb to kg to keep in metric</span></span>
+<span id="cb54-29"><a href="#cb54-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">round</span>(W, <span class="dv">2</span>))</span>
+<span id="cb54-30"><a href="#cb54-30" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1387,14 +1443,14 @@ Note
 <div class="callout-exercise">
 <p>Use your function to iterate over a list of several species of fish. Copy this code to create a list of fish lengths and parameters:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>fish_list <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">chinook_salmon =</span> <span class="fu">list</span>(<span class="at">length =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">42</span>, <span class="dv">60</span>), </span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">a =</span> <span class="fl">0.00057</span>, <span class="at">b =</span> <span class="fl">2.9</span>, <span class="at">units =</span> <span class="st">"in"</span>),</span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">kelp_bass      =</span> <span class="fu">list</span>(<span class="at">length =</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">22</span>), </span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">a =</span> <span class="fl">0.000779</span>, <span class="at">b =</span> <span class="fl">3.01</span>, <span class="at">units =</span> <span class="st">"in"</span>),</span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">rainbow_trout  =</span> <span class="fu">list</span>(<span class="at">length =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">35</span>, <span class="dv">50</span>), </span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">a =</span> <span class="fl">0.000605</span>, <span class="at">b =</span> <span class="fl">2.87</span>, <span class="at">units =</span> <span class="st">"cm"</span>)</span>
-<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>fish_list <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">chinook_salmon =</span> <span class="fu">list</span>(<span class="at">length =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">42</span>, <span class="dv">60</span>), </span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">a =</span> <span class="fl">0.00057</span>, <span class="at">b =</span> <span class="fl">2.9</span>, <span class="at">units =</span> <span class="st">"in"</span>),</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">kelp_bass      =</span> <span class="fu">list</span>(<span class="at">length =</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">22</span>), </span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">a =</span> <span class="fl">0.000779</span>, <span class="at">b =</span> <span class="fl">3.01</span>, <span class="at">units =</span> <span class="st">"in"</span>),</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">rainbow_trout  =</span> <span class="fu">list</span>(<span class="at">length =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">35</span>, <span class="dv">50</span>), </span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">a =</span> <span class="fl">0.000605</span>, <span class="at">b =</span> <span class="fl">2.87</span>, <span class="at">units =</span> <span class="st">"cm"</span>)</span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Hint: you may want to create an anonymous function that takes a list of parameters and feeds them into your <code>fish_l_to_w()</code> function, then use <code>map()</code> or <code>lapply()</code> to apply it to each element of the list.</p>
 <div class="callout callout-style-default callout-answer no-icon callout-titled">
@@ -1415,11 +1471,11 @@ Note
 <div class="tab-content">
 <div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">map</span>(<span class="at">.x =</span> fish_list, </span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">.f =</span> <span class="sc">~</span> <span class="fu">fish_l_to_w</span>(<span class="at">L =</span> .x<span class="sc">$</span>length, </span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">a =</span> .x<span class="sc">$</span>a, </span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">b =</span> .x<span class="sc">$</span>b, </span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">units =</span> .x<span class="sc">$</span>units))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">map</span>(<span class="at">.x =</span> fish_list, </span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">.f =</span> <span class="sc">~</span> <span class="fu">fish_l_to_w</span>(<span class="at">L =</span> .x<span class="sc">$</span>length, </span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">a =</span> .x<span class="sc">$</span>a, </span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">b =</span> .x<span class="sc">$</span>b, </span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">units =</span> .x<span class="sc">$</span>units))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$chinook_salmon
 [1] 10.95 29.06 81.75
@@ -1434,11 +1490,11 @@ $rainbow_trout
 </div>
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(<span class="at">X =</span> fish_list, </span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">FUN =</span> <span class="cf">function</span>(x) <span class="fu">fish_l_to_w</span>(<span class="at">L =</span> x<span class="sc">$</span>length, </span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">a =</span> x<span class="sc">$</span>a,</span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">b =</span> x<span class="sc">$</span>b,</span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">units =</span> x<span class="sc">$</span>units))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(<span class="at">X =</span> fish_list, </span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">FUN =</span> <span class="cf">function</span>(x) <span class="fu">fish_l_to_w</span>(<span class="at">L =</span> x<span class="sc">$</span>length, </span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">a =</span> x<span class="sc">$</span>a,</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">b =</span> x<span class="sc">$</span>b,</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">units =</span> x<span class="sc">$</span>units))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$chinook_salmon
 [1] 10.95 29.06 81.75
