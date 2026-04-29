@@ -140,12 +140,6 @@ airtemps == fahr_vec
 
 Function arguments often include a default value - in which case, the user can opt to simply not assign a value.  Here, `convert_temp()` allows the user to specify the scale of their input, defaulting to Fahrenheit (`scale = 'f'`).
 
-:::callout-tip
-## Error handling!
-
-Sometimes a user will include an argument that breaks the code - a character when the function expects a number, upper-case when expecting lower-case, etc.  Try to anticipate simple errors and include a way to identify and handle them in the function: try to correct the error on the fly, or use `stop()` to return a useful error message to the user.
-:::
-
 ```{r}
 convert_temp <- function(t, scale = 'f') {
     if(scale == "c") {
